@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="handler.UniHandler">
+   <children>
+      <AnchorPane fx:id="header" prefHeight="70.0" prefWidth="846.0" style="-fx-background-color: #f44268;">
+         <children>
+            <JFXButton layoutX="754.0" layoutY="5.0" onMouseClicked="#closeTuto" prefHeight="61.0" prefWidth="78.0" text="X">
+               <font>
+                  <Font name="Showcard Gothic" size="30.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="381.0" layoutY="17.0" text="Tutoriel">
+               <font>
+                  <Font name="Roboto" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="center" layoutX="9.0" layoutY="80.0" prefHeight="479.0" prefWidth="827.0">
+         <children>
+            <ImageView fx:id="image" fitHeight="444.0" fitWidth="791.0" layoutX="5.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton fx:id="buttBegin" layoutX="343.0" layoutY="453.0" onMouseClicked="#retourBase" text="&lt;&lt;" />
+            <JFXButton fx:id="buttPrevious" layoutX="376.0" layoutY="453.0" onMouseClicked="#retourUn" text="&lt;" />
+            <JFXButton fx:id="buttNext" layoutX="426.0" layoutY="453.0" onMouseClicked="#avanceUn" text="&gt;" />
+            <JFXButton fx:id="buttEnd" layoutX="451.0" layoutY="453.0" onMouseClicked="#avanceFin" text="&gt;&gt;" />
+            <Label fx:id="compt" layoutX="403.0" layoutY="457.0" text="0" />
+            <Label layoutX="414.0" layoutY="457.0" text="/10" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

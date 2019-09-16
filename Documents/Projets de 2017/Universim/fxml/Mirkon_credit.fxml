@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="handler.UniHandler" >
+   <children>
+      <AnchorPane fx:id="header" prefHeight="70.0" prefWidth="666.0" style="-fx-background-color: #f44268;">
+         <children>
+            <JFXButton layoutX="574.0" layoutY="5.0" onMouseClicked="#closeCredits" prefHeight="61.0" prefWidth="78.0" text="X">
+               <font>
+                  <Font name="Showcard Gothic" size="30.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="294.0" layoutY="17.0" text="Crédits">
+               <font>
+                  <Font name="Roboto" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="9.0" layoutY="80.0" prefHeight="288.0" prefWidth="441.0">
+         <children>
+            <Label layoutX="14.0" layoutY="257.0" text="Remerciement à Jacques HAIECH, Julien GOSSA et tout nos enseignantspour leur aide." />
+            <Label layoutX="15.0" layoutY="66.0" text="La musique &quot;A day off&quot; est réalisée par Nicolai Heidlas." />
+            <Label layoutX="15.0" layoutY="117.0" text="Propulsée par https://goo.gl/7WAO4Y" />
+            <Label layoutX="15.0" layoutY="83.0" text="https://soundcloud.com/nicolai-heidlas/a-day-off-free-happy-background-music" />
+            <Label layoutX="17.0" layoutY="100.0" text="Creative Commons CC-BY : https://creativecommons.org/licenses/by/4.0/deed.fr" />
+            <Label layoutX="15.0" layoutY="144.0" text="L'image de fond a été réalisé par Bogdan mB0sco" />
+            <Label layoutX="14.0" layoutY="161.0" text="https://www.artstation.com/mb0sco" />
+            <Label layoutX="15.0" layoutY="178.0" text="https://www.artstation.com/artwork/d338K" />
+            <Label layoutX="16.0" layoutY="206.0" text="Police d'écriture réalisé par : SML Designs" />
+            <Label layoutX="16.0" layoutY="223.0" text="https://fontmeme.com/fonts/simllhp-font/" />
+            <Label layoutX="17.0" layoutY="14.0" text="Le jeu &quot;UniverSim&quot; est un projet éducatif réalisé à l'IUT Robert Schuman." />
+            <Label layoutX="17.0" layoutY="31.0" text="Notre projet tutoré portait sur le management des organisations (HAJ). " />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="463.0" layoutY="80.0" prefHeight="288.0" prefWidth="190.0">
+         <children>
+            <Label layoutX="14.0" layoutY="155.0" text="Réalisé par :" textAlignment="CENTER" underline="true" />
+            <Label layoutX="14.0" layoutY="172.0" text="Rémi ARLEN" />
+            <Label layoutX="14.0" layoutY="189.0" text="Hugo MARCHAL" />
+            <Label layoutX="14.0" layoutY="206.0" text="Samuel PELSY-MOZIMANN" />
+            <Label layoutX="14.0" layoutY="223.0" text="Sébastien ARBOGAST" />
+            <ImageView fx:id="img" fitHeight="131.0" fitWidth="175.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
