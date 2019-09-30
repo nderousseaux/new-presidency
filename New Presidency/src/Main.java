@@ -5,6 +5,7 @@ public class Main {
         Controller controller=new Controller();
         Textual_Interface affichage = new Textual_Interface(controller);
         Indicator.initIndicators();
+        Lever.initLever();
         System.out.println("NEW PRESIDENCY");
         System.out.println("-------------------------");
         Scanner sc=new Scanner(System.in);

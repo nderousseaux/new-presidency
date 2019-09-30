@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Lever {
     private String _name;
     private HashMap<Indicator,Integer> _effects;
     private Integer _budget;
+    private Object HashMap;
 
     private Lever(String name, HashMap<Indicator,Integer> effects, Integer initBudget){
         _name=name;
@@ -25,13 +28,24 @@ public class Lever {
         return _effects;
     }
 
+    public String getName(){
+        return _name;
+    }
+/*
+    public String getEffectName(Integer index) {
+        Set listEffects = _effects.keySet();
+        System.out.println(listEffects);
+        return listEffects;
+    }*/
 
     //Lister les leviers
-    /*
-    public void initDics(){
 
-        com_dic.put(Indicator.FAME, 5);
+
+    public static void initLever(){
+        HashMap<Indicator,Integer> dicoFame= new HashMap<Indicator,Integer>();
+        dicoFame.put(Indicator.FAME,10);
+        COMMUNICATION=new Lever("Communication",dicoFame,0);
     }
 
-    final static Lever COMMUNICATION = new Lever("Communication",);*/
+    static Lever COMMUNICATION;
 }
