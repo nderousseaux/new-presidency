@@ -32,7 +32,13 @@ public class Textual_Interface {
     }
 
     public void showLevers(){
-
+        for(Lever l : G_Lever.getLevers()){
+            System.out.println("    Levier "+l.getName()+": Budget actuel: "+l.getBudget());
+            for(Integer i = 0; i<l.getEffects().size();i++){
+                //lister les effets du dictionnaire
+                //System.out.println(l.getEffectName(0));
+            }
+        }
     }
 
 }
