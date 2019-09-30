@@ -26,6 +26,10 @@ public class Indicator {
         PROFESSIONAL_INSERTION_RATE = new Indicator("Taux d'insertion professionnelle", 0);
     }
 
+    public String getName(){
+        return _name;
+    }
+
     static Indicator STUDENT_SATISFACTION;
     static Indicator STAFF_SATISFACTION;
     static Indicator RESEARCH_LEVEL;
