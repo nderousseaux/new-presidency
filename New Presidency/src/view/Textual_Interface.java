@@ -1,3 +1,11 @@
+package view;
+
+import controller.Controller;
+import model.G_Indicator;
+import model.G_Lever;
+import model.Indicator;
+import model.Lever;
+
 import java.util.Scanner;
 
 public class Textual_Interface {

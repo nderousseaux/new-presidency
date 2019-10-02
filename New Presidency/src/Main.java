@@ -1,3 +1,8 @@
+import controller.Controller;
+import model.Indicator;
+import model.Lever;
+import view.Textual_Interface;
+
 import java.util.Scanner;
 
 public class Main {
