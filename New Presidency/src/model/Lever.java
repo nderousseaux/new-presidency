@@ -4,9 +4,6 @@ import java.util.HashMap;
 
 public class Lever {
 
-    //Variables statiques
-    static Lever COMMUNICATION;
-
     //Attributs
     private String _name;
     private HashMap<Indicator,Integer> _effects;
@@ -18,7 +15,6 @@ public class Lever {
         _name=name;
         _effects=effects;
         _budget=initBudget;
-        G_Lever.addLever(this);
     }
 
     //Accesseurs
@@ -42,9 +38,7 @@ public class Lever {
 
 
     //Méthodes de classe
-    public static void initLever(){
-        HashMap<Indicator,Integer> dicoCom= new HashMap<Indicator,Integer>();
-        dicoCom.put(Indicator.FAME,10);
-        COMMUNICATION=new Lever("Communication",dicoCom,0);
+    static Lever newLever(String name, HashMap<Indicator,Integer> effects, Integer initBudget){
+        return new Lever(name, effects, initBudget);
     }
 }

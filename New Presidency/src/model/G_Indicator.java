@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import model.Indicator;
 
 public class G_Indicator {
 
@@ -9,6 +10,11 @@ public class G_Indicator {
     private static Collection<Indicator> _indicators = new ArrayList<>();
 
     //Accesseurs
+    static public Indicator createIndicator(String name, double initValue){
+        Indicator i = Indicator.newIndicator(name, initValue);
+        addIndicator(i);
+        return i;
+    }
     static void addIndicator(Indicator indic){
         _indicators.add(indic);
     }
