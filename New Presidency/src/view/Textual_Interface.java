@@ -1,3 +1,11 @@
+package view;
+
+import controller.Controller;
+import model.List_Indicators;
+import model.List_Levers;
+import model.Indicator;
+import model.Lever;
+
 import java.util.Scanner;
 
 public class Textual_Interface {
@@ -26,13 +34,13 @@ public class Textual_Interface {
         }
     }
     public void showIndicators(){
-        for(Indicator i : G_Indicator.getIndicators()){
+        for(Indicator i : List_Indicators.getIndicators()){
             System.out.println("    Indicateur "+i.getName()+": Valeur actuelle: "+i.getValue());
         }
     }
 
     public void showLevers(){
-        for(Lever l : G_Lever.getLevers()){
+        for(Lever l : List_Levers.getLevers()){
             System.out.println("    Levier "+l.getName()+": Budget actuel: "+l.getBudget());
             for(Integer i = 0; i<l.getEffects().size();i++){
                 //lister les effets du dictionnaire
