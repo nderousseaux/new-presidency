@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="handler.UniHandler">
+   <children>
+      <AnchorPane fx:id="header" prefHeight="70.0" prefWidth="500.0" style="-fx-background-color: #f44268;">
+         <children>
+            <Label layoutX="138.0" layoutY="22.0" text="Décisions générales">
+               <font>
+                  <Font name="Roboto" size="25.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="423.0" layoutY="9.0" onMouseClicked="#closeDecGen" text="X">
+               <font>
+                  <Font name="Showcard Gothic" size="30.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="all" layoutY="68.0" prefHeight="431.0" prefWidth="500.0">
+         <children>
+            <Label layoutX="20.0" layoutY="14.0" text="Pour l'enseignement">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="195.0" layoutY="339.0" text="Nombre de partenaires : ">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="195.0" layoutY="306.0" text="Cout de recherche : 10000">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="195.0" layoutY="189.0" text="Cout de recherche : 10000">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="nbUniversite" layoutX="398.0" layoutY="339.0" text="0">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="nbEntreprise" layoutX="398.0" layoutY="227.0" text="0">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="195.0" layoutY="227.0" text="Nombre de partenaires : ">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="searchUniversite" layoutX="195.0" layoutY="381.0" onMouseClicked="#searchUniversite" prefHeight="36.0" prefWidth="224.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="Chercher une université" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="searchEntreprise" layoutX="195.0" layoutY="262.0" onMouseClicked="#searchEntreprise" prefHeight="36.0" prefWidth="224.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="Chercher une entreprise" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="90.0" layoutY="306.0" text="Université : ">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="89.0" layoutY="189.0" text="Enterprise : ">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="162.0" text="Mes partenaires : ">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="gestPrix112" layoutX="435.0" layoutY="103.0" onMouseClicked="#PlusPayeR" prefHeight="36.0" prefWidth="36.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="?" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="gestPrix111" layoutX="435.0" layoutY="57.0" onMouseClicked="#PlusProfR" prefHeight="36.0" prefWidth="36.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="?" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="gestPrix11" layoutX="435.0" layoutY="14.0" onMouseClicked="#HeuresCompR" prefHeight="36.0" prefWidth="36.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="?" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="gestPrix2" layoutX="85.0" layoutY="103.0" onMouseClicked="#MoinsPaye" prefHeight="36.0" prefWidth="163.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="Enlever les primes" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="gestPrix1" layoutX="195.0" layoutY="14.0" onMouseClicked="#HeuresComp" prefHeight="36.0" prefWidth="224.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="Heures complémentaires" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="gestPrix" layoutX="195.0" layoutY="57.0" onMouseClicked="#PlusProf" prefHeight="36.0" prefWidth="224.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="Plus de professeurs" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="14.0" layoutY="48.0" text="Prix des prof/trimestre">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="payeprof" layoutX="97.0" layoutY="75.0" text="0">
+               <font>
+                  <Font name="Roboto" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="gestPrix21" layoutX="256.0" layoutY="103.0" onMouseClicked="#PlusPaye" prefHeight="36.0" prefWidth="163.0" ripplerFill="#ff8c00" style="-fx-background-color: #f91647;" text="Ajouter des primes" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

@@ -1,0 +1,8 @@
+.root{
+   -fx-background-image: url('school.jpg');
+   -fx-background-repeat: stretch;
+   -fx-background-position: center center;
+   -fx-background-repeat: no-repeat;
+   -fx-background-size: cover, auto;
+   -fx-background-insets: -20, -10;
+}
