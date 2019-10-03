@@ -17,7 +17,7 @@ public class List_Indicators {
     }
 
     //Méthodes statiques
-    static public void updateAll(){
+    public static void updateAll(){
 
         //On parcourt les indicateurs
         for (Indicator i:_indicators) {
@@ -33,6 +33,10 @@ public class List_Indicators {
             //On met à jour l'indicateur
             i.setValue(newValue);
         }
+    }
+
+    static void addIndicator(Indicator i){
+        _indicators.add(i);
     }
 
 

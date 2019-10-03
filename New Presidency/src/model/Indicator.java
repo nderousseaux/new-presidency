@@ -10,7 +10,6 @@ public class Indicator {
     private Indicator(String name, double initValue){
         _name=name;
         _value=initValue;
-
     }
 
     //Accesseurs
@@ -26,11 +25,12 @@ public class Indicator {
 
 
     //Méthodes de classe
-    public static Indicator newIndicator(String name, double initValue){
-        return new Indicator(name, initValue);
+
+    public static Indicator createIndicator(String name, double value){
+        Indicator i = new Indicator(name,value);
+        List_Indicators.add(i);
+        return i;
     }
-
-
 
 
 }

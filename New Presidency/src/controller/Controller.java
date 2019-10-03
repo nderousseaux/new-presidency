@@ -11,36 +11,28 @@ public class Controller {
     List_Indicators listIndicators;
     List_Levers listLevers;
 
-    public void parametres(){
+    public void init(){
         //Création des indicateurs
-        Indicator SE = Indicator.newIndicator("Satisfaction étudiante", 0);
-        List_Indicators.addIndicator(SE);
-        Indicator SP = Indicator.newIndicator("Satisfaction du personnel", 0);
-        List_Indicators.addIndicator(SP);
-        Indicator NR = Indicator.newIndicator("Niveau de recherche", 0);
-        List_Indicators.addIndicator(NR);
-        Indicator TS = Indicator.newIndicator("Taux de succès au diplôme", 0);
-        List_Indicators.addIndicator(TS);
-        Indicator RU = Indicator.newIndicator("Réputation de l'université", 0);
-        List_Indicators.addIndicator(RU);
-        Indicator TI = Indicator.newIndicator("Taux d'insertion professionnelle", 0);
-        List_Indicators.addIndicator(TI);
+        Indicator SE = Indicator.createIndicator("Satisfaction étudiante", 0);
+        Indicator SP = Indicator.createIndicator("Satisfaction du personnel", 0);
+        Indicator NR = Indicator.createIndicator("Niveau de recherche", 0);
+        Indicator TS = Indicator.createIndicator("Taux de succès au diplôme", 0);
+        Indicator RU = Indicator.createIndicator("Réputation de l'université", 0);
+        Indicator TI = Indicator.createIndicator("Taux d'insertion professionnelle", 0);
         
         //Création des leviers
         
         //Communication
         HashMap<Indicator,Integer> dicoCom= new HashMap<Indicator,Integer>();
-        dicoCom.put(RU,10);
+        dicoCom.put(RU,10); //très bien vu Nath!
         dicoCom.put(SE, 5);
         Lever Com = Lever.newLever("Communication", dicoCom, 0);
-        List_Levers.addLever(Com);
         
         //Subventions des chercheurs
         HashMap<Indicator,Integer> dicoSubCher= new HashMap<Indicator,Integer>();
         dicoSubCher.put(NR,10);
         dicoSubCher.put(RU, 5);
         Lever SubCher = Lever.newLever("Subvention des chercheurs", dicoSubCher, 0);
-        List_Levers.addLever(SubCher);
     }
     
     

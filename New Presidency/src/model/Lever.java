@@ -38,7 +38,9 @@ public class Lever {
 
 
     //Méthodes de classe
-    public static Lever newLever(String name, HashMap<Indicator,Integer> effects, Integer initBudget){
-        return new Lever(name, effects, initBudget);
+    public static Lever createLever(String name, HashMap<Indicator,Integer> effects, Integer initBudget){
+        Lever l = new Lever(name,effects,initBudget);
+        List_Levers.addLever(l);
+        return l; //a voir si c'est bon... Le retour de l'objet m'est assez étrange
     }
 }
