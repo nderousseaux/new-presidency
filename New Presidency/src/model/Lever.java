@@ -38,7 +38,7 @@ public class Lever {
 
 
     //Méthodes de classe
-    static Lever newLever(String name, HashMap<Indicator,Integer> effects, Integer initBudget){
+    public static Lever newLever(String name, HashMap<Indicator,Integer> effects, Integer initBudget){
         return new Lever(name, effects, initBudget);
     }
 }

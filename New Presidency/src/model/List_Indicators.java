@@ -2,20 +2,14 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import model.Indicator;
 
-public class G_Indicator {
+public class List_Indicators {
 
     //Attributs
     private static Collection<Indicator> _indicators = new ArrayList<>();
 
     //Accesseurs
-    static public Indicator createIndicator(String name, double initValue){
-        Indicator i = Indicator.newIndicator(name, initValue);
-        addIndicator(i);
-        return i;
-    }
-    static void addIndicator(Indicator indic){
+    public static void addIndicator(Indicator indic){
         _indicators.add(indic);
     }
     static public Collection<Indicator> getIndicators(){
@@ -29,7 +23,7 @@ public class G_Indicator {
         for (Indicator i:_indicators) {
             double newValue=0;
             //Pour l'indicateur courant, on parcourt tout les levier du jeu
-            for (Lever l: G_Lever.getLevers()) {
+            for (Lever l: List_Levers.getLevers()) {
                 //si le levier possède un effet sur l'indicateur courant, on l'ajoute au total de la nouvelle valeur
                 if(l.getEffects().containsKey(i)){
                     newValue+=l.getEffects().get(i) * l.getBudget();
