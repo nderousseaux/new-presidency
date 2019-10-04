@@ -35,9 +35,5 @@ public class List_Indicators {
         }
     }
 
-    static void addIndicator(Indicator i){
-        _indicators.add(i);
-    }
-
 
 }

@@ -15,8 +15,8 @@ public class List_Levers {
         _levers.add(lever);
     }
 
-    static public Collection<Lever> getLevers(){
-        return _levers;
+    static public ArrayList<Lever> getLevers(){
+        return (ArrayList)_levers;
     }
 
 }

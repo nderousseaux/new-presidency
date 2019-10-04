@@ -28,7 +28,7 @@ public class Indicator {
 
     public static Indicator createIndicator(String name, double value){
         Indicator i = new Indicator(name,value);
-        List_Indicators.add(i);
+        List_Indicators.addIndicator(i);
         return i;
     }
 
