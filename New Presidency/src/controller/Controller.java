@@ -5,6 +5,7 @@ import model.List_Levers;
 import model.Indicator;
 import model.Lever;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Controller {
@@ -26,19 +27,28 @@ public class Controller {
         HashMap<Indicator,Integer> dicoCom= new HashMap<Indicator,Integer>();
         dicoCom.put(RU,10); //très bien vu Nath!
         dicoCom.put(SE, 5);
-        Lever Com = Lever.newLever("Communication", dicoCom, 0);
+        ArrayList<String> infosComm= new ArrayList<String>(); //oui bon j'aime bien le nom de variable XD
+        infosComm.add("Ceci est un exemple d'infos sur un levier");
+        infosComm.add("Bonsoir");
+        Lever Com = Lever.createLever("Communication", dicoCom, 0,infosComm);
         
         //Subventions des chercheurs
         HashMap<Indicator,Integer> dicoSubCher= new HashMap<Indicator,Integer>();
         dicoSubCher.put(NR,10);
         dicoSubCher.put(RU, 5);
-        Lever SubCher = Lever.newLever("Subvention des chercheurs", dicoSubCher, 0);
+        Lever SubCher = Lever.createLever("Subvention des chercheurs", dicoSubCher, 0,null);
     }
     
-    
-    public void tour(){
-        //tour de jeu...
+    public void addToBudget(Lever lever, Integer val){
+        lever.addToBudget(val);
+    }
 
+    public void removeFromBudget(Lever lever, Integer val){
+        lever.removeFromBudget(val);
+    }
+
+    public void endOfRound(){
+        //tour de jeu...
         List_Indicators.updateAll();
     }
 }
