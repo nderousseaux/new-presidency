@@ -1,7 +1,8 @@
 package view;
 
 import controller.*;
-import model.*;
+import model.Indicator;
+import model.Lever;
 
 import javax.crypto.spec.PSource;
 import java.util.ArrayList;
@@ -46,15 +47,16 @@ public class Textual_Interface {
     }
     public void showIndicators(){
         Integer i=1;
-        for(Indicator indic : List_Indicators.getIndicators()) {
+        for(Indicator indic : _controller.getIndicators()) {
             System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue()+" sur 100");
             i++;
         }
         System.out.println("    Sélectionnez un indicateur:");
         Scanner sc= new Scanner(System.in);
         Indicator indic = null;
-        if(sc.nextInt()<_controller.getIndicators().size())
-            indic=((ArrayList<Indicator>)List_Indicators.getIndicators()).get(sc.nextInt()-1);
+        Integer index = sc.nextInt()-1;
+        if(index <_controller.getIndicators().size())
+            indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index);
         else {
             System.out.println("Saisie incorrecte");
             exit(00);
@@ -81,7 +83,7 @@ public class Textual_Interface {
 
     public void showLevers(){
         Integer i=1;
-        for(Lever l : List_Levers.getLevers()){
+        for(Lever l : _controller.getLevers()){
             System.out.println("    "+i+") Levier "+l.getName()+": Budget actuel: "+l.getBudget());
             i++;
             /*for(Integer i = 0; i<l.getEffects().size();i++){
@@ -92,8 +94,9 @@ public class Textual_Interface {
         System.out.println("    Sélectionnez un levier");
         Scanner sc= new Scanner(System.in);
         Lever l =   null;
-        if(sc.nextInt()<_controller.getLevers().size())
-            l=((ArrayList<Lever>)List_Levers.getLevers()).get(sc.nextInt()-1);
+        Integer index = sc.nextInt()-1;
+        if(index<_controller.getLevers().size())
+            l=((ArrayList<Lever>)_controller.getLevers()).get(index);
         else{
             System.out.println("Saisie incorrecte");
             exit(0);
