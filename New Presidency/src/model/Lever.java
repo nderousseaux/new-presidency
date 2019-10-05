@@ -1,15 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
-public class Lever {
+public class Lever extends Informative_Object{
 
     //Attributs
     private String _name;
     private HashMap<Indicator,Integer> _effects;
     private Integer _budget;
-    private ArrayList<String> _infos;
+    private Collection<String> _infos;
 
     //Constructeur
     private Lever(String name, HashMap<Indicator,Integer> effects, Integer initBudget, ArrayList<String> infos){
@@ -55,5 +56,7 @@ public class Lever {
         setBudget(getBudget()-val);
     }
 
-
+    public Collection<String> getInfos(){
+        return _infos;
+    }
 }
