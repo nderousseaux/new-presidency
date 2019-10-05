@@ -1,11 +1,9 @@
 package controller;
 
-import model.List_Indicators;
-import model.List_Levers;
-import model.Indicator;
-import model.Lever;
+import model.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Controller {
@@ -14,12 +12,13 @@ public class Controller {
 
     public void init(){
         //Création des indicateurs
-        Indicator SE = Indicator.createIndicator("Satisfaction étudiante", 0);
-        Indicator SP = Indicator.createIndicator("Satisfaction du personnel", 0);
-        Indicator NR = Indicator.createIndicator("Niveau de recherche", 0);
-        Indicator TS = Indicator.createIndicator("Taux de succès au diplôme", 0);
-        Indicator RU = Indicator.createIndicator("Réputation de l'université", 0);
-        Indicator TI = Indicator.createIndicator("Taux d'insertion professionnelle", 0);
+
+        Indicator SE = Indicator.createIndicator("Satisfaction étudiante", 0,null);
+        Indicator SP = Indicator.createIndicator("Satisfaction du personnel", 0,null);
+        Indicator NR = Indicator.createIndicator("Niveau de recherche", 0,null);
+        Indicator TS = Indicator.createIndicator("Taux de succès au diplôme", 0,null);
+        Indicator RU = Indicator.createIndicator("Réputation de l'université", 0,null);
+        Indicator TI = Indicator.createIndicator("Taux d'insertion professionnelle", 0,null);
         
         //Création des leviers
         
@@ -50,5 +49,17 @@ public class Controller {
     public void endOfRound(){
         //tour de jeu...
         List_Indicators.updateAll();
+    }
+
+    public Collection<String> listInfos(Informative_Object obj){ //à remplacer par une classe abstraite commune aux leviers et aux indicateurs (voire autre chose?)
+         return obj.getInfos();                                           // Ce qui permettra de lister n'importe quelles infos
+    }                                                           //done
+
+    public Collection<Lever> getLevers(){
+        return List_Levers.getLevers();
+    }
+
+    public Collection<Indicator> getIndicators(){
+        return List_Indicators.getIndicators();
     }
 }
