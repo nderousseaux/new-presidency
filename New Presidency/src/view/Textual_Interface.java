@@ -38,11 +38,13 @@ public class Textual_Interface {
                 break;
             case "4":
                 System.out.println("Merci d'avoir joué à New Presidency!");
-                exit(0);
+                System.out.println("-------------------------");
+                _controller.exitGame();
                 break;
             default:
                 System.out.println("Saisie incorrecte");
-                exit(0);
+                showRound();
+                break;
         }
     }
     public void showIndicators(){
@@ -51,6 +53,7 @@ public class Textual_Interface {
             System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue()+" sur 100");
             i++;
         }
+
         System.out.println("    Sélectionnez un indicateur:");
         Scanner sc= new Scanner(System.in);
         Indicator indic = null;
@@ -59,7 +62,7 @@ public class Textual_Interface {
             indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index);
         else {
             System.out.println("Saisie incorrecte");
-            exit(00);
+            showIndicators();
         }
         System.out.println("    Vous avez choisi l'indicateur "+indic.getName());
         System.out.println("    Que souhaitez-vous faire?");
@@ -77,7 +80,7 @@ public class Textual_Interface {
                 break;
             default:
                 System.out.println("Saisie incorrecte");
-                exit(0);
+                showIndicators();
         }
     }
 
@@ -99,7 +102,7 @@ public class Textual_Interface {
             l=((ArrayList<Lever>)_controller.getLevers()).get(index);
         else{
             System.out.println("Saisie incorrecte");
-            exit(0);
+            showLevers();
         }
         System.out.println("    Vous avez choisi le levier "+l.getName());
         System.out.println("    Que souhaitez-vous faire?");
@@ -135,7 +138,7 @@ public class Textual_Interface {
                 break;
             default:
                 System.out.println("Saisie incorrecte");
-                exit(0);
+                showLevers();
                 break;
         }
     }

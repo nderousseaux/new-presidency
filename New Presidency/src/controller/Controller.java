@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import static java.lang.System.exit;
+
 public class Controller {
     List_Indicators _listIndicators;
     List_Levers _listLevers;
@@ -61,5 +63,9 @@ public class Controller {
 
     public Collection<Indicator> getIndicators(){
         return _listIndicators.getIndicators();
+    }
+
+    public void exitGame(){
+        exit(0);
     }
 }
