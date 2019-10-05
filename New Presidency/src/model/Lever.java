@@ -10,7 +10,7 @@ public class Lever extends Informative_Object{
     private String _name;
     private HashMap<Indicator,Integer> _effects;
     private Integer _budget;
-    private Collection<String> _infos;
+    private ArrayList<String> _infos;
 
     //Constructeur
     private Lever(String name, HashMap<Indicator,Integer> effects, Integer initBudget, ArrayList<String> infos){

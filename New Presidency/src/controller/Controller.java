@@ -7,8 +7,8 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Controller {
-    List_Indicators listIndicators;
-    List_Levers listLevers;
+    List_Indicators _listIndicators;
+    List_Levers _listLevers;
 
     public void init(){
         //Création des indicateurs
@@ -26,7 +26,7 @@ public class Controller {
         HashMap<Indicator,Integer> dicoCom= new HashMap<Indicator,Integer>();
         dicoCom.put(RU,10); //très bien vu Nath!
         dicoCom.put(SE, 5);
-        ArrayList<String> infosComm= new ArrayList<String>(); //oui bon j'aime bien le nom de variable XD
+        ArrayList<String> infosComm = new ArrayList<>(); //oui bon j'aime bien le nom de variable XD
         infosComm.add("Ceci est un exemple d'infos sur un levier");
         infosComm.add("Bonsoir");
         Lever Com = Lever.createLever("Communication", dicoCom, 0,infosComm);
@@ -56,10 +56,10 @@ public class Controller {
     }                                                           //done
 
     public Collection<Lever> getLevers(){
-        return List_Levers.getLevers();
+        return _listLevers.getLevers();
     }
 
     public Collection<Indicator> getIndicators(){
-        return List_Indicators.getIndicators();
+        return _listIndicators.getIndicators();
     }
 }
