@@ -2,6 +2,7 @@ package view;
 
 import controller.*;
 import model.Indicator;
+import model.Informative_Object;
 import model.Lever;
 
 import javax.crypto.spec.PSource;
@@ -19,6 +20,7 @@ public class Textual_Interface {
 
     public void showRound() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Budget restant: "+_controller.getBudget().toString());
         System.out.println("Menus:");
         System.out.println("1) Indicateurs");
         System.out.println("2) Leviers");
@@ -54,10 +56,16 @@ public class Textual_Interface {
             i++;
         }
 
-        System.out.println("    Sélectionnez un indicateur:");
+        System.out.println("    Sélectionnez un indicateur: (q pour quitter)");
         Scanner sc= new Scanner(System.in);
+        String scVal=sc.nextLine();
+        Integer index=null;
+        if(scVal=="quitter") //pas fini
+            showRound();
+        else
+            index = Integer.parseInt(scVal)-1;
         Indicator indic = null;
-        Integer index = sc.nextInt()-1;
+
         if(index <_controller.getIndicators().size())
             indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index);
         else {
@@ -67,16 +75,14 @@ public class Textual_Interface {
         System.out.println("    Vous avez choisi l'indicateur "+indic.getName());
         System.out.println("    Que souhaitez-vous faire?");
         System.out.println("    1) Obtenir des informations");
-        System.out.println("    2) Quitter");
+        System.out.println("    2) Retour");
         sc = new Scanner(System.in);
         switch (sc.nextInt()){
             case 1:
-                for(String s : (ArrayList<String>)_controller.listInfos(indic)){
-                    System.out.println("    "+s);
-                };
+                showInfos(indic);
                 break;
             case 2:
-                showRound();
+                showIndicators();
                 break;
             default:
                 System.out.println("Saisie incorrecte");
@@ -94,10 +100,17 @@ public class Textual_Interface {
                 //System.out.println(l.getEffectName(0));
             }*/
         }
-        System.out.println("    Sélectionnez un levier");
+        System.out.println("    Sélectionnez un levier (q pour quitter)");
         Scanner sc= new Scanner(System.in);
+        Integer index=null;
+        String scVal=sc.nextLine();
+        System.out.println(scVal);
+        if(scVal=="q") {
+            showRound();
+        }
+        else
+            index = Integer.parseInt(scVal)-1;
         Lever l =   null;
-        Integer index = sc.nextInt()-1;
         if(index<_controller.getLevers().size())
             l=((ArrayList<Lever>)_controller.getLevers()).get(index);
         else{
@@ -109,38 +122,58 @@ public class Textual_Interface {
         System.out.println("    1) Augmenter le budget");
         System.out.println("    2) Réduire le budget");
         System.out.println("    3) Obtenir des informations sur le levier");
-        System.out.println("    4) Quitter");
+        System.out.println("    4) Retour");
         sc=new Scanner(System.in);
         switch(sc.nextLine()) {
             case "1":
-                System.out.println("        De combien souhaitez-vous augmenter le budget?");
-                while (!sc.hasNextInt()) {
-                    System.out.println("        Veuillez saisir une valeur correcte");
-                    System.out.println("        De combien souhaitez-vous augmenter le budget?");
-                }
-                _controller.addToBudget(l, sc.nextInt());
+                addToBudget(l);
                 break;
             case "2":
-                System.out.println("        De combien souhaitez-vous diminuer le budget?");
-                while (!sc.hasNextInt()) {
-                    System.out.println("        Veuillez saisir une valeur correcte");
-                    System.out.println("        De combien souhaitez-vous diminuer le budget?");
-                }
-                _controller.removeFromBudget(l, sc.nextInt());
+                removeFromBudget(l);
                 break;
             case "3":
-                for(String s : _controller.listInfos(l)){
-                    System.out.println("        "+s);
-                };
+                showInfos(l);
                 break;
             case "4":
-                showRound();
+                showLevers();
                 break;
             default:
                 System.out.println("Saisie incorrecte");
                 showLevers();
                 break;
         }
+    }
+
+    public void addToBudget(Lever l){
+        System.out.println("        De combien souhaitez-vous augmenter le budget?");
+        Scanner sc = new Scanner(System.in);
+        while (!sc.hasNextInt()) {
+            System.out.println("        Veuillez saisir une valeur correcte");
+            System.out.println("        De combien souhaitez-vous augmenter le budget?");
+        }
+        if(_controller.addToBudget(l, sc.nextInt())!=0){
+            System.out.println("        Budget restant insuffisant!");
+            addToBudget(l);
+        }
+    }
+
+    public void removeFromBudget(Lever l){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("        De combien souhaitez-vous diminuer le budget?");
+        while (!sc.hasNextInt()) {
+            System.out.println("        Veuillez saisir une valeur correcte");
+            System.out.println("        De combien souhaitez-vous diminuer le budget?");
+        }
+        if(_controller.removeFromBudget(l, sc.nextInt())!=0){
+            System.out.println("        Vous ne pouvez pas retirer autant du budget de ce levier!");
+            removeFromBudget(l);
+        }
+    }
+
+    public void showInfos(Informative_Object obj){
+        for(String s : _controller.listInfos(obj)){
+            System.out.println("        "+s);
+        };
     }
 
 }
