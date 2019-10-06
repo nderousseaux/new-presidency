@@ -11,8 +11,13 @@ import static java.lang.System.exit;
 public class Controller {
     List_Indicators _listIndicators;
     List_Levers _listLevers;
+    Budget _budget;
 
     public void init(){
+        //Instanciation du budget
+
+        _budget=new Budget();
+
         //Création des indicateurs
 
         Indicator SE = Indicator.createIndicator("Satisfaction étudiante", 0,null);
@@ -40,12 +45,30 @@ public class Controller {
         Lever SubCher = Lever.createLever("Subvention des chercheurs", dicoSubCher, 0,null);
     }
     
-    public void addToBudget(Lever lever, Integer val){
-        lever.addToBudget(val);
+    public Integer addToBudget(Lever lever, Integer val){
+        Integer r;
+        if(val<_budget.getRemainingBudget()) {
+            lever.addToBudget(val);
+            _budget.setRemainingBudget(_budget.getRemainingBudget() - val);
+            r=0;
+        }
+        else{
+            r=-1;
+        }
+        return r;
     }
 
-    public void removeFromBudget(Lever lever, Integer val){
-        lever.removeFromBudget(val);
+    public Integer removeFromBudget(Lever lever, Integer val){
+        Integer r;
+        if(lever.getBudget()-val>=0) {
+            lever.removeFromBudget(val);
+            _budget.setRemainingBudget(_budget.getRemainingBudget() + val);
+            r = 0;
+        }
+        else{
+            r=-1;
+        }
+        return r;
     }
 
     public void endOfRound(){
@@ -63,6 +86,10 @@ public class Controller {
 
     public Collection<Indicator> getIndicators(){
         return _listIndicators.getIndicators();
+    }
+
+    public Budget getBudget(){
+        return _budget;
     }
 
     public void exitGame(){
