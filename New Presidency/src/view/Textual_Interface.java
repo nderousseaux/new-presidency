@@ -5,7 +5,6 @@ import model.Indicator;
 import model.Informative_Object;
 import model.Lever;
 
-import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -96,10 +95,6 @@ public class Textual_Interface {
         for(Lever l : _controller.getLevers()){
             System.out.println("    "+i+") Levier "+l.getName()+": Budget actuel: "+l.getBudget());
             i++;
-            /*for(Integer i = 0; i<l.getEffects().size();i++){
-                //lister les effets du dictionnaire
-                //System.out.println(l.getEffectName(0));
-            }*/
         }
         System.out.println("    Sélectionnez un levier (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);

@@ -10,7 +10,7 @@ public class List_States{
         _states.add(s);
     }
     
-    public State getState(int year){
+    public State getState(int year){ //YOAN: idem, remplacer par des semestres?
         State selectedState = null;
         for(State s : _states){
             if(s.getYear()== year){
