@@ -54,7 +54,15 @@ public class Textual_Interface {
             System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue()+" sur 100");
             i++;
         }
-
+        /*
+        * Version Gossa:
+        *
+        * System.out.println("1) Indicateur Satisfaction : valeur actuelle : "+ _controller.getSatisfaction());
+        * System.out.println("2) Indicateur Réussite étudiante : valeur actuelle : "+_controller.getReussite());
+        * ...
+        * soit une méthode get et set dans le controller en plus par levier/indicateur au lieu d'utiliser des champs de variables!
+        *
+        * */
         System.out.println("    Sélectionnez un indicateur: (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);
         Integer index=sc.nextInt();
@@ -66,12 +74,23 @@ public class Textual_Interface {
             index = index-1;
         Indicator indic = null;
 
-        if(index <_controller.getIndicators().size())
-            indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index);
+        if(index <_controller.getIndicators().size()) //GOSSA if(index<3)
+            indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index); /*switch(index)
+                                                                                    case 1
+                                                                                        sout("Vous avez choisi...")
+
+                                                                                    case 2
+                                                                                        sout
+
+                                                                                    case 3
+                                                                                    ...
+
+                                                                                  */
         else {
             System.out.println("Saisie incorrecte");
             showIndicators();
         }
+
         System.out.println("    Vous avez choisi l'indicateur "+indic.getName());
         System.out.println("    Que souhaitez-vous faire?");
         System.out.println("    1) Obtenir des informations");
