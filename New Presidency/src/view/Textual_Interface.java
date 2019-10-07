@@ -56,14 +56,15 @@ public class Textual_Interface {
             i++;
         }
 
-        System.out.println("    Sélectionnez un indicateur: (q pour quitter)");
+        System.out.println("    Sélectionnez un indicateur: (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);
-        String scVal=sc.nextLine();
-        Integer index=null;
-        if(scVal=="quitter") //pas fini
+        Integer index=sc.nextInt();
+        if(index==-1) {
             showRound();
+            exit(0);
+        }
         else
-            index = Integer.parseInt(scVal)-1;
+            index = index-1;
         Indicator indic = null;
 
         if(index <_controller.getIndicators().size())
@@ -100,16 +101,14 @@ public class Textual_Interface {
                 //System.out.println(l.getEffectName(0));
             }*/
         }
-        System.out.println("    Sélectionnez un levier (q pour quitter)");
+        System.out.println("    Sélectionnez un levier (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);
-        Integer index=null;
-        String scVal=sc.nextLine();
-        System.out.println(scVal);
-        if(scVal=="q") {
+        Integer index=sc.nextInt();
+        if(index==-1) {
             showRound();
         }
         else
-            index = Integer.parseInt(scVal)-1;
+            index = index-1;
         Lever l =   null;
         if(index<_controller.getLevers().size())
             l=((ArrayList<Lever>)_controller.getLevers()).get(index);
