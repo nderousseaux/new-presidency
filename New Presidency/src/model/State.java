@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class State{
     //attributs (i devant pour indicateurs et l devant pour leviers)
     private List_States historical;
@@ -8,6 +11,13 @@ public class State{
     private float _lRegistrationFees;
     private int _iStudentNumber;
     private float _iStudentSatisfaction;
+
+    //YOAN
+
+    private Collection<String> _indicators;
+    private Collection<String> _indicatorsInfos;
+    private Collection<String> _levers;
+    private Collection<String> _leversInfos;
     
     //constructeur
     public State(int year, float iBudget, float lRegistrationFees, int iStudentNumber, float iStudentSatisfaction){
@@ -16,6 +26,21 @@ public class State{
         _lRegistrationFees = lRegistrationFees;
         _iStudentNumber = iStudentNumber;
         _iStudentSatisfaction = iStudentSatisfaction;
+
+        //YOAN
+        _indicators=new ArrayList<>();
+        _indicators.add("Satisfaction des étudiants");
+        _indicators.add("Nombre d'étudiants");
+
+        _indicatorsInfos=new ArrayList<>();
+        _indicatorsInfos.add("Niveau de satisfaction générale des étudiants");
+        _indicatorsInfos.add("Nombre total actuel des étudiants");
+
+        _levers=new ArrayList<>();
+        _levers.add("Frais d'inscription");
+
+        _leversInfos=new ArrayList<>();
+        _leversInfos.add("Frais à l'année pour un élève");
     }
     
     //accesseur
@@ -38,6 +63,24 @@ public class State{
 
     public float getIStudentSatisfaction() {
         return _iStudentSatisfaction;
+    }
+
+    //YOAN
+
+    public Collection<String> getIndicators(){
+        return _indicators;
+    }
+
+    public Collection<String> getIndicatorsInfos(){
+        return _indicatorsInfos;
+    }
+
+    public Collection<String> getLevers(){
+        return _levers;
+    }
+
+    public Collection<String> getLeversInfos(){
+        return _leversInfos;
     }
 
     //seteur

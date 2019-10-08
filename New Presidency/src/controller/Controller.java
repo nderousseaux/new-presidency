@@ -12,10 +12,11 @@ public class Controller {
     List_Indicators _listIndicators;
     List_Levers _listLevers;
     Budget _budget;
+    State _state;
 
     public void init(){
         //Instanciation du budget
-
+        _state=new State(0,0,0,0,0);
         _budget=new Budget();
 
         //Création des indicateurs
@@ -80,13 +81,21 @@ public class Controller {
          return obj.getInfos();                                           // Ce qui permettra de lister n'importe quelles infos
     }                                                           //done
 
-    public Collection<Lever> getLevers(){
-        return _listLevers.getLevers();
+    public Collection<String> getLevers(){
+        return _state.getLevers();
     }
 
-    public Collection<Indicator> getIndicators(){
-        return _listIndicators.getIndicators();
+    public Collection<String> getIndicators(){
+        return _state.getIndicators();
     }
+
+    public float getValueOf(String obj){
+        return 0;
+    }
+
+    public String getInfoOfIndicator(Integer index) { return ((ArrayList<String>)_state.getIndicatorsInfos()).get(index);}
+
+    public String getInfoOfLever(Integer index) { return ((ArrayList<String>)_state.getLeversInfos()).get(index);}
 
     public Budget getBudget(){
         return _budget;

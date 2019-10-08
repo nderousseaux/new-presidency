@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
+import static java.lang.System.setOut;
 
 public class Textual_Interface {
     private Controller _controller;
@@ -50,8 +51,8 @@ public class Textual_Interface {
     }
     public void showIndicators(){
         Integer i=1;
-        for(Indicator indic : _controller.getIndicators()) {
-            System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue()+" sur 100");
+        for(String indic : _controller.getIndicators()) {
+            System.out.println("    "+i+")Indicateur " + indic + ": Valeur actuelle: " + _controller.getValueOf(indic)+" sur 100");
             i++;
         }
         /*
@@ -72,33 +73,23 @@ public class Textual_Interface {
         }
         else
             index = index-1;
-        Indicator indic = null;
+        String indic = null;
 
         if(index <_controller.getIndicators().size()) //GOSSA if(index<3)
-            indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index); /*switch(index)
-                                                                                    case 1
-                                                                                        sout("Vous avez choisi...")
-
-                                                                                    case 2
-                                                                                        sout
-
-                                                                                    case 3
-                                                                                    ...
-
-                                                                                  */
+            indic=((ArrayList<String>)_controller.getIndicators()).get(index);
         else {
             System.out.println("Saisie incorrecte");
             showIndicators();
         }
 
-        System.out.println("    Vous avez choisi l'indicateur "+indic.getName());
+        System.out.println("    Vous avez choisi l'indicateur "+indic);
         System.out.println("    Que souhaitez-vous faire?");
         System.out.println("    1) Obtenir des informations");
         System.out.println("    2) Retour");
         sc = new Scanner(System.in);
         switch (sc.nextInt()){
             case 1:
-                showInfos(indic);
+                showIndicatorInfos(index);
                 break;
             case 2:
                 showIndicators();
@@ -111,8 +102,8 @@ public class Textual_Interface {
 
     public void showLevers(){
         Integer i=1;
-        for(Lever l : _controller.getLevers()){
-            System.out.println("    "+i+") Levier "+l.getName()+": Budget actuel: "+l.getBudget());
+        for(String l : _controller.getLevers()){
+            System.out.println("    "+i+") Levier "+l+": Budget actuel: "+_controller.getValueOf(l));
             i++;
         }
         System.out.println("    Sélectionnez un levier (-1 pour quitter)");
@@ -123,14 +114,14 @@ public class Textual_Interface {
         }
         else
             index = index-1;
-        Lever l =   null;
+        String l =   null;
         if(index<_controller.getLevers().size())
-            l=((ArrayList<Lever>)_controller.getLevers()).get(index);
+            l=((ArrayList<String>)_controller.getLevers()).get(index);
         else{
             System.out.println("Saisie incorrecte");
             showLevers();
         }
-        System.out.println("    Vous avez choisi le levier "+l.getName());
+        System.out.println("    Vous avez choisi le levier "+l);
         System.out.println("    Que souhaitez-vous faire?");
         System.out.println("    1) Augmenter le budget");
         System.out.println("    2) Réduire le budget");
@@ -139,13 +130,13 @@ public class Textual_Interface {
         sc=new Scanner(System.in);
         switch(sc.nextLine()) {
             case "1":
-                addToBudget(l);
+                //addToBudget(l);
                 break;
             case "2":
-                removeFromBudget(l);
+                //removeFromBudget(l);
                 break;
             case "3":
-                showInfos(l);
+                showLeverInfos(index);
                 break;
             case "4":
                 showLevers();
@@ -183,10 +174,12 @@ public class Textual_Interface {
         }
     }
 
-    public void showInfos(Informative_Object obj){
-        for(String s : _controller.listInfos(obj)){
-            System.out.println("        "+s);
-        };
+    public void showIndicatorInfos(Integer indic){
+        System.out.println(_controller.getInfoOfIndicator(indic));
+    }
+
+    public void showLeverInfos(Integer lever){
+        System.out.println(_controller.getInfoOfLever(lever));
     }
 
 }
