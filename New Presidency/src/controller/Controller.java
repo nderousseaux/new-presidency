@@ -13,12 +13,17 @@ public class Controller {
     LeverList _leverList;
     Budget _budget;
     State _state;
+    StateList _stateList;
 
-    public void init(){
-        //Instanciation du budget
+    public Controller(){
         _state=new State(0,0,0,0,0);
         _budget=new Budget();
+        _indicatorList=IndicatorList.getInstance();
+        _leverList=LeverList.getInstance();
+        _stateList=StateList.getInstance();
+    }
 
+    public void init(){
         //Création des indicateurs
 
         Indicator SE = _indicatorList.createIndicator("Satisfaction étudiante", 0,null);

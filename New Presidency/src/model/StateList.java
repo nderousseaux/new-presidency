@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class StateList {
-    private Collection<State> _states = new ArrayList<>();
+    private Collection<State> _states;
+    private static StateList _instance;
     
     public void addState(State s){
         _states.add(s);
@@ -20,5 +21,13 @@ public class StateList {
         return selectedState;
     }
     
-    
+    private StateList(){
+        _states=new ArrayList<>();
+    }
+
+    public static StateList getInstance(){
+        if(_instance==null)
+            _instance=new StateList();
+        return _instance;
+    }
 }

@@ -7,12 +7,23 @@ import java.util.HashMap;
 public class LeverList {
 
     //Attributs
-    private static ArrayList<Lever> _levers=new ArrayList<>();
+    private static Collection<Lever> _levers;
+    private static LeverList _instance;
 
     //Accesseurs
 
-    static public ArrayList<Lever> getLevers(){
+    public static Collection<Lever> getLevers(){
         return _levers;
+    }
+
+    public static LeverList getInstance(){
+        if(_instance==null)
+            _instance=new LeverList();
+        return _instance;
+    }
+
+    private LeverList(){
+        _levers=new ArrayList<>();
     }
 
     public static Lever createLever(String name, HashMap<Indicator,Integer> effects, Integer initBudget, ArrayList<String> infos){

@@ -170,4 +170,10 @@ public class Textual_Interface {
             System.out.println(s);
         }
     }
+
+    public void init(){
+        System.out.println("NEW PRESIDENCY");
+        System.out.println("-------------------------");
+        showRound();
+    }
 }

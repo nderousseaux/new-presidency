@@ -6,16 +6,25 @@ import java.util.Collection;
 public class IndicatorList {
 
     //Attributs
-    private static Collection<Indicator> _indicators = new ArrayList<>();
+    private static Collection<Indicator> _indicators;
+    private static IndicatorList _instance;
 
     //Accesseurs
-    public static Indicator createIndicator(String name, double value, Collection<String> infos){
+    public Indicator createIndicator(String name, double value, Collection<String> infos){
         Indicator i = new Indicator(name,value,infos);
         _indicators.add(i);
         return i;
     }
-    static public Collection<Indicator> getIndicators(){
+    public Collection<Indicator> getIndicators(){
         return _indicators;
+    }
+    public static IndicatorList getInstance(){
+        if(_instance==null)
+            _instance=new IndicatorList();
+        return _instance;
+    }
+    private IndicatorList(){
+        _indicators=new ArrayList<>();
     }
 
     //Méthodes statiques
