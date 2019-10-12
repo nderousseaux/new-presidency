@@ -4,7 +4,6 @@ import java.util.Collection;
 
 public abstract class IndicLever {
     private String _name;
-
     private Collection<String> _infos;
 
     public IndicLever(String name, Collection<String> infos){

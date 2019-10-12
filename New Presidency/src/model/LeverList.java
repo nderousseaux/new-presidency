@@ -26,7 +26,7 @@ public class LeverList {
         _levers=new ArrayList<>();
     }
 
-    public static Lever createLever(String name, HashMap<Indicator,Integer> effects, Integer initBudget, ArrayList<String> infos){
+    public static Lever createLever(String name, HashMap<IndicLever,Integer> effects, Integer initBudget, ArrayList<String> infos){
         Lever l = new Lever(name,effects,initBudget,infos);
         _levers.add(l);
         return l;
