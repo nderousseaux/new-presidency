@@ -2,14 +2,13 @@ package view;
 
 import controller.*;
 import model.Indicator;
-import model.Informative_Object;
+import model.IndicLever;
 import model.Lever;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
-import static java.lang.System.setOut;
 
 public class Textual_Interface {
     private Controller _controller;
@@ -51,19 +50,11 @@ public class Textual_Interface {
     }
     public void showIndicators(){
         Integer i=1;
-        for(String indic : _controller.getIndicators()) {
-            System.out.println("    "+i+")Indicateur " + indic + ": Valeur actuelle: " + _controller.getValueOf(indic)+" sur 100");
+        for(Indicator indic : _controller.getIndicators()) {
+            System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue() +" sur 100");
             i++;
         }
-        /*
-        * Version Gossa:
-        *
-        * System.out.println("1) Indicateur Satisfaction : valeur actuelle : "+ _controller.getSatisfaction());
-        * System.out.println("2) Indicateur Réussite étudiante : valeur actuelle : "+_controller.getReussite());
-        * ...
-        * soit une méthode get et set dans le controller en plus par levier/indicateur au lieu d'utiliser des champs de variables!
-        *
-        * */
+
         System.out.println("    Sélectionnez un indicateur: (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);
         Integer index=sc.nextInt();
@@ -73,23 +64,23 @@ public class Textual_Interface {
         }
         else
             index = index-1;
-        String indic = null;
+        Indicator indic = null;
 
-        if(index <_controller.getIndicators().size()) //GOSSA if(index<3)
-            indic=((ArrayList<String>)_controller.getIndicators()).get(index);
+        if(index <_controller.getIndicators().size())
+            indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index);
         else {
             System.out.println("Saisie incorrecte");
             showIndicators();
         }
 
-        System.out.println("    Vous avez choisi l'indicateur "+indic);
+        System.out.println("    Vous avez choisi l'indicateur "+indic.getName());
         System.out.println("    Que souhaitez-vous faire?");
         System.out.println("    1) Obtenir des informations");
         System.out.println("    2) Retour");
         sc = new Scanner(System.in);
         switch (sc.nextInt()){
             case 1:
-                showIndicatorInfos(index);
+                listInfos(indic);
                 break;
             case 2:
                 showIndicators();
@@ -102,8 +93,8 @@ public class Textual_Interface {
 
     public void showLevers(){
         Integer i=1;
-        for(String l : _controller.getLevers()){
-            System.out.println("    "+i+") Levier "+l+": Budget actuel: "+_controller.getValueOf(l));
+        for(Lever l : _controller.getLevers()){
+            System.out.println("    "+i+") Levier "+l.getName()+": Budget actuel: "+l.getBudget());
             i++;
         }
         System.out.println("    Sélectionnez un levier (-1 pour quitter)");
@@ -114,9 +105,9 @@ public class Textual_Interface {
         }
         else
             index = index-1;
-        String l =   null;
+        Lever l =   null;
         if(index<_controller.getLevers().size())
-            l=((ArrayList<String>)_controller.getLevers()).get(index);
+            l=((ArrayList<Lever>)_controller.getLevers()).get(index);
         else{
             System.out.println("Saisie incorrecte");
             showLevers();
@@ -130,13 +121,13 @@ public class Textual_Interface {
         sc=new Scanner(System.in);
         switch(sc.nextLine()) {
             case "1":
-                //addToBudget(l);
+                addToBudget(l);
                 break;
             case "2":
-                //removeFromBudget(l);
+                removeFromBudget(l);
                 break;
             case "3":
-                showLeverInfos(index);
+                listInfos(l);
                 break;
             case "4":
                 showLevers();
@@ -174,12 +165,9 @@ public class Textual_Interface {
         }
     }
 
-    public void showIndicatorInfos(Integer indic){
-        System.out.println(_controller.getInfoOfIndicator(indic));
+    public void listInfos(IndicLever obj){
+        for(String s : _controller.listInfos(obj)){
+            System.out.println(s);
+        }
     }
-
-    public void showLeverInfos(Integer lever){
-        System.out.println(_controller.getInfoOfLever(lever));
-    }
-
 }

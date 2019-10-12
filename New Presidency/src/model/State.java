@@ -1,23 +1,13 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 public class State{
     //attributs (i devant pour indicateurs et l devant pour leviers)
-    private List_States historical;
+    private StateList historical;
     private int _year; // ni un indicateur ni un levier YOAN: Remplacer les années par des semestres?
     private float _iBudget; // YOAN : Le budget de quoi? Total? Du coup pas un indicateur?
     private float _lRegistrationFees;
     private int _iStudentNumber;
     private float _iStudentSatisfaction;
-
-    //YOAN
-
-    private Collection<String> _indicators;
-    private Collection<String> _indicatorsInfos;
-    private Collection<String> _levers;
-    private Collection<String> _leversInfos;
     
     //constructeur
     public State(int year, float iBudget, float lRegistrationFees, int iStudentNumber, float iStudentSatisfaction){
@@ -26,21 +16,6 @@ public class State{
         _lRegistrationFees = lRegistrationFees;
         _iStudentNumber = iStudentNumber;
         _iStudentSatisfaction = iStudentSatisfaction;
-
-        //YOAN
-        _indicators=new ArrayList<>();
-        _indicators.add("Satisfaction des étudiants");
-        _indicators.add("Nombre d'étudiants");
-
-        _indicatorsInfos=new ArrayList<>();
-        _indicatorsInfos.add("Niveau de satisfaction générale des étudiants");
-        _indicatorsInfos.add("Nombre total actuel des étudiants");
-
-        _levers=new ArrayList<>();
-        _levers.add("Frais d'inscription");
-
-        _leversInfos=new ArrayList<>();
-        _leversInfos.add("Frais à l'année pour un élève");
     }
     
     //accesseur
@@ -65,24 +40,6 @@ public class State{
         return _iStudentSatisfaction;
     }
 
-    //YOAN
-
-    public Collection<String> getIndicators(){
-        return _indicators;
-    }
-
-    public Collection<String> getIndicatorsInfos(){
-        return _indicatorsInfos;
-    }
-
-    public Collection<String> getLevers(){
-        return _levers;
-    }
-
-    public Collection<String> getLeversInfos(){
-        return _leversInfos;
-    }
-
     //seteur
 
     public void setYear(int year) {
@@ -103,7 +60,7 @@ public class State{
 
     public void setIStudentSatisfaction(float _iStudentSatisfaction) {_iStudentSatisfaction = _iStudentSatisfaction;
     }
-
+    /*
     //méthodes
     //passage vers l'état suivant (c'est à dire vers l'année suivante)
     public State generateNextState(){
@@ -113,9 +70,9 @@ public class State{
         int nextStudentNumber = generateNextStudentNumber(nextStudentSatisfaction);
         float nextBudget = _iBudget + (nextStudentNumber * nextRegistrationFees);
         //voir si on ajoute une somme qui est reçue chaque année du gouvernement
-        
+
         State nextState = new State(nextYear,nextBudget,nextRegistrationFees,nextStudentNumber,nextStudentSatisfaction);
-        return nextState; 
+        return nextState;
     }
     
     //calcul de certains indicateurs
@@ -153,4 +110,6 @@ public class State{
         }
         return nextStudentNumber;
     }
+
+    */
 }

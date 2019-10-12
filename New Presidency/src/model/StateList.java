@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class List_States{
+public class StateList {
     private Collection<State> _states = new ArrayList<>();
     
     public void addState(State s){
