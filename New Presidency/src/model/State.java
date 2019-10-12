@@ -2,7 +2,7 @@ package model;
 
 public class State{
     //attributs (i devant pour indicateurs et l devant pour leviers)
-    private List_States historical;
+    private StateList historical;
     private int _year; // ni un indicateur ni un levier YOAN: Remplacer les années par des semestres?
     private float _iBudget; // YOAN : Le budget de quoi? Total? Du coup pas un indicateur?
     private float _lRegistrationFees;
@@ -60,7 +60,7 @@ public class State{
 
     public void setIStudentSatisfaction(float _iStudentSatisfaction) {_iStudentSatisfaction = _iStudentSatisfaction;
     }
-
+    /*
     //méthodes
     //passage vers l'état suivant (c'est à dire vers l'année suivante)
     public State generateNextState(){
@@ -70,9 +70,9 @@ public class State{
         int nextStudentNumber = generateNextStudentNumber(nextStudentSatisfaction);
         float nextBudget = _iBudget + (nextStudentNumber * nextRegistrationFees);
         //voir si on ajoute une somme qui est reçue chaque année du gouvernement
-        
+
         State nextState = new State(nextYear,nextBudget,nextRegistrationFees,nextStudentNumber,nextStudentSatisfaction);
-        return nextState; 
+        return nextState;
     }
     
     //calcul de certains indicateurs
@@ -110,4 +110,6 @@ public class State{
         }
         return nextStudentNumber;
     }
+
+    */
 }

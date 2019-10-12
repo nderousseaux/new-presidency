@@ -2,7 +2,7 @@ package view;
 
 import controller.*;
 import model.Indicator;
-import model.Informative_Object;
+import model.IndicLever;
 import model.Lever;
 
 import java.util.ArrayList;
@@ -51,18 +51,10 @@ public class Textual_Interface {
     public void showIndicators(){
         Integer i=1;
         for(Indicator indic : _controller.getIndicators()) {
-            System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue()+" sur 100");
+            System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue() +" sur 100");
             i++;
         }
-        /*
-        * Version Gossa:
-        *
-        * System.out.println("1) Indicateur Satisfaction : valeur actuelle : "+ _controller.getSatisfaction());
-        * System.out.println("2) Indicateur Réussite étudiante : valeur actuelle : "+_controller.getReussite());
-        * ...
-        * soit une méthode get et set dans le controller en plus par levier/indicateur au lieu d'utiliser des champs de variables!
-        *
-        * */
+
         System.out.println("    Sélectionnez un indicateur: (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);
         Integer index=sc.nextInt();
@@ -74,18 +66,8 @@ public class Textual_Interface {
             index = index-1;
         Indicator indic = null;
 
-        if(index <_controller.getIndicators().size()) //GOSSA if(index<3)
-            indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index); /*switch(index)
-                                                                                    case 1
-                                                                                        sout("Vous avez choisi...")
-
-                                                                                    case 2
-                                                                                        sout
-
-                                                                                    case 3
-                                                                                    ...
-
-                                                                                  */
+        if(index <_controller.getIndicators().size())
+            indic=((ArrayList<Indicator>)_controller.getIndicators()).get(index);
         else {
             System.out.println("Saisie incorrecte");
             showIndicators();
@@ -98,7 +80,7 @@ public class Textual_Interface {
         sc = new Scanner(System.in);
         switch (sc.nextInt()){
             case 1:
-                showInfos(indic);
+                listInfos(indic);
                 break;
             case 2:
                 showIndicators();
@@ -130,7 +112,7 @@ public class Textual_Interface {
             System.out.println("Saisie incorrecte");
             showLevers();
         }
-        System.out.println("    Vous avez choisi le levier "+l.getName());
+        System.out.println("    Vous avez choisi le levier "+l);
         System.out.println("    Que souhaitez-vous faire?");
         System.out.println("    1) Augmenter le budget");
         System.out.println("    2) Réduire le budget");
@@ -145,7 +127,7 @@ public class Textual_Interface {
                 removeFromBudget(l);
                 break;
             case "3":
-                showInfos(l);
+                listInfos(l);
                 break;
             case "4":
                 showLevers();
@@ -183,10 +165,15 @@ public class Textual_Interface {
         }
     }
 
-    public void showInfos(Informative_Object obj){
+    public void listInfos(IndicLever obj){
         for(String s : _controller.listInfos(obj)){
-            System.out.println("        "+s);
-        };
+            System.out.println(s);
+        }
     }
 
+    public void init(){
+        System.out.println("NEW PRESIDENCY");
+        System.out.println("-------------------------");
+        showRound();
+    }
 }

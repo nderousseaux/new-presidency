@@ -10,10 +10,6 @@ public class Main {
         Controller controller=new Controller();
         Textual_Interface affichage = new Textual_Interface(controller);
         controller.init();
-        System.out.println("NEW PRESIDENCY");
-        System.out.println("-------------------------");
-        Scanner sc=new Scanner(System.in);
-        affichage.showRound();
-
+        affichage.init();
     }
 }
