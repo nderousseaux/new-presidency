@@ -28,7 +28,6 @@ public class Controller {
 
     public void init(){
         //Création des leviers
-
         //Recherche
         //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
         //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
@@ -46,13 +45,9 @@ public class Controller {
         //Lever formPartenariat = _leverList.createLever("Partenariat pour la formation", 100, new ArrayList<String>());
         //Lever formFraiIns = _leverList.createLever("Frais d'inscription", 100, new ArrayList<String>());
         Lever formPrime= _leverList.createLever("Prime de formation", 100, new ArrayList<String>());
-
         //Central
         //Lever cCom = _leverList.createLever("Communication générale", 100, new ArrayList<String>());
         Lever cSubE = _leverList.createLever("Subventions aux associations étudiantes", 100, new ArrayList<String>());
-
-
-
         //Immobilier
         //Lever iCons = _leverList.createLever("Investissement en construction", 100, new ArrayList<String>());
         //Lever iEnt = _leverList.createLever("Investissement en entretient des bâtiments", 100, new ArrayList<String>());
@@ -100,26 +95,9 @@ public class Controller {
         Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, rF, new ArrayList<String>());
         */
         //Taux de réussite
-        HashMap<Lever, Double> tR = new HashMap<Lever, Double>();
-        tR.put(formDotRec, 0.5);
-        tR.put(formDotSpe, 0.5);
-        Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50, tR, new ArrayList<String>());
-
-
+        Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50,new ArrayList<String>());
         //Satisfaction etudiante
-        HashMap<Lever, Double> sE = new HashMap<Lever, Double>();
-        //sE.put(iCons, neuvieme);
-        //sE.put(iEnt, neuvieme);
-        //sE.put(iReno, neuvieme);
-        sE.put(cSubE, tier);
-        //sE.put(formTitulaire, vingetuneieme);
-        //sE.put(formContractuel, vingetuneieme);
-        sE.put(formDotSpe, vingetuneieme);
-        sE.put(formDotRec, vingetuneieme);
-        //sE.put(formFraiIns, vingetuneieme);
-        sE.put(formPrime, vingetuneieme);
-        //sE.put(formPartenariat, vingetuneieme);
-        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, sE, new ArrayList<String>());
+        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, new ArrayList<String>());
 
         //Satisfaction personnel
 
@@ -128,25 +106,7 @@ public class Controller {
         Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50,sP,null);
         /*
         //Nombre d'étudiant
-        HashMap<Lever, Double> nE = new HashMap<Lever, Double>();
-        nE.put(iCons,vingtseptieme);
-        nE.put(iEnt,vingtseptieme);
-        nE.put(iReno,vingtseptieme);
-        nE.put(cSubE, neuvieme);
-        nE.put(formTitulaire, soixantetroisieme);
-        nE.put(formContractuel, soixantetroisieme);
-        nE.put(formDotSpe, soixantetroisieme);
-        nE.put(formDotRec, soixantetroisieme);
-        nE.put(formFraiIns, soixantetroisieme);
-        nE.put(formPrime, soixantetroisieme);
-        nE.put(formPartenariat, soixantetroisieme);
-        nE.put(formFraiIns, tier);
-        nE.put(formDotRec, dixhuitieme);
-        nE.put(formDotSpe, dixhuitieme);
-        nE.put(cCom, neuvieme);
-        nE.put(cSubE, neuvieme);
-        Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, nE, new ArrayList<String>());
-        */
+        Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, new ArrayList<String>());
     }
 
     
@@ -213,15 +173,21 @@ public class Controller {
     public void updateAll(){
         //On parcourt les indicateurs
         for (Indicator i:_indicatorList.getIndicators()) {
-            double newValue=0;
-            //Pour l'indicateur courant, on parcourt tout les levies qui l'influe
-            for (Lever l: i.getEffects().keySet()) {
-                //On y ajoute le pourcentage d'effet fois le pourcentage de budget
-                newValue+=100*i.getEffects().get(l)*l.getBudget();
+
+            //TODO:Coder les règles d'indicateurs selon le patern suivant
+
+            //Exemple
+            //Regles pour l'indicateur ''test'' (influé par le lever 'a' et 'b'
+            if(i.getName() == "test"){
+                int res = 0;
+                res += i.getValue();
+                res += _leverList.getLever(a).getBudget()*0.2;
+                res += _leverList.getLever(b).getBudget()*0.4;
+
+                i.setValue(res);
             }
 
-            //On met à jour l'indicateur
-            i.setValue(newValue);
+
         }
     }
 }
