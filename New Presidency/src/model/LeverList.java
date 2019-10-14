@@ -32,4 +32,14 @@ public class LeverList {
         return l;
     }
 
+    public Lever getLever(String name){
+        Lever retour=null;
+        for (Lever l:_levers) {
+            if( l.getName() == name){
+                retour=l;
+            }
+        }
+        return retour;
+    }
+
 }
