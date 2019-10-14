@@ -136,23 +136,6 @@ public class Controller {
         nE.put(cCom, neuvieme);
         nE.put(cSubE, neuvieme);
         Indicator nbEtu = IndicatorList.createIndicator("Nombre d'étudiant", 50, nE, new ArrayList<String>());
-
-
-
-        //Communication
-        HashMap<IndicLever,Integer> dicoCom= new HashMap<IndicLever,Integer>();
-        dicoCom.put(RU,10); //très bien vu Nath!
-        dicoCom.put(SE, 5);
-        ArrayList<String> infosComm = new ArrayList<>(); //oui bon j'aime bien le nom de variable XD
-        infosComm.add("Ceci est un exemple d'infos sur un levier");
-        infosComm.add("Bonsoir");
-        Lever Com = _leverList.createLever("Communication", dicoCom, 0,infosComm);
-
-        //Subventions des chercheurs
-        HashMap<IndicLever,Integer> dicoSubCher= new HashMap<IndicLever,Integer>();
-        dicoSubCher.put(NR,10);
-        dicoSubCher.put(RU, 5);
-        Lever SubCher = _leverList.createLever("Subvention des chercheurs", dicoSubCher, 0,null);
     }
     
     public Integer addToBudget(Lever lever, Integer val){

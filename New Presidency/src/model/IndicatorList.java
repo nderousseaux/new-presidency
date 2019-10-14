@@ -29,7 +29,7 @@ public class IndicatorList {
     }
 
     //Méthodes statiques
-    
+
     public static void updateAll(){
         //On parcourt les indicateurs
         for (Indicator i:_indicators) {
