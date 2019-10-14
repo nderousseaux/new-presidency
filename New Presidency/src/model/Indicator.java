@@ -6,12 +6,10 @@ import java.util.HashMap;
 public class Indicator extends IndicLever {
     private double _value;
     private HashMap<Lever, Double> _effects;
-    private Collection<String> _infos;
 
     //Constructeurs
     public Indicator(String name, double initValue,  HashMap<Lever, Double> effects, Collection<String> infos){
         super(name,infos);
-        _infos=infos;
         _effects = effects;
         _value=initValue;
     }

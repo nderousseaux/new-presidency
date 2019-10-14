@@ -19,6 +19,7 @@ public class Textual_Interface {
 
     public void showRound() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Année : "+_controller.getYear()+" sur " + _controller.getMaxYear());
         System.out.println("Budget restant: "+_controller.getBudget().toString());
         System.out.println("Menus:");
         System.out.println("1) Indicateurs");
@@ -36,6 +37,10 @@ public class Textual_Interface {
                 break;
             case "3":
                 _controller.endOfRound();
+                if(_controller.getYear()<=_controller.getMaxYear())
+                    showRound();
+                else
+                    System.out.println("Fin du jeu!");
                 break;
             case "4":
                 System.out.println("Merci d'avoir joué à New Presidency!");
@@ -112,7 +117,7 @@ public class Textual_Interface {
             System.out.println("Saisie incorrecte");
             showLevers();
         }
-        System.out.println("    Vous avez choisi le levier "+l);
+        System.out.println("    Vous avez choisi le levier "+l.getName());
         System.out.println("    Que souhaitez-vous faire?");
         System.out.println("    1) Augmenter le budget");
         System.out.println("    2) Réduire le budget");
