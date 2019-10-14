@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 public class IndicatorList {
 
@@ -10,8 +11,8 @@ public class IndicatorList {
     private static IndicatorList _instance;
 
     //Accesseurs
-    public Indicator createIndicator(String name, double value, Collection<String> infos){
-        Indicator i = new Indicator(name,value,infos);
+    public static Indicator createIndicator(String name, double value, HashMap<Lever, Double> effects, Collection<String> infos){
+        Indicator i = new Indicator(name,value,effects, infos);
         _indicators.add(i);
         return i;
     }
@@ -28,17 +29,15 @@ public class IndicatorList {
     }
 
     //Méthodes statiques
+    
     public static void updateAll(){
-
         //On parcourt les indicateurs
         for (Indicator i:_indicators) {
             double newValue=0;
-            //Pour l'indicateur courant, on parcourt tout les levier du jeu
-            for (Lever l: LeverList.getLevers()) {
-                //si le levier possède un effet sur l'indicateur courant, on l'ajoute au total de la nouvelle valeur
-                if(l.getEffects().containsKey(i)){
-                    newValue+=l.getEffects().get(i) * l.getBudget();
-                }
+            //Pour l'indicateur courant, on parcourt tout les levies qui l'influe
+            for (Lever l: i.getEffects().keySet()) {
+                //On y ajoute le pourcentage d'effet fois le pourcentage de budget
+                newValue+=100*i.getEffects().get(l)*l.getBudget();
             }
 
             //On met à jour l'indicateur
