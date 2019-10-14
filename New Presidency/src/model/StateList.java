@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class StateList {
     private Collection<State> _states;
-    private static StateList _instance;
+    private static       StateList _instance;
     
     public void addState(State s){
         _states.add(s);
