@@ -36,7 +36,7 @@ public class Controller {
         //Création des leviers
         
         //Communication
-        HashMap<Indicator,Integer> dicoCom= new HashMap<Indicator,Integer>();
+        HashMap<IndicLever,Integer> dicoCom= new HashMap<IndicLever,Integer>();
         dicoCom.put(RU,10); //très bien vu Nath!
         dicoCom.put(SE, 5);
         ArrayList<String> infosComm = new ArrayList<>(); //oui bon j'aime bien le nom de variable XD
@@ -45,7 +45,7 @@ public class Controller {
         Lever Com = _leverList.createLever("Communication", dicoCom, 0,infosComm);
         
         //Subventions des chercheurs
-        HashMap<Indicator,Integer> dicoSubCher= new HashMap<Indicator,Integer>();
+        HashMap<IndicLever,Integer> dicoSubCher= new HashMap<IndicLever,Integer>();
         dicoSubCher.put(NR,10);
         dicoSubCher.put(RU, 5);
         Lever SubCher = _leverList.createLever("Subvention des chercheurs", dicoSubCher, 0,null);
