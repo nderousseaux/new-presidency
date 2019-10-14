@@ -12,18 +12,16 @@ public class Controller {
     IndicatorList _indicatorList;
     LeverList _leverList;
     Budget _budget;
-    State _state;
     StateList _stateList;
     Integer _year;
     Integer _maxYear;
 
     public Controller(){
-        _state=new State(0,0,0,0,0);
         _budget=new Budget();
         _indicatorList=IndicatorList.getInstance();
         _leverList=LeverList.getInstance();
         _stateList=StateList.getInstance();
-        _stateList.getStates().add(new State(2000,0,0,0,0));
+        _stateList.getStates().add(new State(2000,10000,50,50,50,50,50,50,50,50));
         _year=1;
         _maxYear=8;
     }
