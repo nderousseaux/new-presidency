@@ -11,8 +11,8 @@ public class IndicatorList {
     private static IndicatorList _instance;
 
     //Accesseurs
-    public Indicator createIndicator(String name, double value, HashMap<Lever, Double> effects, Collection<String> infos){
-        Indicator i = new Indicator(name,value,effects, infos);
+    public Indicator createIndicator(String name, double value, Collection<String> infos){
+        Indicator i = new Indicator(name,value, infos);
         _indicators.add(i);
         return i;
     }
