@@ -4,7 +4,7 @@ public class Budget {
     private Integer _remainingBudget;
 
     public Budget(){
-        _remainingBudget=10000000;
+        _remainingBudget=10000;
     }
 
     public void setRemainingBudget(Integer budget){
