@@ -6,13 +6,13 @@ import java.util.HashMap;
 public class Lever extends IndicLever {
 
     //Attributs
-    private HashMap<IndicLever,Integer> _effects;
+
     private Integer _budget;
 
     //Constructeur
-    Lever(String name, HashMap<IndicLever,Integer> effects, Integer initBudget, ArrayList<String> infos){
+    public Lever(String name, Integer initBudget,ArrayList<String> infos){
         super(name,infos);
-        _effects=effects;
+
         _budget=initBudget;
     }
 
@@ -24,9 +24,7 @@ public class Lever extends IndicLever {
     public void setBudget(Integer budget){
         _budget=budget;
     }
-    public HashMap<IndicLever,Integer> getEffects(){
-        return _effects;
-    }
+
     /*public String getEffectName(Integer index) {
         Set listEffects = _effects.keySet();
         System.out.println(listEffects);
