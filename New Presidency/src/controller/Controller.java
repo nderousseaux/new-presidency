@@ -21,7 +21,7 @@ public class Controller {
         _indicatorList=IndicatorList.getInstance();
         _leverList=LeverList.getInstance();
         _stateList=StateList.getInstance();
-        _stateList.getStates().add(new State(2000,10000,50,50,50,50,50,50,50,50));
+        _stateList.createState(2000,10000,50,50,50,100,100,100,100,100);
         _year=1;
         _maxYear=8;
     }
@@ -29,45 +29,86 @@ public class Controller {
     public void init(){
         //Création des leviers
         //Recherche
-        Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
-        Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
-        Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100, new ArrayList<String>());
-        Lever recDotSpe = _leverList.createLever("Dotation spécifique en recherche", 100, new ArrayList<String>());
-        Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
-        Lever rechPrime = _leverList.createLever("Primes donnée à la recherche", 100, new ArrayList<String>());
+        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
+        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
+        //Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100, new ArrayList<String>());
+        //Lever recDotSpe = _leverList.createLever("Dotation spécifique en recherche", 100, new ArrayList<String>());
+        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
+        //Lever rechPrime = _leverList.createLever("Primes donnée à la recherche", 100, new ArrayList<String>());
+
         //Formation
-        Lever formTitulaire = _leverList.createLever("Titulaires en formation", 100, new ArrayList<String>());
-        Lever formContractuel = _leverList.createLever("Contractuels en formation", 100, new ArrayList<String>());
+        //Lever formTitulaire = _leverList.createLever("Titulaires en formation", 100, new ArrayList<String>());
+        //Lever formContractuel = _leverList.createLever("Contractuels en formation", 100, new ArrayList<String>());
         Lever formDotRec = _leverList.createLever("Dotation récurente pour la formation", 100, new ArrayList<String>());
         Lever formDotSpe = _leverList.createLever("Dotation spécifique pour la formation", 100, new ArrayList<String>());
-        Lever formDotPed = _leverList.createLever("Dotation pour les projets pédagogiques", 100, new ArrayList<String>());
-        Lever formPartenariat = _leverList.createLever("Partenariat pour la formation", 100, new ArrayList<String>());
-        Lever formFraiIns = _leverList.createLever("Frais d'inscription", 100, new ArrayList<String>());
+        //Lever formDotPed = _leverList.createLever("Dotation pour les projets pédagogiques", 100, new ArrayList<String>());
+        //Lever formPartenariat = _leverList.createLever("Partenariat pour la formation", 100, new ArrayList<String>());
+        //Lever formFraiIns = _leverList.createLever("Frais d'inscription", 100, new ArrayList<String>());
         Lever formPrime= _leverList.createLever("Prime de formation", 100, new ArrayList<String>());
         //Central
-        Lever cCom = _leverList.createLever("Communication générale", 100, new ArrayList<String>());
+        //Lever cCom = _leverList.createLever("Communication générale", 100, new ArrayList<String>());
         Lever cSubE = _leverList.createLever("Subventions aux associations étudiantes", 100, new ArrayList<String>());
         //Immobilier
-        Lever iCons = _leverList.createLever("Investissement en construction", 100, new ArrayList<String>());
-        Lever iEnt = _leverList.createLever("Investissement en entretient des bâtiments", 100, new ArrayList<String>());
-        Lever iReno = _leverList.createLever("Investissement en rénovation des bâtiments", 100, new ArrayList<String>());
+        //Lever iCons = _leverList.createLever("Investissement en construction", 100, new ArrayList<String>());
+        //Lever iEnt = _leverList.createLever("Investissement en entretient des bâtiments", 100, new ArrayList<String>());
+        //Lever iReno = _leverList.createLever("Investissement en rénovation des bâtiments", 100, new ArrayList<String>());
 
 
         //Création des indicateurs
+        //Aides aux calculs
+        double tier = 1/3;
+        double quart = 1/4;
+        double sixieme = 1/6;
+        double neuvieme = 1/9;
+        double dixhuitieme = 1/18;
+        double vingetuneieme = 1/21;
+        double vingtseptieme = 1/27;
+        double soixantetroisieme = 1/63;
+
+        /*
         //Article publiés
-        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiés", 50, new ArrayList<String>());
+        HashMap<Lever, Double> aP = new HashMap<Lever, Double>();
+        aP.put(recTitulaire, sixieme);
+        aP.put(recContractuel, sixieme);
+        aP.put(recDotRec, sixieme);
+        aP.put(recDotSpe, sixieme);
+        aP.put(recValorisation, sixieme);
+        aP.put(rechPrime, sixieme);
+        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiés", 50, aP, new ArrayList<String>());
+         */
+        /*
         //Nombre de professeurs
-        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'université", 50, new ArrayList<String>());
+        HashMap<Lever, Double> nP = new HashMap<Lever, Double>();
+        nP.put(recContractuel, quart);
+        nP.put(recTitulaire, quart);
+        nP.put(formTitulaire, quart);
+        nP.put(formContractuel, quart);
+        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'université", 50, nP, new ArrayList<String>());
+        */
+        /*
         //Reputation de la formation
-        Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, new ArrayList<String>());
+        HashMap<Lever, Double> rF = new HashMap<Lever, Double>();
+        rF.put(formDotRec, sixieme);
+        rF.put(formDotSpe, sixieme);
+        rF.put(cCom, tier);
+        rF.put(formDotPed,tier);
+        Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, rF, new ArrayList<String>());
+        */
         //Taux de réussite
         Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50,new ArrayList<String>());
         //Satisfaction etudiante
         Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, new ArrayList<String>());
 
+        //Satisfaction personnel
+
+        HashMap<Lever,Double> sP=new HashMap<>();
+        sP.put(formPrime,0.1);
+        Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50,sP,null);
+        /*
         //Nombre d'étudiant
         Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, new ArrayList<String>());
     }
+
     
     public Integer addToBudget(Lever lever, Integer val){
         Integer r;

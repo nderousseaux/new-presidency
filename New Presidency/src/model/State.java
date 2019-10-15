@@ -14,7 +14,7 @@ public class State{
     private Integer _lSubAssoEtu;
     
     //constructeur
-    public State(Integer year, Integer remainingBudget, double iTauxReu, double iSatPers,
+    State(Integer year, Integer remainingBudget, double iTauxReu, double iSatPers,
                  double iSatEtu, Integer lDotRecForm, Integer lDotSpeForm, Integer lPrime,
                  Integer lImmo, Integer lSubAssoEtu){
         _year = year;
