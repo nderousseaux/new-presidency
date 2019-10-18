@@ -104,30 +104,32 @@ public class Controller {
         rF.put(formDotPed,tier);
         Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, rF, new ArrayList<String>());
         */
-
+        /*
         //Article publiés
-        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiés", 50, new ArrayList<String>());
+        ArrayList<String> infosArticles=new ArrayList<>();
+        infosArticles.add("Les articles publiés par les chercheurs");
+        infosArticles.add("Représentent la visibilité de l'université, l'intérêt qu'on lui porte");
+        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiés", 50, infosArticles);
+
         //Nombre de professeurs
-        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'université", 50, new ArrayList<String>());
+        ArrayList<String> infosProfs = new ArrayList<>();
+        infosProfs.add("Nombre de professeurs enseignants à l'université");
+        infosProfs.add("Représente le niveau d'enseignement de l'université, et par conséquent son niveau de réussite est présupposé meilleur");
+        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'université", 50, infosProfs);
+
         //Reputation de la formation
-        Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, new ArrayList<String>());
-
+        ArrayList<String> infosRep=new ArrayList<>();
+        infosRep.add("Réputation générale du niveau d'enseignement");
+        infosRep.add("Représente la visibilité et l'appréciation publique de la formation");
+        Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, infosRep);
+        */
         //Taux de réussite
-        Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50,new ArrayList<String>());
-        //Satisfaction etudiante
+        ArrayList<String> infosReu=new ArrayList<>();
+        infosReu.add("Niveau de réussite de la formation");
+        infosReu.add("Représente par extension le niveau d'enseignement de la formation et l'encadrement des élèves");
+        Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50,infosReu);
 
-        HashMap<Lever, Double> sE = new HashMap<Lever, Double>();
-        //sE.put(iCons, neuvieme);
-        //sE.put(iEnt, neuvieme);
-        //sE.put(iReno, neuvieme);
-        sE.put(cSubE, tier);
-        //sE.put(formTitulaire, vingetuneieme);
-        //sE.put(formContractuel, vingetuneieme);
-        sE.put(formDotSpe, vingetuneieme);
-        sE.put(formDotRec, vingetuneieme);
-        //sE.put(formFraiIns, vingetuneieme);
-        sE.put(formPrime, vingetuneieme);
-        //sE.put(formPartenariat, vingetuneieme);
+        //Satisfaction etudiante
 
         Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, new ArrayList<String>());
 
@@ -158,7 +160,7 @@ public class Controller {
         nE.put(cSubE, neuvieme);
         Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, nE, new ArrayList<String>());
         */
-        Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, new ArrayList<String>());
+        //Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, new ArrayList<String>());
 
     }
 
