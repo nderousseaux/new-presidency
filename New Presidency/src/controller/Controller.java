@@ -29,7 +29,10 @@ public class Controller {
     public void init(){
         //Création des leviers
         //Recherche
+<<<<<<< HEAD
 
+=======
+>>>>>>> 66e75704b43ca8e5463a7a7a6897cc965e2618d0
         //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
         //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
         //Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100, new ArrayList<String>());
@@ -37,6 +40,7 @@ public class Controller {
         //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
         //Lever rechPrime = _leverList.createLever("Primes donnée à la recherche", 100, new ArrayList<String>());
 
+<<<<<<< HEAD
 
         Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
         Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
@@ -45,6 +49,8 @@ public class Controller {
         Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
         Lever rechPrime = _leverList.createLever("Primes donnée à la recherche", 100, new ArrayList<String>());
 
+=======
+>>>>>>> 66e75704b43ca8e5463a7a7a6897cc965e2618d0
         //Formation
         //Lever formTitulaire = _leverList.createLever("Titulaires en formation", 100, new ArrayList<String>());
         //Lever formContractuel = _leverList.createLever("Contractuels en formation", 100, new ArrayList<String>());
@@ -64,7 +70,10 @@ public class Controller {
 
 
         //Création des indicateurs
+<<<<<<< HEAD
 
+=======
+>>>>>>> 66e75704b43ca8e5463a7a7a6897cc965e2618d0
         //Aides aux calculs
         double tier = 1/3;
         double quart = 1/4;
@@ -104,6 +113,7 @@ public class Controller {
         rF.put(formDotPed,tier);
         Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, rF, new ArrayList<String>());
         */
+<<<<<<< HEAD
         /*
         //Article publiés
         ArrayList<String> infosArticles=new ArrayList<>();
@@ -123,6 +133,8 @@ public class Controller {
         infosRep.add("Représente la visibilité et l'appréciation publique de la formation");
         Indicator repFormation = _indicatorList.createIndicator("Réputation de la formation", 50, infosRep);
         */
+=======
+>>>>>>> 66e75704b43ca8e5463a7a7a6897cc965e2618d0
         //Taux de réussite
         ArrayList<String> infosReu=new ArrayList<>();
         infosReu.add("Niveau de réussite de la formation");
@@ -130,9 +142,13 @@ public class Controller {
         Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50,infosReu);
 
         //Satisfaction etudiante
+<<<<<<< HEAD
 
         Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, new ArrayList<String>());
 
+=======
+        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, new ArrayList<String>());
+>>>>>>> 66e75704b43ca8e5463a7a7a6897cc965e2618d0
 
         //Satisfaction personnel
 
@@ -140,6 +156,7 @@ public class Controller {
         Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50,null);
         /*
         //Nombre d'étudiant
+<<<<<<< HEAD
 
         HashMap<Lever, Double> nE = new HashMap<Lever, Double>();
         nE.put(iCons,vingtseptieme);
@@ -162,6 +179,9 @@ public class Controller {
         */
         //Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, new ArrayList<String>());
 
+=======
+        Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, new ArrayList<String>());
+>>>>>>> 66e75704b43ca8e5463a7a7a6897cc965e2618d0
     }
 
     
