@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -38,29 +39,47 @@ public class Controller {
         //Lever rechPrime = _leverList.createLever("Primes donnée à la recherche", 100, new ArrayList<String>());
 
 
-        Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
-        Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
-        Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100, new ArrayList<String>());
-        Lever recDotSpe = _leverList.createLever("Dotation spécifique en recherche", 100, new ArrayList<String>());
-        Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
-        Lever rechPrime = _leverList.createLever("Primes donnée à la recherche", 100, new ArrayList<String>());
+        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
+        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
+        //Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100, new ArrayList<String>());
+        //Lever recDotSpe = _leverList.createLever("Dotation spécifique en recherche", 100, new ArrayList<String>());
+        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
+        //Lever rechPrime = _leverList.createLever("Primes donnée à la recherche", 100, new ArrayList<String>());
 
 
 
         //Formation
         //Lever formTitulaire = _leverList.createLever("Titulaires en formation", 100, new ArrayList<String>());
         //Lever formContractuel = _leverList.createLever("Contractuels en formation", 100, new ArrayList<String>());
-        Lever formDotRec = _leverList.createLever("Dotation récurente pour la formation", 100, new ArrayList<String>());
-        Lever formDotSpe = _leverList.createLever("Dotation spécifique pour la formation", 100, new ArrayList<String>());
+        ArrayList<String> infosFormDotRec=new ArrayList<>();
+        infosFormDotRec.add("Budget récurrent alloué aux formations");
+        Lever formDotRec = _leverList.createLever("Dotation récurente pour la formation", 100, infosFormDotRec);
+
+        ArrayList<String> infosFormDotSpe= new ArrayList<>();
+        infosFormDotSpe.add("Budget spécifique alloué aux formations");
+        Lever formDotSpe = _leverList.createLever("Dotation spécifique pour la formation", 100, infosFormDotSpe);
         //Lever formDotPed = _leverList.createLever("Dotation pour les projets pédagogiques", 100, new ArrayList<String>());
         //Lever formPartenariat = _leverList.createLever("Partenariat pour la formation", 100, new ArrayList<String>());
         //Lever formFraiIns = _leverList.createLever("Frais d'inscription", 100, new ArrayList<String>());
-        Lever formPrime= _leverList.createLever("Prime de formation", 100, new ArrayList<String>());
+
+        ArrayList<String> infosFormPrime= new ArrayList<>();
+        infosFormPrime.add("Budget alloué à la prime de formation des enseignants");
+        infosFormPrime.add("Des enseignants plus formés donnent de meilleurs cours!");
+        Lever formPrime= _leverList.createLever("Prime de formation", 100, infosFormPrime);
         //Central
         //Lever cCom = _leverList.createLever("Communication générale", 100, new ArrayList<String>());
-        Lever cSubE = _leverList.createLever("Subventions aux associations étudiantes", 100, new ArrayList<String>());
+
+        ArrayList<String> infosSubEtu=new ArrayList<>();
+        infosSubEtu.add("Budget alloué aux associations étudiantes");
+        infosSubEtu.add("L'augmenter augmentera l'humeur des élèves dans l'université, mais attention!");
+        infosSubEtu.add("Buvez toujours avec Modération (très bon ami des programmeurs)!");
+        Lever cSubE = _leverList.createLever("Subventions aux associations étudiantes", 100, infosSubEtu);
         //Immobilier
-        //Lever iCons = _leverList.createLever("Investissement en construction", 100, new ArrayList<String>());
+
+        ArrayList<String> infosCons=new ArrayList<>();
+        infosCons.add("Budget général de l'immobilier");
+        infosCons.add("De meilleurs bâtiments apportent un niveau d'enseignement amélioré");
+        Lever iCons = _leverList.createLever("Investissement en construction", 100, infosCons);
         //Lever iEnt = _leverList.createLever("Investissement en entretient des bâtiments", 100, new ArrayList<String>());
         //Lever iReno = _leverList.createLever("Investissement en rénovation des bâtiments", 100, new ArrayList<String>());
 
@@ -136,15 +155,21 @@ public class Controller {
 
         //Satisfaction etudiante
 
-
-        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, new ArrayList<String>());
+        ArrayList<String> infosSatisEtu=new ArrayList<>();
+        infosSatisEtu.add("Représente le niveau d'appréciations des étudiants");
+        infosSatisEtu.add("Attention à ne pas oublier qu'un élève qui s'amuse trop travaille moins...");
+        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50, infosSatisEtu);
 
 
 
         //Satisfaction personnel
 
+        ArrayList<String> infosSatisPers=new ArrayList<>();
+        infosSatisPers.add("Représente le niveau d'appréciation des professeur");
+        infosSatisPers.add("Attention à ne pas oublier qu'un professeur qui ne se plait pas dans son travail enseigne moins bien...");
 
-        Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50,null);
+
+        Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50,infosSatisPers);
         /*
         //Nombre d'étudiant
 
