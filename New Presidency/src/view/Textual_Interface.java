@@ -97,6 +97,7 @@ public class Textual_Interface {
         switch (sc.nextInt()){
             case 1:
                 listInfos(indic);
+                showIndicators();
                 break;
             case 2:
                 showIndicators();
@@ -138,12 +139,15 @@ public class Textual_Interface {
         switch(sc.nextLine()) {
             case "1":
                 addToBudget(l);
+                showLevers();
                 break;
             case "2":
                 removeFromBudget(l);
+                showLevers();
                 break;
             case "3":
                 listInfos(l);
+                showLevers();
                 break;
             case "4":
                 showLevers();
@@ -181,9 +185,10 @@ public class Textual_Interface {
         }
     }
 
-    public void listInfos(IndicLever obj){
+    public void listInfos(IndicLever obj) throws InterruptedException{
         for(String s : _controller.listInfos(obj)){
             System.out.println(s);
+            Thread.sleep(1500);
         }
     }
 
@@ -200,7 +205,7 @@ public class Textual_Interface {
     }
 
     public void showTuto() throws InterruptedException{
-        System.out.println("Bienvenue sur New Presidency et encore félicitation pour votre nomination à la tête de l'université!");
+        System.out.println("Bienvenue sur New Presidency et encore félicitations pour votre nomination à la tête de l'université!");
         Thread.sleep(2500);
         System.out.println("Votre but désormais: gérer le budget de pleins de domaines de l'université: les leviers de gestion");
         Thread.sleep(2500);
