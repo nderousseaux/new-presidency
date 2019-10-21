@@ -65,7 +65,7 @@ public class Textual_Interface {
         }
     }
     public void showIndicators() throws InterruptedException{
-        Integer i=1;
+        double i=1;
         for(Indicator indic : _controller.getIndicators()) {
             System.out.println("    "+i+")Indicateur " + indic.getName() + ": Valeur actuelle: " + indic.getValue() +" sur 100");
             i++;
@@ -73,7 +73,7 @@ public class Textual_Interface {
 
         System.out.println("    Sélectionnez un indicateur: (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);
-        Integer index=sc.nextInt();
+        int index=sc.nextInt();
         if(index==-1) {
             showRound();
             exit(0);
@@ -109,14 +109,14 @@ public class Textual_Interface {
     }
 
     public void showLevers() throws InterruptedException{
-        Integer i=1;
+        double i=1;
         for(Lever l : _controller.getLevers()){
             System.out.println("    "+i+") Levier "+l.getName()+": Budget actuel: "+l.getBudget());
             i++;
         }
         System.out.println("    Sélectionnez un levier (-1 pour quitter)");
         Scanner sc= new Scanner(System.in);
-        Integer index=sc.nextInt();
+        int index=sc.nextInt();
         if(index==-1) {
             showRound();
         }
@@ -166,7 +166,7 @@ public class Textual_Interface {
             System.out.println("        Veuillez saisir une valeur correcte");
             System.out.println("        De combien souhaitez-vous augmenter le budget?");
         }
-        if(_controller.addToBudget(l, sc.nextInt())!=0){
+        if(_controller.addToBudget(l, sc.nextDouble())!=0.0){
             System.out.println("        Budget restant insuffisant!");
             addToBudget(l);
         }
@@ -179,7 +179,7 @@ public class Textual_Interface {
             System.out.println("        Veuillez saisir une valeur correcte");
             System.out.println("        De combien souhaitez-vous diminuer le budget?");
         }
-        if(_controller.removeFromBudget(l, sc.nextInt())!=0){
+        if(_controller.removeFromBudget(l, sc.nextDouble())!=0.0){
             System.out.println("        Vous ne pouvez pas retirer autant du budget de ce levier!");
             removeFromBudget(l);
         }

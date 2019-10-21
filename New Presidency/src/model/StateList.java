@@ -33,10 +33,10 @@ public class StateList {
 
     public Collection<State> getStates(){ return _states;}
 
-    public State createState(Integer year, Integer remainingBudget, double iTauxReu, double iSatPers,
-          double iSatEtu, Integer lDotRecForm, Integer lDotSpeForm, Integer lPrime,
-          Integer lImmo, Integer lSubAssoEtu){
-        State s=new State(year,remainingBudget,iTauxReu,iSatPers,iSatEtu,lDotRecForm,lDotSpeForm,lPrime,lImmo,lSubAssoEtu);
+    public State createState(int year, double remainingBudget, double iTauxReu, double iSatPers,
+          double iSatEtu, double lDotRecForm, double lDotRecRech, double lDotSpeForm, double lPrime,
+          double lImmo, double lSubAssoEtu){
+        State s=new State(year,remainingBudget,iTauxReu,iSatPers,iSatEtu,lDotRecForm,lDotSpeForm,lDotRecRech,lPrime,lImmo,lSubAssoEtu);
         _states.add(s);
         return s;
     }
