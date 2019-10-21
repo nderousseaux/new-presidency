@@ -26,7 +26,7 @@ public class Textual_Interface {
         System.out.println("1) Indicateurs");
         System.out.println("2) Leviers");
         System.out.println("3) Conclure le tour");
-        System.out.println("4) Revoir le tutoriel");
+        System.out.println("4) Voir le tutoriel");
         System.out.println("5) Quitter");
         switch (sc.nextInt()) {
             case 1:
@@ -194,12 +194,6 @@ public class Textual_Interface {
     public void init() throws InterruptedException{
         System.out.println("NEW PRESIDENCY");
         System.out.println("-------------------------");
-        try {
-            showTuto();
-        }
-        catch (InterruptedException e){
-            System.out.println(e.getMessage());
-        }
         showRound();
     }
 
