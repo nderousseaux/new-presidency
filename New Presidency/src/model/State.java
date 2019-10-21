@@ -15,7 +15,7 @@ public class State{
     private double _lSubAssoEtu;
     
     //constructeur
-    public State(int year, double remainingBudget, double iTauxReu, double iSatPers,
+    public State(Integer year, double remainingBudget, double iTauxReu, double iSatPers,
                  double iSatEtu, double lDotRecForm, double lDotSpeForm, double lDotRecRech, double lPrime,
                  double lImmo, double lSubAssoEtu){
         _year = year;
@@ -31,7 +31,7 @@ public class State{
         _lSubAssoEtu=lSubAssoEtu;
     }
 
-    public int getYear(){return _year;}
+    public Integer getYear(){return _year;}
     public double getRemainingBudget(){return _remainingBudget;}
     public double getITauxReu(){return _iTauxReu;}
     public double getISatEtu(){return _iSatEtu;}
