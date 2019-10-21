@@ -7,10 +7,10 @@ public class Lever extends IndicLever {
 
     //Attributs
 
-    private Integer _budget;
+    private double _budget;
 
     //Constructeur
-    public Lever(String name, Integer initBudget,ArrayList<String> infos){
+    public Lever(String name, double initBudget,ArrayList<String> infos){
         super(name,infos);
 
         _budget=initBudget;
@@ -18,14 +18,14 @@ public class Lever extends IndicLever {
 
 
     //Accesseurs
-    public Integer getBudget(){
+    public double getBudget(){
         return _budget;
     }
-    public void setBudget(Integer budget){
+    public void setBudget(double budget){
         _budget=budget;
     }
 
-    /*public String getEffectName(Integer index) {
+    /*public String getEffectName(double index) {
         Set listEffects = _effects.keySet();
         System.out.println(listEffects);
         return listEffects;
@@ -35,11 +35,11 @@ public class Lever extends IndicLever {
     //Méthodes de classe
 
 
-    public void addToBudget(Integer val){
+    public void addToBudget(double val){
         setBudget(getBudget()+val);
     }
 
-    public void removeFromBudget(Integer val){
+    public void removeFromBudget(double val){
         setBudget(getBudget()-val);
     }
 }

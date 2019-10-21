@@ -1,21 +1,21 @@
 package model;
 
 public class Budget {
-    private Integer _remainingBudget;
+    private double _remainingBudget;
 
     public Budget(){
         _remainingBudget=10000;
     }
 
-    public void setRemainingBudget(Integer budget){
+    public void setRemainingBudget(double budget){
         _remainingBudget=budget;
     }
 
-    public Integer getRemainingBudget(){
+    public double getRemainingBudget(){
         return _remainingBudget;
     }
 
     @Override public String toString(){
-        return _remainingBudget.toString();
+        return Double.toString(_remainingBudget);
     }
 }
