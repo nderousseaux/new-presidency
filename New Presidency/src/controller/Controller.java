@@ -2,10 +2,8 @@ package controller;
 
 import model.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 import static java.lang.System.exit;
 
@@ -290,8 +288,8 @@ public class Controller {
     }
 
     public void updateAll(){
-        State thisYearState = _stateList.getState((int)_year);
-        State lastYearState = _stateList.getState((int)(_year - 1.0));
+        State thisYearState = _stateList.getState(_year);
+        State lastYearState = _stateList.getState((_year - 1));
         
         double resSatEtu = lastYearState.getISatEtu();
         double resSatPers = lastYearState.getISatPers();
@@ -412,6 +410,7 @@ public class Controller {
 
         }
         int year = _year + 1;
+        _budget.setRemainingBudget(_budget.getRemainingBudget()+10000);
         State nextYearState = new State(year, _budget.getRemainingBudget(), resTauxReu, resSatPers, resSatEtu, thisYearState.getLDotRecForm(), thisYearState.getLDotSpeForm(), thisYearState.getLDotRecRech(), thisYearState.getLPrime(), thisYearState.getLImmo(), thisYearState.getLSubAssoEtu());
         _stateList.addState(nextYearState);
     }

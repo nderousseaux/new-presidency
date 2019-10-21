@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 import static java.lang.System.exit;
 
-public class Textual_Interface {
+public class TextualView {
     private Controller _controller;
 
-    public Textual_Interface(Controller controller){
+    public TextualView(Controller controller){
         _controller=controller;
     }
 
