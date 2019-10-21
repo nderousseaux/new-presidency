@@ -9,14 +9,13 @@ import java.util.HashMap;
 
 import static java.lang.System.exit;
 
-@SuppressWarnings("LossyEncoding")
 public class Controller {
-    IndicatorList _indicatorList;
-    LeverList _leverList;
-    Budget _budget;
-    StateList _stateList;
-    int _year;
-    int _maxYear;
+    private IndicatorList _indicatorList;
+    private LeverList _leverList;
+    private Budget _budget;
+    private StateList _stateList;
+    private Integer _year;
+    private Integer _maxYear;
 
     public Controller(){
         _budget=new Budget();
