@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import static java.lang.System.exit;
 
+@SuppressWarnings("LossyEncoding")
 public class Controller {
     IndicatorList _indicatorList;
     LeverList _leverList;
@@ -43,7 +44,7 @@ public class Controller {
         //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
         //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
         ArrayList<String> infosRecDotRec=new ArrayList<>();
-        infosRecDotRec.add("Budget récurrent alloué � la recherche");
+        infosRecDotRec.add("Budget récurrent alloué � la recherche");
         Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100.0, infosRecDotRec);
         //Lever recDotSpe = _leverList.createLever("Dotation spécifique en recherche", 100, new ArrayList<String>());
         //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
@@ -154,7 +155,7 @@ public class Controller {
         ArrayList<String> infosReu=new ArrayList<>();
         infosReu.add("Niveau de réussite de la formation");
         infosReu.add("Représente par extension le niveau d'enseignement de la formation et l'encadrement des élèves");
-        Indicator tauxReussite = _indicatorList.createIndicator("Taux de r�ussite du dipl�me", 50,infosReu);
+        Indicator tauxReussite = _indicatorList.createIndicator("Taux de r�ussite du dipl�me", 50,infosReu);
 
         //Satisfaction etudiante
 
@@ -202,28 +203,28 @@ public class Controller {
     }
 
     
-    public Double addToBudget(Lever lever, Double val){
-        Double r;
-        if(val<_budget.getRemainingBudget()) {
+    public Integer addToBudget(Lever lever, Double val){
+        Integer r;
+        if(val<=_budget.getRemainingBudget()) {
             lever.addToBudget(val);
             _budget.setRemainingBudget(_budget.getRemainingBudget() - val);
-            r=0.0;
+            r=0;
         }
         else{
-            r=-1.0;
+            r=-1;
         }
         return r;
     }
 
-    public Double removeFromBudget(Lever lever, Double val){
-        Double r;
+    public Integer removeFromBudget(Lever lever, Double val){
+        Integer r;
         if(lever.getBudget()-val>=0) {
             lever.removeFromBudget(val);
             _budget.setRemainingBudget(_budget.getRemainingBudget() + val);
-            r = 0.0;
+            r = 0;
         }
         else{
-            r=-1.0;
+            r=-1;
         }
         return r;
     }
@@ -373,7 +374,7 @@ public class Controller {
                 i.setValue(resSatPers);
             }
             
-            if(i.getName() == "Taux de r�ussite du dipl�me"){
+            if(i.getName() == "Taux de réussite du diplôme"){
 
                   if(lastYearState.getLDotSpeForm() < thisYearState.getLDotSpeForm()){
                     resTauxReu += (thisYearState.getLDotSpeForm()/lastYearState.getLDotSpeForm())*(1.0/3.0)*lastYearState.getITauxReu();
