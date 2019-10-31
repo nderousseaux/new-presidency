@@ -8,7 +8,7 @@ public class Lever extends IndicLever {
     //Attributs
 
     private double _budget;
-    private double _maxBudget; 
+    private double _maxBudget;
 
     //Constructeur
     public Lever(String name, double initBudget, double maxBudget, ArrayList<String> infos){

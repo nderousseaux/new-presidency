@@ -1,4 +1,4 @@
-package controller; 
+package controller;
 
 import model.*;
 
@@ -158,7 +158,7 @@ public class Controller {
 
     }
 
-
+    
     public Integer addToBudget(Lever lever, Double val){
         Integer r;
         if(val<=_budget.getRemainingBudget()) {
@@ -189,27 +189,27 @@ public class Controller {
         //tour de jeu...
         State thisYearState = _stateList.getState(_year);
         for(Lever l : _leverList.getLevers()){
-
+            
             if(l.getName() == "Dotation rÃ©curante en recherche"){
                 thisYearState.setLDotRecRech(l.getBudget());
             }
-
+            
             if(l.getName() == "Dotation rÃ©curente pour la formation"){
                 thisYearState.setLDotRecForm(l.getBudget());
             }
-
+            
             if(l.getName() == "Dotation spÃ©cifique pour la formation"){
                 thisYearState.setLDotSpeForm(l.getBudget());
             }
-
+            
             if(l.getName() == "Prime de formation"){
                 thisYearState.setLPrime(l.getBudget());
             }
-
+            
             if(l.getName() == "Subventions aux associations Ã©tudiantes"){
                 thisYearState.setLSubAssoEtu(l.getBudget());
             }
-
+            
             if(l.getName() == "Investissement en construction"){
                 thisYearState.setLImmo(l.getBudget());
             }
@@ -249,57 +249,57 @@ public class Controller {
     public void updateAll(){
         State thisYearState = _stateList.getState(_year);
         State lastYearState = _stateList.getState((_year - 1));
-
+        
         double resSatEtu = lastYearState.getISatEtu();
         double resSatPers = lastYearState.getISatPers();
         double resTauxReu = lastYearState.getITauxReu();
-
+        
         double dLSubAssoEtu = (thisYearState.getLSubAssoEtu() - lastYearState.getLSubAssoEtu()) / lastYearState.getLSubAssoEtu();
         double dLDotRecForm = (thisYearState.getLDotRecForm() - lastYearState.getLDotRecForm()) / lastYearState.getLDotRecForm();
         double dLDotRecRech = (thisYearState.getLDotRecRech() - lastYearState.getLDotRecRech()) / lastYearState.getLDotRecRech();
         double dLDotSpeForm = (thisYearState.getLDotSpeForm() - lastYearState.getLDotSpeForm()) / lastYearState.getLDotSpeForm();
         double dLImmo = (thisYearState.getLImmo() - lastYearState.getLImmo()) / lastYearState.getLImmo();
         double dLPrime = (thisYearState.getLPrime() - lastYearState.getLPrime()) / lastYearState.getLPrime();
-
+        
         //Pour chaque indicateur on calcule la valeur au tour suivant
-
+        
         //calcul de la satisfaction etudiante
         Indicator i = _indicatorList.getIndicator("Satisfaction etudiante");
-
+        
         resSatEtu += dLSubAssoEtu*(1.0/3.0)*(lastYearState.getISatEtu()/i.getMaxValue());
-
+                
         resSatEtu += dLImmo * (1.0/3.0) * (lastYearState.getISatEtu()/i.getMaxValue());
-
-        i.setValue(resSatEtu);
-
-
-        // calcul de la satisfaction du personel
+            
+        i.setValue(resSatEtu); 
+        
+        
+        // calcul de la satisfaction du personel 
         i = _indicatorList.getIndicator("Satisfaction personnel");
-
+        
         resSatPers += dLPrime*(1.0/5.0)*(lastYearState.getISatPers()/i.getMaxValue());
-
-        resSatPers += dLDotRecForm*(1.0/5.0)*(lastYearState.getISatPers()/i.getMaxValue());
+              
+        resSatPers += dLDotRecForm*(1.0/5.0)*(lastYearState.getISatPers()/i.getMaxValue());               
 
         resSatPers += dLDotRecRech*(1.0/5.0)*(lastYearState.getISatPers()/i.getMaxValue());
 
         resSatPers += dLImmo * (1.0/5.0) * (lastYearState.getISatPers()/i.getMaxValue());
-
+            
         i.setValue(resSatPers);
-
-        //creation de la variable contenant la différence entre la satisfaction du personel de l'année dernière et de cette année
+        
+        //creation de la variable contenant la différence entre la satisfaction du personel de l'année dernière et de cette année    
         double dISatPers = (resSatPers - lastYearState.getISatPers()) / lastYearState.getISatPers();
-
+        
         //calcul du taux de reussite du diplome
-        i = _indicatorList.getIndicator("Taux de réussite du diplôme");
+        i = _indicatorList.getIndicator("Taux de réussite du diplôme");   
 
         resTauxReu += dLDotSpeForm*(1.0/3.0)*(lastYearState.getITauxReu()/i.getMaxValue());
-
+                  
         resTauxReu += dLDotRecForm*(1.0/3.0)*(lastYearState.getITauxReu()/i.getMaxValue());
-
+                
         resTauxReu += dISatPers*(1.0/3.0)*(lastYearState.getITauxReu()/i.getMaxValue());
-
+                  
         i.setValue(resTauxReu);
-
+                                           
         //passage à l'année suivante
         int year = _year + 1;
         //calcul du budget de l'année suivante
