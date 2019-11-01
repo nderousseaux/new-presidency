@@ -30,29 +30,29 @@ public class Controller {
         //CrÃ©ation des leviers
         //Recherche
 
-        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
-        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
-        //Lever recDotRec = _leverList.createLever("Dotation rÃ©curante en recherche", 100, new ArrayList<String>());
-        //Lever recDotSpe = _leverList.createLever("Dotation spÃ©cifique en recherche", 100, new ArrayList<String>());
-        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
-        //Lever rechPrime = _leverList.createLever("Primes donnÃ©e Ã  la recherche", 100, new ArrayList<String>());
+        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100.0, new ArrayList<String>());
+        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100.0, new ArrayList<String>());
+        //Lever recDotRec = _leverList.createLever("Dotation rÃ©curante en recherche", 100.0, new ArrayList<String>());
+        //Lever recDotSpe = _leverList.createLever("Dotation spÃ©cifique en recherche", 100.0, new ArrayList<String>());
+        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100.0, new ArrayList<String>());
+        //Lever rechPrime = _leverList.createLever("Primes donnÃ©e Ã  la recherche", 100.0, new ArrayList<String>());
 
 
-        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
-        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
+        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100.0, new ArrayList<String>());
+        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100.0, new ArrayList<String>());
         ArrayList<String> infosRecDotRec=new ArrayList<>();
         infosRecDotRec.add("Budget récurrent alloué à la recherche");
         Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100.0,10000.0, infosRecDotRec);
         _budget.setRemainingBudget(_budget.getRemainingBudget()-recDotRec.getBudget());
-        //Lever recDotSpe = _leverList.createLever("Dotation spÃ©cifique en recherche", 100, new ArrayList<String>());
-        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
-        //Lever rechPrime = _leverList.createLever("Primes donnÃ©e Ã  la recherche", 100, new ArrayList<String>());
+        //Lever recDotSpe = _leverList.createLever("Dotation spÃ©cifique en recherche", 100.0, new ArrayList<String>());
+        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100.0, new ArrayList<String>());
+        //Lever rechPrime = _leverList.createLever("Primes donnÃ©e Ã  la recherche", 100.0, new ArrayList<String>());
 
 
 
         //Formation
-        //Lever formTitulaire = _leverList.createLever("Titulaires en formation", 100, new ArrayList<String>());
-        //Lever formContractuel = _leverList.createLever("Contractuels en formation", 100, new ArrayList<String>());
+        //Lever formTitulaire = _leverList.createLever("Titulaires en formation", 100.0, new ArrayList<String>());
+        //Lever formContractuel = _leverList.createLever("Contractuels en formation", 100.0, new ArrayList<String>());
         ArrayList<String> infosFormDotRec=new ArrayList<>();
         infosFormDotRec.add("Budget récurrent alloué aux formations");
         Lever formDotRec = _leverList.createLever("Dotation récurente pour la formation", 100.0,10000.0, infosFormDotRec);
@@ -62,9 +62,9 @@ public class Controller {
         infosFormDotSpe.add("Budget spécifique alloué aux formations");
         Lever formDotSpe = _leverList.createLever("Dotation spécifique pour la formation", 100.0,10000.0, infosFormDotSpe);
         _budget.setRemainingBudget(_budget.getRemainingBudget()-formDotSpe.getBudget());
-        //Lever formDotPed = _leverList.createLever("Dotation pour les projets pÃ©dagogiques", 100, new ArrayList<String>());
-        //Lever formPartenariat = _leverList.createLever("Partenariat pour la formation", 100, new ArrayList<String>());
-        //Lever formFraiIns = _leverList.createLever("Frais d'inscription", 100, new ArrayList<String>());
+        //Lever formDotPed = _leverList.createLever("Dotation pour les projets pÃ©dagogiques", 100.0, new ArrayList<String>());
+        //Lever formPartenariat = _leverList.createLever("Partenariat pour la formation", 100.0, new ArrayList<String>());
+        //Lever formFraiIns = _leverList.createLever("Frais d'inscription", 100.0, new ArrayList<String>());
 
         ArrayList<String> infosFormPrime= new ArrayList<>();
         infosFormPrime.add("Budget alloué à  la prime de formation des enseignants");
@@ -72,7 +72,7 @@ public class Controller {
         Lever formPrime= _leverList.createLever("Prime de formation", 100.0,10000.0, infosFormPrime);
         _budget.setRemainingBudget(_budget.getRemainingBudget()-formPrime.getBudget());
         //Central
-        //Lever cCom = _leverList.createLever("Communication gÃ©nÃ©rale", 100, new ArrayList<String>());
+        //Lever cCom = _leverList.createLever("Communication gÃ©nÃ©rale", 100.0, new ArrayList<String>());
 
         ArrayList<String> infosSubEtu=new ArrayList<>();
         infosSubEtu.add("Budget alloué aux associations étudiantes");
@@ -87,22 +87,22 @@ public class Controller {
         infosCons.add("De meilleurs batiments apportent un niveau d'enseignement amélioré");
         Lever constr = _leverList.createLever("Investissement en construction", 100.0,10000.0, infosCons);
         _budget.setRemainingBudget(_budget.getRemainingBudget()-constr.getBudget());
-        //Lever iEnt = _leverList.createLever("Investissement en entretient des bÃ¢timents", 100, new ArrayList<String>());
-        //Lever iReno = _leverList.createLever("Investissement en rÃ©novation des bÃ¢timents", 100, new ArrayList<String>());
+        //Lever iEnt = _leverList.createLever("Investissement en entretient des bÃ¢timents", 100.0, new ArrayList<String>());
+        //Lever iReno = _leverList.createLever("Investissement en rÃ©novation des bÃ¢timents", 100.0, new ArrayList<String>());
 
 
         //CrÃ©ation des indicateurs
 
         /*
-        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiÃ©s", 50, aP, new ArrayList<String>());
+        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiÃ©s", 50.0, aP, new ArrayList<String>());
          */
         /*
         //Nombre de professeurs
-        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'universitÃ©", 50, nP, new ArrayList<String>());
+        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'universitÃ©", 50.0, nP, new ArrayList<String>());
         */
         /*
         //Reputation de la formation
-        Indicator repFormation = _indicatorList.createIndicator("RÃ©putation de la formation", 50, rF, new ArrayList<String>());
+        Indicator repFormation = _indicatorList.createIndicator("RÃ©putation de la formation", 50.0, rF, new ArrayList<String>());
         */
 
         /*
@@ -110,19 +110,19 @@ public class Controller {
         ArrayList<String> infosArticles=new ArrayList<>();
         infosArticles.add("Les articles publiÃ©s par les chercheurs");
         infosArticles.add("ReprÃ©sentent la visibilitÃ© de l'universitÃ©, l'intÃ©rÃªt qu'on lui porte");
-        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiÃ©s", 50, infosArticles);
+        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiÃ©s", 50.0, infosArticles);
 
         //Nombre de professeurs
         ArrayList<String> infosProfs = new ArrayList<>();
         infosProfs.add("Nombre de professeurs enseignants Ã  l'universitÃ©");
         infosProfs.add("ReprÃ©sente le niveau d'enseignement de l'universitÃ©, et par consÃ©quent son niveau de rÃ©ussite est prÃ©supposÃ© meilleur");
-        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'universitÃ©", 50, infosProfs);
+        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'universitÃ©", 50.0, infosProfs);
 
         //Reputation de la formation
         ArrayList<String> infosRep=new ArrayList<>();
         infosRep.add("RÃ©putation gÃ©nÃ©rale du niveau d'enseignement");
         infosRep.add("ReprÃ©sente la visibilitÃ© et l'apprÃ©ciation publique de la formation");
-        Indicator repFormation = _indicatorList.createIndicator("RÃ©putation de la formation", 50, infosRep);
+        Indicator repFormation = _indicatorList.createIndicator("RÃ©putation de la formation", 50.0, infosRep);
         */
 
 
@@ -130,14 +130,14 @@ public class Controller {
         ArrayList<String> infosReu=new ArrayList<>();
         infosReu.add("Niveau de réussite de la formation");
         infosReu.add("Représente par extension le niveau d'enseignement de la formation et l'encadrement des étudiants");
-        Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50,100,infosReu);
+        Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50.0,100.0,infosReu);
 
         //Satisfaction etudiante
 
         ArrayList<String> infosSatisEtu=new ArrayList<>();
         infosSatisEtu.add("Représente le niveau d'appréciations des étudiants");
         infosSatisEtu.add("Attention à  ne pas oublier qu'un étudiant qui s'amuse trop travaille moins...");
-        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50,100, infosSatisEtu);
+        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50.0,100.0, infosSatisEtu);
 
 
 
@@ -148,12 +148,12 @@ public class Controller {
         infosSatisPers.add("Attention à  ne pas oublier qu'un professeur qui ne se plait pas dans son travail enseigne moins bien...");
 
 
-        Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50,100,infosSatisPers);
+        Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50.0,100.0,infosSatisPers);
         /*
         //Nombre d'Ã©tudiant
-        Indicator nbEtu = _indicatorList.createIndicator("Nombre d'Ã©tudiant", 50, nE, new ArrayList<String>());
+        Indicator nbEtu = _indicatorList.createIndicator("Nombre d'Ã©tudiant", 50.0, nE, new ArrayList<String>());
         */
-        //Indicator nbEtu = _indicatorList.createIndicator("Nombre d'Ã©tudiant", 50, new ArrayList<String>());
+        //Indicator nbEtu = _indicatorList.createIndicator("Nombre d'Ã©tudiant", 50.0, new ArrayList<String>());
 
 
     }
@@ -303,7 +303,7 @@ public class Controller {
         //passage à l'année suivante
         int year = _year + 1;
         //calcul du budget de l'année suivante
-        _budget.setRemainingBudget(_budget.getRemainingBudget()+10000);
+        _budget.setRemainingBudget(_budget.getRemainingBudget()+10000.0);
         for(Lever l : _leverList.getLevers()){
             _budget.setRemainingBudget(_budget.getRemainingBudget()-l.getBudget());
         }
