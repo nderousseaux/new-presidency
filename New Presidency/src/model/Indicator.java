@@ -5,11 +5,13 @@ import java.util.HashMap;
 
 public class Indicator extends IndicLever {
     private double _value;
+    private double _maxValue;
 
     //Constructeurs
-    public Indicator(String name, double initValue, Collection<String> infos){
+    public Indicator(String name, double initValue, double maxValue, Collection<String> infos){
         super(name,infos);
         _value=initValue;
+        _maxValue=maxValue;
     }
 
     //Méthodes de classe
@@ -18,7 +20,16 @@ public class Indicator extends IndicLever {
         return _value;
     }
     public void setValue(double value) {
+        if(value > 100.0){
+            _value = 100.0;
+        }
+        if(value < 0.0){
+            _value = 0.0;
+        }
         _value = value;
+    }
+    public double getMaxValue() {
+        return _maxValue;
     }
 
 
