@@ -41,7 +41,7 @@ public class Controller {
         //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100, new ArrayList<String>());
         //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100, new ArrayList<String>());
         ArrayList<String> infosRecDotRec=new ArrayList<>();
-        infosRecDotRec.add("Budget récurrent alloué � la recherche");
+        infosRecDotRec.add("Budget récurrent alloué à la recherche");
         Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100.0, infosRecDotRec);
         //Lever recDotSpe = _leverList.createLever("Dotation spécifique en recherche", 100, new ArrayList<String>());
         //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100, new ArrayList<String>());
@@ -196,7 +196,7 @@ public class Controller {
         */
         //Indicator nbEtu = _indicatorList.createIndicator("Nombre d'étudiant", 50, new ArrayList<String>());
 
-
+        _stateList.createState(_year,_budget.getRemainingBudget(),tauxReussite.getValue(),satisPers.getValue(),satisEtu.getValue(),formDotRec.getBudget(),recDotRec.getBudget(),formDotSpe.getBudget(),formPrime.getBudget(),iCons.getBudget(),cSubE.getBudget());
     }
 
     
@@ -326,10 +326,9 @@ public class Controller {
             }
 
             if(i.getName() == "Satisfaction personnel"){
-               
-
+                
                   if(lastYearState.getLPrime() < thisYearState.getLPrime()){
-                    resSatPers += (thisYearState.getLPrime()/lastYearState.getLPrime())*(1.0/5.0)*lastYearState.getISatPers();
+                    resSatPers = (thisYearState.getLPrime()/lastYearState.getLPrime())*(1.0/5.0)*lastYearState.getISatPers();
                   }
                   if(lastYearState.getLPrime() > thisYearState.getLPrime()){
                     resSatPers -= (lastYearState.getLPrime()/thisYearState.getLPrime())*(1.0/5.0)*lastYearState.getISatPers();
@@ -339,7 +338,7 @@ public class Controller {
                   }
 
                   if(lastYearState.getLDotRecForm() < thisYearState.getLDotRecForm()){
-                    resSatPers += (thisYearState.getLDotRecForm()/lastYearState.getLDotRecForm())*(1.0/5.0)*lastYearState.getISatPers();
+                    resSatPers = ((thisYearState.getLDotRecForm()+lastYearState.getLDotRecForm())/lastYearState.getLDotRecForm())*(1.0/5.0) * resSatPers;
                   }
                   if(lastYearState.getLDotRecForm() > thisYearState.getLDotRecForm()){
                     resSatPers -= (lastYearState.getLDotRecForm()/thisYearState.getLDotRecForm())*(1.0/5.0)*lastYearState.getISatPers();
@@ -367,7 +366,7 @@ public class Controller {
                   if(lastYearState.getLImmo() == thisYearState.getLImmo()){
                     //on ne fait rien, pas de changement donc pas d'influence
                   }
-                  
+
                 i.setValue(resSatPers);
             }
             
