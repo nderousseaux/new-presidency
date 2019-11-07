@@ -11,13 +11,22 @@ public class IndicatorList {
     private static IndicatorList _instance;
 
     //Accesseurs
-    public Indicator createIndicator(String name, double value, Collection<String> infos){
-        Indicator i = new Indicator(name,value, infos);
+    public Indicator createIndicator(String name, double value, double maxValue, Collection<String> infos){
+        Indicator i = new Indicator(name,value, maxValue, infos);
         _indicators.add(i);
         return i;
     }
     public Collection<Indicator> getIndicators(){
         return _indicators;
+    }
+    public Indicator getIndicator(String name){
+        Indicator result = null;
+        for(Indicator i : _indicators){
+            if(i.getName() == name){
+                result = i;
+            }
+        }
+        return result;
     }
     public static IndicatorList getInstance(){
         if(_instance==null)

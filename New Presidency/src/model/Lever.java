@@ -8,12 +8,14 @@ public class Lever extends IndicLever {
     //Attributs
 
     private double _budget;
+    private double _maxBudget;
 
     //Constructeur
-    public Lever(String name, double initBudget,ArrayList<String> infos){
+    public Lever(String name, double initBudget, double maxBudget, ArrayList<String> infos){
         super(name,infos);
 
         _budget=initBudget;
+        _maxBudget=maxBudget;
     }
 
 
@@ -23,6 +25,9 @@ public class Lever extends IndicLever {
     }
     public void setBudget(double budget){
         _budget=budget;
+    }
+    public double getMaxBudget() {
+        return _maxBudget;
     }
 
     /*public String getEffectName(double index) {
