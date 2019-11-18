@@ -17,7 +17,6 @@ public class TextualView {
     }
 
     public void showRound() throws InterruptedException {
-         //TODO:Retirer avant commit
 
         Scanner sc = new Scanner(System.in);
         System.out.println("-------------------------");

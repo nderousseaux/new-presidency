@@ -47,6 +47,10 @@ public class GraphicalView extends JFrame {
         nextTour.setText("Passer au tour suivant");
 
         this.getContentPane().add(nextTour,BorderLayout.EAST);
+        this.getContentPane().add(_scrollIndicators);
+        this.getContentPane().add(_scrollLevers);
+        this.getContentPane().add(_budget,BorderLayout.SOUTH);
+        this.getContentPane().add(_year,BorderLayout.NORTH);
         this.setVisible(true);
     }
 
@@ -56,7 +60,7 @@ public class GraphicalView extends JFrame {
         _budget=new JPanel();
         _budget.add(new JLabel("Budget restant : "));
         _budget.add(labBudget);
-        this.getContentPane().add(_budget,BorderLayout.SOUTH);
+
 
     }
 
@@ -138,7 +142,7 @@ public class GraphicalView extends JFrame {
             _levers.add(elem);
 
         }
-        this.getContentPane().add(_scrollLevers);
+
     }
 
     private void majIndics(){
@@ -170,14 +174,14 @@ public class GraphicalView extends JFrame {
             _indicators.add(elem);
         }
 
-        this.getContentPane().add(_scrollIndicators);
+
     }
 
     private void majYear(){
         //annee
         _year = new JPanel();
         _year.add(new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear()));
-        this.getContentPane().add(_year,BorderLayout.NORTH);
+
     }
 
     private void endOfRound(){
@@ -191,6 +195,11 @@ public class GraphicalView extends JFrame {
         majBudget();
         this.remove(_year);
         majYear();
+
+        this.getContentPane().add(_scrollIndicators);
+        this.getContentPane().add(_scrollLevers);
+        this.getContentPane().add(_budget,BorderLayout.SOUTH);
+        this.getContentPane().add(_year,BorderLayout.NORTH);
         this.setVisible(true);
     }
 }
