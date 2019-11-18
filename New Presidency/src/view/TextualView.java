@@ -1,9 +1,7 @@
 package view;
 
 import controller.*;
-import model.Indicator;
-import model.IndicLever;
-import model.Lever;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,12 +10,15 @@ import static java.lang.System.exit;
 
 public class TextualView {
     private Controller _controller;
+    private Graphic _graphic;
 
     public TextualView(Controller controller){
         _controller=controller;
     }
 
     public void showRound() throws InterruptedException {
+         //TODO:Retirer avant commit
+
         Scanner sc = new Scanner(System.in);
         System.out.println("-------------------------");
         System.out.println("Année : "+_controller.getYear()+" sur " + _controller.getMaxYear());
@@ -27,7 +28,8 @@ public class TextualView {
         System.out.println("2) Leviers");
         System.out.println("3) Conclure le tour");
         System.out.println("4) Voir le tutoriel");
-        System.out.println("5) Quitter");
+        System.out.println("5) Graphiques");
+        System.out.println("6) Quitter");
         switch (sc.nextInt()) {
             case 1:
                 System.out.println("-------------------------");
@@ -42,8 +44,15 @@ public class TextualView {
             case 3:
                 System.out.println("-------------------------");
                 _controller.endOfRound();
-                if(_controller.getYear()<=_controller.getMaxYear())
-                    showRound();
+                if (_controller.getYear() <= _controller.getMaxYear()){
+
+                    //On ferme le graphique si il existe
+                    if (_graphic != null) {
+                        _graphic.close();
+                    }
+
+                showRound();
+                }
                 else
                     System.out.println("Fin du jeu!");
                 break;
@@ -53,6 +62,16 @@ public class TextualView {
                 showRound();
                 break;
             case 5:
+                System.out.println("-------------------------");
+                if(_controller.getYear()==1){
+                    System.out.println("Impossible d'afficher les graphiques, vous êtes au premier tour !");
+                }
+                else{
+                    graphiques();
+                }
+                showRound();
+                break;
+            case 6:
                 System.out.println("Merci d'avoir joué à New Presidency!");
                 System.out.println("-------------------------");
                 _controller.exitGame();
@@ -215,5 +234,10 @@ public class TextualView {
         System.out.println("Bonne partie!");
         Thread.sleep(1000);
         System.out.println("");
+    }
+
+    public void graphiques(){
+        _graphic = new Graphic(_controller.getStateList());
+
     }
 }

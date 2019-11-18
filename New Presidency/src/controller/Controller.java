@@ -1,21 +1,11 @@
 package controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
-import java.io.IOException;
-
 import model.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import static java.lang.System.exit;
-
-import java.util.HashMap;
 
 public class Controller {
     private IndicatorList _indicatorList;
@@ -25,10 +15,7 @@ public class Controller {
     private Integer _year;
     private Integer _maxYear;
 
-    File _weightIndicatorFile = new File("coefficient.txt");
-    private Matrix _weightForEachIndicator;
-
-    public Controller() throws FileNotFoundException, IOException{
+    public Controller(){
         _budget=new Budget();
         _indicatorList=IndicatorList.getInstance();
         _leverList=LeverList.getInstance();
@@ -37,10 +24,13 @@ public class Controller {
         _stateList.createState(1,10000.0,50.0,50.0,50.0,100.0,100.0,100.0,100.0,100.0,100.0);
         _year=1;
         _maxYear=8;
-
     }
 
-    public void init() throws FileNotFoundException,IOException{
+    public StateList getStateList() {
+        return _stateList;
+    }
+
+    public void init(){
         //CrÃ©ation des leviers
         //Recherche
 
@@ -170,60 +160,8 @@ public class Controller {
         //Indicator nbEtu = _indicatorList.createIndicator("Nombre d'Ã©tudiant", 50.0, new ArrayList<String>());
 
 
-        initWeightForEachIndicator();
     }
 
-
-    public void initWeightForEachIndicator() throws FileNotFoundException,IOException{
-        int leverListSize = _leverList.getLevers().size();
-        int indicatorListSize = _indicatorList.getIndicators().size();
-
-        _weightForEachIndicator = new Matrix(indicatorListSize, leverListSize+indicatorListSize);
-        HashMap<String, Integer> linesTitles = new HashMap<String, Integer>(indicatorListSize,(float)1.0);
-        HashMap<String, Integer> columnsTitles = new HashMap<String, Integer>(leverListSize+indicatorListSize,(float)1.0);
-
-        BufferedReader br = new BufferedReader(new FileReader(_weightIndicatorFile));
-        String line;
-        String[] lineTab;
-        int matrixLineIndex = 0;
-        int matrixColumnIndex = 0;
-
-        int orderIndicator = 0;
-        int orderDifference = 0;
-
-        while ((line = br.readLine()) != null) {
-            line = line.replaceAll("\\s+","");//remove all space
-            lineTab = line.split(";");
-
-            for(int i=0; i < lineTab.length; i++){
-                if(lineTab[i].matches("[a-zA-Z]*")){//if the substring starts with a letter
-                    if(lineTab[i].charAt(0) == 'i'){//if the substring is the name of an indicator
-                        System.out.println(lineTab[i]);
-                        linesTitles.put(lineTab[i], orderIndicator);
-                        orderIndicator++;
-                    }
-                    else if(lineTab[i].charAt(0) == 'd'){
-                        System.out.println(lineTab[i]);
-                        columnsTitles.put(lineTab[i], orderDifference);
-                        orderDifference++;
-                    }
-                }
-                else{
-                    //System.out.println(lineTab[i]);
-                    _weightForEachIndicator.setCell(matrixLineIndex, matrixColumnIndex, Double.parseDouble(lineTab[i]));
-                    if(matrixColumnIndex == _weightForEachIndicator.getColumnSize() -1){
-                        matrixColumnIndex = 0;
-                        matrixLineIndex++;
-                    }
-                    else{
-                        matrixColumnIndex++;
-                    }
-                }
-            }
-        }
-        br.close();
-        _weightForEachIndicator.createTitles(new MatrixTitle(linesTitles, columnsTitles));
-    }
 
     public Integer addToBudget(Lever lever, Double val){
         Integer r;
@@ -377,5 +315,4 @@ public class Controller {
         State nextYearState = new State(year, _budget.getRemainingBudget(), resTauxReu, resSatPers, resSatEtu, thisYearState.getLDotRecForm(), thisYearState.getLDotSpeForm(), thisYearState.getLDotRecRech(), thisYearState.getLPrime(), thisYearState.getLImmo(), thisYearState.getLSubAssoEtu());
         _stateList.addState(nextYearState);
     }
-
 }

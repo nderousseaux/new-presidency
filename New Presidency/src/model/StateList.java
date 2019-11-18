@@ -11,7 +11,7 @@ public class StateList {
         _states.add(s);
     }
     
-    public State getState(int year){ //YOAN: idem, remplacer par des semestres?
+    public State getState(int year){ //YOAN: idem, rebmplacer par des semestres?
         State selectedState = null;
         for(State s : _states){
             if(s.getYear()== year){
