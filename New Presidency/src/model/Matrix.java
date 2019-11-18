@@ -12,6 +12,7 @@ public class Matrix{
 
     private MatrixTitle _titles = null;
 
+
     public Matrix(Integer lineSize, Integer columnSize) {
         _lineSize = lineSize;
         _columnSize = columnSize;
