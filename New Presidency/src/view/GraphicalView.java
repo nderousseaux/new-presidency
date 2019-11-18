@@ -18,40 +18,60 @@ public class GraphicalView extends JFrame {
     private Controller _controller;
     private JPanel _year;
     private JPanel _levers;
+    private JScrollPane _scrollLevers;
     private JPanel _indicators;
+    private JScrollPane _scrollIndicators;
     private JPanel _budget;
 
     public GraphicalView(Controller controller){
         _controller=controller;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(1200,850);
-
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
 
-        //budget
+        majYear();
+        majIndics();
+        majLevers();
+        majBudget();
+
+
+        JButton nextTour = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                _controller.endOfRound();
+                endOfRound();
+            }
+        });
+
+        nextTour.setText("Passer au tour suivant");
+
+        this.getContentPane().add(nextTour,BorderLayout.EAST);
+        this.setVisible(true);
+    }
+
+    private void majBudget(){
         JLabel labBudget = new JLabel(String.valueOf(_controller.getBudget().getRemainingBudget()));
+
         _budget=new JPanel();
         _budget.add(new JLabel("Budget restant : "));
         _budget.add(labBudget);
+        this.getContentPane().add(_budget,BorderLayout.SOUTH);
 
-        //annee
-        _year = new JPanel();
-        _year.add(new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear()));
+    }
 
-
-        //leviers
+    private void majLevers(){
         _levers=new JPanel();
-        JScrollPane scrollLevers=new JScrollPane(_levers);
         _levers.setLayout(new GridLayout(_controller.getLevers().size(),1));
-        scrollLevers.setBounds(20,40,500,610);
+        _scrollLevers=new JScrollPane(_levers);
+        _scrollLevers.setBounds(20,40,500,610);
 
         _levers.setToolTipText("Leviers");
         for(Lever l : _controller.getLevers()) {
             //element entier
             JPanel elem=new JPanel();
             elem.setLayout(new GridLayout(1,2));
-            elem.setSize(scrollLevers.getSize());
+            elem.setSize(_scrollLevers.getSize());
 
             //zone texte
 
@@ -118,11 +138,14 @@ public class GraphicalView extends JFrame {
             _levers.add(elem);
 
         }
+        this.getContentPane().add(_scrollLevers);
+    }
 
+    private void majIndics(){
         _indicators=new JPanel();
-        JScrollPane scrollIndicators=new JScrollPane(_indicators);
         _indicators.setLayout(new GridLayout(_controller.getIndicators().size(),1));
-        scrollIndicators.setBounds(600,40,500,610);
+        _scrollIndicators=new JScrollPane(_indicators);
+        _scrollIndicators.setBounds(600,40,500,610);
 
         _indicators.setToolTipText("Indicateurs");
 
@@ -130,8 +153,9 @@ public class GraphicalView extends JFrame {
             //element entier
 
             JPanel elem=new JPanel();
+
             elem.setLayout(new GridLayout(1,2));
-            elem.setSize(scrollLevers.getSize());
+
 
             //zone texte
 
@@ -139,29 +163,34 @@ public class GraphicalView extends JFrame {
 
             //zone valeur
             JPanel zoneval=new JPanel();
-            JLabel val = new JLabel(String.valueOf((int)i.getValue())+"%");
+            JLabel val = new JLabel((int)i.getValue()+"%");
             zoneval.add(val);
             elem.add(nom);
             elem.add(zoneval);
             _indicators.add(elem);
         }
 
-        this.getContentPane().add(_year,BorderLayout.NORTH);
-        this.getContentPane().add(scrollLevers);
-        this.getContentPane().add(scrollIndicators);
-        this.getContentPane().add(_budget,BorderLayout.SOUTH);
-        this.getContentPane().add(_year);
-        this.setVisible(true);
+        this.getContentPane().add(_scrollIndicators);
     }
 
-    private void majBudget(){
-        this.remove(_budget);
-        JLabel labBudget = new JLabel(String.valueOf(_controller.getBudget().getRemainingBudget()));
+    private void majYear(){
+        //annee
+        _year = new JPanel();
+        _year.add(new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear()));
+        this.getContentPane().add(_year,BorderLayout.NORTH);
+    }
 
-        _budget=new JPanel();
-        _budget.add(new JLabel("Budget restant : "));
-        _budget.add(labBudget);
-        this.getContentPane().add(_budget,BorderLayout.SOUTH);
+    private void endOfRound(){
+        this.remove(_scrollLevers);
+        this.remove(_levers);
+        majLevers();
+        this.remove(_indicators);
+        this.remove(_scrollIndicators);
+        majIndics();
+        this.remove(_budget);
+        majBudget();
+        this.remove(_year);
+        majYear();
         this.setVisible(true);
     }
 }
