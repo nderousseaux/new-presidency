@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-class Graphic{
+class GraphicLine {
 
     private JFrame _f;
     private StateList _stateList;
@@ -25,7 +25,7 @@ class Graphic{
 
 
 
-    Graphic(StateList stateList){
+    GraphicLine(StateList stateList){
         _stateList = stateList;
         _f = new JFrame("Graphique d'évolution");
 
