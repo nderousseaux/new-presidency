@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/New Presidency/out/production/T-3" />
+    <output-test url="file://$MODULE_DIR$/New Presidency/out/test/T-3" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/New Presidency/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/New Presidency/versionNath" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
