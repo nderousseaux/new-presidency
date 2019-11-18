@@ -42,27 +42,21 @@ public class State{
     public double getLImmo(){return _lImmo;}
     public double getLSubAssoEtu(){return _lSubAssoEtu;}
     public double getLDotRecRech() {return _lDotRecRech;}
-
     public void setLDotRecForm(double _lDotRecForm) {
         this._lDotRecForm = _lDotRecForm;
     }
-
     public void setLDotSpeForm(double _lDotSpeForm) {
         this._lDotSpeForm = _lDotSpeForm;
     }
-
     public void setLDotRecRech(double _lDotRecRech) {
         this._lDotRecRech = _lDotRecRech;
     }
-
     public void setLPrime(double _lPrime) {
         this._lPrime = _lPrime;
     }
-
     public void setLImmo(double _lImmo) {
         this._lImmo = _lImmo;
     }
-
     public void setLSubAssoEtu(double _lSubAssoEtu) {
         this._lSubAssoEtu = _lSubAssoEtu;
     }

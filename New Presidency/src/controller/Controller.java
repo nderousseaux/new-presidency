@@ -26,6 +26,10 @@ public class Controller {
         _maxYear=8;
     }
 
+    public StateList getStateList() {
+        return _stateList;
+    }
+
     public void init(){
         //CrÃ©ation des leviers
         //Recherche
