@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.16">
+  <compounddef id="class_main" kind="class" language="Java" prot="public">
+    <compoundname>Main</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_main_1a8a5d0f827edddff706cc0e6740d0579a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Main.main</definition>
+        <argsstring>(String[] args)</argsstring>
+        <name>main</name>
+        <param>
+          <type>String[]</type>
+          <declname>args</declname>
+        </param>
+        <exceptions> throws InterruptedException</exceptions>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Main.java" line="9" column="24" bodyfile="src/Main.java" bodystart="9" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/Main.java" line="8" column="18" bodyfile="src/Main.java" bodystart="8" bodyend="15"/>
+    <listofallmembers>
+      <member refid="class_main_1a8a5d0f827edddff706cc0e6740d0579a" prot="public" virt="non-virtual"><scope>Main</scope><name>main</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
