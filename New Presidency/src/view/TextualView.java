@@ -10,14 +10,15 @@ import static java.lang.System.exit;
 
 public class TextualView {
     private Controller _controller;
-    private Graphic _graphic;
+    private GraphicLine _graphicLine;
+    private GraphicPie _graphicPie;
 
     public TextualView(Controller controller){
         _controller=controller;
     }
 
     public void showRound() throws InterruptedException {
-         //TODO:Retirer avant commit
+
 
         Scanner sc = new Scanner(System.in);
         System.out.println("-------------------------");
@@ -43,12 +44,23 @@ public class TextualView {
                 break;
             case 3:
                 System.out.println("-------------------------");
-                _controller.endOfRound();
-                if (_controller.getYear() <= _controller.getMaxYear()){
 
-                    //On ferme le graphique si il existe
-                    if (_graphic != null) {
-                        _graphic.close();
+                //On ferme le graphiquePie si il existe
+                if (_graphicPie != null) {
+                    _graphicPie.close();
+                }
+
+
+                //On ouvre le graphicpie
+                graphiqueTarte();
+
+
+                _controller.endOfRound();
+
+                if (_controller.getYear() <= _controller.getMaxYear()){
+                    //On ferme le graphiqueLine si il existe
+                    if (_graphicLine != null) {
+                        _graphicLine.close();
                     }
 
                 showRound();
@@ -67,7 +79,7 @@ public class TextualView {
                     System.out.println("Impossible d'afficher les graphiques, vous êtes au premier tour !");
                 }
                 else{
-                    graphiques();
+                    graphiquesLigne();
                 }
                 showRound();
                 break;
@@ -236,8 +248,13 @@ public class TextualView {
         System.out.println("");
     }
 
-    public void graphiques(){
-        _graphic = new Graphic(_controller.getStateList());
+    public void graphiquesLigne(){
+        _graphicLine = new GraphicLine(_controller.getStateList());
+
+    }
+
+    public void graphiqueTarte(){
+        _graphicPie = new GraphicPie(_controller.getLevers(), _controller.getBudget().getRemainingBudget());
 
     }
 }
