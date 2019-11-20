@@ -69,6 +69,7 @@ public class GraphicalView extends JFrame {
         _levers.setLayout(new GridLayout(_controller.getLevers().size(),1));
         _scrollLevers=new JScrollPane(_levers);
         _scrollLevers.setBounds(20,40,500,610);
+        _levers.setBounds(20,40,500,610);
 
         _levers.setToolTipText("Leviers");
         for(Lever l : _controller.getLevers()) {
@@ -148,6 +149,7 @@ public class GraphicalView extends JFrame {
     private void majIndics(){
         _indicators=new JPanel();
         _indicators.setLayout(new GridLayout(_controller.getIndicators().size(),1));
+        _indicators.setBounds(600,40,500,610);
         _scrollIndicators=new JScrollPane(_indicators);
         _scrollIndicators.setBounds(600,40,500,610);
 
