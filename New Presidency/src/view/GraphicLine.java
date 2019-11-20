@@ -1,6 +1,7 @@
 package view;
 
 
+
 import model.State;
 import model.StateList;
 import org.knowm.xchart.XChartPanel;
@@ -9,6 +10,7 @@ import org.knowm.xchart.XYChartBuilder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 class GraphicLine {
@@ -17,16 +19,17 @@ class GraphicLine {
     private StateList _stateList;
     private JComboBox<String> data1;
     private JComboBox<String> data2;
-    private JComboBox<String> data3;
-    private JComboBox<String> data4;
     private XYChart chart;
     private HashMap<JComboBox<String>, String> _anciennesValeurs = new HashMap<>();
+    private Boolean isLevier;
 
 
 
 
     GraphicLine(StateList stateList){
         _stateList = stateList;
+
+        //On crée le JFrame
         _f = new JFrame("Graphique d'évolution");
 
 
@@ -36,47 +39,30 @@ class GraphicLine {
         _f.setSize(1350, 1000);
         _f.setResizable(false);
 
-        //Création de l'entête
+
+        //region Entête
         JPanel entete = new JPanel();
         _f.getContentPane().add(entete, BorderLayout.NORTH);
 
-        JLabel text = new JLabel("Choisissez une ou plusieurs données : ");
-        entete.add(text);
+        //Première combobox, choix du type à afficher
+        String[] val={"Leviers", "Indicateurs"};
+        JComboBox<String> type = new JComboBox<>(val);
+        type.addActionListener(actionEvent -> refreshType(type));
+        entete.add(type);
 
-        //Combobox
-        String[] valeurs = {"",
-                "Budget restant",
-                "Taux de réussite",
-                "Satisfaction du personnel",
-                "Satisfaction étudiante",
-                "Dotation récurante pour la formation",
-                "Dotation récurante pour la recherche",
-                "Dotation spécifique pour la formation",
-                "Prime de formation",
-                "Investissement en construction",
-                "Subventions aux associations étudiantes"};
-        data1 = new JComboBox<>(valeurs);
+        data1 = new JComboBox<>();
         entete.add(data1);
-        data2 = new JComboBox<>(valeurs);
+        data2 = new JComboBox<>();
         entete.add(data2);
-        data3 = new JComboBox<>(valeurs);
-        entete.add(data3);
-        data4 = new JComboBox<>(valeurs);
-        entete.add(data4);
-
-
         _anciennesValeurs.put(data1, "");
         _anciennesValeurs.put(data2, "");
-        _anciennesValeurs.put(data3, "");
-        _anciennesValeurs.put(data4, "");
-
-        //Si une des valeurs changes, on lance réaffiche le graphique
         data1.addActionListener(actionEvent -> refresh(data1));
         data2.addActionListener(actionEvent -> refresh(data2));
-        data3.addActionListener(actionEvent -> refresh(data3));
-        data4.addActionListener(actionEvent -> refresh(data4));
 
 
+        //On affiche une première fois les combobx :
+        refreshType(type);
+        //endregion
 
 
         //On crée le graphique
@@ -103,19 +89,22 @@ class GraphicLine {
         //On met à jour le graphique
         String datan = (String) data.getSelectedItem();
 
-        if(!datan.equals("")){
-            if(!_anciennesValeurs.containsValue(datan)){
-                chart.addSeries( datan, selectItems(datan));
-                chart.removeSeries(_anciennesValeurs.get(data));
-                _anciennesValeurs.replace(data, datan);
+
+        if (datan != null) {
+            if(!datan.equals("")){
+                if(!_anciennesValeurs.containsValue(datan)){
+                    chart.addSeries( datan, selectItems(datan));
+                    chart.removeSeries(_anciennesValeurs.get(data));
+                    _anciennesValeurs.replace(data, datan);
+
+                }
+
 
             }
-
-
-        }
-        else{
-            if(!_anciennesValeurs.get(data).equals("")){
-                chart.removeSeries(_anciennesValeurs.get(data));
+            else{
+                if(!_anciennesValeurs.get(data).equals("")){
+                    chart.removeSeries(_anciennesValeurs.get(data));
+                }
             }
         }
         _f.repaint();
@@ -127,55 +116,116 @@ class GraphicLine {
 
     }
 
+    private void refreshType(JComboBox<String> a){
+
+        //On affiche les combobox qui correspondent
+        String s = (String)a.getSelectedItem();
+        ArrayList<String> valeurs = new ArrayList<>();
+        assert s != null;
+        if(s.equals("Indicateurs")){
+            isLevier = false;
+            valeurs.add("");
+            valeurs.add("Taux de réussite");
+            valeurs.add("Satisfaction du personnel");
+            valeurs.add("Satisfaction étudiante");
+        }
+        else{
+            isLevier = true;
+            valeurs.add("");
+            valeurs.add("Dotation récurante pour la formation");
+            valeurs.add("Dotation récurante pour la recherche");
+            valeurs.add("Dotation spécifique pour la formation");
+            valeurs.add("Prime de formation");
+            valeurs.add("Investissement en construction");
+            valeurs.add("Subventions aux associations étudiantes");
+
+        }
+
+        //Combobox
+        data1.removeAllItems();
+        data2.removeAllItems();
+        for (String v : valeurs){
+            data1.addItem(v);
+            data2.addItem(v);
+        }
+
+        _anciennesValeurs.replace(data1, "");
+        _anciennesValeurs.replace(data2, "");
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
     private double[] selectItems(String name){
 
-        double[] values = new double[_stateList.getStates().size()-1];
+        int nombre = _stateList.getStates().size()-1;
+
+        double[] values = new double[nombre];
 
         //Pour chaque état, on incrémente la liste des valeurs
         int i=0;
         for (State s:_stateList.getStates()) {
-            if (i != 0) {
-                switch (name){
-                    case "Budget restant":
-                        values[i-1] = s.getRemainingBudget();
-                        break;
-                    case "Taux de réussite":
-                        values[i-1] = s.getITauxReu();
-                        break;
-                    case "Satisfaction du personnel":
-                        values[i-1] = s.getISatPers();
-                        break;
-                    case "Satisfaction étudiante":
-                        values[i-1] = s.getISatEtu();
-                        break;
-                    case "Dotation récurante pour la formation":
-                        values[i-1] = s.getLDotRecForm();
-                        break;
-                    case "Dotation récurante pour la recherche":
-                        values[i-1] = s.getLDotRecRech();
-                        break;
-                    case "Dotation spécifique pour la formation":
-                        values[i-1] = s.getLDotSpeForm();
-                        break;
-                    case "Prime de formation":
-                        values[i-1] = s.getLPrime();
-                        break;
-                    case "Investissement en construction":
-                        values[i-1] = s.getLImmo();
-                        break;
-                    case "Subventions aux associations étudiantes":
-                        values[i-1] = s.getLSubAssoEtu();
-                        break;
-                    default:
-                        break;
-                }
+            if (i != _stateList.getStates().size()-1) {
+                if(isLevier){
+                    switch (name){
+                        case "Dotation récurante pour la formation":
+                            values[i] = s.getLDotRecForm();
+                            break;
+                        case "Dotation récurante pour la recherche":
+                            values[i] = s.getLDotRecRech();
+                            break;
+                        case "Dotation spécifique pour la formation":
+                            values[i] = s.getLDotSpeForm();
+                            break;
+                        case "Prime de formation":
+                            values[i] = s.getLPrime();
+                            break;
+                        case "Investissement en construction":
+                            values[i] = s.getLImmo();
+                            break;
+                        case "Subventions aux associations étudiantes":
+                            values[i] = s.getLSubAssoEtu();
+                            break;
+                        default:
+                            break;
+                    }
 
+                }
+                else{
+                    switch (name){
+                        case "Budget restant":
+                            values[i] = s.getRemainingBudget();
+                            break;
+                        case "Taux de réussite":
+                            values[i] = s.getITauxReu();
+                            break;
+                        case "Satisfaction du personnel":
+                            values[i] = s.getISatPers();
+                            break;
+                        case "Satisfaction étudiante":
+                            values[i] = s.getISatEtu();
+                            break;
+                        default:
+                            break;
+
+                    }
+
+
+                }
             }
 
 
             i+=1;
         }
-
 
 
         return values;
