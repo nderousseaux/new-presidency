@@ -13,8 +13,9 @@ public class TextualView {
     private GraphicLine _graphicLine;
     private GraphicPie _graphicPie;
 
-    public TextualView(Controller controller){
+    public TextualView(Controller controller) throws InterruptedException {
         _controller=controller;
+        this.init();
     }
 
     public void showRound() throws InterruptedException {
