@@ -9,7 +9,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import model.*;
+import view.*;
 
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,12 +20,15 @@ import static java.lang.System.exit;
 import java.util.HashMap;
 
 public class Controller {
+    private GraphicLine _graphicLine;
+    private GraphicPie _graphicPie;
     private IndicatorList _indicatorList;
     private LeverList _leverList;
     private Budget _budget;
     private StateList _stateList;
     private Integer _year;
     private Integer _maxYear;
+
 
     File _weightIndicatorFile = new File("coefficient.txt");
     private Matrix _weightForEachIndicator;
@@ -257,7 +262,17 @@ public class Controller {
     }
 
     public void endOfRound(){
-        //tour de jeu...
+        //On ferme le graphiqueLine si il existe
+        if (_graphicLine != null) {
+            _graphicLine.close();
+        }
+
+        //On ferme le graphiquePie si il existe
+        if (_graphicPie != null) {
+            _graphicPie.close();
+        }
+        //On ouvre le graphicpie
+        _graphicPie = new GraphicPie(getLevers(), _budget.getRemainingBudget());
         State thisYearState = _stateList.getState(_year);
         for(Lever l : _leverList.getLevers()){
 
@@ -381,6 +396,14 @@ public class Controller {
         //création de l'état(State) suivant
         State nextYearState = new State(year, _budget.getRemainingBudget(), resTauxReu, resSatPers, resSatEtu, thisYearState.getLDotRecForm(), thisYearState.getLDotSpeForm(), thisYearState.getLDotRecRech(), thisYearState.getLPrime(), thisYearState.getLImmo(), thisYearState.getLSubAssoEtu());
         _stateList.addState(nextYearState);
+    }
+
+    public void showGraphicLine(){
+
+        if(_year!=1)
+            _graphicLine=new GraphicLine(_stateList);
+        else
+            System.out.println("Impossible d'afficher les graphiques, vous êtes au premier tour !");
     }
 
 }

@@ -48,7 +48,18 @@ public class GraphicalView extends JFrame {
 
         nextTour.setText("Passer au tour suivant");
         nextTour.setBounds(500,700,200,50);
+
+        JButton showGraphic = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                _controller.showGraphicLine();
+            }
+        });
+
+        showGraphic.setText("Afficher l'évolution des indicateurs");
+        showGraphic.setBounds(20,700,200,50);
         this.getContentPane().add(nextTour);
+        this.getContentPane().add(showGraphic);
         this.add(_scrollIndicators,BorderLayout.EAST);
         this.add(_scrollLevers);
         this.add(_budget,BorderLayout.SOUTH);
