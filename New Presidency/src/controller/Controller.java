@@ -272,7 +272,7 @@ public class Controller {
             _graphicPie.close();
         }
         //On ouvre le graphicpie
-        _graphicPie = new GraphicPie((Collection)_leverList, _budget.getRemainingBudget());
+        _graphicPie = new GraphicPie(getLevers(), _budget.getRemainingBudget());
 
         State thisYearState = _stateList.getState(_year);
         for(Lever l : _leverList.getLevers()){
