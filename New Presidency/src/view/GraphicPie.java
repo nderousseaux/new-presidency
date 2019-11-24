@@ -63,6 +63,7 @@ public class GraphicPie {
 
         _f.pack();
         _f.setVisible(true);
+        _f.setAlwaysOnTop(true);
     }
 
 
