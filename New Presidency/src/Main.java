@@ -10,8 +10,8 @@ public class Main {
 
         Controller controller=new Controller();
         controller.init();
-        GraphicalView affichage = new GraphicalView(controller);
+        TextualView affichage = new TextualView(controller);
 
-        //affichage.init();
+        affichage.init();
     }
 }
