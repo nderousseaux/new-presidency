@@ -23,63 +23,30 @@ public class GraphicalView extends JFrame {
     private JScrollPane _scrollLevers;
     private JPanel _indicators;
     private JScrollPane _scrollIndicators;
+    private JPanel _panelIndicLevers;
     private JPanel _budget;
+    private JButton _nextRound;
+    private JButton _showGraphic;
+    private JPanel _pannelBottom;
 
     public GraphicalView(Controller controller){
         _controller=controller;
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1200,850);
-        this.setTitle("New Presidency");
-       // this.setLayout(new BorderLayout());
-
-        majYear();
-        majIndics();
-        majLevers();
-        majBudget();
-
-
-        JButton nextTour = new JButton(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                _controller.endOfRound();
-                endOfRound();
-            }
-        });
-
-        nextTour.setText("Passer au tour suivant");
-        nextTour.setBounds(500,700,200,50);
-
-        JButton showGraphic = new JButton(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                _controller.showGraphicLine();
-            }
-        });
-
-        showGraphic.setText("Afficher l'évolution des indicateurs");
-        showGraphic.setBounds(20,700,200,50);
-        this.getContentPane().add(nextTour);
-        this.getContentPane().add(showGraphic);
-        this.add(_scrollIndicators,BorderLayout.EAST);
-        this.add(_scrollLevers);
-        this.add(_budget,BorderLayout.SOUTH);
-        this.add(_year,BorderLayout.NORTH);
-        this.setResizable(false);
+        init(); //Initialisation de la fenetre
+        updateAll(); //Initialisation des differentes variables
+        addAllElements(); //Ajout des elements de la fenetre
         this.setVisible(true);
     }
 
-    private void majBudget(){
+    private void updateBudget(){
+
         JLabel labBudget = new JLabel(String.valueOf(_controller.getBudget().getRemainingBudget()));
-        if(_budget!=null)
-            this.remove(_budget);
         _budget=new JPanel();
         _budget.add(new JLabel("Budget restant : "));
         _budget.add(labBudget);
-        this.add(_budget,BorderLayout.SOUTH);
-        this.setVisible(true);
+
     }
 
-    private void majLevers(){
+    private void updateLevers(){
         _levers=new JPanel();
         _levers.setLayout(new GridLayout(_controller.getLevers().size(),1));
         _scrollLevers=new JScrollPane(_levers);
@@ -103,11 +70,16 @@ public class GraphicalView extends JFrame {
             val.setColumns(6);
             val.setText(String.valueOf((int)l.getBudget()));
             zoneval.add(val);
-            /*
+
             val.addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent keyEvent) {
-                    if(keyEvent.getKeyChar()<0 || keyEvent.getKeyChar() >9 )
+                    if(keyEvent.getKeyChar()== KeyEvent.VK_ENTER){
+                        _controller.addToBudget(l, Double.parseDouble(((JTextField)keyEvent.getSource()).getText())-l.getBudget());
+                        removeAllElements();
+                        updateBudget();
+                        addAllElements();
+                    }
                 }
 
                 @Override
@@ -120,7 +92,7 @@ public class GraphicalView extends JFrame {
 
                 }
             });
-            */
+
             //zone fleches
             JPanel zonefleches=new JPanel();
             zonefleches.setLayout(new BorderLayout());
@@ -133,7 +105,10 @@ public class GraphicalView extends JFrame {
                 public void actionPerformed(ActionEvent actionEvent) {
                     if(_controller.addToBudget(l,50.0)==0) { //s'il reste assez d'argent sur le budget principal
                         val.setText(String.valueOf((int)l.getBudget()));
-                        majBudget();
+                        removeAllElements();
+                        updateBudget();
+                        addAllElements();
+
                     }
                 }
             });
@@ -142,7 +117,9 @@ public class GraphicalView extends JFrame {
                 public void actionPerformed(ActionEvent actionEvent) {
                     if(_controller.removeFromBudget(l,50.0)==0) { //si le budget alloué n'est pas déjà nul ou inférieur à 50
                         val.setText(String.valueOf((int)l.getBudget()));
-                        majBudget();
+                        removeAllElements();
+                        updateBudget();
+                        addAllElements();
                     }
                 }
             });
@@ -153,13 +130,12 @@ public class GraphicalView extends JFrame {
             elem.add(nom);
             elem.add(zoneval);
             elem.setToolTipText(((ArrayList<String>)l.getInfos()).get(0));
-
             _levers.add(elem);
 
         }
     }
 
-    private void majIndics(){
+    private void updateIndics(){
         _indicators=new JPanel();
         _indicators.setLayout(new GridLayout(_controller.getIndicators().size(),1));
 
@@ -190,37 +166,92 @@ public class GraphicalView extends JFrame {
             elem.setToolTipText(((ArrayList<String>)i.getInfos()).get(0));
             _indicators.add(elem);
         }
-
-
     }
 
-    private void majYear(){
-        //annee
+    private void updateYear(){
         _year = new JPanel();
-        _year.add(new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear()));
-
+        JTextArea textArea= new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear());
+        textArea.setFocusable(false);
+        _year.add(textArea);
     }
 
     private void endOfRound(){
         if(_controller.getYear()<=_controller.getMaxYear()) {
-            this.remove(_scrollLevers);
-            this.remove(_levers);
-            majLevers();
-            this.remove(_indicators);
-            this.remove(_scrollIndicators);
-            majIndics();
-            this.remove(_budget);
-            majBudget();
-            this.remove(_year);
-            majYear();
-
-            this.getContentPane().add(_scrollIndicators,BorderLayout.EAST);
-            this.getContentPane().add(_scrollLevers);
-            this.getContentPane().add(_budget, BorderLayout.SOUTH);
-            this.getContentPane().add(_year, BorderLayout.NORTH);
+            removeAllElements();
+            updateAll();
+            addAllElements();
             this.setVisible(true);
         }
         else
             exit(0);
+    }
+
+    private void addAllElements(){
+        //Pannel des leviers/indicateurs
+        _panelIndicLevers=new JPanel();
+        _panelIndicLevers.setLayout(new GridLayout(1,2));
+        _nextRound = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                _controller.endOfRound();
+                endOfRound();
+            }
+        });
+        //Ajout des indicateurs et leviers
+        _panelIndicLevers.add(_scrollLevers);
+        _panelIndicLevers.add(_scrollIndicators);
+
+        //Ajout du pannel entier
+        this.getContentPane().add(_panelIndicLevers,BorderLayout.CENTER);
+
+        //Creation du bouton de tour suivant
+        _nextRound.setText("Passer au tour suivant");
+
+        //Creation du bouton de visualisation des graphiques d'evolution
+        _showGraphic = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                _controller.showGraphicLine();
+            }
+        });
+        _showGraphic.setText("Afficher l'évolution des indicateurs");
+
+        //Ajout de l'annee courante
+        this.getContentPane().add(_year,BorderLayout.NORTH);
+
+        _pannelBottom=new JPanel();
+        _pannelBottom.setLayout(new GridLayout(1,3));
+        _pannelBottom.add(_budget);
+        _pannelBottom.add(_showGraphic);
+        _pannelBottom.add(_nextRound);
+
+        this.getContentPane().add(_pannelBottom,BorderLayout.SOUTH);
+        this.setVisible(true);
+    }
+
+    private void removeAllElements(){
+        _panelIndicLevers.remove(_scrollIndicators);
+        _panelIndicLevers.remove(_scrollLevers);
+        this.remove(_panelIndicLevers);
+        _pannelBottom.remove(_budget);
+        _pannelBottom.remove(_nextRound);
+        _pannelBottom.remove(_showGraphic);
+        this.remove(_pannelBottom);
+        this.remove(_year);
+    }
+
+    private void updateAll(){
+        updateLevers();
+        updateIndics();
+        updateBudget();
+        updateYear();
+    }
+
+    private void init(){
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setSize(1200,850);
+        this.setTitle("New Presidency");
+        this.setLayout(new BorderLayout());
+        this.setResizable(false);
     }
 }
