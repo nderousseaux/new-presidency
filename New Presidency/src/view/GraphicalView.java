@@ -1,21 +1,33 @@
 package view;
-
-
-import controller.Controller;
-import model.Indicator;
-import model.Lever;
-
+import controller.*;
+import model.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import static java.lang.System.exit;
 
-
+/**
+ * <b><i>GraphicalView</i> est la classe de l'interface graphique du jeu</b>
+ * <p>
+ *     L'interface est une JFrame, comportant d'autres éléments:
+ *     <ul>
+ *        <li>des <b>JPannels</b> pour les indicateurs, les leviers, le budget et le tour</li>
+ *        <li>des <b>JScrollPane</b> permettant d'avoir un ascenceur vertical</li>
+ *        <li>des <b>JButton</b> pour afficher les graphiques d'évolution et terminer le tour</li>
+ *     </ul>
+ *     Le côté flexible de l'interface est amené par le combo de Layout <b>BorderLayout</b></*b> pour la fenêtre principale,
+ *     et <b>GridLayout</b> pour le pannel comprenant les indicateurs et les leviers, ainsi que le pannel au bas de l'interface,
+ *     comprenant le budget et les boutons.
+ * </p>
+ *
+ * @see Controller
+ * @see TextualView
+ *
+ * @author yvanderspurt
+ */
 public class GraphicalView extends JFrame {
     private Controller _controller;
     private JPanel _year;
@@ -29,12 +41,24 @@ public class GraphicalView extends JFrame {
     private JButton _showGraphic;
     private JPanel _pannelBottom;
 
+    /**
+     * Constructeur de GraphicalView, appelant des sous-fonctions d'initialisation
+     * @param controller Controlleur du jeu
+     * @see GraphicalView#init()
+     * @see GraphicalView#updateAll()
+     * @see GraphicalView#addAllElements()
+     */
     public GraphicalView(Controller controller){
         _controller=controller;
         init(); //Initialisation de la fenetre
         updateAll(); //Initialisation des differentes variables
         addAllElements(); //Ajout des elements de la fenetre et affichage
     }
+
+    /**
+     * Procédure d'initialisation/mise à jour du budget restant à investir
+     * @see Controller
+     */
 
     private void updateBudget(){
 
@@ -45,6 +69,17 @@ public class GraphicalView extends JFrame {
 
     }
 
+    /**
+     * Procédure d'initialisation/mise à jour des leviers de gestion<br>
+     *     Chaque élément de la liste comporte
+     *     <ul>
+     *         <li>le <b>nom du levier</b></li>
+     *         <li>Le <b>budget du levier</b>, modifiable au clavier ou les flèches</li>
+     *         <li>Deux <b>flèches</b> permettant d'augmenter ou diminuer le budget alloué au levier</li>
+     *         <li>Des <b>informations pédagogiques</b> sur le levier</li>
+     *     </ul>
+     * @see Controller
+     */
     private void updateLevers(){
         _levers=new JPanel();
         _levers.setLayout(new GridLayout(_controller.getLevers().size(),1));
@@ -56,7 +91,6 @@ public class GraphicalView extends JFrame {
             //element entier
             JPanel elem=new JPanel();
             elem.setLayout(new GridLayout(1,2));
-            //elem.setSize(_scrollLevers.getSize());
 
             //zone texte
 
@@ -251,6 +285,6 @@ public class GraphicalView extends JFrame {
         this.setSize(1200,850);
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
-        this.setResizable(false);
+        //this.setResizable(false);
     }
 }
