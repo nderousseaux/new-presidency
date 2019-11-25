@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class GraphicLine {
+public class GraphicLine {
 
     private JFrame _f;
     private StateList _stateList;
@@ -26,7 +26,7 @@ class GraphicLine {
 
 
 
-    GraphicLine(StateList stateList){
+    public GraphicLine(StateList stateList){
         _stateList = stateList;
 
         //On crée le JFrame
@@ -231,11 +231,9 @@ class GraphicLine {
         return values;
     }
 
-    void close(){
+    public void close(){
         _f.dispose();
     }
-
-
 }
 
 

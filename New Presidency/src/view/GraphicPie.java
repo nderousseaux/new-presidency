@@ -12,7 +12,7 @@ import java.awt.*;
 import java.util.Collection;
 import java.util.HashMap;
 
-class GraphicPie {
+public class GraphicPie {
 
     private JFrame _f;
     private Collection<Lever> _leverList;
@@ -23,7 +23,7 @@ class GraphicPie {
 
 
 
-    GraphicPie(Collection<Lever> leverList, Double budget){
+    public GraphicPie(Collection<Lever> leverList, Double budget){
         _leverList = leverList;
         _f = new JFrame("Comment vous avez utilisé votre budget !");
 
@@ -63,11 +63,12 @@ class GraphicPie {
 
         _f.pack();
         _f.setVisible(true);
+        _f.setAlwaysOnTop(true);
     }
 
 
 
-    void close(){
+    public void close(){
         _f.dispose();
     }
 

@@ -10,7 +10,6 @@ import static java.lang.System.exit;
 
 public class TextualView {
     private Controller _controller;
-    private GraphicLine _graphicLine;
     private GraphicPie _graphicPie;
 
     public TextualView(Controller controller) throws InterruptedException {
@@ -45,27 +44,9 @@ public class TextualView {
                 break;
             case 3:
                 System.out.println("-------------------------");
-
-                //On ferme le graphiquePie si il existe
-                if (_graphicPie != null) {
-                    _graphicPie.close();
-                }
-
-
-                //On ouvre le graphicpie
-                graphiqueTarte();
-
-
                 _controller.endOfRound();
-
-                if (_controller.getYear() <= _controller.getMaxYear()){
-                    //On ferme le graphiqueLine si il existe
-                    if (_graphicLine != null) {
-                        _graphicLine.close();
-                    }
-
-                showRound();
-                }
+                if (_controller.getYear() <= _controller.getMaxYear())
+                    showRound();
                 else
                     System.out.println("Fin du jeu!");
                 break;
@@ -76,12 +57,7 @@ public class TextualView {
                 break;
             case 5:
                 System.out.println("-------------------------");
-                if(_controller.getYear()==1){
-                    System.out.println("Impossible d'afficher les graphiques, vous êtes au premier tour !");
-                }
-                else{
-                    graphiquesLigne();
-                }
+                _controller.showGraphicLine();
                 showRound();
                 break;
             case 6:
@@ -247,15 +223,5 @@ public class TextualView {
         System.out.println("Bonne partie!");
         Thread.sleep(1000);
         System.out.println("");
-    }
-
-    public void graphiquesLigne(){
-        _graphicLine = new GraphicLine(_controller.getStateList());
-
-    }
-
-    public void graphiqueTarte(){
-        _graphicPie = new GraphicPie(_controller.getLevers(), _controller.getBudget().getRemainingBudget());
-
     }
 }
