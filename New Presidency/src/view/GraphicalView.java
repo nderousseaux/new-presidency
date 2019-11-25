@@ -68,11 +68,13 @@ public class GraphicalView extends JFrame {
             val.setColumns(6);
             val.setText(String.valueOf((int)l.getBudget()));
             zoneval.add(val);
-            /*
+
             val.addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent keyEvent) {
-                    if(keyEvent.getKeyChar()<0 || keyEvent.getKeyChar() >9 )
+                    if((int)keyEvent.getKeyChar() < 0 || (int)keyEvent.getKeyChar()>9){
+
+                    }
                 }
 
                 @Override
@@ -85,7 +87,7 @@ public class GraphicalView extends JFrame {
 
                 }
             });
-            */
+
             //zone fleches
             JPanel zonefleches=new JPanel();
             zonefleches.setLayout(new BorderLayout());
@@ -158,7 +160,9 @@ public class GraphicalView extends JFrame {
 
     private void updateYear(){
         _year = new JPanel();
-        _year.add(new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear()));
+        JTextArea textArea= new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear());
+        textArea.setFocusable(false);
+        _year.add(textArea);
     }
 
     private void endOfRound(){
