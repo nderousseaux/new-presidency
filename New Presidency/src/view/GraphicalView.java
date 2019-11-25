@@ -33,8 +33,7 @@ public class GraphicalView extends JFrame {
         _controller=controller;
         init(); //Initialisation de la fenetre
         updateAll(); //Initialisation des differentes variables
-        addAllElements(); //Ajout des elements de la fenetre
-        this.setVisible(true);
+        addAllElements(); //Ajout des elements de la fenetre et affichage
     }
 
     private void updateBudget(){
@@ -214,7 +213,7 @@ public class GraphicalView extends JFrame {
                 _controller.showGraphicLine();
             }
         });
-        _showGraphic.setText("Afficher l'évolution des indicateurs");
+        _showGraphic.setText("Afficher l'évolution des indicateurs et des leviers");
 
         //Ajout de l'annee courante
         this.getContentPane().add(_year,BorderLayout.NORTH);
