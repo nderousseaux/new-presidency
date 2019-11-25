@@ -38,10 +38,12 @@ public class GraphicalView extends JFrame {
     }
 
     private void updateBudget(){
+
         JLabel labBudget = new JLabel(String.valueOf(_controller.getBudget().getRemainingBudget()));
         _budget=new JPanel();
         _budget.add(new JLabel("Budget restant : "));
         _budget.add(labBudget);
+
     }
 
     private void updateLevers(){
@@ -72,8 +74,11 @@ public class GraphicalView extends JFrame {
             val.addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent keyEvent) {
-                    if((int)keyEvent.getKeyChar() < 0 || (int)keyEvent.getKeyChar()>9){
-
+                    if(keyEvent.getKeyChar()== KeyEvent.VK_ENTER){
+                        _controller.addToBudget(l, Double.parseDouble(((JTextField)keyEvent.getSource()).getText())-l.getBudget());
+                        removeAllElements();
+                        updateBudget();
+                        addAllElements();
                     }
                 }
 
@@ -100,7 +105,10 @@ public class GraphicalView extends JFrame {
                 public void actionPerformed(ActionEvent actionEvent) {
                     if(_controller.addToBudget(l,50.0)==0) { //s'il reste assez d'argent sur le budget principal
                         val.setText(String.valueOf((int)l.getBudget()));
+                        removeAllElements();
                         updateBudget();
+                        addAllElements();
+
                     }
                 }
             });
@@ -109,7 +117,9 @@ public class GraphicalView extends JFrame {
                 public void actionPerformed(ActionEvent actionEvent) {
                     if(_controller.removeFromBudget(l,50.0)==0) { //si le budget alloué n'est pas déjà nul ou inférieur à 50
                         val.setText(String.valueOf((int)l.getBudget()));
+                        removeAllElements();
                         updateBudget();
+                        addAllElements();
                     }
                 }
             });
@@ -216,6 +226,7 @@ public class GraphicalView extends JFrame {
         _pannelBottom.add(_nextRound);
 
         this.getContentPane().add(_pannelBottom,BorderLayout.SOUTH);
+        this.setVisible(true);
     }
 
     private void removeAllElements(){
