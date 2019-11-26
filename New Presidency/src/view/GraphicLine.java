@@ -5,7 +5,6 @@ import model.StateList;
 import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,14 +26,13 @@ import java.util.HashMap;
  * @see GraphicalView
  *
  * @author nderousseaux
- * @version 2.0
+ * @version 1.0
  */
 public class GraphicLine {
 
     private JFrame _f;
     private StateList _stateList;
     private XYChart chart;
-
     private HashMap<JComboBox<String>, String> _anciennesValeurs = new HashMap<>();
     private Boolean isLevier;
 
