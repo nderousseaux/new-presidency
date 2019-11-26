@@ -2,10 +2,10 @@ package view;
 import controller.*;
 import model.*;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import static java.lang.System.exit;
 
@@ -62,7 +62,7 @@ public class GraphicalView extends JFrame {
 
     private void updateBudget(){
 
-        JLabel labBudget = new JLabel(String.valueOf(_controller.getBudget().getRemainingBudget()));
+        JLabel labBudget = new JLabel(String.valueOf((int)_controller.getBudget().getRemainingBudget()));
         _budget=new JPanel();
         _budget.add(new JLabel("Budget restant : "));
         _budget.add(labBudget);
@@ -95,7 +95,7 @@ public class GraphicalView extends JFrame {
             //zone texte
 
             JLabel nom = new JLabel(l.getName());
-
+            /*
             //zone valeur
             JPanel zoneval=new JPanel();
             zoneval.setLayout(new FlowLayout());
@@ -159,9 +159,18 @@ public class GraphicalView extends JFrame {
             zonefleches.add(haut,BorderLayout.NORTH);
             zonefleches.add(bas,BorderLayout.SOUTH);
             zoneval.add(zonefleches);
+            */
+            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,l.getMaxBudget(),50);
+            JSpinner spinner=new JSpinner(model);
+            spinner.addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent changeEvent) {
+                    changeBudget(l,spinner);
 
+                }
+            });
             elem.add(nom);
-            elem.add(zoneval);
+            elem.add(spinner);
             elem.setToolTipText(((ArrayList<String>)l.getInfos()).get(0));
             _levers.add(elem);
 
@@ -286,5 +295,20 @@ public class GraphicalView extends JFrame {
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
         //this.setResizable(false);
+    }
+
+    private void changeBudget(Lever l, JSpinner j){
+        System.out.println(j.getValue().toString());
+        int res=_controller.addToBudget(l,(double)j.getValue()-l.getBudget());
+        System.out.println(res);
+        if(res==-1){
+            j.setValue(l.getBudget());
+        }
+        else {
+            removeAllElements();
+            updateBudget();
+            addAllElements();
+            this.setVisible(true);
+        }
     }
 }

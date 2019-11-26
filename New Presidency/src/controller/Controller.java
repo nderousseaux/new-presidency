@@ -236,16 +236,14 @@ public class Controller {
     }
 
     public Integer addToBudget(Lever lever, Double val){
-        Integer r;
         if(val<=_budget.getRemainingBudget()) {
             lever.addToBudget(val);
             _budget.setRemainingBudget(_budget.getRemainingBudget() - val);
-            r=0;
+            return 0;
         }
         else{
-            r=-1;
+            return -1;
         }
-        return r;
     }
 
     public Integer removeFromBudget(Lever lever, Double val){
