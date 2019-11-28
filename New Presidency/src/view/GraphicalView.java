@@ -18,7 +18,7 @@ import static java.lang.System.exit;
  *        <li>des <b>JScrollPane</b> permettant d'avoir un ascenceur vertical</li>
  *        <li>des <b>JButton</b> pour afficher les graphiques d'évolution et terminer le tour</li>
  *     </ul>
- *     Le côté flexible de l'interface est amené par le combo de Layout <b>BorderLayout</b></*b> pour la fenêtre principale,
+ *     Le côté flexible de l'interface est amené par le combo de Layout <b>BorderLayout</b> pour la fenêtre principale,
  *     et <b>GridLayout</b> pour le pannel comprenant les indicateurs et les leviers, ainsi que le pannel au bas de l'interface,
  *     comprenant le budget et les boutons.
  * </p>
@@ -59,7 +59,6 @@ public class GraphicalView extends JFrame {
      * Procédure d'initialisation/mise à jour du budget restant à investir
      * @see Controller
      */
-
     private void updateBudget(){
 
         JLabel labBudget = new JLabel(String.valueOf((int)_controller.getBudget().getRemainingBudget()));
@@ -177,6 +176,15 @@ public class GraphicalView extends JFrame {
         }
     }
 
+    /**
+     * Procédure d'initialisation/mise à jour des indicateurs<br>
+     *     Chaque élément de la liste comporte
+     *     <ul>
+     *         <li>Le <b>nom de l'indicateur</b></li>
+     *         <li>Le <b>pourcentage de complétion de l'indicateur</b></li>
+     *     </ul>
+     * @see Controller
+     */
     private void updateIndics(){
         _indicators=new JPanel();
         _indicators.setLayout(new GridLayout(_controller.getIndicators().size(),1));
@@ -210,6 +218,9 @@ public class GraphicalView extends JFrame {
         }
     }
 
+    /**Procédure d'initialisation/mise à jour du tour
+     * @see Controller
+     */
     private void updateYear(){
         _year = new JPanel();
         JTextArea textArea= new JTextArea("Année "+_controller.getYear()+" sur "+_controller.getMaxYear());
@@ -217,6 +228,11 @@ public class GraphicalView extends JFrame {
         _year.add(textArea);
     }
 
+    /**Procédure de fin de tour<br>
+     * Avant le tour d'après, un graphique s'affiche, récapitulant la <b>répartion du budget du tour</b>
+     * @see Controller
+     * @see GraphicPie
+     */
     private void endOfRound(){
         if(_controller.getYear()<=_controller.getMaxYear()) {
             removeAllElements();
@@ -228,6 +244,9 @@ public class GraphicalView extends JFrame {
             exit(0);
     }
 
+    /**Procédure de mise en place des éléments de la fenêtre principale
+     * @see GraphicalView#removeAllElements
+      */
     private void addAllElements(){
         //Pannel des leviers/indicateurs
         _panelIndicLevers=new JPanel();
@@ -271,6 +290,11 @@ public class GraphicalView extends JFrame {
         this.setVisible(true);
     }
 
+    /** Procédure de retrait des éléments de la fenêtre principale (permet le rafraichissement des variables, comme le budget)
+     * @see GraphicalView#addAllElements()
+     * @see GraphicalView#updateBudget()
+     *
+     */
     private void removeAllElements(){
         _panelIndicLevers.remove(_scrollIndicators);
         _panelIndicLevers.remove(_scrollLevers);
@@ -282,6 +306,13 @@ public class GraphicalView extends JFrame {
         this.remove(_year);
     }
 
+    /**Procédure d'appel de toutes les initialisations/mises à jour de tous les éléments de la fenêtre principale
+     *
+     * @see GraphicalView#updateLevers()
+     * @see GraphicalView#updateIndics()
+     * @see GraphicalView#updateYear()
+     * @see GraphicalView#updateBudget()
+     */
     private void updateAll(){
         updateLevers();
         updateIndics();
@@ -289,6 +320,10 @@ public class GraphicalView extends JFrame {
         updateYear();
     }
 
+    /** Procédure de définition de la taille, du nom et du Layout de la fenêtre principale. Appelé une unique fois au début du jeu
+     *
+     * @see BorderLayout
+     */
     private void init(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(1200,850);
@@ -297,6 +332,16 @@ public class GraphicalView extends JFrame {
         //this.setResizable(false);
     }
 
+    /** Procédure de communication à un levier donné d'une volonté de modification (qui peut échouer selon l'action) sur le budget alloué
+     *
+     * @param l Levier dont le budget doit changer
+     * @param j JSpinner contenant la valeur du budget, entrée par l'utilisateur
+     *
+     * @see GraphicalView#removeAllElements()
+     * @see GraphicalView#updateBudget()
+     * @see GraphicalView#addAllElements()
+     * @see Controller
+     */
     private void changeBudget(Lever l, JSpinner j){
         System.out.println(j.getValue().toString());
         int res=_controller.addToBudget(l,(double)j.getValue()-l.getBudget());
