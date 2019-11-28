@@ -9,11 +9,51 @@ Inheritance diagram for view.\+Graphical\+View\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}\label{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}} 
-{\bfseries Graphical\+View} (\mbox{\hyperlink{classcontroller_1_1_controller}{Controller}} controller)
+\mbox{\hyperlink{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}{Graphical\+View}} (\mbox{\hyperlink{classcontroller_1_1_controller}{Controller}} controller)
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classview_1_1_graphical_view}{Graphical\+View}}} est la classe de l\textquotesingle{}interface graphique du jeu}} 
+
+L\textquotesingle{}interface est une J\+Frame, comportant d\textquotesingle{}autres éléments\+: 
+\begin{DoxyItemize}
+\item des {\bfseries{J\+Pannels}} pour les indicateurs, les leviers, le budget et le tour 
+\item des {\bfseries{J\+Scroll\+Pane}} permettant d\textquotesingle{}avoir un ascenceur vertical 
+\item des {\bfseries{J\+Button}} pour afficher les graphiques d\textquotesingle{}évolution et terminer le tour 
+\end{DoxyItemize}Le côté flexible de l\textquotesingle{}interface est amené par le combo de Layout {\bfseries{Border\+Layout}} pour la fenêtre principale, et {\bfseries{Grid\+Layout}} pour le pannel comprenant les indicateurs et les leviers, ainsi que le pannel au bas de l\textquotesingle{}interface, comprenant le budget et les boutons. 
+
+\begin{DoxySeeAlso}{See also}
+Controller 
+
+\mbox{\hyperlink{classview_1_1_textual_view}{Textual\+View}}
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yvanderspurt 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}\label{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}} 
+\index{view.GraphicalView@{view.GraphicalView}!GraphicalView@{GraphicalView}}
+\index{GraphicalView@{GraphicalView}!view.GraphicalView@{view.GraphicalView}}
+\doxysubsubsection{\texorpdfstring{GraphicalView()}{GraphicalView()}}
+{\footnotesize\ttfamily view.\+Graphical\+View.\+Graphical\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcontroller_1_1_controller}{Controller}}}]{controller }\end{DoxyParamCaption})}
+
+Constructeur de \mbox{\hyperlink{classview_1_1_graphical_view}{Graphical\+View}}, appelant des sous-\/fonctions d\textquotesingle{}initialisation 
+\begin{DoxyParams}{Parameters}
+{\em controller} & Controlleur du jeu \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Graphical\+View\+::init() 
+
+Graphical\+View\+::update\+All() 
+
+Graphical\+View\+::add\+All\+Elements() 
+\end{DoxySeeAlso}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/view/Graphical\+View.\+java\end{DoxyCompactItemize}
+C\+:/\+Users/yoanv/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/view/Graphical\+View.\+java\end{DoxyCompactItemize}
