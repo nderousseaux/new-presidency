@@ -5,7 +5,7 @@ import view.GraphicalView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/**<b><i>Main</i> est la classe lançant le jeu<b>
+/**<b><i>Main</i> est la classe lançant le jeu</b>
  * @see Controller
  * @see GraphicalView
  * @see TextualView
