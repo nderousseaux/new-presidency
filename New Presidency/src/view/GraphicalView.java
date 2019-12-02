@@ -115,7 +115,13 @@ public class GraphicalView extends JFrame {
             });
             elem.add(nom);
             elem.add(spinner);
-            elem.setToolTipText(((ArrayList<String>)l.getInfos()).get(0));
+            String info="<html>";
+            for(String s : l.getInfos()){
+                info+=s;
+                info+="<br>";
+            }
+            info+="</html>";
+            elem.setToolTipText(info);
             _levers.add(elem);
 
         }
@@ -158,7 +164,14 @@ public class GraphicalView extends JFrame {
             zoneval.add(val);
             elem.add(nom);
             elem.add(zoneval);
-            elem.setToolTipText(((ArrayList<String>)i.getInfos()).get(0));
+
+            String info="<html>";
+            for(String s : i.getInfos()){
+                info+=s;
+                info+="<br>";
+            }
+            info+="</html>";
+            elem.setToolTipText(info);
             _indicators.add(elem);
         }
     }
@@ -238,10 +251,14 @@ public class GraphicalView extends JFrame {
         exit.setBorderPainted(true);
         exit.setBounds(0,25,20,20);
 
+        JButton tuto=new JButton();
+        tuto.setText("Tutoriel");
+        tuto.setEnabled(false);
         _pannelTop=new JPanel();
         _pannelTop.setLayout(new BorderLayout());
         _pannelTop.add(_year,BorderLayout.CENTER);
         _pannelTop.add(exit,BorderLayout.AFTER_LINE_ENDS);
+        _pannelTop.add(tuto,BorderLayout.BEFORE_LINE_BEGINS);
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
         _pannelBottom.add(_budget);
@@ -259,14 +276,12 @@ public class GraphicalView extends JFrame {
      *
      */
     private void removeAllElements(){
-        _panelIndicLevers.remove(_scrollIndicators);
-        _panelIndicLevers.remove(_scrollLevers);
+        _panelIndicLevers.removeAll();
         this.remove(_panelIndicLevers);
-        _pannelBottom.remove(_budget);
-        _pannelBottom.remove(_nextRound);
-        _pannelBottom.remove(_showGraphic);
+        _pannelBottom.removeAll();
         this.remove(_pannelBottom);
-        this.remove(_year);
+        _pannelTop.removeAll();
+        this.remove(_pannelTop);
     }
 
     /**Procédure d'appel de toutes les initialisations/mises à jour de tous les éléments de la fenêtre principale
@@ -330,38 +345,34 @@ public class GraphicalView extends JFrame {
         content.setLayout(new GridBagLayout());
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
         title.setFont(new Font("Arial",Font.BOLD,24));
-        JLabel subtitle=new JLabel("Cliquez n'importe où pour continuer...");
+
+        JButton tuto=new JButton("Lancer le tutoriel");
+        JButton noTuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                addAllElements();
+            }
+        });
+        noTuto.setText("Passer le tutoriel");
+        tuto.setEnabled(false);
+
+        JPanel buttons=new JPanel();
+        buttons.setLayout(new GridLayout(1,2));
+        buttons.add(tuto);
+        buttons.add(noTuto);
 
         GridBagConstraints cTitle=new GridBagConstraints();
         cTitle.fill = GridBagConstraints.HORIZONTAL;
-        GridBagConstraints cSubtitle=new GridBagConstraints();
-        cSubtitle.fill = GridBagConstraints.HORIZONTAL;
-        cSubtitle.gridy = 1;
+
+        GridBagConstraints cButtons=new GridBagConstraints();
+        cButtons.fill=GridBagConstraints.HORIZONTAL;
+        cButtons.gridy=1;
+
         content.add(title,cTitle);
-        content.add(subtitle,cSubtitle);
+        content.add(buttons,cButtons);
+
         this.add(content,BorderLayout.CENTER);
-        this.getContentPane().addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                addAllElements();
-            }
 
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-            }
-        });
         this.setVisible(true);
     }
 }
