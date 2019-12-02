@@ -3,14 +3,90 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classview_1_1_graphic_pie_a86134b7ea472caa23c56b88838f70a4c}\label{classview_1_1_graphic_pie_a86134b7ea472caa23c56b88838f70a4c}} 
-{\bfseries Graphic\+Pie} (Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ lever\+List, Double budget)
+\mbox{\hyperlink{classview_1_1_graphic_pie_a86134b7ea472caa23c56b88838f70a4c}{Graphic\+Pie}} (Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ lever\+List, Double budget)
 \item 
-\mbox{\Hypertarget{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}\label{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}} 
-void {\bfseries close} ()
+void \mbox{\hyperlink{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}{close}} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_pie_ae4917f9a13ecdc2c7b7181927e10a167}\label{classview_1_1_graphic_pie_ae4917f9a13ecdc2c7b7181927e10a167}} 
+J\+Frame {\bfseries \+\_\+f}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_pie_ac1b4ac2c6630074be7dff8aac43194d1}\label{classview_1_1_graphic_pie_ac1b4ac2c6630074be7dff8aac43194d1}} 
+Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ {\bfseries \+\_\+lever\+List}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_pie_a0c4d6fd5ef26f83aba87766ddda0c72d}\label{classview_1_1_graphic_pie_a0c4d6fd5ef26f83aba87766ddda0c72d}} 
+Pie\+Chart {\bfseries chart}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_pie_aa7a1923ca25bcc2f5c7efd5cf38efba3}\label{classview_1_1_graphic_pie_aa7a1923ca25bcc2f5c7efd5cf38efba3}} 
+Hash\+Map$<$ J\+Combo\+Box$<$ String $>$, String $>$ {\bfseries \+\_\+anciennes\+Valeurs} = new Hash\+Map$<$$>$()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{ {\itshape \mbox{\hyperlink{classview_1_1_graphic_pie}{Graphic\+Pie}}} est une classe qui permet d\textquotesingle{}afficher les graphiques circulaire.}} 
+
+Le graphique représente la manière dont le joueur à utilisé son budget durant le tour. Il s\textquotesingle{}affiche après la fin du tour. Elle contient \+: 
+\begin{DoxyItemize}
+\item Une J\+Frame 
+\item La liste des leviers 
+\item Le graphique 
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+Lever\+List 
+
+\mbox{\hyperlink{classview_1_1_textual_view}{Textual\+View}} 
+
+\mbox{\hyperlink{classview_1_1_graphical_view}{Graphical\+View}}
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+nderousseaux 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classview_1_1_graphic_pie_a86134b7ea472caa23c56b88838f70a4c}\label{classview_1_1_graphic_pie_a86134b7ea472caa23c56b88838f70a4c}} 
+\index{view.GraphicPie@{view.GraphicPie}!GraphicPie@{GraphicPie}}
+\index{GraphicPie@{GraphicPie}!view.GraphicPie@{view.GraphicPie}}
+\doxysubsubsection{\texorpdfstring{GraphicPie()}{GraphicPie()}}
+{\footnotesize\ttfamily view.\+Graphic\+Pie.\+Graphic\+Pie (\begin{DoxyParamCaption}\item[{Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$}]{lever\+List,  }\item[{Double}]{budget }\end{DoxyParamCaption})}
+
+Instancier et ouvrir la fenêtre graphique
+
+
+\begin{DoxyParams}{Parameters}
+{\em lever\+List} & La liste des leviers, et le budget aloué à chacun d\textquotesingle{}entre eux. \\
+\hline
+{\em budget} & Budget total du tour.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}{Graphic\+Pie\+::close()}}
+\end{DoxySeeAlso}
+\begin{DoxySince}{Since}
+1.\+0 
+\end{DoxySince}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}\label{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}} 
+\index{view.GraphicPie@{view.GraphicPie}!close@{close}}
+\index{close@{close}!view.GraphicPie@{view.GraphicPie}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void view.\+Graphic\+Pie.\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fonction de fermeture de la fenêtre
+
+\begin{DoxySince}{Since}
+1.\+0 
+\end{DoxySince}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/view/Graphic\+Pie.\+java\end{DoxyCompactItemize}
+D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/view/Graphic\+Pie.\+java\end{DoxyCompactItemize}
