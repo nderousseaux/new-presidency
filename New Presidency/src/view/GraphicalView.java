@@ -96,77 +96,20 @@ public class GraphicalView extends JFrame {
             //zone texte
 
             JLabel nom = new JLabel(l.getName());
-            /*
-            //zone valeur
-            JPanel zoneval=new JPanel();
-            zoneval.setLayout(new FlowLayout());
-            JTextField val = new JTextField();
-            val.setColumns(6);
-            val.setText(String.valueOf((int)l.getBudget()));
-            zoneval.add(val);
 
-            val.addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent keyEvent) {
-                    if(keyEvent.getKeyChar()== KeyEvent.VK_ENTER){
-                        _controller.addToBudget(l, Double.parseDouble(((JTextField)keyEvent.getSource()).getText())-l.getBudget());
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-                    }
-                }
-
-                @Override
-                public void keyPressed(KeyEvent keyEvent) {
-
-                }
-
-                @Override
-                public void keyReleased(KeyEvent keyEvent) {
-
-                }
-            });
-
-            //zone fleches
-            JPanel zonefleches=new JPanel();
-            zonefleches.setLayout(new BorderLayout());
-
-            //fleches
-            JButton haut=new JButton("↑");
-            JButton bas=new JButton("↓");
-            haut.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if(_controller.addToBudget(l,50.0)==0) { //s'il reste assez d'argent sur le budget principal
-                        val.setText(String.valueOf((int)l.getBudget()));
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-
-                    }
-                }
-            });
-            bas.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if(_controller.removeFromBudget(l,50.0)==0) { //si le budget alloué n'est pas déjà nul ou inférieur à 50
-                        val.setText(String.valueOf((int)l.getBudget()));
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-                    }
-                }
-            });
-            zonefleches.add(haut,BorderLayout.NORTH);
-            zonefleches.add(bas,BorderLayout.SOUTH);
-            zoneval.add(zonefleches);
-            */
-            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,l.getMaxBudget(),50);
+            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,Double.POSITIVE_INFINITY,50);
             JSpinner spinner=new JSpinner(model);
             spinner.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent changeEvent) {
-                    changeBudget(l,spinner);
+                    try{
+                        int test=(int)spinner.getValue();
+                        changeBudget(l,spinner);
+                    }
+                    catch(Exception e){
+                        spinner.setValue(String.valueOf(l.getBudget()));
+                        spinner.setVisible(true);
+                    }
 
                 }
             });
@@ -366,13 +309,15 @@ public class GraphicalView extends JFrame {
      * @see Controller
      */
     private void changeBudget(Lever lever, JSpinner jspinner){
-        System.out.println(jspinner.getValue().toString());
-        int res=_controller.addToBudget(lever,(double)jspinner.getValue()-lever.getBudget());
-        System.out.println(res);
-        if(res==-1){
-            jspinner.setValue(lever.getBudget());
+        try{
+            int test=(int)jspinner.getValue();
         }
-        else {
+        catch(Exception e){
+            jspinner.setValue(lever.getBudget());
+            jspinner.setVisible(true);
+        }
+        int res=_controller.addToBudget(lever,(double)jspinner.getValue()-lever.getBudget());
+        if(res==0){
             removeAllElements();
             updateBudget();
             addAllElements();
