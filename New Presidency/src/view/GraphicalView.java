@@ -40,6 +40,7 @@ public class GraphicalView extends JFrame {
     private JButton _nextRound;
     private JButton _showGraphic;
     private JPanel _pannelBottom;
+    private JPanel _pannelTop;
 
     /**
      * Constructeur de GraphicalView, appelant des sous-fonctions d'initialisation
@@ -52,7 +53,8 @@ public class GraphicalView extends JFrame {
         _controller=controller;
         init(); //Initialisation de la fenetre
         updateAll(); //Initialisation des differentes variables
-        addAllElements(); //Ajout des elements de la fenetre et affichage
+        homepage();
+        //addAllElements(); //Ajout des elements de la fenetre et affichage
     }
 
     /**
@@ -248,6 +250,7 @@ public class GraphicalView extends JFrame {
      * @see GraphicalView#removeAllElements
       */
     private void addAllElements(){
+        this.getContentPane().removeAll();
         //Pannel des leviers/indicateurs
         _panelIndicLevers=new JPanel();
         _panelIndicLevers.setLayout(new GridLayout(1,2));
@@ -276,10 +279,26 @@ public class GraphicalView extends JFrame {
             }
         });
         _showGraphic.setText("Afficher l'évolution des indicateurs et des leviers");
-
+        if(_controller.getYear()==1)
+            _showGraphic.setEnabled(false);
         //Ajout de l'annee courante
         this.getContentPane().add(_year,BorderLayout.NORTH);
 
+        JButton exit=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                exit(0);
+            }
+        });
+        exit.setText("X");
+        exit.setBackground(Color.RED);
+        exit.setBorderPainted(true);
+        exit.setBounds(0,25,20,20);
+
+        _pannelTop=new JPanel();
+        _pannelTop.setLayout(new BorderLayout());
+        _pannelTop.add(_year,BorderLayout.CENTER);
+        _pannelTop.add(exit,BorderLayout.AFTER_LINE_ENDS);
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
         _pannelBottom.add(_budget);
@@ -287,6 +306,7 @@ public class GraphicalView extends JFrame {
         _pannelBottom.add(_nextRound);
 
         this.getContentPane().add(_pannelBottom,BorderLayout.SOUTH);
+        this.getContentPane().add(_pannelTop,BorderLayout.NORTH);
         this.setVisible(true);
     }
 
@@ -326,28 +346,31 @@ public class GraphicalView extends JFrame {
      */
     private void init(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1200,850);
+        this.setUndecorated(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize);
+
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
-        //this.setResizable(false);
+        this.setResizable(false);
     }
 
     /** Procédure de communication à un levier donné d'une volonté de modification (qui peut échouer selon l'action) sur le budget alloué
      *
-     * @param l Levier dont le budget doit changer
-     * @param j JSpinner contenant la valeur du budget, entrée par l'utilisateur
+     * @param lever Levier dont le budget doit changer
+     * @param jspinner JSpinner contenant la valeur du budget, entrée par l'utilisateur
      *
      * @see GraphicalView#removeAllElements()
      * @see GraphicalView#updateBudget()
      * @see GraphicalView#addAllElements()
      * @see Controller
      */
-    private void changeBudget(Lever l, JSpinner j){
-        System.out.println(j.getValue().toString());
-        int res=_controller.addToBudget(l,(double)j.getValue()-l.getBudget());
+    private void changeBudget(Lever lever, JSpinner jspinner){
+        System.out.println(jspinner.getValue().toString());
+        int res=_controller.addToBudget(lever,(double)jspinner.getValue()-lever.getBudget());
         System.out.println(res);
         if(res==-1){
-            j.setValue(l.getBudget());
+            jspinner.setValue(lever.getBudget());
         }
         else {
             removeAllElements();
@@ -356,4 +379,45 @@ public class GraphicalView extends JFrame {
             this.setVisible(true);
         }
     }
+
+    private void homepage(){
+        JPanel content = new JPanel();
+        content.setLayout(new GridBagLayout());
+        JLabel title=new JLabel("Bienvenue sur New Presidency!");
+        title.setFont(new Font("Arial",Font.BOLD,24));
+        JLabel subtitle=new JLabel("Cliquez n'importe où pour continuer...");
+
+        GridBagConstraints cTitle=new GridBagConstraints();
+        cTitle.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints cSubtitle=new GridBagConstraints();
+        cSubtitle.fill = GridBagConstraints.HORIZONTAL;
+        cSubtitle.gridy = 1;
+        content.add(title,cTitle);
+        content.add(subtitle,cSubtitle);
+        this.add(content,BorderLayout.CENTER);
+        this.getContentPane().addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                addAllElements();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+            }
+        });
+        this.setVisible(true);
+    }
 }
+
