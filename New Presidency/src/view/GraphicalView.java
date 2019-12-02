@@ -96,83 +96,32 @@ public class GraphicalView extends JFrame {
             //zone texte
 
             JLabel nom = new JLabel(l.getName());
-            /*
-            //zone valeur
-            JPanel zoneval=new JPanel();
-            zoneval.setLayout(new FlowLayout());
-            JTextField val = new JTextField();
-            val.setColumns(6);
-            val.setText(String.valueOf((int)l.getBudget()));
-            zoneval.add(val);
 
-            val.addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent keyEvent) {
-                    if(keyEvent.getKeyChar()== KeyEvent.VK_ENTER){
-                        _controller.addToBudget(l, Double.parseDouble(((JTextField)keyEvent.getSource()).getText())-l.getBudget());
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-                    }
-                }
-
-                @Override
-                public void keyPressed(KeyEvent keyEvent) {
-
-                }
-
-                @Override
-                public void keyReleased(KeyEvent keyEvent) {
-
-                }
-            });
-
-            //zone fleches
-            JPanel zonefleches=new JPanel();
-            zonefleches.setLayout(new BorderLayout());
-
-            //fleches
-            JButton haut=new JButton("↑");
-            JButton bas=new JButton("↓");
-            haut.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if(_controller.addToBudget(l,50.0)==0) { //s'il reste assez d'argent sur le budget principal
-                        val.setText(String.valueOf((int)l.getBudget()));
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-
-                    }
-                }
-            });
-            bas.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if(_controller.removeFromBudget(l,50.0)==0) { //si le budget alloué n'est pas déjà nul ou inférieur à 50
-                        val.setText(String.valueOf((int)l.getBudget()));
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-                    }
-                }
-            });
-            zonefleches.add(haut,BorderLayout.NORTH);
-            zonefleches.add(bas,BorderLayout.SOUTH);
-            zoneval.add(zonefleches);
-            */
-            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,l.getMaxBudget(),50);
+            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,Double.POSITIVE_INFINITY,50);
             JSpinner spinner=new JSpinner(model);
             spinner.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent changeEvent) {
-                    changeBudget(l,spinner);
+                    try{
+                        int test=(int)spinner.getValue();
+                        changeBudget(l,spinner);
+                    }
+                    catch(Exception e){
+                        spinner.setValue(String.valueOf(l.getBudget()));
+                        spinner.setVisible(true);
+                    }
 
                 }
             });
             elem.add(nom);
             elem.add(spinner);
-            elem.setToolTipText(((ArrayList<String>)l.getInfos()).get(0));
+            String info="<html>";
+            for(String s : l.getInfos()){
+                info+=s;
+                info+="<br>";
+            }
+            info+="</html>";
+            elem.setToolTipText(info);
             _levers.add(elem);
 
         }
@@ -215,7 +164,14 @@ public class GraphicalView extends JFrame {
             zoneval.add(val);
             elem.add(nom);
             elem.add(zoneval);
-            elem.setToolTipText(((ArrayList<String>)i.getInfos()).get(0));
+
+            String info="<html>";
+            for(String s : i.getInfos()){
+                info+=s;
+                info+="<br>";
+            }
+            info+="</html>";
+            elem.setToolTipText(info);
             _indicators.add(elem);
         }
     }
@@ -295,10 +251,14 @@ public class GraphicalView extends JFrame {
         exit.setBorderPainted(true);
         exit.setBounds(0,25,20,20);
 
+        JButton tuto=new JButton();
+        tuto.setText("Tutoriel");
+        tuto.setEnabled(false);
         _pannelTop=new JPanel();
         _pannelTop.setLayout(new BorderLayout());
         _pannelTop.add(_year,BorderLayout.CENTER);
         _pannelTop.add(exit,BorderLayout.AFTER_LINE_ENDS);
+        _pannelTop.add(tuto,BorderLayout.BEFORE_LINE_BEGINS);
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
         _pannelBottom.add(_budget);
@@ -316,14 +276,12 @@ public class GraphicalView extends JFrame {
      *
      */
     private void removeAllElements(){
-        _panelIndicLevers.remove(_scrollIndicators);
-        _panelIndicLevers.remove(_scrollLevers);
+        _panelIndicLevers.removeAll();
         this.remove(_panelIndicLevers);
-        _pannelBottom.remove(_budget);
-        _pannelBottom.remove(_nextRound);
-        _pannelBottom.remove(_showGraphic);
+        _pannelBottom.removeAll();
         this.remove(_pannelBottom);
-        this.remove(_year);
+        _pannelTop.removeAll();
+        this.remove(_pannelTop);
     }
 
     /**Procédure d'appel de toutes les initialisations/mises à jour de tous les éléments de la fenêtre principale
@@ -366,13 +324,15 @@ public class GraphicalView extends JFrame {
      * @see Controller
      */
     private void changeBudget(Lever lever, JSpinner jspinner){
-        System.out.println(jspinner.getValue().toString());
-        int res=_controller.addToBudget(lever,(double)jspinner.getValue()-lever.getBudget());
-        System.out.println(res);
-        if(res==-1){
-            jspinner.setValue(lever.getBudget());
+        try{
+            int test=(int)jspinner.getValue();
         }
-        else {
+        catch(Exception e){
+            jspinner.setValue(lever.getBudget());
+            jspinner.setVisible(true);
+        }
+        int res=_controller.addToBudget(lever,(double)jspinner.getValue()-lever.getBudget());
+        if(res==0){
             removeAllElements();
             updateBudget();
             addAllElements();
@@ -385,38 +345,34 @@ public class GraphicalView extends JFrame {
         content.setLayout(new GridBagLayout());
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
         title.setFont(new Font("Arial",Font.BOLD,24));
-        JLabel subtitle=new JLabel("Cliquez n'importe où pour continuer...");
+
+        JButton tuto=new JButton("Lancer le tutoriel");
+        JButton noTuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                addAllElements();
+            }
+        });
+        noTuto.setText("Passer le tutoriel");
+        tuto.setEnabled(false);
+
+        JPanel buttons=new JPanel();
+        buttons.setLayout(new GridLayout(1,2));
+        buttons.add(tuto);
+        buttons.add(noTuto);
 
         GridBagConstraints cTitle=new GridBagConstraints();
         cTitle.fill = GridBagConstraints.HORIZONTAL;
-        GridBagConstraints cSubtitle=new GridBagConstraints();
-        cSubtitle.fill = GridBagConstraints.HORIZONTAL;
-        cSubtitle.gridy = 1;
+
+        GridBagConstraints cButtons=new GridBagConstraints();
+        cButtons.fill=GridBagConstraints.HORIZONTAL;
+        cButtons.gridy=1;
+
         content.add(title,cTitle);
-        content.add(subtitle,cSubtitle);
+        content.add(buttons,cButtons);
+
         this.add(content,BorderLayout.CENTER);
-        this.getContentPane().addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                addAllElements();
-            }
 
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-            }
-        });
         this.setVisible(true);
     }
 }
