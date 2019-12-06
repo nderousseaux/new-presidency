@@ -40,6 +40,7 @@ public class GraphicalView extends JFrame {
     private JButton _nextRound;
     private JButton _showGraphic;
     private JPanel _pannelBottom;
+    private JPanel _pannelTop;
 
     /**
      * Constructeur de GraphicalView, appelant des sous-fonctions d'initialisation
@@ -52,7 +53,8 @@ public class GraphicalView extends JFrame {
         _controller=controller;
         init(); //Initialisation de la fenetre
         updateAll(); //Initialisation des differentes variables
-        addAllElements(); //Ajout des elements de la fenetre et affichage
+        homepage();
+        //addAllElements(); //Ajout des elements de la fenetre et affichage
     }
 
     /**
@@ -94,83 +96,32 @@ public class GraphicalView extends JFrame {
             //zone texte
 
             JLabel nom = new JLabel(l.getName());
-            /*
-            //zone valeur
-            JPanel zoneval=new JPanel();
-            zoneval.setLayout(new FlowLayout());
-            JTextField val = new JTextField();
-            val.setColumns(6);
-            val.setText(String.valueOf((int)l.getBudget()));
-            zoneval.add(val);
 
-            val.addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent keyEvent) {
-                    if(keyEvent.getKeyChar()== KeyEvent.VK_ENTER){
-                        _controller.addToBudget(l, Double.parseDouble(((JTextField)keyEvent.getSource()).getText())-l.getBudget());
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-                    }
-                }
-
-                @Override
-                public void keyPressed(KeyEvent keyEvent) {
-
-                }
-
-                @Override
-                public void keyReleased(KeyEvent keyEvent) {
-
-                }
-            });
-
-            //zone fleches
-            JPanel zonefleches=new JPanel();
-            zonefleches.setLayout(new BorderLayout());
-
-            //fleches
-            JButton haut=new JButton("↑");
-            JButton bas=new JButton("↓");
-            haut.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if(_controller.addToBudget(l,50.0)==0) { //s'il reste assez d'argent sur le budget principal
-                        val.setText(String.valueOf((int)l.getBudget()));
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-
-                    }
-                }
-            });
-            bas.addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    if(_controller.removeFromBudget(l,50.0)==0) { //si le budget alloué n'est pas déjà nul ou inférieur à 50
-                        val.setText(String.valueOf((int)l.getBudget()));
-                        removeAllElements();
-                        updateBudget();
-                        addAllElements();
-                    }
-                }
-            });
-            zonefleches.add(haut,BorderLayout.NORTH);
-            zonefleches.add(bas,BorderLayout.SOUTH);
-            zoneval.add(zonefleches);
-            */
-            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,l.getMaxBudget(),50);
+            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,Double.POSITIVE_INFINITY,50);
             JSpinner spinner=new JSpinner(model);
             spinner.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent changeEvent) {
-                    changeBudget(l,spinner);
+                    try{
+                        int test=(int)spinner.getValue();
+                        changeBudget(l,spinner);
+                    }
+                    catch(Exception e){
+                        spinner.setValue(String.valueOf(l.getBudget()));
+                        spinner.setVisible(true);
+                    }
 
                 }
             });
             elem.add(nom);
             elem.add(spinner);
-            elem.setToolTipText(((ArrayList<String>)l.getInfos()).get(0));
+            String info="<html>";
+            for(String s : l.getInfos()){
+                info+=s;
+                info+="<br>";
+            }
+            info+="</html>";
+            elem.setToolTipText(info);
             _levers.add(elem);
 
         }
@@ -213,7 +164,14 @@ public class GraphicalView extends JFrame {
             zoneval.add(val);
             elem.add(nom);
             elem.add(zoneval);
-            elem.setToolTipText(((ArrayList<String>)i.getInfos()).get(0));
+
+            String info="<html>";
+            for(String s : i.getInfos()){
+                info+=s;
+                info+="<br>";
+            }
+            info+="</html>";
+            elem.setToolTipText(info);
             _indicators.add(elem);
         }
     }
@@ -248,6 +206,7 @@ public class GraphicalView extends JFrame {
      * @see GraphicalView#removeAllElements
       */
     private void addAllElements(){
+        this.getContentPane().removeAll();
         //Pannel des leviers/indicateurs
         _panelIndicLevers=new JPanel();
         _panelIndicLevers.setLayout(new GridLayout(1,2));
@@ -276,10 +235,30 @@ public class GraphicalView extends JFrame {
             }
         });
         _showGraphic.setText("Afficher l'évolution des indicateurs et des leviers");
-
+        if(_controller.getYear()==1)
+            _showGraphic.setEnabled(false);
         //Ajout de l'annee courante
         this.getContentPane().add(_year,BorderLayout.NORTH);
 
+        JButton exit=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                exit(0);
+            }
+        });
+        exit.setText("X");
+        exit.setBackground(Color.RED);
+        exit.setBorderPainted(true);
+        exit.setBounds(0,25,20,20);
+
+        JButton tuto=new JButton();
+        tuto.setText("Tutoriel");
+        tuto.setEnabled(false);
+        _pannelTop=new JPanel();
+        _pannelTop.setLayout(new BorderLayout());
+        _pannelTop.add(_year,BorderLayout.CENTER);
+        _pannelTop.add(exit,BorderLayout.AFTER_LINE_ENDS);
+        _pannelTop.add(tuto,BorderLayout.BEFORE_LINE_BEGINS);
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
         _pannelBottom.add(_budget);
@@ -287,6 +266,7 @@ public class GraphicalView extends JFrame {
         _pannelBottom.add(_nextRound);
 
         this.getContentPane().add(_pannelBottom,BorderLayout.SOUTH);
+        this.getContentPane().add(_pannelTop,BorderLayout.NORTH);
         this.setVisible(true);
     }
 
@@ -296,14 +276,12 @@ public class GraphicalView extends JFrame {
      *
      */
     private void removeAllElements(){
-        _panelIndicLevers.remove(_scrollIndicators);
-        _panelIndicLevers.remove(_scrollLevers);
+        _panelIndicLevers.removeAll();
         this.remove(_panelIndicLevers);
-        _pannelBottom.remove(_budget);
-        _pannelBottom.remove(_nextRound);
-        _pannelBottom.remove(_showGraphic);
+        _pannelBottom.removeAll();
         this.remove(_pannelBottom);
-        this.remove(_year);
+        _pannelTop.removeAll();
+        this.remove(_pannelTop);
     }
 
     /**Procédure d'appel de toutes les initialisations/mises à jour de tous les éléments de la fenêtre principale
@@ -326,34 +304,76 @@ public class GraphicalView extends JFrame {
      */
     private void init(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1200,850);
+        this.setUndecorated(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(screenSize);
+
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
-        //this.setResizable(false);
+        this.setResizable(false);
     }
 
     /** Procédure de communication à un levier donné d'une volonté de modification (qui peut échouer selon l'action) sur le budget alloué
      *
-     * @param l Levier dont le budget doit changer
-     * @param j JSpinner contenant la valeur du budget, entrée par l'utilisateur
+     * @param lever Levier dont le budget doit changer
+     * @param jspinner JSpinner contenant la valeur du budget, entrée par l'utilisateur
      *
      * @see GraphicalView#removeAllElements()
      * @see GraphicalView#updateBudget()
      * @see GraphicalView#addAllElements()
      * @see Controller
      */
-    private void changeBudget(Lever l, JSpinner j){
-        System.out.println(j.getValue().toString());
-        int res=_controller.addToBudget(l,(double)j.getValue()-l.getBudget());
-        System.out.println(res);
-        if(res==-1){
-            j.setValue(l.getBudget());
+    private void changeBudget(Lever lever, JSpinner jspinner){
+        try{
+            int test=(int)jspinner.getValue();
         }
-        else {
+        catch(Exception e){
+            jspinner.setValue(lever.getBudget());
+            jspinner.setVisible(true);
+        }
+        int res=_controller.addToBudget(lever,(double)jspinner.getValue()-lever.getBudget());
+        if(res==0){
             removeAllElements();
             updateBudget();
             addAllElements();
             this.setVisible(true);
         }
     }
+
+    private void homepage(){
+        JPanel content = new JPanel();
+        content.setLayout(new GridBagLayout());
+        JLabel title=new JLabel("Bienvenue sur New Presidency!");
+        title.setFont(new Font("Arial",Font.BOLD,24));
+
+        JButton tuto=new JButton("Lancer le tutoriel");
+        JButton noTuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                addAllElements();
+            }
+        });
+        noTuto.setText("Passer le tutoriel");
+        tuto.setEnabled(false);
+
+        JPanel buttons=new JPanel();
+        buttons.setLayout(new GridLayout(1,2));
+        buttons.add(tuto);
+        buttons.add(noTuto);
+
+        GridBagConstraints cTitle=new GridBagConstraints();
+        cTitle.fill = GridBagConstraints.HORIZONTAL;
+
+        GridBagConstraints cButtons=new GridBagConstraints();
+        cButtons.fill=GridBagConstraints.HORIZONTAL;
+        cButtons.gridy=1;
+
+        content.add(title,cTitle);
+        content.add(buttons,cButtons);
+
+        this.add(content,BorderLayout.CENTER);
+
+        this.setVisible(true);
+    }
 }
+
