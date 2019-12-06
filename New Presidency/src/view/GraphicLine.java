@@ -7,8 +7,6 @@ import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * <b> <i>GraphicLine</i> est une classe qui permet d'afficher les graphiques linaires</b>
@@ -26,25 +24,22 @@ import java.util.HashMap;
  * @see GraphicalView
  *
  * @author nderousseaux
- * @version 1.0
+ * @version 2.0
  */
 public class GraphicLine {
 
     private JFrame _f;
     private StateList _stateList;
     private XYChart chart;
-    private HashMap<JComboBox<String>, String> _anciennesValeurs = new HashMap<>();
-    private Boolean isLevier;
-
 
     /**
      * Instancier et ouvrir la fenêtre graphique
      *
      * @param stateList La liste des états de tout les tours
      *
-     * @see GraphicLine#refresh(JComboBox)
-     * @see GraphicLine#refreshType(JComboBox, JComboBox, JComboBox)
-     * @see GraphicLine#selectItems(String)
+     * @see GraphicLine#addSerie(String)
+     * @see GraphicLine#delSerie(String)
+     * @see GraphicLine#selectData(String)
      * @see GraphicLine#close()
      *
      * @since 1.0
@@ -60,32 +55,8 @@ public class GraphicLine {
         _f.setResizable(false);
 
 
-        //region Entête de la page
-        JPanel entete = new JPanel();
-        _f.getContentPane().add(entete, BorderLayout.NORTH);
-
-        //Deux comboBox, les deux valeurs à afficher
-        JComboBox<String> data1 = new JComboBox<>();
-        entete.add(data1);
-        JComboBox<String> data2 = new JComboBox<>();
-        entete.add(data2);
-        _anciennesValeurs.put(data1, "");
-        _anciennesValeurs.put(data2, "");
-        data1.addActionListener(actionEvent -> refresh(data1));
-        data2.addActionListener(actionEvent -> refresh(data2));
-
-        //Première combobox, choix du type à afficher
-        String[] val={"Leviers", "Indicateurs"};
-        JComboBox<String> type = new JComboBox<>(val);
-        type.addActionListener(actionEvent -> refreshType(type, data1, data2));
-        entete.add(type);
-
-        //On refrech les comboBox
-        refreshType(type, data1, data2);
-        //endregion
-
         //region Graphique
-        chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").build();
+        chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
         JPanel chartPanel = new XChartPanel<>(chart);
         _f.getContentPane().add(chartPanel, BorderLayout.CENTER);
         //endregion
@@ -103,106 +74,6 @@ public class GraphicLine {
         _f.setVisible(true);
     }
 
-
-    /**
-     * Fonction pour mettre les comboBox de sélection des données
-     * <p>
-     *     La mise à jour se fait en fonctios de la valeur sélectionné dans la première comboBox <i>Leviers/Indicateurs</i>.
-     *     Si le première comboBox est sur la valeur "Leviers", on affiche la liste des leviers.
-     *     Si elle est sur la valeur "Indicateurs", on affiche la liste des Indicateurs.
-     *     La mise à jour se fait au moment où la valeur de la comboBox est modifiée
-     * </p>
-     *
-     * @param a La comboBox de sélection du type de série (Indicateurs/Levier)
-     * @param data1 L'une des deux comboBox à mettre à jour
-     * @param data2 La deuxième des comboBox à mettre à jour.
-     *
-     * @since 1.0
-     */
-    private void refreshType(JComboBox<String> a, JComboBox<String> data1, JComboBox<String> data2){
-
-        //On affiche les combobox qui correspondent
-        String s = (String)a.getSelectedItem();
-        ArrayList<String> valeurs = new ArrayList<>();
-        assert s != null;
-        if(s.equals("Indicateurs")){
-            isLevier = false;
-            valeurs.add("");
-            valeurs.add("Taux de réussite");
-            valeurs.add("Satisfaction du personnel");
-            valeurs.add("Satisfaction étudiante");
-        }
-        else{
-            isLevier = true;
-            valeurs.add("");
-            valeurs.add("Dotation récurante pour la formation");
-            valeurs.add("Dotation récurante pour la recherche");
-            valeurs.add("Dotation spécifique pour la formation");
-            valeurs.add("Prime de formation");
-            valeurs.add("Investissement en construction");
-            valeurs.add("Subventions aux associations étudiantes");
-
-        }
-
-        //Combobox
-        data1.removeAllItems();
-        data2.removeAllItems();
-        for (String v : valeurs){
-            data1.addItem(v);
-            data2.addItem(v);
-        }
-
-        _anciennesValeurs.replace(data1, "");
-        _anciennesValeurs.replace(data2, "");
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-    /**
-     * Fonction pour mettre à jour le graphique
-     * <p>
-     *     La mise à jour se fait en fonction des valeurs sélectionnées dans les JComboBox.
-     *     La mise à jour se fait au moment où la valeur d'une comboBox est modifiée
-     * </p>
-     *
-     * @param data comboBox dont la valeur à été modifiée.
-     *
-     * @since 1.0
-     */
-    private void refresh(JComboBox<String> data){
-        
-
-        //On met à jour le graphique
-        String datan = (String) data.getSelectedItem();
-
-        //On ajoute ou on supprime les séries de données
-        if (datan != null) {
-            if(!datan.equals("")){
-                if(!_anciennesValeurs.containsValue(datan)){
-                    chart.addSeries( datan, selectItems(datan));
-                    chart.removeSeries(_anciennesValeurs.get(data));
-                    _anciennesValeurs.replace(data, datan);
-
-                }
-            }
-            else{
-                if(!_anciennesValeurs.get(data).equals("")){
-                    chart.removeSeries(_anciennesValeurs.get(data));
-                }
-            }
-        }
-        _f.repaint();
-    }
-
     /**
      * Fonction de sélection des données.
      * <p>
@@ -215,70 +86,90 @@ public class GraphicLine {
      *
      * @since 1.0
      */
-    private double[] selectItems(String name){
+    private double[] selectData(String name){
 
         int nombre = _stateList.getStates().size()-1;
 
         double[] values = new double[nombre];
 
-        //Pour chaque état, on incrémente la liste des valeurs
+        //On parcourt tout les états de toutes les périodes. On crée une liste de l'évolution des états pour un indicateur donné.
         int i=0;
         for (State s:_stateList.getStates()) {
             if (i != _stateList.getStates().size()-1) {
-                if(isLevier){
-                    switch (name){
-                        case "Dotation récurante pour la formation":
-                            values[i] = s.getLDotRecForm();
-                            break;
-                        case "Dotation récurante pour la recherche":
-                            values[i] = s.getLDotRecRech();
-                            break;
-                        case "Dotation spécifique pour la formation":
-                            values[i] = s.getLDotSpeForm();
-                            break;
-                        case "Prime de formation":
-                            values[i] = s.getLPrime();
-                            break;
-                        case "Investissement en construction":
-                            values[i] = s.getLImmo();
-                            break;
-                        case "Subventions aux associations étudiantes":
-                            values[i] = s.getLSubAssoEtu();
-                            break;
-                        default:
-                            break;
+
+                switch (name){
+                    case "Dotation récurante pour la formation":
+                        values[i] = s.getLDotRecForm();
+                        break;
+                    case "Dotation récurante pour la recherche":
+                        values[i] = s.getLDotRecRech();
+                        break;
+                    case "Dotation spécifique pour la formation":
+                        values[i] = s.getLDotSpeForm();
+                        break;
+                    case "Prime de formation":
+                        values[i] = s.getLPrime();
+                        break;
+                    case "Investissement en construction":
+                        values[i] = s.getLImmo();
+                        break;
+                    case "Subventions aux associations étudiantes":
+                        values[i] = s.getLSubAssoEtu();
+                        break;
+                    case "Budget restant":
+                        values[i] = s.getRemainingBudget();
+                        break;
+                    case "Taux de réussite":
+                        values[i] = s.getITauxReu();
+                        break;
+                    case "Satisfaction du personnel":
+                        values[i] = s.getISatPers();
+                        break;
+                    case "Satisfaction étudiante":
+                        values[i] = s.getISatEtu();
+                        break;
+                    default:
+                        break;
                     }
-
                 }
-                else{
-                    switch (name){
-                        case "Budget restant":
-                            values[i] = s.getRemainingBudget();
-                            break;
-                        case "Taux de réussite":
-                            values[i] = s.getITauxReu();
-                            break;
-                        case "Satisfaction du personnel":
-                            values[i] = s.getISatPers();
-                            break;
-                        case "Satisfaction étudiante":
-                            values[i] = s.getISatEtu();
-                            break;
-                        default:
-                            break;
-
-                    }
-
-
-                }
-            }
-
-
             i+=1;
-        }
-
-
+            }
         return values;
+    }
+
+    /**
+     * Fonction pour ajouter une série sur le graphique
+     * <p>
+     *     L'appel à la fonction fera afficher la séries de données correspondante au graphique.
+     *     Ainsi, l'appel "Dotation récurante en Recherche" fera affiche la série de la dotation récurante en recherche sur le grahpique.
+     * </p>
+     *
+     * @param nom Le nom de la série à ajouter
+     *
+     * @see GraphicLine#selectData(String)
+     *
+     * @since 2.0
+     */
+    public void addSerie(String nom){
+        chart.addSeries(nom, selectData(nom));
+        _f.repaint();
+    }
+
+    /**
+     * Fonction pour supprimer une série sur le graphique
+     * <p>
+     *     L'appel à la fonction supprimera la séries de données correspondante au graphique.
+     *     Ainsi, l'appel "Dotation récurante en Recherche" supprimera la série de la dotation récurante en recherche sur le grahpique.
+     * </p>
+     *
+     * @param nom Le nom de la série à supprimer
+     *
+     *
+     * @since 2.0
+     */
+    public void delSerie(String nom){
+        chart.removeSeries(nom);
+        _f.repaint();
     }
 
     /**
