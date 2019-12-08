@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Lever extends IndicLever {
 
@@ -24,6 +23,7 @@ public class Lever extends IndicLever {
     public double getBudget(){
         return _budget;
     }
+
     public void setBudget(double budget){
         if(budget > _maxBudget){
             throw new IllegalArgumentException("try to set Lever budget with a value superior to the Lever's max value");
@@ -32,6 +32,7 @@ public class Lever extends IndicLever {
             _budget=budget;   
         }
     }
+
     public double getMaxBudget() {
         return _maxBudget;
     }

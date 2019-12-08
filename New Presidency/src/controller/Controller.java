@@ -33,7 +33,7 @@ public class Controller {
     private File _weightIndicatorFile = new File("coefficient.csv");
     private Matrix _weightForEachIndicator;
     
-    private File _leverFile = new File("lever.txt");
+    private File _leversFile = new File("lever.txt");
     private File _indicatorsFile = new File("indicator.txt");
 
     public Controller() throws FileNotFoundException, IOException{
@@ -45,11 +45,6 @@ public class Controller {
         _maxYear=8;
 
     }
-
-    public StateList getStateList() {
-        return _stateList;
-    }
-
 
     public void init() throws FileNotFoundException,IOException{
         //initialiation of levers
@@ -64,7 +59,7 @@ public class Controller {
     }
 
     public void initLevers() throws FileNotFoundException,IOException{
-        BufferedReader br = new BufferedReader(new FileReader(_leverFile));
+        BufferedReader br = new BufferedReader(new FileReader(_leversFile));
         String line;
         String[] lineTab;
         
@@ -253,7 +248,6 @@ public class Controller {
         _weightForEachIndicator.createTitles(new MatrixTitle(linesTitles, columnsTitles));
     }
 
-
     public Integer setLeverBudget(Lever lever, Double val){
         double diff=val-lever.getBudget();
         if(diff<=_budget.getRemainingBudget() && val<=lever.getMaxBudget()) {
@@ -315,6 +309,10 @@ public class Controller {
 
     public int getMaxYear(){
         return _maxYear;
+    }
+
+    public StateList getStateList() {
+        return _stateList;
     }
 
     public void updateAll(){
@@ -424,13 +422,4 @@ public class Controller {
         State nextYearState = new State(year, _budget.getRemainingBudget(), leversForNextYearState, indicatorsForNextYearState);
         _stateList.addState(nextYearState);
     }
-
-    public void showGraphicLine(){
-
-        if(_year!=1)
-            _graphicLine=new GraphicLine(_stateList);
-        else
-            System.out.println("Impossible d'afficher les graphiques, vous êtes au premier tour !");
-    }
-
 }

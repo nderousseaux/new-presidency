@@ -1,5 +1,5 @@
 package view;
-
+/*
 import controller.*;
 import model.*;
 
@@ -191,7 +191,7 @@ public class TextualView {
             removeFromBudget(l);
         }
     }
-*/
+
     public void listInfos(IndicLever obj) throws InterruptedException{
         for(String s : _controller.listInfos(obj)){
             System.out.println(s);
@@ -225,3 +225,4 @@ public class TextualView {
         System.out.println("");
     }
 }
+*/
