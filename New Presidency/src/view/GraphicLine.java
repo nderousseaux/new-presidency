@@ -13,7 +13,6 @@ import java.awt.*;
  * <p>
  *     Le graphique représente l'évolution des indicateurs et des leviers au fils des tours.
  *     Elle contient :
- *     <ul><li>Une JFrame</li>
  *     <li>La liste des états</li>
  *     <li>Le graphique</li>
  *     </ul>
@@ -26,9 +25,7 @@ import java.awt.*;
  * @author nderousseaux
  * @version 2.0
  */
-public class GraphicLine {
-
-    private JFrame _f;
+public class GraphicLine extends JFrame{
     private StateList _stateList;
     private XYChart chart;
 
@@ -48,30 +45,30 @@ public class GraphicLine {
         _stateList = stateList;
 
         //On crée le JFrame
-        _f = new JFrame("Graphique d'évolution");
-        _f.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        _f.setLayout(new BorderLayout());
-        _f.setSize(1350, 1000);
-        _f.setResizable(false);
+        this.setTitle("Graphique d'évolution");
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.setLayout(new BorderLayout());
+        this.setSize(1350, 1000);
+        this.setResizable(false);
 
 
         //region Graphique
         chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
         JPanel chartPanel = new XChartPanel<>(chart);
-        _f.getContentPane().add(chartPanel, BorderLayout.CENTER);
+        this.getContentPane().add(chartPanel, BorderLayout.CENTER);
         //endregion
 
         //region Bas de la page
         //On crée le bouton fermer
         JPanel pied = new JPanel();
-        _f.getContentPane().add(pied, BorderLayout.SOUTH);
+        this.getContentPane().add(pied, BorderLayout.SOUTH);
         JButton button = new JButton("Fermer la fenêtre");
         button.addActionListener(actionEvent -> close());
         pied.add(button);
         //endregion
 
-        _f.pack();
-        _f.setVisible(true);
+        this.pack();
+        this.setVisible(true);
     }
 
     /**
@@ -152,7 +149,7 @@ public class GraphicLine {
      */
     public void addSerie(String nom){
         chart.addSeries(nom, selectData(nom));
-        _f.repaint();
+        this.repaint();
     }
 
     /**
@@ -169,7 +166,7 @@ public class GraphicLine {
      */
     public void delSerie(String nom){
         chart.removeSeries(nom);
-        _f.repaint();
+        this.repaint();
     }
 
     /**
@@ -178,6 +175,6 @@ public class GraphicLine {
      * @since 1.0
      */
     public void close(){
-        _f.dispose();
+        this.dispose();
     }
 }
