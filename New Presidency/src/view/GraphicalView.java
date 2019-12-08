@@ -35,13 +35,13 @@ public class GraphicalView extends JFrame {
     private JScrollPane _scrollLevers;
     private JPanel _indicators;
     private JScrollPane _scrollIndicators;
-    private JPanel _panelIndicLevers;
+    private GraphicLine _graphicLine;
     private JPanel _budget;
     private JButton _nextRound;
     private JButton _showGraphic;
     private JPanel _pannelBottom;
     private JPanel _pannelTop;
-
+    private JPanel _pannelCenter;
     /**
      * Constructeur de GraphicalView, appelant des sous-fonctions d'initialisation
      * @param controller Controlleur du jeu
@@ -208,8 +208,8 @@ public class GraphicalView extends JFrame {
     private void addAllElements(){
         this.getContentPane().removeAll();
         //Pannel des leviers/indicateurs
-        _panelIndicLevers=new JPanel();
-        _panelIndicLevers.setLayout(new GridLayout(1,2));
+        _pannelCenter=new JPanel();
+        _pannelCenter.setLayout(new GridLayout(2,2));
         _nextRound = new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -219,11 +219,18 @@ public class GraphicalView extends JFrame {
         });
 
         //Ajout des indicateurs et leviers
-        _panelIndicLevers.add(_scrollLevers);
-        _panelIndicLevers.add(_scrollIndicators);
+        _pannelCenter.add(_scrollLevers);
+        _pannelCenter.add(_scrollIndicators);
+
+        //Initialisation du graphique de suivi
+
+        _graphicLine=new GraphicLine(_controller.getStateList());
+
+        //Ajout au pannel central
+        _pannelCenter.add(_graphicLine);
 
         //Ajout du pannel entier
-        this.getContentPane().add(_panelIndicLevers,BorderLayout.CENTER);
+        this.getContentPane().add(_pannelCenter,BorderLayout.CENTER);
 
         //Creation du bouton de tour suivant
         _nextRound.setText("Passer au tour suivant");
@@ -277,8 +284,8 @@ public class GraphicalView extends JFrame {
      *
      */
     private void removeAllElements(){
-        _panelIndicLevers.removeAll();
-        this.remove(_panelIndicLevers);
+        _pannelCenter.removeAll();
+        this.remove(_pannelCenter);
         _pannelBottom.removeAll();
         this.remove(_pannelBottom);
         _pannelTop.removeAll();
