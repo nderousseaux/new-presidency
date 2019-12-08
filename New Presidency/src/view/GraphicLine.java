@@ -19,7 +19,6 @@ import java.awt.*;
  * </p>
  *
  * @see StateList
- * @see TextualView
  * @see GraphicalView
  *
  * @author nderousseaux
@@ -27,7 +26,7 @@ import java.awt.*;
  */
 public class GraphicLine extends JPanel{
     private StateList _stateList;
-    private XYChart chart;
+    private XYChart _chart;
 
     /**
      * Instancier et ouvrir la fenêtre graphique
@@ -49,8 +48,8 @@ public class GraphicLine extends JPanel{
 
 
         //region Graphique
-        chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
-        JPanel chartPanel = new XChartPanel<>(chart);
+        _chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
+        JPanel chartPanel = new XChartPanel<>(_chart);
         this.add(chartPanel, BorderLayout.CENTER);
         //endregion
     }
@@ -134,7 +133,7 @@ public class GraphicLine extends JPanel{
      * @since 2.0
      */
     public void addSerie(String nom){
-        chart.addSeries(nom, selectData(nom));
+        _chart.addSeries(nom, selectData(nom));
         this.repaint();
     }
 
@@ -151,7 +150,7 @@ public class GraphicLine extends JPanel{
      * @since 2.0
      */
     public void delSerie(String nom){
-        chart.removeSeries(nom);
+        _chart.removeSeries(nom);
         this.repaint();
     }
 }

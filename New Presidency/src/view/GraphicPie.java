@@ -25,7 +25,6 @@ import java.util.HashMap;
  * </p>
  *
  * @see LeverList
- * @see TextualView
  * @see GraphicalView
  *
  * @author nderousseaux
@@ -35,8 +34,7 @@ public class GraphicPie {
 
     private JFrame _f;
     private Collection<Lever> _leverList;
-    private PieChart chart;
-    private HashMap<JComboBox<String>, String> _anciennesValeurs = new HashMap<>();
+    private PieChart _chart;
 
     /**
      * Instancier et ouvrir la fenêtre graphique
@@ -59,20 +57,20 @@ public class GraphicPie {
         _f.setResizable(false);
 
         //On crée le graphique
-        chart = new PieChartBuilder().width(800).height(600).title(getClass().getSimpleName()).build();
+        _chart = new PieChartBuilder().width(800).height(600).title(getClass().getSimpleName()).build();
 
         //On ajoute les données
         for (Lever l:_leverList) {
             if(l.getBudget() != 0){
-                chart.addSeries(l.getName(), l.getBudget());
+                _chart.addSeries(l.getName(), l.getBudget());
             }
 
         }
         if(budget != 0){
-            chart.addSeries("Non-utilisé", budget);
+            _chart.addSeries("Non-utilisé", budget);
         }
 
-        JPanel chartPanel = new XChartPanel<>(chart);
+        JPanel chartPanel = new XChartPanel<>(_chart);
         _f.getContentPane().add(chartPanel, BorderLayout.CENTER);
 
         //On crée le bouton fermer

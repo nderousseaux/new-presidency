@@ -24,7 +24,6 @@ import static java.lang.System.exit;
  * </p>
  *
  * @see Controller
- * @see TextualView
  *
  * @author yvanderspurt
  */

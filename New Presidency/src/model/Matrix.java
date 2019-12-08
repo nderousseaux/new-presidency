@@ -21,7 +21,6 @@ public class Matrix{
         setAllValuesTo0();
     }
 
-
     public Integer getLineSize() {
         return _lineSize;
     }
@@ -62,25 +61,25 @@ public class Matrix{
         }
     }
 
-    public Matrix add(Matrix m) throws Error{
-        if(_lineSize != m.getLineSize() && _columnSize != m.getColumnSize()){
+    public Matrix add(Matrix matrix) throws Error{
+        if(_lineSize != matrix.getLineSize() && _columnSize != matrix.getColumnSize()){
             throw new Error("Two matrices must have an equal number of rows and columns to be added");
         }
         Matrix result = new Matrix(_lineSize, _columnSize);
         for(int i=0; i < _lineSize; i++){
             for(int j=0; j < _columnSize; j++){
-                result.setCell(i, j, _values[i][j] + m.getCell(i, j));
+                result.setCell(i, j, _values[i][j] + matrix.getCell(i, j));
             }
         }
         return result;
     }
 
-    public Matrix times(Matrix m) throws Error{
-        if(_columnSize != m.getLineSize()){
+    public Matrix times(Matrix matrix) throws Error{
+        if(_columnSize != matrix.getLineSize()){
             throw new Error("The column size and the line size of respectively the first and respectively the second matrix are not equals");
         }
         Integer lineSize = _lineSize;
-        Integer columnSize = m.getColumnSize();
+        Integer columnSize = matrix.getColumnSize();
 
         Matrix result = new Matrix(lineSize, columnSize);
 
@@ -90,7 +89,7 @@ public class Matrix{
         for(int i=0; i < lineSize; i++){
             for(int j=0; j < columnSize; j++){
                 while(k < _columnSize){
-                    value+= _values[i][k] * m.getCell(k, j);
+                    value+= _values[i][k] * matrix.getCell(k, j);
                     k++;
                 }
                 k = 0;
@@ -126,18 +125,18 @@ public class Matrix{
         return result;
     }
 
-    public void changeTitles(MatrixTitle t) throws Error{
-        if(t.getLinesSize()  == _titles.getLinesSize() && t.getColumnsSize() == _titles.getColumnsSize())
-            this._titles = t;
+    public void changeTitles(MatrixTitle title) throws Error{
+        if(title.getLinesSize()  == _titles.getLinesSize() && title.getColumnsSize() == _titles.getColumnsSize())
+            this._titles = title;
         else{
             throw new Error("You can't change the size of a matrix, you should create a new one");
         }
     }
 
-    public void createTitles(MatrixTitle t) throws Error{
+    public void createTitles(MatrixTitle title) throws Error{
         if(_titles == null){
-            if(t.getLinesSize()== _lineSize && t.getColumnsSize() == _columnSize){
-                _titles = t;
+            if(title.getLinesSize()== _lineSize && title.getColumnsSize() == _columnSize){
+                _titles = title;
             }
             else{
                 throw new Error("The size of the titles don't match the size of the matrix");

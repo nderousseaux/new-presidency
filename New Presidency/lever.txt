@@ -1,6 +1,6 @@
 New;
-info;Budget alloué à la prime de formation des enseignants;
-info;Des enseignants plus formés donnent de meilleurs cours!;
+info;Budget alloué à la <b>prime de formation des enseignants</b>;
+info;Des enseignants <b>plus formés</b> donnent de <b>meilleurs cours</b>!;
 name;Prime de formation;
 abreviation;LPrimeForm;
 category;Formation;
@@ -9,7 +9,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget spécifique alloué aux formations;
+info;Budget <b>spécifique</b> alloué aux <b>formations</b>;
+info;On entend par <b>spécifique</b> que ce budget est réservé à des <b>formations ponctuelles</b>;
 name;Dotation spécifique pour la formation;
 abreviation;LDotSpeForm;
 category;Formation;
@@ -18,7 +19,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget récurrent alloué aux formations;
+info;Budget <b>récurrent</b> alloué aux <b>formations</b>;
+info;On entend par <b>récurrent</b> que ce budget est réservé à des <b>formations courantes</b>;
 name;Dotation récurrente pour la formation;
 abreviation;LDotRecForm;
 category;Formation;
@@ -27,7 +29,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget récurrent alloué à la recherche;
+info;Budget <b>récurrent</b> alloué à la <b>recherche</b>;
+info;On entend par <b>récurrent</b> que ce budget est réservé à la <b>recherche courante des enseignants-chercheurs</b>;
 name;Dotation récurrente pour la recherche;
 abreviation;LDotRecRech;
 category;Recherche;
@@ -36,7 +39,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget spécifique alloué à la recherche;
+info;Budget <b>spécifique</b> alloué à la <b>recherche</b>;
+info;On entend par <b>spécifique</b> que ce budget est réservé à la <b>recherche ponctuelle des enseignants-chercheurs</b> (expériences plus conséquentes par exemple);
 name;Dotation spécifique pour la recherche;
 abreviation;LDotSpeRech;
 category;Recherche;
@@ -45,7 +49,7 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué à l'attribution de primes aux personnel du secteur recherche;
+info;Budget alloué à l'<b>attribution de primes</b> au personnel du <b>secteur recherche</b>;
 name;Primes recherche;
 abreviation;LPrimeRech;
 category;Recherche;
@@ -54,7 +58,7 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué à l'administration;
+info;Budget alloué à l'<b>administration générale de l'université</b>;
 name;Administration;
 abreviation;LAdmin;
 category;Central;
@@ -63,7 +67,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué à la communication générale de l'université;
+info;Budget alloué à la <b>communication générale de l'université</b>;
+info;Une université <b>plus médiatisée</b> attirera <b>plus d'élèves et de personnel compétent</b>;
 name;Communication;
 abreviation;LComm;
 category;Central;
@@ -72,7 +77,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué à l'organisation d'événements;
+info;Budget alloué à l'<b>organisation d'événements</b>;
+info;On parle ici des <b>évènements liés à l'éducation</b> (interventions de professionnels...);
 name;Evènements;
 abreviation;LEvent;
 category;Central;
@@ -81,7 +87,7 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué aux primes pour l'ensemble des personnel de l'université (administration, professeurs, ...);
+info;Budget alloué aux <b>primes pour l'ensemble des personnel</b> de l'université (administration, professeurs...);
 name;Primes;
 abreviation;LPrimeCentr;
 category;Central;
@@ -90,9 +96,9 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué aux associations étudiantes;
-info;L'augmenter augmentera l'humeur des étudiants dans l'université, mais attention!;
-info;Buvez toujours avec Modération (très bon ami des programmeurs)!;
+info;Budget alloué aux <b>associations étudiantes</b> pour notamment des <b>évènements étudiants</b>;
+info;L'augmenter <b>augmentera l'humeur des étudiants</b> dans l'université, mais attention!;
+info;Buvez toujours avec <b>Modération</b> (très bon ami des programmeurs)!;
 name;Subventions aux associations étudiantes;
 abreviation;LSubAssoEtu;
 category;Central;
@@ -101,8 +107,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué à la construction de nouveau bâtiments;
-info;De meilleurs batiments apportent un niveau d'enseignement amélioré;
+info;Budget alloué à la <b>construction</b> de nouveaux bâtiments;
+info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement amélioré</b>;
 name;Construction;
 abreviation;LConstruction;
 category;Immobillier;
@@ -111,7 +117,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué à l'entretien des bâtiments;
+info;Budget alloué à l'<b>entretien des bâtiments existants</b>;
+info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement amélioré</b>;
 name;Entretien;
 abreviation;LEntretien;
 category;Immobillier;
@@ -120,8 +127,8 @@ max value;10000.0;
 End;
 
 New;
-info;Budget alloué à la rénovation de bâtiments;
-info;De meilleurs batiments apportent un niveau d'enseignement amélioré;
+info;Budget alloué à la <b>rénovation des bâtiments existants</b>;
+info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement amélioré</b>;
 name;Rénovation;
 abreviation;LRenov;
 category;Immobillier;

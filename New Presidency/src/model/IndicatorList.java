@@ -20,9 +20,11 @@ public class IndicatorList {
         _indicators.add(i);
         return i;
     }
+
     public Collection<Indicator> getIndicators(){
         return _indicators;
     }
+
     public Indicator getIndicator(String name){
         Indicator result = null;
         for(Indicator i : _indicators){
