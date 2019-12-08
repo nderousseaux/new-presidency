@@ -255,10 +255,11 @@ public class Controller {
 
 
     public Integer setLeverBudget(Lever lever, Double val){
+        double diff=val-lever.getBudget();
+        if(diff<=_budget.getRemainingBudget() && val<=lever.getMaxBudget()) {
 
-        if(val<=_budget.getRemainingBudget() && val>=0 && val<=lever.getMaxBudget()) {
             lever.setBudget(val);
-            _budget.setRemainingBudget(_budget.getRemainingBudget() - val);
+            _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
             State thisYearState = _stateList.getState(_year);
             thisYearState.setLever(lever.getAbreviation(), val);
             return 0;
