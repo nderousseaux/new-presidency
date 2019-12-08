@@ -102,7 +102,7 @@ public class Matrix{
         return result;
     }
 
-    public Matrix copy(int lineStart, int columnStart, int lineEnd, int columnEnd) throws Error,FileNotFoundException,IOException{
+    public Matrix copy(int lineStart, int columnStart, int lineEnd, int columnEnd) {
         if(lineStart<0 || columnStart<0 || lineEnd>_lineSize || columnEnd>_columnSize){
             throw new Error("the given indexes are out of the matrix bound");
         }
@@ -114,7 +114,7 @@ public class Matrix{
         for(int i=0; i<nbLineCopy; i++){
             for(int j=0; j<nbColumnCopy; j++){
                 result.setCell(i, j, getCell(i+lineStart, j+columnStart));
-                System.out.println("copy cell(" +i+ ", " +j+ ") : " + result.getCell(i, j));
+                //System.out.println("copy cell(" +i+ ", " +j+ ") : " + result.getCell(i, j));
             }
         }
 
@@ -146,6 +146,14 @@ public class Matrix{
         else{
             throw new Error("The Titles are already created, try to use changeTitles(MatrixTitle t) instead");
         }
+    }
+    
+    public int getLine(String line) {
+        return _titles.getLine(line);
+    }
+
+    public int getColumn(String column) {
+        return _titles.getColumn(column);
     }
 
     public void print(){

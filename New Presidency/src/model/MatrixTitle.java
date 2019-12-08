@@ -45,11 +45,11 @@ public class MatrixTitle {
         return _columnsTitles.size();
     }
 
-    int getLine(String line) {
+    public int getLine(String line) {
         return _linesTitles.get(line);
     }
 
-    int getColumn(String column) {
+    public int getColumn(String column) {
         return _columnsTitles.get(column);
     }
 }

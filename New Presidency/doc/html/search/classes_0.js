@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_2',['Main',['../class_main.html',1,'']]]
+  ['budget_18',['Budget',['../classmodel_1_1_budget.html',1,'model']]]
 ];
