@@ -372,5 +372,9 @@ public class GraphicalView extends JFrame {
 
         this.setVisible(true);
     }
+
+    private void exitPage(){
+        this.removeAll();
+    }
 }
 
