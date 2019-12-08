@@ -217,6 +217,7 @@ public class GraphicalView extends JFrame {
                 endOfRound();
             }
         });
+
         //Ajout des indicateurs et leviers
         _panelIndicLevers.add(_scrollLevers);
         _panelIndicLevers.add(_scrollIndicators);
@@ -331,7 +332,7 @@ public class GraphicalView extends JFrame {
             jspinner.setValue(lever.getBudget());
             jspinner.setVisible(true);
         }
-        int res=_controller.addToBudget(lever,(double)jspinner.getValue()-lever.getBudget());
+        int res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
         if(res==0){
             removeAllElements();
             updateBudget();

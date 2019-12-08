@@ -17,28 +17,30 @@ import java.util.Collection;
 import static java.lang.System.exit;
 
 import java.util.HashMap;
+import java.util.Map;
+
 
 public class Controller {
     private GraphicLine _graphicLine;
     private GraphicPie _graphicPie;
-    private IndicatorList _indicatorList;
-    private LeverList _leverList;
-    private Budget _budget;
-    private StateList _stateList;
     private Integer _year;
     private Integer _maxYear;
-
-
-    File _weightIndicatorFile = new File("coefficient.txt");
+    private Budget _budget;
+    private final StateList _stateList;
+    private final IndicatorList _indicatorList;
+    private final LeverList _leverList;
+   
+    private File _weightIndicatorFile = new File("coefficient.csv");
     private Matrix _weightForEachIndicator;
+    
+    private File _leverFile = new File("lever.txt");
+    private File _indicatorsFile = new File("indicator.txt");
 
     public Controller() throws FileNotFoundException, IOException{
         _budget=new Budget();
-        _indicatorList=IndicatorList.getInstance();
-        _leverList=LeverList.getInstance();
-        _stateList=StateList.getInstance();
-        _stateList.createState(0,10000.0,50.0,50.0,50.0,100.0,100.0,100.0,100.0,100.0,100.0);
-        _stateList.createState(1,10000.0,50.0,50.0,50.0,100.0,100.0,100.0,100.0,100.0,100.0);
+        _indicatorList= new IndicatorList();
+        _leverList= new LeverList();
+        _stateList= new StateList();
         _year=1;
         _maxYear=8;
 
@@ -50,138 +52,157 @@ public class Controller {
 
 
     public void init() throws FileNotFoundException,IOException{
-        //CrÃ©ation des leviers
-        //Recherche
+        //initialiation of levers
+        initLevers();
 
-        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100.0, new ArrayList<String>());
-        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100.0, new ArrayList<String>());
-        //Lever recDotRec = _leverList.createLever("Dotation rÃ©curante en recherche", 100.0, new ArrayList<String>());
-        //Lever recDotSpe = _leverList.createLever("Dotation spÃ©cifique en recherche", 100.0, new ArrayList<String>());
-        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100.0, new ArrayList<String>());
-        //Lever rechPrime = _leverList.createLever("Primes donnÃ©e Ã  la recherche", 100.0, new ArrayList<String>());
-
-
-        //Lever recTitulaire =  _leverList.createLever("Titulaires en recherche", 100.0, new ArrayList<String>());
-        //Lever recContractuel = _leverList.createLever("Contractuels en recherche", 100.0, new ArrayList<String>());
-        ArrayList<String> infosRecDotRec=new ArrayList<>();
-        infosRecDotRec.add("Budget récurrent alloué à la recherche");
-        Lever recDotRec = _leverList.createLever("Dotation récurante en recherche", 100.0,10000.0, infosRecDotRec);
-        _budget.setRemainingBudget(_budget.getRemainingBudget()-recDotRec.getBudget());
-        //Lever recDotSpe = _leverList.createLever("Dotation spÃ©cifique en recherche", 100.0, new ArrayList<String>());
-        //Lever recValorisation = _leverList.createLever("Valorisation de la recherche", 100.0, new ArrayList<String>());
-        //Lever rechPrime = _leverList.createLever("Primes donnÃ©e Ã  la recherche", 100.0, new ArrayList<String>());
-
-
-
-        //Formation
-        //Lever formTitulaire = _leverList.createLever("Titulaires en formation", 100.0, new ArrayList<String>());
-        //Lever formContractuel = _leverList.createLever("Contractuels en formation", 100.0, new ArrayList<String>());
-        ArrayList<String> infosFormDotRec=new ArrayList<>();
-        infosFormDotRec.add("Budget récurrent alloué aux formations");
-        Lever formDotRec = _leverList.createLever("Dotation récurente pour la formation", 100.0,10000.0, infosFormDotRec);
-        _budget.setRemainingBudget(_budget.getRemainingBudget()-formDotRec.getBudget());
-
-        ArrayList<String> infosFormDotSpe= new ArrayList<>();
-        infosFormDotSpe.add("Budget spécifique alloué aux formations");
-        Lever formDotSpe = _leverList.createLever("Dotation spécifique pour la formation", 100.0,10000.0, infosFormDotSpe);
-        _budget.setRemainingBudget(_budget.getRemainingBudget()-formDotSpe.getBudget());
-        //Lever formDotPed = _leverList.createLever("Dotation pour les projets pÃ©dagogiques", 100.0, new ArrayList<String>());
-        //Lever formPartenariat = _leverList.createLever("Partenariat pour la formation", 100.0, new ArrayList<String>());
-        //Lever formFraiIns = _leverList.createLever("Frais d'inscription", 100.0, new ArrayList<String>());
-
-        ArrayList<String> infosFormPrime= new ArrayList<>();
-        infosFormPrime.add("Budget alloué à  la prime de formation des enseignants");
-        infosFormPrime.add("Des enseignants plus formés donnent de meilleurs cours!");
-        Lever formPrime= _leverList.createLever("Prime de formation", 100.0,10000.0, infosFormPrime);
-        _budget.setRemainingBudget(_budget.getRemainingBudget()-formPrime.getBudget());
-        //Central
-        //Lever cCom = _leverList.createLever("Communication gÃ©nÃ©rale", 100.0, new ArrayList<String>());
-
-        ArrayList<String> infosSubEtu=new ArrayList<>();
-        infosSubEtu.add("Budget alloué aux associations étudiantes");
-        infosSubEtu.add("L'augmenter augmentera l'humeur des étudiants dans l'université, mais attention!");
-        infosSubEtu.add("Buvez toujours avec Modération (très bon ami des programmeurs)!");
-        Lever subEtu = _leverList.createLever("Subventions aux associations étudiantes", 100.0,10000.0, infosSubEtu);
-        _budget.setRemainingBudget(_budget.getRemainingBudget()-subEtu.getBudget());
-        //Immobilier
-
-        ArrayList<String> infosCons=new ArrayList<>();
-        infosCons.add("Budget général de l'immobilier");
-        infosCons.add("De meilleurs batiments apportent un niveau d'enseignement amélioré");
-        Lever constr = _leverList.createLever("Investissement en construction", 100.0,10000.0, infosCons);
-        _budget.setRemainingBudget(_budget.getRemainingBudget()-constr.getBudget());
-        //Lever iEnt = _leverList.createLever("Investissement en entretient des bÃ¢timents", 100.0, new ArrayList<String>());
-        //Lever iReno = _leverList.createLever("Investissement en rÃ©novation des bÃ¢timents", 100.0, new ArrayList<String>());
-
-
-        //CrÃ©ation des indicateurs
-
-        /*
-        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiÃ©s", 50.0, aP, new ArrayList<String>());
-         */
-        /*
-        //Nombre de professeurs
-        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'universitÃ©", 50.0, nP, new ArrayList<String>());
-        */
-        /*
-        //Reputation de la formation
-        Indicator repFormation = _indicatorList.createIndicator("RÃ©putation de la formation", 50.0, rF, new ArrayList<String>());
-        */
-
-        /*
-        //Article publiÃ©s
-        ArrayList<String> infosArticles=new ArrayList<>();
-        infosArticles.add("Les articles publiÃ©s par les chercheurs");
-        infosArticles.add("ReprÃ©sentent la visibilitÃ© de l'universitÃ©, l'intÃ©rÃªt qu'on lui porte");
-        Indicator articlesPublies = _indicatorList.createIndicator("Nombre d'articles publiÃ©s", 50.0, infosArticles);
-
-        //Nombre de professeurs
-        ArrayList<String> infosProfs = new ArrayList<>();
-        infosProfs.add("Nombre de professeurs enseignants Ã  l'universitÃ©");
-        infosProfs.add("ReprÃ©sente le niveau d'enseignement de l'universitÃ©, et par consÃ©quent son niveau de rÃ©ussite est prÃ©supposÃ© meilleur");
-        Indicator nbProfesseurs = _indicatorList.createIndicator("Nombre de professeur de l'universitÃ©", 50.0, infosProfs);
-
-        //Reputation de la formation
-        ArrayList<String> infosRep=new ArrayList<>();
-        infosRep.add("RÃ©putation gÃ©nÃ©rale du niveau d'enseignement");
-        infosRep.add("ReprÃ©sente la visibilitÃ© et l'apprÃ©ciation publique de la formation");
-        Indicator repFormation = _indicatorList.createIndicator("RÃ©putation de la formation", 50.0, infosRep);
-        */
-
-
-        //Taux de rÃ©ussite
-        ArrayList<String> infosReu=new ArrayList<>();
-        infosReu.add("Niveau de réussite de la formation");
-        infosReu.add("Représente par extension le niveau d'enseignement de la formation et l'encadrement des étudiants");
-        Indicator tauxReussite = _indicatorList.createIndicator("Taux de réussite du diplôme", 50.0,100.0,infosReu);
-
-        //Satisfaction etudiante
-
-        ArrayList<String> infosSatisEtu=new ArrayList<>();
-        infosSatisEtu.add("Représente le niveau d'appréciations des étudiants");
-        infosSatisEtu.add("Attention à  ne pas oublier qu'un étudiant qui s'amuse trop travaille moins...");
-        Indicator satisEtu = _indicatorList.createIndicator("Satisfaction etudiante", 50.0,100.0, infosSatisEtu);
-
-
-
-        //Satisfaction personnel
-
-        ArrayList<String> infosSatisPers=new ArrayList<>();
-        infosSatisPers.add("Représente le niveau d'appréciation des professeur");
-        infosSatisPers.add("Attention à  ne pas oublier qu'un professeur qui ne se plait pas dans son travail enseigne moins bien...");
-
-
-        Indicator satisPers = _indicatorList.createIndicator("Satisfaction personnel",50.0,100.0,infosSatisPers);
-        /*
-        //Nombre d'Ã©tudiant
-        Indicator nbEtu = _indicatorList.createIndicator("Nombre d'Ã©tudiant", 50.0, nE, new ArrayList<String>());
-        */
-        //Indicator nbEtu = _indicatorList.createIndicator("Nombre d'Ã©tudiant", 50.0, new ArrayList<String>());
-
+        //initialisation of indicators
+        initIndicators();
+        
+        initState();
 
         initWeightForEachIndicator();
     }
 
+    public void initLevers() throws FileNotFoundException,IOException{
+        BufferedReader br = new BufferedReader(new FileReader(_leverFile));
+        String line;
+        String[] lineTab;
+        
+        ArrayList<String> infos = new ArrayList<String>();
+        String name = "";
+        String abreviation = "";
+        String category = "";
+        Double value = 0.0;
+        Double maxValue = 0.0;
+        
+        boolean empty = false;
+        boolean end = false;
+        
+
+        while ((line = br.readLine()) != null) {
+            lineTab = line.split(";");
+
+            switch(lineTab[0]){
+                case "New":
+                    infos = new ArrayList<String>();
+                    break;
+                case "info":
+                    infos.add(lineTab[1]);
+                    break;
+                case "name":
+                    name = lineTab[1];
+                    break;
+                case "abreviation":
+                    abreviation = lineTab[1];
+                    break;
+                case "category":
+                    category = lineTab[1];
+                    break;
+                case "value":
+                    value = Double.parseDouble(lineTab[1]);
+                    break;
+                case "max value":
+                    maxValue = Double.parseDouble(lineTab[1]);
+                    break;
+                case "End":
+                    end = true;
+                    break;
+                default:
+                    empty = true;
+            }
+            
+            if(!empty && end){
+                Lever l = _leverList.createLever(name, abreviation , category, value, maxValue, infos);
+                _budget.setRemainingBudget(_budget.getRemainingBudget()-l.getBudget());
+                end = false;
+            }
+            else{
+                empty = false;
+            }
+                
+        }
+        br.close();
+    }
+    
+    public void initIndicators() throws FileNotFoundException, IOException{
+        BufferedReader br = new BufferedReader(new FileReader(_indicatorsFile));
+        String line;
+        String[] lineTab;
+        
+        ArrayList<String> infos = new ArrayList<String>();
+        String name = "";
+        String abreviation = "";
+        Double value = 0.0;
+        Double maxValue = 0.0;
+        
+        boolean empty = false;
+        boolean end = false;
+        
+
+        while ((line = br.readLine()) != null) {
+            lineTab = line.split(";");
+
+            switch(lineTab[0]){
+                case "New":
+                    infos = new ArrayList<String>();
+                    break;
+                case "info":
+                    infos.add(lineTab[1]);
+                    break;
+                case "name":
+                    name = lineTab[1];
+                    break;
+                case "abreviation":
+                    abreviation = lineTab[1];
+                    break;
+                case "value":
+                    value = Double.parseDouble(lineTab[1]);
+                    break;
+                case "max value":
+                    maxValue = Double.parseDouble(lineTab[1]);
+                    break;
+                case "End":
+                    end = true;
+                    break;
+                default:
+                    empty = true;
+            }
+            
+            if(!empty && end){
+                Indicator i = _indicatorList.createIndicator(name, abreviation, value, maxValue, infos);
+                end = false;
+            }
+            else{
+                empty = false;
+            }
+                
+        }
+        br.close();
+    }
+    
+    public void initState(){
+        Collection<Lever> levers = _leverList.getLevers();
+        Collection<Indicator> indicators = _indicatorList.getIndicators();
+        
+        HashMap<String, Double> leversForState0 = new HashMap<String, Double>(levers.size(),(float)1.0);
+        HashMap<String,Double> indicatorsForState0 = new HashMap<String, Double>(indicators.size(), (float)1.0);
+        
+        HashMap<String, Double> leversForState1 = new HashMap<String, Double>(levers.size(),(float)1.0);
+        HashMap<String,Double> indicatorsForState1 = new HashMap<String, Double>(indicators.size(), (float)1.0);
+        
+        for(Lever l : levers){
+            leversForState0.put(l.getAbreviation(), l.getBudget());
+            leversForState1.put(l.getAbreviation(), l.getBudget());
+        }
+        
+        for(Indicator i : indicators){
+            indicatorsForState0.put(i.getAbreviation(), i.getValue());
+            indicatorsForState1.put(i.getAbreviation(), i.getValue());
+        }
+        
+        _stateList.createState(0, 10000.0, leversForState0, indicatorsForState0);
+        _stateList.createState(1, 10000.0, leversForState1, indicatorsForState1);
+    }
 
     public void initWeightForEachIndicator() throws FileNotFoundException,IOException{
         int leverListSize = _leverList.getLevers().size();
@@ -206,13 +227,11 @@ public class Controller {
 
             for(int i=0; i < lineTab.length; i++){
                 if(lineTab[i].matches("[a-zA-Z]*")){//if the substring starts with a letter
-                    if(lineTab[i].charAt(0) == 'i'){//if the substring is the name of an indicator
-                        System.out.println(lineTab[i]);
+                    if(lineTab[i].charAt(0) == 'I'){//if the substring is the name of an indicator
                         linesTitles.put(lineTab[i], orderIndicator);
                         orderIndicator++;
                     }
                     else if(lineTab[i].charAt(0) == 'd'){
-                        System.out.println(lineTab[i]);
                         columnsTitles.put(lineTab[i], orderDifference);
                         orderDifference++;
                     }
@@ -234,71 +253,39 @@ public class Controller {
         _weightForEachIndicator.createTitles(new MatrixTitle(linesTitles, columnsTitles));
     }
 
-    public Integer addToBudget(Lever lever, Double val){
-        if(val<=_budget.getRemainingBudget()) {
-            lever.addToBudget(val);
+
+    public Integer setLeverBudget(Lever lever, Double val){
+
+        if(val<=_budget.getRemainingBudget() && val>=0 && val<=lever.getMaxBudget()) {
+            lever.setBudget(val);
             _budget.setRemainingBudget(_budget.getRemainingBudget() - val);
+            State thisYearState = _stateList.getState(_year);
+            thisYearState.setLever(lever.getAbreviation(), val);
             return 0;
+
         }
         else{
             return -1;
         }
     }
 
-    public Integer removeFromBudget(Lever lever, Double val){
-        Integer r;
-        if(lever.getBudget()-val>=0) {
-            lever.removeFromBudget(val);
-            _budget.setRemainingBudget(_budget.getRemainingBudget() + val);
-            r = 0;
+    public boolean endOfRound(){
+        //tour de jeu...
+        boolean budgetIsSufficient = true;
+            
+        Double sumBudgetInLevers = 0.0;
+        for(Lever l : _leverList.getLevers()){
+            sumBudgetInLevers += l.getBudget();
+        }
+        
+        if(_budget.getRemainingBudget() + sumBudgetInLevers < 0.0){
+            budgetIsSufficient = false;
         }
         else{
-            r=-1;
+            updateAll();
+            _year++;
         }
-        return r;
-    }
-
-    public void endOfRound(){
-        //On ferme le graphiqueLine si il existe
-        if (_graphicLine != null) {
-            _graphicLine.close();
-        }
-
-        //On ferme le graphiquePie si il existe
-        if (_graphicPie != null) {
-            _graphicPie.close();
-        }
-        //On ouvre le graphicpie
-        _graphicPie = new GraphicPie(getLevers(), _budget.getRemainingBudget());
-        State thisYearState = _stateList.getState(_year);
-        for(Lever l : _leverList.getLevers()){
-
-            if(l.getName() == "Dotation récurante en recherche"){
-                thisYearState.setLDotRecRech(l.getBudget());
-            }
-
-            if(l.getName() == "Dotation récurente pour la formation"){
-                thisYearState.setLDotRecForm(l.getBudget());
-            }
-
-            if(l.getName() == "Dotation spécifique pour la formation"){
-                thisYearState.setLDotSpeForm(l.getBudget());
-            }
-
-            if(l.getName() == "Prime de formation"){
-                thisYearState.setLPrime(l.getBudget());
-            }
-
-            if(l.getName() == "Subventions aux associations étudiantes"){
-                thisYearState.setLSubAssoEtu(l.getBudget());
-            }
-
-            if(l.getName() == "Investissement en construction"){
-                thisYearState.setLImmo(l.getBudget());
-            }
-        }
-        updateAll();
-        _year++;
+        return budgetIsSufficient;
     }
 
     public Collection<String> listInfos(IndicLever obj){
@@ -332,66 +319,108 @@ public class Controller {
     public void updateAll(){
         State thisYearState = _stateList.getState(_year);
         State lastYearState = _stateList.getState((_year - 1));
+        
+        HashMap<String, Double> indicatorsForNextYearState = new HashMap<String, Double>(_indicatorList.getIndicators().size(), (float)1.0);
+        HashMap<String, Double> leversForNextYearState = new HashMap<String, Double>(_leverList.getLevers().size(), (float)1.0);
+        
+        HashMap<String, Double> dLevers = new HashMap<String, Double>(_leverList.getLevers().size(), (float)1.0);
+        HashMap<String, Double> dIndicators = new HashMap<String, Double>(_indicatorList.getIndicators().size(), (float)1.0);
+        
+        //calculation of ratio for each indicators
+        for(Indicator i : _indicatorList.getIndicators()){
+            String abreviation = i.getAbreviation();
+            Double lastYearIndicatorValue = lastYearState.getIndicator(abreviation);
+            Double thisYearIndicatorValue = thisYearState.getIndicator(abreviation);
+            
+            if(lastYearIndicatorValue == 0.0)//prevents division by 0
+                lastYearIndicatorValue = 1.0;
+            
+            Double value = (thisYearIndicatorValue - lastYearIndicatorValue) / lastYearIndicatorValue;
+            dIndicators.put(abreviation, value);
+        }
+        
+        //calculation of ratio for each levers
+        for(Lever l : _leverList.getLevers()){
+            String abreviation = l.getAbreviation();
+            Double lastYearLeverValue = lastYearState.getLever(abreviation);
+            Double thisYearLeverValue = thisYearState.getLever(abreviation);
+            
+            if(lastYearLeverValue == 0.0)//prevents division by 0
+                lastYearLeverValue = 1.0;
+            
+            Double ratio = (thisYearLeverValue - lastYearLeverValue) / lastYearLeverValue;
+            dLevers.put(abreviation, ratio);
+        }
 
-        double resSatEtu = lastYearState.getISatEtu();
-        double resSatPers = lastYearState.getISatPers();
-        double resTauxReu = lastYearState.getITauxReu();
+        //création de la matrice contenant les indicateurs
+        Matrix indicators = new Matrix(_indicatorList.getIndicators().size(),1);
+        
+        for(Indicator i : _indicatorList.getIndicators()){
+            String abreviation = i.getAbreviation();
+            indicators.setCell(_weightForEachIndicator.getLine(abreviation), 0, thisYearState.getIndicator(abreviation));
+        }
 
-        double dLSubAssoEtu = (thisYearState.getLSubAssoEtu() - lastYearState.getLSubAssoEtu()) / lastYearState.getLSubAssoEtu();
-        double dLDotRecForm = (thisYearState.getLDotRecForm() - lastYearState.getLDotRecForm()) / lastYearState.getLDotRecForm();
-        double dLDotRecRech = (thisYearState.getLDotRecRech() - lastYearState.getLDotRecRech()) / lastYearState.getLDotRecRech();
-        double dLDotSpeForm = (thisYearState.getLDotSpeForm() - lastYearState.getLDotSpeForm()) / lastYearState.getLDotSpeForm();
-        double dLImmo = (thisYearState.getLImmo() - lastYearState.getLImmo()) / lastYearState.getLImmo();
-        double dLPrime = (thisYearState.getLPrime() - lastYearState.getLPrime()) / lastYearState.getLPrime();
+        //matrixRatio's creation
+        Matrix matrixRatio = new Matrix(_weightForEachIndicator.getColumnSize(), 1);
+        
+        //matrixRatio's initialisation
+        for(Lever l : _leverList.getLevers()){
+            String abreviation = l.getAbreviation();
+            matrixRatio.setCell(_weightForEachIndicator.getColumn("d" + abreviation), 0, dLevers.get(abreviation));
+        }
+        for(Indicator i : _indicatorList.getIndicators()){
+            String abreviation = i.getAbreviation();
+            matrixRatio.setCell(_weightForEachIndicator.getColumn("d" + abreviation), 0, dIndicators.get(abreviation));
+        }
 
-        //Pour chaque indicateur on calcule la valeur au tour suivant
+        matrixRatio.print();
+        System.out.println("");
 
-        //calcul de la satisfaction etudiante
-        Indicator i = _indicatorList.getIndicator("Satisfaction etudiante");
+        Matrix result = _weightForEachIndicator.times(matrixRatio);
+        result.print();
+        System.out.println("");
+        result = result.add(indicators);
 
-        resSatEtu += dLSubAssoEtu*(1.0/3.0)*(lastYearState.getISatEtu()/i.getMaxValue());
+        result.print();
+        System.out.println("");
 
-        resSatEtu += dLImmo * (1.0/3.0) * (lastYearState.getISatEtu()/i.getMaxValue());
-
-        i.setValue(resSatEtu);
-
-
-        // calcul de la satisfaction du personel
-        i = _indicatorList.getIndicator("Satisfaction personnel");
-
-        resSatPers += dLPrime*(1.0/5.0)*(lastYearState.getISatPers()/i.getMaxValue());
-
-        resSatPers += dLDotRecForm*(1.0/5.0)*(lastYearState.getISatPers()/i.getMaxValue());
-
-        resSatPers += dLDotRecRech*(1.0/5.0)*(lastYearState.getISatPers()/i.getMaxValue());
-
-        resSatPers += dLImmo * (1.0/5.0) * (lastYearState.getISatPers()/i.getMaxValue());
-
-        i.setValue(resSatPers);
-
-        //creation de la variable contenant la différence entre la satisfaction du personel de l'année dernière et de cette année
-        double dISatPers = (resSatPers - lastYearState.getISatPers()) / lastYearState.getISatPers();
-
-        //calcul du taux de reussite du diplome
-        i = _indicatorList.getIndicator("Taux de réussite du diplôme");
-
-        resTauxReu += dLDotSpeForm*(1.0/3.0)*(lastYearState.getITauxReu()/i.getMaxValue());
-
-        resTauxReu += dLDotRecForm*(1.0/3.0)*(lastYearState.getITauxReu()/i.getMaxValue());
-
-        resTauxReu += dISatPers*(1.0/3.0)*(lastYearState.getITauxReu()/i.getMaxValue());
-
-        i.setValue(resTauxReu);
+        //update indicators
+        for(Indicator i : _indicatorList.getIndicators()){
+            String abreviation = i.getAbreviation();
+            Double value = result.getCell(_weightForEachIndicator.getLine(abreviation),0);
+            i.setValue(value);
+            
+            indicatorsForNextYearState.put(abreviation, value);//enregistrement de la valeur de l'indicateur dans le dictionnaire servant à générer l'état State suivant
+        }
 
         //passage à l'année suivante
         int year = _year + 1;
         //calcul du budget de l'année suivante
         _budget.setRemainingBudget(_budget.getRemainingBudget()+10000.0);
         for(Lever l : _leverList.getLevers()){
+            Double leverBudget = l.getBudget();
             _budget.setRemainingBudget(_budget.getRemainingBudget()-l.getBudget());
+            
+            leversForNextYearState.put(l.getAbreviation(), leverBudget);//enregistrement de la valeur du levier dans le dictionnaire servant à générer l'état State suivant
         }
+        
+        //checking that value in indicatorsForNextYearState are valid 
+        for(Map.Entry<String, Double> e : indicatorsForNextYearState.entrySet()){
+            String abreviation = e.getKey();
+            Double value = e.getValue();
+            
+            Indicator i = _indicatorList.getIndicatorByAbreviation(abreviation);
+            
+            if(value > i.getMaxValue()){
+                e.setValue(i.getMaxValue());
+            }
+            if(value < 0.0){
+                e.setValue(0.0);
+            }
+        }
+        
         //création de l'état(State) suivant
-        State nextYearState = new State(year, _budget.getRemainingBudget(), resTauxReu, resSatPers, resSatEtu, thisYearState.getLDotRecForm(), thisYearState.getLDotSpeForm(), thisYearState.getLDotRecRech(), thisYearState.getLPrime(), thisYearState.getLImmo(), thisYearState.getLSubAssoEtu());
+        State nextYearState = new State(year, _budget.getRemainingBudget(), leversForNextYearState, indicatorsForNextYearState);
         _stateList.addState(nextYearState);
     }
 

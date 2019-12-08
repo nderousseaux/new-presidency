@@ -1,0 +1,6 @@
+dLSubAssoEtu;dLDotRecForm;dLDotRecRech;dLDotSpeForm;dLDotSpeRech;dLPrimeForm;dLPrimeRech;dLPrimeCentr;dLEntretien;dLRenov;dLConstruction;dLEvent;dLComm;dLAdmin;dISatPers;dISatEtu;dITauxReu;dIRechApp;dIRechFond
+ISatEtu;0.3;0.0;0;0;0.3;0;0;0.3;0.3;0.3;0;0;0;0;0;0;0;0
+ISatPers;0.2;0.2;0;0;0.2;0.2;0.2;0.2;0.2;0.2;0;0;0.5;0.2;0;0;0;0
+ITauxReu;0;0.3;0;0;0;0;0;0.3;0.3;0.3;0;0;0;0;0.3;0;0;0
+IRechApp;0;0.1;0;0.5;0;0.2;0;0.2;0.2;0.2;0;0;0;0.2;0;0;0;0
+IRechFond;0;0.5;0;0;0;0.2;0;0.2;0.2;0.2;0;0;0;0.2;0;0;0;0

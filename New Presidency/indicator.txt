@@ -1,0 +1,42 @@
+New;
+info;Niveau de réussite de la formation;
+info;Représente par extension le niveau d'enseignement de la formation et l'encadrement des étudiants;
+name;Taux de réussite du diplôme;
+abreviation;ITauxReu;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Représente le niveau d'appréciations des étudiants;
+info;Attention à ne pas oublier qu'un étudiant qui s'amuse trop travaille moins...;
+name;Satisfaction etudiante;
+abreviation;ISatEtu;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Représente le niveau d'appréciation des professeur;
+info;Attention à ne pas oublier qu'un professeur qui ne se plait pas dans son travail enseigne moins bien...;
+name;Satisfaction personnel;
+abreviation;ISatPers;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info; ;
+name;Recherche appliquée;
+abreviation;IRechApp;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info; ;
+name;Recherche fondamentale;
+abreviation;IRechFond;
+value;50.0;
+max value;100.0;
+End;
