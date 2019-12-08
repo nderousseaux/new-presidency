@@ -25,7 +25,7 @@ import java.awt.*;
  * @author nderousseaux
  * @version 2.0
  */
-public class GraphicLine extends JFrame{
+public class GraphicLine extends JPanel{
     private StateList _stateList;
     private XYChart chart;
 
@@ -37,38 +37,22 @@ public class GraphicLine extends JFrame{
      * @see GraphicLine#addSerie(String)
      * @see GraphicLine#delSerie(String)
      * @see GraphicLine#selectData(String)
-     * @see GraphicLine#close()
      *
      * @since 1.0
      */
     public GraphicLine(StateList stateList){
         _stateList = stateList;
 
-        //On crée le JFrame
-        this.setTitle("Graphique d'évolution");
-        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        //On crée le JPanel
         this.setLayout(new BorderLayout());
-        this.setSize(1350, 1000);
-        this.setResizable(false);
+
 
 
         //region Graphique
         chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
         JPanel chartPanel = new XChartPanel<>(chart);
-        this.getContentPane().add(chartPanel, BorderLayout.CENTER);
+        this.add(chartPanel, BorderLayout.CENTER);
         //endregion
-
-        //region Bas de la page
-        //On crée le bouton fermer
-        JPanel pied = new JPanel();
-        this.getContentPane().add(pied, BorderLayout.SOUTH);
-        JButton button = new JButton("Fermer la fenêtre");
-        button.addActionListener(actionEvent -> close());
-        pied.add(button);
-        //endregion
-
-        this.pack();
-        this.setVisible(true);
     }
 
     /**
@@ -170,14 +154,4 @@ public class GraphicLine extends JFrame{
         chart.removeSeries(nom);
         this.repaint();
     }
-
-    /**
-     * Fonction de fermeture de la fenêtre
-     *
-     * @since 1.0
-     */
-    public void close(){
-        this.dispose();
-    }
-
 }
