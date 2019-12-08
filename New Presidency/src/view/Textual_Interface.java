@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
-
+/*
 public class Textual_Interface {
     private Controller _controller;
 
@@ -217,3 +217,4 @@ public class Textual_Interface {
         System.out.println("");
     }
 }
+*/

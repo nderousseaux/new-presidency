@@ -19,7 +19,7 @@ End;
 
 New;
 info;Budget récurrent alloué aux formations;
-name;Dotation récurente pour la formation;
+name;Dotation récurrente pour la formation;
 abreviation;LDotRecForm;
 category;Formation;
 value;100.0;
@@ -28,7 +28,7 @@ End;
 
 New;
 info;Budget récurrent alloué à la recherche;
-name;Dotation récurante en recherche;
+name;Dotation récurrente pour la recherche;
 abreviation;LDotRecRech;
 category;Recherche;
 value;100.0;

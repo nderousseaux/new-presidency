@@ -86,6 +86,7 @@ public class GraphicLine {
      *
      * @since 1.0
      */
+
     private double[] selectData(String name){
 
         int nombre = _stateList.getStates().size()-1;
@@ -95,47 +96,48 @@ public class GraphicLine {
         //On parcourt tout les états de toutes les périodes. On crée une liste de l'évolution des états pour un indicateur donné.
         int i=0;
         for (State s:_stateList.getStates()) {
-            if (i != _stateList.getStates().size()-1) {
-
-                switch (name){
-                    case "Dotation récurante pour la formation":
-                        values[i] = s.getLDotRecForm();
-                        break;
-                    case "Dotation récurante pour la recherche":
-                        values[i] = s.getLDotRecRech();
-                        break;
-                    case "Dotation spécifique pour la formation":
-                        values[i] = s.getLDotSpeForm();
-                        break;
-                    case "Prime de formation":
-                        values[i] = s.getLPrime();
-                        break;
-                    case "Investissement en construction":
-                        values[i] = s.getLImmo();
-                        break;
-                    case "Subventions aux associations étudiantes":
-                        values[i] = s.getLSubAssoEtu();
-                        break;
+            if (i != _stateList.getStates().size() - 1) {
+                switch (name) {
                     case "Budget restant":
-                        values[i] = s.getRemainingBudget();
+                        values[i - 1] = s.getRemainingBudget();
                         break;
                     case "Taux de réussite":
-                        values[i] = s.getITauxReu();
+                        values[i - 1] = s.getIndicator("ITauxReu");
                         break;
                     case "Satisfaction du personnel":
-                        values[i] = s.getISatPers();
+                        values[i - 1] = s.getIndicator("ISatPers");
                         break;
                     case "Satisfaction étudiante":
-                        values[i] = s.getISatEtu();
+                        values[i - 1] = s.getIndicator("ISatEtu");
+                        break;
+                    case "Dotation récurrente pour la formation":
+                        values[i - 1] = s.getLever("LDotRecForm");
+                        break;
+                    case "Dotation récurrente pour la recherche":
+                        values[i - 1] = s.getLever("LDotRecRech");
+                        break;
+                    case "Dotation spécifique pour la formation":
+                        values[i - 1] = s.getLever("LDotSpeForm");
+                        break;
+                    case "Prime de formation":
+                        values[i - 1] = s.getLever("LPrimeForm");
+                        break;
+                    case "Construction":
+                        values[i - 1] = s.getLever("LConstruction");
+                        break;
+                    case "Subventions aux associations étudiantes":
+                        values[i - 1] = s.getLever("LSubAssoEtu");
                         break;
                     default:
                         break;
-                    }
                 }
-            i+=1;
+
+                i += 1;
             }
+        }
         return values;
     }
+
 
     /**
      * Fonction pour ajouter une série sur le graphique
@@ -180,4 +182,5 @@ public class GraphicLine {
     public void close(){
         _f.dispose();
     }
+
 }
