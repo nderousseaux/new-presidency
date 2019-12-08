@@ -140,31 +140,31 @@ class Graphic{
                         values[i-1] = s.getRemainingBudget();
                         break;
                     case "Taux de réussite":
-                        values[i-1] = s.getITauxReu();
+                        values[i-1] = s.getIndicator("ITauxReu");
                         break;
                     case "Satisfaction du personnel":
-                        values[i-1] = s.getISatPers();
+                        values[i-1] = s.getIndicator("ISatPers");
                         break;
                     case "Satisfaction étudiante":
-                        values[i-1] = s.getISatEtu();
+                        values[i-1] = s.getIndicator("ISatEtu");
                         break;
-                    case "Dotation récurante pour la formation":
-                        values[i-1] = s.getLDotRecForm();
+                    case "Dotation récurrente pour la formation":
+                        values[i-1] = s.getLever("LDotRecForm");
                         break;
-                    case "Dotation récurante pour la recherche":
-                        values[i-1] = s.getLDotRecRech();
+                    case "Dotation récurrente pour la recherche":
+                        values[i-1] = s.getLever("LDotRecRech");
                         break;
                     case "Dotation spécifique pour la formation":
-                        values[i-1] = s.getLDotSpeForm();
+                        values[i-1] = s.getLever("LDotSpeForm");
                         break;
                     case "Prime de formation":
-                        values[i-1] = s.getLPrime();
+                        values[i-1] = s.getLever("LPrimeForm");
                         break;
-                    case "Investissement en construction":
-                        values[i-1] = s.getLImmo();
+                    case "Construction":
+                        values[i-1] = s.getLever("LConstruction");
                         break;
                     case "Subventions aux associations étudiantes":
-                        values[i-1] = s.getLSubAssoEtu();
+                        values[i-1] = s.getLever("LSubAssoEtu");
                         break;
                     default:
                         break;

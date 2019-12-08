@@ -39,7 +39,7 @@ public class TextualView {
                 break;
             case 2:
                 System.out.println("-------------------------");
-                showLevers();
+                //showLevers();
                 showRound();
                 break;
             case 3:
@@ -114,7 +114,7 @@ public class TextualView {
                 showIndicators();
         }
     }
-
+/*
     public void showLevers() throws InterruptedException{
         Integer i=1;
         for(Lever l : _controller.getLevers()){
@@ -191,7 +191,7 @@ public class TextualView {
             removeFromBudget(l);
         }
     }
-
+*/
     public void listInfos(IndicLever obj) throws InterruptedException{
         for(String s : _controller.listInfos(obj)){
             System.out.println(s);
