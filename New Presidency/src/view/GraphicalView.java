@@ -332,6 +332,9 @@ public class GraphicalView extends JFrame {
             addAllElements();
             this.setVisible(true);
         }
+        else{
+            jspinner.setValue(String.valueOf(lever.getBudget()));
+        }
     }
 
     private void homepage(){
