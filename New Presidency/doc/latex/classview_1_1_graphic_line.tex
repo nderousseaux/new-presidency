@@ -7,6 +7,33 @@
 \item 
 void \mbox{\hyperlink{classview_1_1_graphic_line_aa6a0b7746d73c11be8a56a422be361ae}{close}} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classview_1_1_graphic_line_aa717893bbf444a2396362225967ab5dd}{refresh\+Type}} (J\+Combo\+Box$<$ String $>$ a, J\+Combo\+Box$<$ String $>$ data1, J\+Combo\+Box$<$ String $>$ data2)
+\item 
+void \mbox{\hyperlink{classview_1_1_graphic_line_a1ad61649d145e7d30e0d4a88afccd689}{refresh}} (J\+Combo\+Box$<$ String $>$ data)
+\item 
+double\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classview_1_1_graphic_line_a26021c594532daa4c51beb15521b2124}{select\+Items}} (String name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_line_a83dca7200cb70f27b23c991883e771c9}\label{classview_1_1_graphic_line_a83dca7200cb70f27b23c991883e771c9}} 
+J\+Frame {\bfseries \+\_\+f}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_line_a662bc5df4cf2a56251c4d018635ff431}\label{classview_1_1_graphic_line_a662bc5df4cf2a56251c4d018635ff431}} 
+\mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}} {\bfseries \+\_\+state\+List}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_line_af6070ea9e7877b5ad8eeffacedb25597}\label{classview_1_1_graphic_line_af6070ea9e7877b5ad8eeffacedb25597}} 
+X\+Y\+Chart {\bfseries chart}
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_line_a62b41c34625bb9e5055f0ff84061e25f}\label{classview_1_1_graphic_line_a62b41c34625bb9e5055f0ff84061e25f}} 
+Hash\+Map$<$ J\+Combo\+Box$<$ String $>$, String $>$ {\bfseries \+\_\+anciennes\+Valeurs} = new Hash\+Map$<$$>$()
+\item 
+\mbox{\Hypertarget{classview_1_1_graphic_line_abf55c50384549a5b5e36ce09566ec941}\label{classview_1_1_graphic_line_abf55c50384549a5b5e36ce09566ec941}} 
+Boolean {\bfseries is\+Levier}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -53,7 +80,7 @@ Graphic\+Line\+::refresh(\+J\+Combo\+Box)
 
 Graphic\+Line\+::refresh\+Type(\+J\+Combo\+Box, J\+Combo\+Box, J\+Combo\+Box) 
 
-Graphic\+Line\+::select\+Items(\+String) 
+\mbox{\hyperlink{classview_1_1_graphic_line_a26021c594532daa4c51beb15521b2124}{Graphic\+Line\+::select\+Items(\+String)}} 
 
 \mbox{\hyperlink{classview_1_1_graphic_line_aa6a0b7746d73c11be8a56a422be361ae}{Graphic\+Line\+::close()}}
 \end{DoxySeeAlso}
@@ -74,8 +101,69 @@ Fonction de fermeture de la fenêtre
 \begin{DoxySince}{Since}
 1.\+0 
 \end{DoxySince}
+\mbox{\Hypertarget{classview_1_1_graphic_line_a1ad61649d145e7d30e0d4a88afccd689}\label{classview_1_1_graphic_line_a1ad61649d145e7d30e0d4a88afccd689}} 
+\index{view.GraphicLine@{view.GraphicLine}!refresh@{refresh}}
+\index{refresh@{refresh}!view.GraphicLine@{view.GraphicLine}}
+\doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
+{\footnotesize\ttfamily void view.\+Graphic\+Line.\+refresh (\begin{DoxyParamCaption}\item[{J\+Combo\+Box$<$ String $>$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Fonction pour mettre à jour le graphique 
+
+La mise à jour se fait en fonction des valeurs sélectionnées dans les J\+Combo\+Box. La mise à jour se fait au moment où la valeur d\textquotesingle{}une combo\+Box est modifiée 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & combo\+Box dont la valeur à été modifiée.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySince}{Since}
+1.\+0 
+\end{DoxySince}
+\mbox{\Hypertarget{classview_1_1_graphic_line_aa717893bbf444a2396362225967ab5dd}\label{classview_1_1_graphic_line_aa717893bbf444a2396362225967ab5dd}} 
+\index{view.GraphicLine@{view.GraphicLine}!refreshType@{refreshType}}
+\index{refreshType@{refreshType}!view.GraphicLine@{view.GraphicLine}}
+\doxysubsubsection{\texorpdfstring{refreshType()}{refreshType()}}
+{\footnotesize\ttfamily void view.\+Graphic\+Line.\+refresh\+Type (\begin{DoxyParamCaption}\item[{J\+Combo\+Box$<$ String $>$}]{a,  }\item[{J\+Combo\+Box$<$ String $>$}]{data1,  }\item[{J\+Combo\+Box$<$ String $>$}]{data2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Fonction pour mettre les combo\+Box de sélection des données 
+
+La mise à jour se fait en fonctios de la valeur sélectionné dans la première combo\+Box {\itshape Leviers/\+Indicateurs}. Si le première combo\+Box est sur la valeur \char`\"{}\+Leviers\char`\"{}, on affiche la liste des leviers. Si elle est sur la valeur \char`\"{}\+Indicateurs\char`\"{}, on affiche la liste des Indicateurs. La mise à jour se fait au moment où la valeur de la combo\+Box est modifiée 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & La combo\+Box de sélection du type de série (Indicateurs/\+Levier) \\
+\hline
+{\em data1} & L\textquotesingle{}une des deux combo\+Box à mettre à jour \\
+\hline
+{\em data2} & La deuxième des combo\+Box à mettre à jour.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySince}{Since}
+1.\+0 
+\end{DoxySince}
+\mbox{\Hypertarget{classview_1_1_graphic_line_a26021c594532daa4c51beb15521b2124}\label{classview_1_1_graphic_line_a26021c594532daa4c51beb15521b2124}} 
+\index{view.GraphicLine@{view.GraphicLine}!selectItems@{selectItems}}
+\index{selectItems@{selectItems}!view.GraphicLine@{view.GraphicLine}}
+\doxysubsubsection{\texorpdfstring{selectItems()}{selectItems()}}
+{\footnotesize\ttfamily double \mbox{[}$\,$\mbox{]} view.\+Graphic\+Line.\+select\+Items (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Fonction de sélection des données. 
+
+Fonction qui sélectionne la bonne série de donnée (dans State\+List) en fonction du nom de la série 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Nom de la série dont on cherche les valeurs\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tableau de l\textquotesingle{}évolution de la valeur séléctionné. Une case par période.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+1.\+0 
+\end{DoxySince}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/yoanv/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/view/Graphic\+Line.\+java\end{DoxyCompactItemize}
+D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/view/Graphic\+Line.\+java\end{DoxyCompactItemize}

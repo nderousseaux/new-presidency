@@ -67,6 +67,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classview_1_1_graphic_line-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">view.GraphicLine Class Reference</div>  </div>
@@ -79,6 +81,33 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a056e502bf3a4d82131cbf8981f2a2eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6a0b7746d73c11be8a56a422be361ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classview_1_1_graphic_line.html#aa6a0b7746d73c11be8a56a422be361ae">close</a> ()</td></tr>
 <tr class="separator:aa6a0b7746d73c11be8a56a422be361ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aa717893bbf444a2396362225967ab5dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classview_1_1_graphic_line.html#aa717893bbf444a2396362225967ab5dd">refreshType</a> (JComboBox&lt; String &gt; a, JComboBox&lt; String &gt; data1, JComboBox&lt; String &gt; data2)</td></tr>
+<tr class="separator:aa717893bbf444a2396362225967ab5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ad61649d145e7d30e0d4a88afccd689"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classview_1_1_graphic_line.html#a1ad61649d145e7d30e0d4a88afccd689">refresh</a> (JComboBox&lt; String &gt; data)</td></tr>
+<tr class="separator:a1ad61649d145e7d30e0d4a88afccd689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26021c594532daa4c51beb15521b2124"><td class="memItemLeft" align="right" valign="top">double[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classview_1_1_graphic_line.html#a26021c594532daa4c51beb15521b2124">selectItems</a> (String name)</td></tr>
+<tr class="separator:a26021c594532daa4c51beb15521b2124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a83dca7200cb70f27b23c991883e771c9"><td class="memItemLeft" align="right" valign="top"><a id="a83dca7200cb70f27b23c991883e771c9"></a>
+JFrame&#160;</td><td class="memItemRight" valign="bottom"><b>_f</b></td></tr>
+<tr class="separator:a83dca7200cb70f27b23c991883e771c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a662bc5df4cf2a56251c4d018635ff431"><td class="memItemLeft" align="right" valign="top"><a id="a662bc5df4cf2a56251c4d018635ff431"></a>
+<a class="el" href="classmodel_1_1_state_list.html">StateList</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_stateList</b></td></tr>
+<tr class="separator:a662bc5df4cf2a56251c4d018635ff431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6070ea9e7877b5ad8eeffacedb25597"><td class="memItemLeft" align="right" valign="top"><a id="af6070ea9e7877b5ad8eeffacedb25597"></a>
+XYChart&#160;</td><td class="memItemRight" valign="bottom"><b>chart</b></td></tr>
+<tr class="separator:af6070ea9e7877b5ad8eeffacedb25597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62b41c34625bb9e5055f0ff84061e25f"><td class="memItemLeft" align="right" valign="top"><a id="a62b41c34625bb9e5055f0ff84061e25f"></a>
+HashMap&lt; JComboBox&lt; String &gt;, String &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_anciennesValeurs</b> = new HashMap&lt;&gt;()</td></tr>
+<tr class="separator:a62b41c34625bb9e5055f0ff84061e25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf55c50384549a5b5e36ce09566ec941"><td class="memItemLeft" align="right" valign="top"><a id="abf55c50384549a5b5e36ce09566ec941"></a>
+Boolean&#160;</td><td class="memItemRight" valign="bottom"><b>isLevier</b></td></tr>
+<tr class="separator:abf55c50384549a5b5e36ce09566ec941"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><b> <em><a class="el" href="classview_1_1_graphic_line.html">GraphicLine</a></em> est une classe qui permet d'afficher les graphiques linaires</b> </p>
@@ -124,7 +153,7 @@ Le graphique </li>
 <dd>
 GraphicLine::refreshType(JComboBox, JComboBox, JComboBox) </dd>
 <dd>
-GraphicLine::selectItems(String) </dd>
+<a class="el" href="classview_1_1_graphic_line.html#a26021c594532daa4c51beb15521b2124">GraphicLine::selectItems(String)</a> </dd>
 <dd>
 <a class="el" href="classview_1_1_graphic_line.html#aa6a0b7746d73c11be8a56a422be361ae">GraphicLine::close()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
@@ -151,8 +180,132 @@ GraphicLine::selectItems(String) </dd>
 
 </div>
 </div>
+<a id="a1ad61649d145e7d30e0d4a88afccd689"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ad61649d145e7d30e0d4a88afccd689">&#9670;&nbsp;</a></span>refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void view.GraphicLine.refresh </td>
+          <td>(</td>
+          <td class="paramtype">JComboBox&lt; String &gt;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fonction pour mettre à jour le graphique </p>
+<p>La mise à jour se fait en fonction des valeurs sélectionnées dans les JComboBox. La mise à jour se fait au moment où la valeur d'une comboBox est modifiée </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>comboBox dont la valeur à été modifiée.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+
+</div>
+</div>
+<a id="aa717893bbf444a2396362225967ab5dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa717893bbf444a2396362225967ab5dd">&#9670;&nbsp;</a></span>refreshType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void view.GraphicLine.refreshType </td>
+          <td>(</td>
+          <td class="paramtype">JComboBox&lt; String &gt;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">JComboBox&lt; String &gt;&#160;</td>
+          <td class="paramname"><em>data1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">JComboBox&lt; String &gt;&#160;</td>
+          <td class="paramname"><em>data2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fonction pour mettre les comboBox de sélection des données </p>
+<p>La mise à jour se fait en fonctios de la valeur sélectionné dans la première comboBox <em>Leviers/Indicateurs</em>. Si le première comboBox est sur la valeur "Leviers", on affiche la liste des leviers. Si elle est sur la valeur "Indicateurs", on affiche la liste des Indicateurs. La mise à jour se fait au moment où la valeur de la comboBox est modifiée </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>La comboBox de sélection du type de série (Indicateurs/Levier) </td></tr>
+    <tr><td class="paramname">data1</td><td>L'une des deux comboBox à mettre à jour </td></tr>
+    <tr><td class="paramname">data2</td><td>La deuxième des comboBox à mettre à jour.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+
+</div>
+</div>
+<a id="a26021c594532daa4c51beb15521b2124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26021c594532daa4c51beb15521b2124">&#9670;&nbsp;</a></span>selectItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double [] view.GraphicLine.selectItems </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fonction de sélection des données. </p>
+<p>Fonction qui sélectionne la bonne série de donnée (dans StateList) en fonction du nom de la série </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Nom de la série dont on cherche les valeurs</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Tableau de l'évolution de la valeur séléctionné. Une case par période.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/yoanv/t432_haj19_t3_a/New Presidency/src/view/GraphicLine.java</li>
+<li>D:/Etudes/Superieur/T-Projet/T-3/t432_haj19_t3_a/New Presidency/src/view/GraphicLine.java</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

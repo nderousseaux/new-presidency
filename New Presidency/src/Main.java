@@ -18,7 +18,6 @@ public class Main {
         Controller controller=new Controller();
         controller.init();
         GraphicalView affichage = new GraphicalView(controller);
-
         //affichage.init();
     }
 }
