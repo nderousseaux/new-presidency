@@ -7,7 +7,11 @@ public class LeverList {
 
     //Attributs
     private Collection<Lever> _levers;
-    private static LeverList _instance;
+
+
+    public LeverList(){
+        _levers=new ArrayList<>();
+    }
 
     //Accesseurs
 
@@ -15,18 +19,8 @@ public class LeverList {
         return _levers;
     }
 
-    public static LeverList getInstance(){
-        if(_instance==null)
-            _instance=new LeverList();
-        return _instance;
-    }
-
-    private LeverList(){
-        _levers=new ArrayList<>();
-    }
-
-    public Lever createLever(String name, Double initBudget, Double maxBudget, ArrayList<String> infos){
-        Lever l = new Lever(name,initBudget,maxBudget,infos);
+    public Lever createLever(String name, String abreviation, String category, Double initBudget, Double maxBudget, ArrayList<String> infos){
+        Lever l = new Lever(name, abreviation, category, initBudget,maxBudget,infos);
         _levers.add(l);
         return l;
     }
@@ -34,7 +28,17 @@ public class LeverList {
     public Lever getLever(String name){
         Lever retour=null;
         for (Lever l:_levers) {
-            if( l.getName() == name){
+            if( l.getName().equals(name)){
+                retour=l;
+            }
+        }
+        return retour;
+    }
+    
+    public Lever getLeverByAbreviation(String abreviation){
+        Lever retour=null;
+        for (Lever l:_levers) {
+            if(l.getAbreviation().equals(abreviation)){
                 retour=l;
             }
         }

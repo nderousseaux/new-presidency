@@ -1,0 +1,130 @@
+New;
+info;Budget alloué à la prime de formation des enseignants;
+info;Des enseignants plus formés donnent de meilleurs cours!;
+name;Prime de formation;
+abreviation;LPrimeForm;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget spécifique alloué aux formations;
+name;Dotation spécifique pour la formation;
+abreviation;LDotSpeForm;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget récurrent alloué aux formations;
+name;Dotation récurente pour la formation;
+abreviation;LDotRecForm;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget récurrent alloué à la recherche;
+name;Dotation récurante en recherche;
+abreviation;LDotRecRech;
+category;Recherche;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget spécifique alloué à la recherche;
+name;Dotation spécifique pour la recherche;
+abreviation;LDotSpeRech;
+category;Recherche;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'attribution de primes aux personnel du secteur recherche;
+name;Primes recherche;
+abreviation;LPrimeRech;
+category;Recherche;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'administration;
+name;Administration;
+abreviation;LAdmin;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à la communication générale de l'université;
+name;Communication;
+abreviation;LComm;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'organisation d'événements;
+name;Evènements;
+abreviation;LEvent;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué aux primes pour l'ensemble des personnel de l'université (administration, professeurs, ...);
+name;Primes;
+abreviation;LPrimeCentr;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué aux associations étudiantes;
+info;L'augmenter augmentera l'humeur des étudiants dans l'université, mais attention!;
+info;Buvez toujours avec Modération (très bon ami des programmeurs)!;
+name;Subventions aux associations étudiantes;
+abreviation;LSubAssoEtu;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à la construction de nouveau bâtiments;
+info;De meilleurs batiments apportent un niveau d'enseignement amélioré;
+name;Construction;
+abreviation;LConstruction;
+category;Immobillier;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'entretien des bâtiments;
+name;Entretien;
+abreviation;LEntretien;
+category;Immobillier;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à la rénovation de bâtiments;
+info;De meilleurs batiments apportent un niveau d'enseignement amélioré;
+name;Rénovation;
+abreviation;LRenov;
+category;Immobillier;
+value;100.0;
+max value;10000.0;
+End;
