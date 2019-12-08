@@ -38,7 +38,6 @@ public class GraphicalView extends JFrame {
     private GraphicLine _graphicLine;
     private JPanel _budget;
     private JButton _nextRound;
-    private JButton _showGraphic;
     private JPanel _pannelBottom;
     private JPanel _pannelTop;
     private JPanel _pannelCenter;
@@ -91,7 +90,7 @@ public class GraphicalView extends JFrame {
         for(Lever l : _controller.getLevers()) {
             //element entier
             JPanel elem=new JPanel();
-            elem.setLayout(new GridLayout(1,2));
+            elem.setLayout(new GridLayout(1,3));
 
             //zone texte
 
@@ -122,6 +121,33 @@ public class GraphicalView extends JFrame {
             }
             info+="</html>";
             elem.setToolTipText(info);
+
+            elem.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent mouseEvent) {
+                    _graphicLine.addSerie(l.getName());
+                }
+
+                @Override
+                public void mousePressed(MouseEvent mouseEvent) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent mouseEvent) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent mouseEvent) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent mouseEvent) {
+
+                }
+            });
             _levers.add(elem);
 
         }
@@ -235,16 +261,6 @@ public class GraphicalView extends JFrame {
         //Creation du bouton de tour suivant
         _nextRound.setText("Passer au tour suivant");
 
-        //Creation du bouton de visualisation des graphiques d'evolution
-        _showGraphic = new JButton(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                _controller.showGraphicLine();
-            }
-        });
-        _showGraphic.setText("Afficher l'évolution des indicateurs et des leviers");
-        if(_controller.getYear()==1)
-            _showGraphic.setEnabled(false);
         //Ajout de l'annee courante
         this.getContentPane().add(_year,BorderLayout.NORTH);
 
@@ -270,7 +286,6 @@ public class GraphicalView extends JFrame {
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
         _pannelBottom.add(_budget);
-        _pannelBottom.add(_showGraphic);
         _pannelBottom.add(_nextRound);
 
         this.getContentPane().add(_pannelBottom,BorderLayout.SOUTH);
