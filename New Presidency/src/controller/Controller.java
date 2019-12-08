@@ -253,6 +253,7 @@ public class Controller {
         _weightForEachIndicator.createTitles(new MatrixTitle(linesTitles, columnsTitles));
     }
 
+<<<<<<< HEAD
     public Integer setLeverBudget(Lever lever, Double val){
         Integer r;
         if(val<=_budget.getRemainingBudget() && val>=0 && val<=lever.getMaxBudget()) {
@@ -261,11 +262,17 @@ public class Controller {
             State thisYearState = _stateList.getState(_year);
             thisYearState.setLever(lever.getAbreviation(), val);
             r=0;
+=======
+    public Integer addToBudget(Lever lever, Double val){
+        if(val<=_budget.getRemainingBudget()) {
+            lever.addToBudget(val);
+            _budget.setRemainingBudget(_budget.getRemainingBudget() - val);
+            return 0;
+>>>>>>> 83ce5b1e6bf1e59b01e03ba28662bfcc916cced8
         }
         else{
-            r=-1;
+            return -1;
         }
-        return r;
     }
 
     public boolean endOfRound(){
