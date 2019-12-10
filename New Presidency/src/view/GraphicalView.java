@@ -35,6 +35,7 @@ public class GraphicalView extends JFrame {
     private JPanel _indicators;
     private JScrollPane _scrollIndicators;
     private GraphicLine _graphicLine;
+    private GraphicPie _graphicPie;
     private JPanel _budget;
     private JButton _nextRound;
     private JPanel _pannelBottom;
@@ -82,10 +83,10 @@ public class GraphicalView extends JFrame {
     private void updateLevers(){
         _levers=new JPanel();
         _levers.setLayout(new GridLayout(_controller.getLevers().size(),1));
+
         _scrollLevers=new JScrollPane(_levers);
         _scrollLevers.setBounds(20,40,500,610);
 
-        _levers.setToolTipText("Leviers");
         for(Lever l : _controller.getLevers()) {
             //element entier
             JPanel elem=new JPanel();
@@ -167,9 +168,6 @@ public class GraphicalView extends JFrame {
 
         _scrollIndicators=new JScrollPane(_indicators);
         _scrollIndicators.setBounds(600,40,500,610);
-        _scrollIndicators.setPreferredSize(new Dimension(500,610));
-
-        //_indicators.setToolTipText("Indicateurs");
 
         for(Indicator i : _controller.getIndicators()){
             //element entier
@@ -250,9 +248,16 @@ public class GraphicalView extends JFrame {
         //Initialisation du graphique de suivi
 
         _graphicLine=new GraphicLine(_controller.getStateList());
+        if(_controller.getYear()==1)
+            _graphicLine.setVisible(false);
+
+        //Initialisation du graphique de répartition du budget du tour
+
+        _graphicPie=new GraphicPie(_controller.getLevers(),_controller.getBudget().getRemainingBudget());
 
         //Ajout au pannel central
         _pannelCenter.add(_graphicLine);
+        _pannelCenter.add(_graphicPie);
 
         //Ajout du pannel entier
         this.getContentPane().add(_pannelCenter,BorderLayout.CENTER);
@@ -356,6 +361,7 @@ public class GraphicalView extends JFrame {
         else{
             jspinner.setValue(String.valueOf(lever.getBudget()));
         }
+        _graphicPie=_graphicPie.refresh(_controller.getLevers(),_controller.getBudget().getRemainingBudget());
     }
 
     private void homepage(){

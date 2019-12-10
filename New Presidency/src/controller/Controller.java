@@ -19,13 +19,11 @@ import static java.lang.System.exit;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Controller {
-    private GraphicLine _graphicLine;
-    private GraphicPie _graphicPie;
     private Integer _year;
     private Integer _maxYear;
     private Budget _budget;
+
     private final StateList _stateList;
     private final IndicatorList _indicatorList;
     private final LeverList _leverList;
@@ -36,7 +34,7 @@ public class Controller {
     private File _leversFile = new File("lever.txt");
     private File _indicatorsFile = new File("indicator.txt");
 
-    public Controller() throws FileNotFoundException, IOException{
+    public Controller(){
         _budget=new Budget();
         _indicatorList= new IndicatorList();
         _leverList= new LeverList();
@@ -46,7 +44,7 @@ public class Controller {
 
     }
 
-    public void init() throws FileNotFoundException,IOException{
+    public void init() throws IOException{
         //initialiation of levers
         initLevers();
 
@@ -58,7 +56,7 @@ public class Controller {
         initWeightForEachIndicator();
     }
 
-    public void initLevers() throws FileNotFoundException,IOException{
+    public void initLevers() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader(_leversFile));
         String line;
         String[] lineTab;
@@ -119,7 +117,7 @@ public class Controller {
         br.close();
     }
     
-    public void initIndicators() throws FileNotFoundException, IOException{
+    public void initIndicators() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader(_indicatorsFile));
         String line;
         String[] lineTab;
@@ -199,7 +197,7 @@ public class Controller {
         _stateList.createState(1, 10000.0, leversForState1, indicatorsForState1);
     }
 
-    public void initWeightForEachIndicator() throws FileNotFoundException,IOException{
+    public void initWeightForEachIndicator() throws IOException{
         int leverListSize = _leverList.getLevers().size();
         int indicatorListSize = _indicatorList.getIndicators().size();
 
@@ -232,7 +230,6 @@ public class Controller {
                     }
                 }
                 else{
-                    //System.out.println(lineTab[i]);
                     _weightForEachIndicator.setCell(matrixLineIndex, matrixColumnIndex, Double.parseDouble(lineTab[i]));
                     if(matrixColumnIndex == _weightForEachIndicator.getColumnSize() -1){
                         matrixColumnIndex = 0;
@@ -283,10 +280,6 @@ public class Controller {
         return budgetIsSufficient;
     }
 
-    public Collection<String> listInfos(IndicLever obj){
-         return obj.getInfos();
-    }
-
     public Collection<Lever> getLevers(){
         return _leverList.getLevers();
     }
@@ -297,10 +290,6 @@ public class Controller {
 
     public Budget getBudget(){
         return _budget;
-    }
-
-    public void exitGame(){
-        exit(0);
     }
 
     public int getYear(){

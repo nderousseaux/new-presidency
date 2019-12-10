@@ -6,6 +6,7 @@ import model.LeverList;
 import model.State;
 import model.StateList;
 import org.knowm.xchart.*;
+import org.knowm.xchart.style.Styler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,10 +31,10 @@ import java.util.HashMap;
  * @author nderousseaux
  * @version 1.0
  */
-public class GraphicPie {
+public class GraphicPie extends JPanel{
 
-    private JFrame _f;
     private Collection<Lever> _leverList;
+    private Double _budget;
     private PieChart _chart;
 
     /**
@@ -42,60 +43,32 @@ public class GraphicPie {
      * @param leverList La liste des leviers, et le budget aloué à chacun d'entre eux.
      * @param budget Budget total du tour.
      *
-     * @see GraphicPie#close()
      *
      * @since 1.0
      */
     public GraphicPie(Collection<Lever> leverList, Double budget){
         _leverList = leverList;
-
-        //Configuration du JFrame
-        _f = new JFrame("Comment vous avez utilisé votre budget !");
-        _f.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        _f.setLayout(new BorderLayout());
-        _f.setSize(1350, 1000);
-        _f.setResizable(false);
+        _budget=budget;
 
         //On crée le graphique
-        _chart = new PieChartBuilder().width(800).height(600).title(getClass().getSimpleName()).build();
-
+        _chart = new PieChartBuilder().width(500).height(500).title("Répartition du budget du tour").build();
         //On ajoute les données
         for (Lever l:_leverList) {
             if(l.getBudget() != 0){
                 _chart.addSeries(l.getName(), l.getBudget());
             }
-
         }
         if(budget != 0){
-            _chart.addSeries("Non-utilisé", budget);
+            _chart.addSeries("Non-utilisé", _budget);
         }
 
         JPanel chartPanel = new XChartPanel<>(_chart);
-        _f.getContentPane().add(chartPanel, BorderLayout.CENTER);
-
-        //On crée le bouton fermer
-        JPanel pied = new JPanel();
-        _f.getContentPane().add(pied, BorderLayout.SOUTH);
-        JButton button = new JButton("Fermer la fenêtre");
-        button.addActionListener(actionEvent -> close());
-        pied.add(button);
-
-        _f.pack();
-        _f.setVisible(true);
-        _f.setAlwaysOnTop(true);
+        this.add(chartPanel, BorderLayout.CENTER);
     }
 
-
-    /**
-     * Fonction de fermeture de la fenêtre
-     *
-     * @since 1.0
-     */
-    public void close(){
-        _f.dispose();
+    public GraphicPie refresh(Collection<Lever> leverList, Double budget){
+        return new GraphicPie(leverList,budget);
     }
-
-
 }
 
 
