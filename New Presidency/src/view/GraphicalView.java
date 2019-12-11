@@ -6,9 +6,12 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static java.lang.System.exit;
+import static java.lang.Thread.sleep;
 //TODO:Avant d'ajouter une série, vérifier si elle n'existe pas déjà
 //TODO:Permettre la suppression d'une série si elle existe déjà
 //TODO:Permettre l'ajout et suppression d'une série dans les indicateurs
@@ -62,6 +65,7 @@ public class GraphicalView extends JFrame {
             this.setLocationRelativeTo(_position);
             this.setAlwaysOnTop(true);
 
+
             JLabel textLabel=new JLabel(_text);
             this.add(textLabel,BorderLayout.CENTER);
             JButton quit=new JButton(new AbstractAction() {
@@ -91,10 +95,19 @@ public class GraphicalView extends JFrame {
 
         }
 
+        private static void showFrames(ArrayList<TutoFrame> list){
+            while(!list.isEmpty()){
+                list.get(0).setVisible(true);
+                if(!list.get(0).isVisible())
+                    list.remove(0);
+            }
+        }
+
         private boolean goNext(){
             return !isVisible();
         }
     }
+
     /**
      * Constructeur de <b>GraphicalView</b>, appelant des <b>sous-fonctions d'initialisation</b>
      * @param controller Controlleur du jeu
@@ -554,21 +567,14 @@ public class GraphicalView extends JFrame {
         for(int i=0;i<frames.size();i++) {
             TutoFrame frame = frames.get(i);
             frame.setVisible(true);
-            while(!frame.goNext()){
-                try {
-                    synchronized (this){
-                        wait();
-                    }
-
-                }
-                catch (InterruptedException e){
-                    e.printStackTrace();
-                }
+            while(frame.isVisible()){
+                continue;
             }
         }
 
     }
 
+    private final Thread _threadTuto=new Thread();
     private void resize(){
         if(this.getSize().equals(Toolkit.getDefaultToolkit().getScreenSize()))
             this.setSize(1280, 800);
