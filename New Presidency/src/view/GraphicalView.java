@@ -6,6 +6,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import static java.lang.System.exit;
 //TODO:Avant d'ajouter une série, vérifier si elle n'existe pas déjà
 //TODO:Permettre la suppression d'une série si elle existe déjà
@@ -42,6 +44,57 @@ public class GraphicalView extends JFrame {
     private JPanel _pannelBottom;
     private JPanel _pannelTop;
     private JPanel _pannelCenter;
+
+    private static class TutoFrame extends JFrame{
+        private String _text;
+        private Component _position;
+        private Integer _index;
+        private boolean _tuto;
+
+        public TutoFrame(String text, Component position, Integer index, boolean tuto){
+            _text=text;
+            _position=position;
+            _index=index;
+            _tuto=tuto;
+            this.setUndecorated(true);
+            this.setSize(1000,300);
+            this.setLayout(new BorderLayout());
+            this.setLocationRelativeTo(_position);
+            this.setAlwaysOnTop(true);
+
+            JLabel textLabel=new JLabel(_text);
+            this.add(textLabel,BorderLayout.CENTER);
+            JButton quit=new JButton(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    setVisible(false);
+                }
+            });
+            quit.setText("Quitter");
+
+            JButton next=new JButton(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    setVisible(false);
+                }
+            });
+
+            if(_tuto)
+                next.setText("Suivant");
+            else
+                next.setText("Terminer");
+            JPanel buttons=new JPanel();
+            if(_tuto)
+                buttons.add(quit);
+            buttons.add(next);
+            this.add(buttons,BorderLayout.SOUTH);
+
+        }
+
+        private boolean goNext(){
+            return !isVisible();
+        }
+    }
     /**
      * Constructeur de <b>GraphicalView</b>, appelant des <b>sous-fonctions d'initialisation</b>
      * @param controller Controlleur du jeu
@@ -453,7 +506,14 @@ public class GraphicalView extends JFrame {
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
         title.setFont(new Font("Arial",Font.BOLD,24));
 
-        JButton tuto=new JButton("Lancer le tutoriel");
+        JButton tuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                addAllElements();
+                tutorial();
+            }
+        });
+        tuto.setText("Afficher le tutoriel");
         JButton noTuto=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -461,7 +521,6 @@ public class GraphicalView extends JFrame {
             }
         });
         noTuto.setText("Passer le tutoriel");
-        tuto.setEnabled(false);
 
         JPanel buttons=new JPanel();
         buttons.setLayout(new GridLayout(1,2));
@@ -488,6 +547,25 @@ public class GraphicalView extends JFrame {
     }
 
     private void tutorial(){
+        ArrayList<TutoFrame> frames=new ArrayList<>();
+        frames.add(new TutoFrame("Bienvenue sur New Presidency!",null,0,true));
+        frames.add(new TutoFrame("Bonne chance!",null,1,false));
+
+        for(int i=0;i<frames.size();i++) {
+            TutoFrame frame = frames.get(i);
+            frame.setVisible(true);
+            while(!frame.goNext()){
+                try {
+                    synchronized (this){
+                        wait();
+                    }
+
+                }
+                catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 
