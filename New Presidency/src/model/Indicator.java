@@ -1,13 +1,38 @@
 package model;
 
+import controller.Controller;
+
 import java.util.Collection;
 import java.util.HashMap;
 
+/**<b><i>Indicator</i> est la classe représentant les indicateurs de réussite du jeu</b>
+ * <p>
+ *     Cette classe contient
+ *     <ul>
+ *         <li>Une <b>valeur de complétion</b> de l'indicateur</li>
+ *         <li>Une <b>valeur maximale de complétion</b>, utile pour les calculs au tour suivant</li>
+ *     </ul>
+ * </p>
+ * @author yoanv
+ * @author lucast
+ */
 public class Indicator extends IndicLever {
     private double _value;
     private double _maxValue;
 
-    //Constructeur
+    /**Constructeur de la classe, instanciant les champs de la classe et faisant remonter les informations pour la super classe <b>IndicLever</b>
+     *
+     * @param name Nom de l'indicateur (stocké dans la super classe)
+     * @param abreviation Abréviation de l'indicateur (stockée dans la super classe)
+     * @param initValue Valeur <b>initiale de complétion</b> de l'indicateur
+     * @param maxValue Valeur <b>maximale de complétion</b> de l'indicateur
+     * @param infos <b>Informations</b> relatives à l'indicateur (stockées dans la super classe)
+     *
+     * @see IndicLever
+     * @see IndicatorList
+     * @see Lever
+     * @see Controller
+     */
     public Indicator(String name, String abreviation, double initValue, double maxValue, Collection<String> infos){
         super(name, abreviation, infos);
         _value=initValue;
