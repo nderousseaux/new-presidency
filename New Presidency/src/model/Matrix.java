@@ -154,6 +154,11 @@ public class Matrix{
     public int getColumn(String column) {
         return _titles.getColumn(column);
     }
+    
+    public String getColumnTitle(Integer columnIndex) throws IndexOutOfBoundsException{
+        String result = _titles.getColumnTitle(columnIndex);
+        return result;
+    }
 
     public void print(){
         for(int i=0;i<_lineSize;i++){

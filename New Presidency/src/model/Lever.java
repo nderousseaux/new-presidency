@@ -8,14 +8,16 @@ public class Lever extends IndicLever {
 
     private double _budget;
     private double _maxBudget;
+    private double _minBudget;
     private String _category;
 
     //Constructeur
-    public Lever(String name, String abreviation, String category, double initBudget, double maxBudget, ArrayList<String> infos){
+    public Lever(String name, String abreviation, String category, double initBudget, double minBudget, double maxBudget, ArrayList<String> infos){
         super(name, abreviation, infos);
 
         _category = category;
         _budget=initBudget;
+        _minBudget=minBudget; 
         _maxBudget=maxBudget;
     }
 
@@ -28,9 +30,17 @@ public class Lever extends IndicLever {
         if(budget > _maxBudget){
             throw new IllegalArgumentException("try to set Lever budget with a value superior to the Lever's max value");
         }
+        else if(budget < _minBudget){
+            throw new IllegalArgumentException("try to set Lever budget with a value inferior to the Lever's min value");
+        }
         else{
             _budget=budget;   
         }
+    }
+
+
+    public double getMinBudget() {
+        return _minBudget;
     }
 
     public double getMaxBudget() {

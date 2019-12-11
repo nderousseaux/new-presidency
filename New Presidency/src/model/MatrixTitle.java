@@ -52,4 +52,21 @@ public class MatrixTitle {
     public int getColumn(String column) {
         return _columnsTitles.get(column);
     }
+    
+    public String getColumnTitle(Integer columnIndex) throws IndexOutOfBoundsException{
+        String result = null;
+        for(Map.Entry<String,Integer> e : _columnsTitles.entrySet()){
+            String title = e.getKey();
+            Integer index = e.getValue();
+            
+            if(index == columnIndex)
+                result = title;
+        }
+        if(result == null){
+            throw new IndexOutOfBoundsException("La matrice ne contient pas de titre correspondant à l'index donné en paramètre");
+        }
+        else{
+            return result;
+        }
+    }
 }
