@@ -61,7 +61,7 @@ public class GraphicalView extends JFrame {
             this.setSize(1000,300);
             this.setLayout(new BorderLayout());
             this.setLocationRelativeTo(position);
-            this.setAlwaysOnTop(true);
+
 
             JLabel textLabel=new JLabel(text);
             this.add(textLabel,BorderLayout.CENTER);
@@ -161,19 +161,27 @@ public class GraphicalView extends JFrame {
 
         JPanel formationCat=new JPanel();
         formationCat.setLayout(new GridLayout(10,1));
-        formationCat.add(new JLabel("FORMATION"));
+        JLabel formLab=new JLabel("FORMATION");
+        formLab.setForeground(Color.RED);
+        formationCat.add(formLab);
 
         JPanel rechercheCat=new JPanel();
         rechercheCat.setLayout(new GridLayout(8,1));
-        rechercheCat.add(new JLabel("RECHERCHE"));
+        JLabel rechLab = new JLabel("RECHERCHE");
+        rechLab.setForeground(Color.BLUE);
+        rechercheCat.add(rechLab);
 
         JPanel centralCat=new JPanel();
         centralCat.setLayout(new GridLayout(6,1));
-        centralCat.add(new JLabel("CENTRAL"));
+        JLabel centLab=new JLabel("CENTRAL");
+        centLab.setForeground(Color.GREEN);
+        centralCat.add(centLab);
 
         JPanel constructionCat=new JPanel();
         constructionCat.setLayout(new GridLayout(4,1));
-        constructionCat.add(new JLabel("IMMOBILIER"));
+        JLabel constLab=new JLabel("IMMOBILIER");
+        constLab.setForeground(Color.ORANGE);
+        constructionCat.add(constLab);
         _scrollLevers=new JScrollPane(_levers);
         _scrollLevers.setBounds(20,40,500,610);
 
