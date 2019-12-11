@@ -454,9 +454,13 @@ public class GraphicalView extends JFrame {
         buttonsTop.add(resizeButton);
         buttonsTop.add(exitButton);
 
-        JButton tuto=new JButton();
+        JButton tuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                tutorial();
+            }
+        });
         tuto.setText("Tutoriel");
-        tuto.setEnabled(false);
         _pannelTop=new JPanel();
         _pannelTop.setLayout(new BorderLayout());
         _pannelTop.add(_year,BorderLayout.CENTER);
