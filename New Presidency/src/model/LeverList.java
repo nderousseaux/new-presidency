@@ -19,8 +19,8 @@ public class LeverList {
         return _levers;
     }
 
-    public Lever createLever(String name, String abreviation, String category, Double initBudget, Double maxBudget, ArrayList<String> infos){
-        Lever l = new Lever(name, abreviation, category, initBudget,maxBudget,infos);
+    public Lever createLever(String name, String abreviation, String category, Double initBudget, Double minBudget, Double maxBudget, ArrayList<String> infos){
+        Lever l = new Lever(name, abreviation, category, initBudget, minBudget, maxBudget,infos);
         _levers.add(l);
         return l;
     }

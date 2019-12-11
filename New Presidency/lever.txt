@@ -1,4 +1,61 @@
 New;
+info;Nombre de titulaire formation;
+name;Nombre de titulaire formation;
+abreviation;LNbTituForm;
+category;Formation;
+value;3.0;
+min value;3.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire titulaire formation;
+name;Salaire titulaire formation;
+abreviation;LSalTituForm;
+category;Formation;
+value;3000.0;
+min value;2000.0;
+max value;10000.0;
+End;
+
+New;
+info;Nombre de contractuel formation;
+name;Nombre de contractuel formation;
+abreviation;LNbContrForm;
+category;Formation;
+value;10.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire contractuels formation;
+name;Salaire contractuels formation;
+abreviation;LSalContrForm;
+category;Formation;
+value;1171.34;
+min value;1171.34;
+max value;10000.0;
+End;
+
+New;
+info;Montant à payer par les étudiants lors de leur inscription;
+name;Frais d'inscription;
+abreviation;LFraisInscr;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué aux partenariats;
+name;Partenariats;
+abreviation;LPartenar;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
 info;Budget alloué à la <b>prime de formation des enseignants</b>;
 info;Des enseignants <b>plus formés</b> donnent de <b>meilleurs cours</b>!;
 name;Prime de formation;
@@ -54,6 +111,45 @@ name;Primes recherche;
 abreviation;LPrimeRech;
 category;Recherche;
 value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Nombre de contractuel recherche;
+name;Nombre de contractuel recherche;
+abreviation;LNbContrRech;
+category;Recherche;
+value;10.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire contractuels recherche;
+name;Salaire contractuels recherche;
+abreviation;LSalContrRech;
+category;Recherche;
+value;1171.34;
+min value;1171.34;
+max value;10000.0;
+End;
+
+New;
+info;Nombre de titulaire recherche;
+name;Nombre de titulaire recherche;
+abreviation;LNbTituRech;
+category;Recherche;
+value;3.0;
+min value;3.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire titulaire recherche;
+name;Salaire titulaire recherche;
+abreviation;LSalTituRech;
+category;Recherche;
+value;3000.0;
+min value;1700.0;
 max value;10000.0;
 End;
 
