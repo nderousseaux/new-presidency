@@ -22,7 +22,7 @@ import java.awt.*;
  * @see GraphicalView
  *
  * @author nderousseaux
- * @version 2.0
+ * @version 3.0
  */
 public class GraphicLine extends JPanel{
     private StateList _stateList;
@@ -46,7 +46,6 @@ public class GraphicLine extends JPanel{
         this.setLayout(new BorderLayout());
 
 
-
         //region Graphique
         _chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
         JPanel chartPanel = new XChartPanel<>(_chart);
@@ -64,9 +63,11 @@ public class GraphicLine extends JPanel{
      *
      * @return Tableau de l'évolution de la valeur séléctionné. Une case par période.
      *
-     * @since 1.0
+     * @throws IllegalArgumentException Si le paramètre name n'est pas un levier si un indicateur connu
+     *
+     * @since 3.0
      */
-
+//TODO:Fonction qui vérifie si une série est sur le graphique
     private double[] selectData(String name){
 
         int nombre = _stateList.getStates().size()-1;
@@ -77,41 +78,12 @@ public class GraphicLine extends JPanel{
         int i=0;
         for (State s:_stateList.getStates()) {
             if (i != _stateList.getStates().size() - 1) {
-                switch (name) {
-                    case "Budget restant":
-                        values[i - 1] = s.getRemainingBudget();
-                        break;
-                    case "Taux de réussite":
-                        values[i - 1] = s.getIndicator("ITauxReu");
-                        break;
-                    case "Satisfaction du personnel":
-                        values[i - 1] = s.getIndicator("ISatPers");
-                        break;
-                    case "Satisfaction étudiante":
-                        values[i - 1] = s.getIndicator("ISatEtu");
-                        break;
-                    case "Dotation récurrente pour la formation":
-                        values[i - 1] = s.getLever("LDotRecForm");
-                        break;
-                    case "Dotation récurrente pour la recherche":
-                        values[i - 1] = s.getLever("LDotRecRech");
-                        break;
-                    case "Dotation spécifique pour la formation":
-                        values[i - 1] = s.getLever("LDotSpeForm");
-                        break;
-                    case "Prime de formation":
-                        values[i - 1] = s.getLever("LPrimeForm");
-                        break;
-                    case "Construction":
-                        values[i - 1] = s.getLever("LConstruction");
-                        break;
-                    case "Subventions aux associations étudiantes":
-                        values[i - 1] = s.getLever("LSubAssoEtu");
-                        break;
-                    default:
-                        break;
+                try{
+                    values[i] = s.getLever(name);
                 }
-
+                catch (Exception IllegalArgumentException){
+                    values[i] = s.getIndicator(name);
+                }
                 i += 1;
             }
         }

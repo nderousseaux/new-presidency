@@ -1,0 +1,233 @@
+New;
+info;Nombre de titulaire formation;
+name;Nombre de titulaire formation;
+abreviation;LNbTituForm;
+category;Formation;
+value;3.0;
+min value;3.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire titulaire formation;
+name;Salaire titulaire formation;
+abreviation;LSalTituForm;
+category;Formation;
+value;3000.0;
+min value;2000.0;
+max value;10000.0;
+End;
+
+New;
+info;Nombre de contractuel formation;
+name;Nombre de contractuel formation;
+abreviation;LNbContrForm;
+category;Formation;
+value;10.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire contractuels formation;
+name;Salaire contractuels formation;
+abreviation;LSalContrForm;
+category;Formation;
+value;1171.34;
+min value;1171.34;
+max value;10000.0;
+End;
+
+New;
+info;Montant à payer par les étudiants lors de leur inscription;
+name;Frais d'inscription;
+abreviation;LFraisInscr;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué aux partenariats;
+name;Partenariats;
+abreviation;LPartenar;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à la <b>prime de formation des enseignants</b>;
+info;Des enseignants <b>plus formés</b> donnent de <b>meilleurs cours</b>!;
+name;Prime de formation;
+abreviation;LPrimeForm;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget <b>spécifique</b> alloué aux <b>formations</b>;
+info;On entend par <b>spécifique</b> que ce budget est réservé à des <b>formations ponctuelles</b>;
+name;Dotation spécifique pour la formation;
+abreviation;LDotSpeForm;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget <b>récurrent</b> alloué aux <b>formations</b>;
+info;On entend par <b>récurrent</b> que ce budget est réservé à des <b>formations courantes</b>;
+name;Dotation récurrente pour la formation;
+abreviation;LDotRecForm;
+category;Formation;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget <b>récurrent</b> alloué à la <b>recherche</b>;
+info;On entend par <b>récurrent</b> que ce budget est réservé à la <b>recherche courante des enseignants-chercheurs</b>;
+name;Dotation récurrente pour la recherche;
+abreviation;LDotRecRech;
+category;Recherche;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget <b>spécifique</b> alloué à la <b>recherche</b>;
+info;On entend par <b>spécifique</b> que ce budget est réservé à la <b>recherche ponctuelle des enseignants-chercheurs</b> (expériences plus conséquentes par exemple);
+name;Dotation spécifique pour la recherche;
+abreviation;LDotSpeRech;
+category;Recherche;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'<b>attribution de primes</b> au personnel du <b>secteur recherche</b>;
+name;Primes recherche;
+abreviation;LPrimeRech;
+category;Recherche;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Nombre de contractuel recherche;
+name;Nombre de contractuel recherche;
+abreviation;LNbContrRech;
+category;Recherche;
+value;10.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire contractuels recherche;
+name;Salaire contractuels recherche;
+abreviation;LSalContrRech;
+category;Recherche;
+value;1171.34;
+min value;1171.34;
+max value;10000.0;
+End;
+
+New;
+info;Nombre de titulaire recherche;
+name;Nombre de titulaire recherche;
+abreviation;LNbTituRech;
+category;Recherche;
+value;3.0;
+min value;3.0;
+max value;2000.0;
+End;
+
+New;
+info;Salaire titulaire recherche;
+name;Salaire titulaire recherche;
+abreviation;LSalTituRech;
+category;Recherche;
+value;3000.0;
+min value;1700.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'<b>administration générale de l'université</b>;
+name;Administration;
+abreviation;LAdmin;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à la <b>communication générale de l'université</b>;
+info;Une université <b>plus médiatisée</b> attirera <b>plus d'élèves et de personnel compétent</b>;
+name;Communication;
+abreviation;LComm;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'<b>organisation d'événements</b>;
+info;On parle ici des <b>évènements liés à l'éducation</b> (interventions de professionnels...);
+name;Evènements;
+abreviation;LEvent;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué aux <b>primes pour l'ensemble des personnel</b> de l'université (administration, professeurs...);
+name;Primes;
+abreviation;LPrimeCentr;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué aux <b>associations étudiantes</b> pour notamment des <b>évènements étudiants</b>;
+info;L'augmenter <b>augmentera l'humeur des étudiants</b> dans l'université, mais attention!;
+info;Buvez toujours avec <b>Modération</b> (très bon ami des programmeurs)!;
+name;Subventions aux associations étudiantes;
+abreviation;LSubAssoEtu;
+category;Central;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à la <b>construction</b> de nouveaux bâtiments;
+info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement amélioré</b>;
+name;Construction;
+abreviation;LConstruction;
+category;Immobillier;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à l'<b>entretien des bâtiments existants</b>;
+info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement amélioré</b>;
+name;Entretien;
+abreviation;LEntretien;
+category;Immobillier;
+value;100.0;
+max value;10000.0;
+End;
+
+New;
+info;Budget alloué à la <b>rénovation des bâtiments existants</b>;
+info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement amélioré</b>;
+name;Rénovation;
+abreviation;LRenov;
+category;Immobillier;
+value;100.0;
+max value;10000.0;
+End;
