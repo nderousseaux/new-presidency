@@ -1,5 +1,7 @@
 package model;
 
+import controller.Controller;
+
 import java.util.ArrayList;
 /**<b><i>Lever</i> est la classe représentant les leviers de gestion du jeu</b>
  * <p>
@@ -11,8 +13,12 @@ import java.util.ArrayList;
  *         <li>Une <b>catégorie de levier de gestion</b></li>
  *     </ul>
  * </p>
- * @author yoanv
- * @author lucast
+ *
+ * @see IndicLever
+ * @see LeverList
+ * @see Indicator
+ * @see Controller
+ * @author yoanv, lucast
  */
 public class Lever extends IndicLever {
     private double _budget;
