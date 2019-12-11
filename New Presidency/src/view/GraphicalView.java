@@ -103,7 +103,7 @@ public class GraphicalView extends JFrame {
                 public void stateChanged(ChangeEvent changeEvent) {
                     try{
                         double test=(double)spinner.getValue();
-                        changeBudget(l,spinner);
+                        changeLeverBudget(l,spinner);
                     }
                     catch(Exception e){
                         spinner.setValue(String.valueOf(l.getBudget()));
@@ -354,7 +354,7 @@ public class GraphicalView extends JFrame {
      * @see GraphicalView#addAllElements()
      * @see Controller
      */
-    private void changeBudget(Lever lever, JSpinner jspinner){
+    private void changeLeverBudget(Lever lever, JSpinner jspinner){
         Integer res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
         if(res==0){
             removeAllElements();
