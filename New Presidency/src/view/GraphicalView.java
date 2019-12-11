@@ -129,13 +129,19 @@ public class GraphicalView extends JFrame {
                         changeLeverBudget(l,spinner);
                     }
                     catch(Exception e){
-
+                        String messageDerreur = "";
                         if(e.getMessage()=="Budget insuffisant"){
+                            messageDerreur+="Budget restant : "+ _controller.getBudget().getRemainingBudget() + "\n Impossible d'ajouter autant dans ce levier !";
+                        }
+                        else if(e.getMessage() == "Trop grand"){
+                            messageDerreur+="Budget maximum du levier : "+ l.getMaxBudget() + "\n Impossible d'ajouter autant dans ce levier !";
+                        }
+                        else if(e.getMessage() == "Trop petit"){
+                            messageDerreur+="Budget minimum du levier : "+ l.getMinBudget() + "\n Impossible de réduire autant le budget dans ce levier !";
 
                         }
-                        else if(e.getMessage() == "")
 
-                        System.out.println(e);
+                        JOptionPane.showMessageDialog(null, messageDerreur);
                         spinner.setValue(String.valueOf(l.getBudget()));
                         spinner.setVisible(true);
                     }
