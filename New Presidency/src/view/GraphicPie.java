@@ -1,7 +1,6 @@
 package view;
 
-//TODO:Affichage dégeu
-//TODO:Ne pas afficher le nombre de contractuels+titalaire, ni le salaire, mais plutot nombre de contract*salaire
+
 import model.Lever;
 import model.LeverList;
 import model.State;
@@ -11,6 +10,7 @@ import org.knowm.xchart.style.Styler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -32,7 +32,7 @@ import java.util.HashMap;
  * @author nderousseaux
  * @version 1.0
  */
-public class GraphicPie extends JPanel{
+public class GraphicPie extends JTabbedPane{
 
     private Collection<Lever> _leverList;
     private Double _budget;
@@ -53,18 +53,70 @@ public class GraphicPie extends JPanel{
 
         //On crée le graphique
         _chart = new PieChartBuilder().width(500).height(500).title("Répartition du budget du tour").build();
-        //On ajoute les données
+        double somme = 0;
+        //On ajoute les données (sauf les salaires)
+        ArrayList<String> donneesSalaire = new ArrayList<>();
+        donneesSalaire.add("LNbTituForm");
+        donneesSalaire.add("LSalTituForm");
+        donneesSalaire.add("LNbContrForm");
+        donneesSalaire.add("LSalContrForm");
+        donneesSalaire.add("LNbTituRech");
+        donneesSalaire.add("LSalTituRech");
+        donneesSalaire.add("LNbContrRech");
+        donneesSalaire.add("LSalContrRech");
+        HashMap<String, Double> donneesSal = new HashMap<>();
         for (Lever l:_leverList) {
-            if(l.getBudget() != 0){
+            if(l.getBudget() != 0 && !donneesSalaire.contains(l.getAbreviation())){
                 _chart.addSeries(l.getName(), l.getBudget());
+                somme += l.getBudget();
+            }
+            if(donneesSalaire.contains((l.getAbreviation()))){
+                donneesSal.put(l.getAbreviation(), l.getBudget());
             }
         }
+        //On règle les Coût salaire
+        _chart.addSeries("Coût salaires titulaires formation", donneesSal.get("LNbTituForm") * donneesSal.get("LSalTituForm"));
+        somme += donneesSal.get("LNbTituForm") * donneesSal.get("LSalTituForm");
+        _chart.addSeries("Coût salaires contractuels formation", donneesSal.get("LNbContrForm") * donneesSal.get("LSalContrForm"));
+        somme += donneesSal.get("LNbContrForm") * donneesSal.get("LSalContrForm");
+        _chart.addSeries("Coût salaires titulaires recherche", donneesSal.get("LNbTituRech") * donneesSal.get("LSalTituRech"));
+        somme += donneesSal.get("LNbTituRech") * donneesSal.get("LSalTituRech");
+        _chart.addSeries("Coût salaires contractuels recherche", donneesSal.get("LNbContrRech") * donneesSal.get("LSalContrRech"));
+        somme += donneesSal.get("LNbContrRech") * donneesSal.get("LSalContrRech");
         if(budget != 0){
             _chart.addSeries("Non-utilisé", _budget);
+            somme+=_budget;
         }
 
+        //On supprime toutes les séries qui sont en dessous de 2%
+        double restant = 0;
+        for(Lever l:_leverList){
+            if(l.getBudget()/somme<0.02){
+                _chart.removeSeries(l.getName());
+                restant+=l.getBudget();
+            }
+        }
+        if(donneesSal.get("LNbTituForm") * donneesSal.get("LSalTituForm")< 0.02){
+            _chart.removeSeries("Coût salaires titulaires formation");
+            restant += donneesSal.get("LNbTituForm") * donneesSal.get("LSalTituForm");
+        }
+        if(donneesSal.get("LNbContrForm") * donneesSal.get("LSalContrForm")< 0.02){
+            _chart.removeSeries("Coût salaires contractuels formation");
+            restant += donneesSal.get("LNbContrForm") * donneesSal.get("LSalContrForm");
+        }
+        if(donneesSal.get("LNbTituRech") * donneesSal.get("LSalTituRech")< 0.02){
+            _chart.removeSeries("Coût salaires titulaires recherche");
+            restant += donneesSal.get("LNbTituRech") * donneesSal.get("LSalTituRech");
+        }
+        if(donneesSal.get("LNbContrRech") * donneesSal.get("LSalContrRech")< 0.02){
+            _chart.removeSeries("Coût salaires contractuels recherche");
+            restant += donneesSal.get("LNbContrRech") * donneesSal.get("LSalContrRech");
+        }
+
+        _chart.addSeries("Autres leviers", restant);
+
         JPanel chartPanel = new XChartPanel<>(_chart);
-        this.add(chartPanel, BorderLayout.CENTER);
+        this.add(chartPanel);
     }
 
     public GraphicPie refresh(Collection<Lever> leverList, Double budget){
