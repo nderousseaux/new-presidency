@@ -52,7 +52,6 @@ public class GraphicalView extends JFrame {
         init(); //Initialisation de la fenetre
         updateAll(); //Initialisation des differentes variables
         homepage();
-        //addAllElements(); //Ajout des elements de la fenetre et affichage
     }
 
     /**
@@ -271,16 +270,32 @@ public class GraphicalView extends JFrame {
         //Ajout de l'annee courante
         this.getContentPane().add(_year,BorderLayout.NORTH);
 
-        JButton exit=new JButton(new AbstractAction() {
+        JButton exitButton=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 exit(0);
             }
         });
-        exit.setText("X");
-        exit.setBackground(Color.RED);
-        exit.setBorderPainted(true);
-        exit.setBounds(0,25,20,20);
+        exitButton.setText("X");
+        exitButton.setBackground(Color.RED);
+        exitButton.setBorderPainted(true);
+        exitButton.setBounds(0,25,20,20);
+
+        JButton resizeButton=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                resize();
+            }
+        });
+        resizeButton.setText("□");
+        resizeButton.setBackground(Color.ORANGE);
+        resizeButton.setBorderPainted(true);
+        resizeButton.setBounds(0,25,20,20);
+
+        JPanel buttonsTop=new JPanel();
+        buttonsTop.setLayout(new GridLayout(1,2));
+        buttonsTop.add(resizeButton);
+        buttonsTop.add(exitButton);
 
         JButton tuto=new JButton();
         tuto.setText("Tutoriel");
@@ -288,7 +303,7 @@ public class GraphicalView extends JFrame {
         _pannelTop=new JPanel();
         _pannelTop.setLayout(new BorderLayout());
         _pannelTop.add(_year,BorderLayout.CENTER);
-        _pannelTop.add(exit,BorderLayout.AFTER_LINE_ENDS);
+        _pannelTop.add(buttonsTop,BorderLayout.AFTER_LINE_ENDS);
         _pannelTop.add(tuto,BorderLayout.BEFORE_LINE_BEGINS);
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
@@ -340,7 +355,6 @@ public class GraphicalView extends JFrame {
 
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
-        this.setResizable(false);
     }
 
     /** Procédure de <b>communication à un levier donné</b> d'une <b>volonté de modification</b> (qui peut échouer selon l'action) sur le <b>budget alloué</b>
@@ -414,6 +428,14 @@ public class GraphicalView extends JFrame {
 
     private void tutorial(){
 
+    }
+
+    private void resize(){
+        if(this.getSize().equals(Toolkit.getDefaultToolkit().getScreenSize()))
+            this.setSize(1280, 800);
+        else
+            this.setSize( Toolkit.getDefaultToolkit().getScreenSize());
+        this.setLocationRelativeTo(null);
     }
 }
 

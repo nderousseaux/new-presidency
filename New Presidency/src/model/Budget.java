@@ -20,7 +20,7 @@ public class Budget {
     private double _remainingBudget;
 
     /**
-     * Constructeur de <b>Budget</b>, instanciant le budget à 10 000
+     * Constructeur de <b>Budget</b>, instanciant le budget à <b>40 000</b>, automatiquement répartis
      */
     public Budget(){
         _remainingBudget=10000;
