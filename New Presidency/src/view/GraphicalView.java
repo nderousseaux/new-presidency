@@ -6,7 +6,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import static java.lang.System.exit;
 //TODO:Avant d'ajouter une série, vérifier si elle n'existe pas déjà
 //TODO:Permettre la suppression d'une série si elle existe déjà
@@ -44,7 +43,7 @@ public class GraphicalView extends JFrame {
     private JPanel _pannelTop;
     private JPanel _pannelCenter;
     /**
-     * Constructeur de GraphicalView, appelant des sous-fonctions d'initialisation
+     * Constructeur de <b>GraphicalView</b>, appelant des <b>sous-fonctions d'initialisation</b>
      * @param controller Controlleur du jeu
      * @see GraphicalView#init()
      * @see GraphicalView#updateAll()
@@ -55,11 +54,10 @@ public class GraphicalView extends JFrame {
         init(); //Initialisation de la fenetre
         updateAll(); //Initialisation des differentes variables
         homepage();
-        //addAllElements(); //Ajout des elements de la fenetre et affichage
     }
 
     /**
-     * Procédure d'initialisation/mise à jour du budget restant à investir
+     * Procédure d'<b>initialisation/mise à jour</b> du budget restant à investir
      * @see Controller
      */
     private void updateBudget(){
@@ -72,7 +70,7 @@ public class GraphicalView extends JFrame {
     }
 
     /**
-     * Procédure d'initialisation/mise à jour des leviers de gestion<br>
+     * Procédure d'<b>initialisation/mise à jour</b> des <b>leviers de gestion</b><br>
      *     Chaque élément de la liste comporte
      *     <ul>
      *         <li>le <b>nom du levier</b></li>
@@ -156,7 +154,7 @@ public class GraphicalView extends JFrame {
     }
 
     /**
-     * Procédure d'initialisation/mise à jour des indicateurs<br>
+     * Procédure d'<b>initialisation/mise à jour</b> des <b>indicateurs de réussite</b><br>
      *     Chaque élément de la liste comporte
      *     <ul>
      *         <li>Le <b>nom de l'indicateur</b></li>
@@ -205,7 +203,7 @@ public class GraphicalView extends JFrame {
         }
     }
 
-    /**Procédure d'initialisation/mise à jour du tour
+    /**Procédure d'<b>initialisation/mise à jour du tour</b>
      * @see Controller
      */
     private void updateYear(){
@@ -215,7 +213,7 @@ public class GraphicalView extends JFrame {
         _year.add(textArea);
     }
 
-    /**Procédure de fin de tour<br>
+    /**Procédure de <b>fin de tour</b><br>
      * Avant le tour d'après, un graphique s'affiche, récapitulant la <b>répartion du budget du tour</b>
      * @see Controller
      * @see GraphicPie
@@ -231,7 +229,7 @@ public class GraphicalView extends JFrame {
             exit(0);
     }
 
-    /**Procédure de mise en place des éléments de la fenêtre principale
+    /**Procédure de <b>mise en place des éléments</b> de la fenêtre principale
      * @see GraphicalView#removeAllElements
       */
     private void addAllElements(){
@@ -274,16 +272,32 @@ public class GraphicalView extends JFrame {
         //Ajout de l'annee courante
         this.getContentPane().add(_year,BorderLayout.NORTH);
 
-        JButton exit=new JButton(new AbstractAction() {
+        JButton exitButton=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 exit(0);
             }
         });
-        exit.setText("X");
-        exit.setBackground(Color.RED);
-        exit.setBorderPainted(true);
-        exit.setBounds(0,25,20,20);
+        exitButton.setText("X");
+        exitButton.setBackground(Color.RED);
+        exitButton.setBorderPainted(true);
+        exitButton.setBounds(0,25,20,20);
+
+        JButton resizeButton=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                resize();
+            }
+        });
+        resizeButton.setText("□");
+        resizeButton.setBackground(Color.ORANGE);
+        resizeButton.setBorderPainted(true);
+        resizeButton.setBounds(0,25,20,20);
+
+        JPanel buttonsTop=new JPanel();
+        buttonsTop.setLayout(new GridLayout(1,2));
+        buttonsTop.add(resizeButton);
+        buttonsTop.add(exitButton);
 
         JButton tuto=new JButton();
         tuto.setText("Tutoriel");
@@ -291,7 +305,7 @@ public class GraphicalView extends JFrame {
         _pannelTop=new JPanel();
         _pannelTop.setLayout(new BorderLayout());
         _pannelTop.add(_year,BorderLayout.CENTER);
-        _pannelTop.add(exit,BorderLayout.AFTER_LINE_ENDS);
+        _pannelTop.add(buttonsTop,BorderLayout.AFTER_LINE_ENDS);
         _pannelTop.add(tuto,BorderLayout.BEFORE_LINE_BEGINS);
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
@@ -303,7 +317,7 @@ public class GraphicalView extends JFrame {
         this.setVisible(true);
     }
 
-    /** Procédure de retrait des éléments de la fenêtre principale (permet le rafraichissement des variables, comme le budget)
+    /** Procédure de <b>retrait des éléments</b> de la fenêtre principale (permet le <b>rafraichissement des variables</b>, comme le budget)
      * @see GraphicalView#addAllElements()
      * @see GraphicalView#updateBudget()
      *
@@ -317,7 +331,7 @@ public class GraphicalView extends JFrame {
         this.remove(_pannelTop);
     }
 
-    /**Procédure d'appel de toutes les initialisations/mises à jour de tous les éléments de la fenêtre principale
+    /**Procédure d'<b>appel de toutes les initialisations/mises à jour</b> de tous les éléments de la fenêtre principale
      *
      * @see GraphicalView#updateLevers()
      * @see GraphicalView#updateIndics()
@@ -331,7 +345,7 @@ public class GraphicalView extends JFrame {
         updateYear();
     }
 
-    /** Procédure de définition de la taille, du nom et du Layout de la fenêtre principale. Appelé une unique fois au début du jeu
+    /** Procédure de <b>définition de la taille</b>, du <b>nom</b> et du <b>Layout</b> de la fenêtre principale. Appelé une unique fois au début du jeu
      *
      * @see BorderLayout
      */
@@ -343,10 +357,9 @@ public class GraphicalView extends JFrame {
 
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
-        this.setResizable(false);
     }
 
-    /** Procédure de communication à un levier donné d'une volonté de modification (qui peut échouer selon l'action) sur le budget alloué
+    /** Procédure de <b>communication à un levier donné</b> d'une <b>volonté de modification</b> (qui peut échouer selon l'action) sur le <b>budget alloué</b>
      *
      * @param lever Levier dont le budget doit changer
      * @param jspinner JSpinner contenant la valeur du budget, entrée par l'utilisateur
@@ -370,6 +383,11 @@ public class GraphicalView extends JFrame {
         _graphicPie=_graphicPie.refresh(_controller.getLevers(),_controller.getBudget().getRemainingBudget());
     }
 
+    /** Procédure d'<b>affichage de l'écran d'accueil</b>, qui propose basiquement le tutoriel au joueur
+     *
+     * @see GraphicalView#tutorial()
+     *
+     */
     private void homepage(){
         JPanel content = new JPanel();
         content.setLayout(new GridBagLayout());
@@ -408,6 +426,18 @@ public class GraphicalView extends JFrame {
 
     private void exitPage(){
         this.removeAll();
+    }
+
+    private void tutorial(){
+
+    }
+
+    private void resize(){
+        if(this.getSize().equals(Toolkit.getDefaultToolkit().getScreenSize()))
+            this.setSize(1280, 800);
+        else
+            this.setSize( Toolkit.getDefaultToolkit().getScreenSize());
+        this.setLocationRelativeTo(null);
     }
 }
 
