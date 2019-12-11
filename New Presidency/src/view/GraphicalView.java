@@ -49,25 +49,35 @@ public class GraphicalView extends JFrame {
     private JPanel _pannelCenter;
 
     private static class TutoFrame extends JFrame{
-        private String _text;
-        private Component _position;
-        private Integer _index;
-        private boolean _tuto;
+        private TutoFrame _nextFrame;
+        private TutoFrame _previousFrame;
+        private JButton _next;
+        private JButton _previous;
 
-        public TutoFrame(String text, Component position, Integer index, boolean tuto){
-            _text=text;
-            _position=position;
-            _index=index;
-            _tuto=tuto;
+        public TutoFrame(String text, Component position, TutoFrame nextFrame, TutoFrame previousFrame){
+            _nextFrame=nextFrame;
+            _previousFrame=previousFrame;
             this.setUndecorated(true);
             this.setSize(1000,300);
             this.setLayout(new BorderLayout());
-            this.setLocationRelativeTo(_position);
+            this.setLocationRelativeTo(position);
             this.setAlwaysOnTop(true);
 
-
-            JLabel textLabel=new JLabel(_text);
+            JLabel textLabel=new JLabel(text);
             this.add(textLabel,BorderLayout.CENTER);
+
+            JPanel buttons=new JPanel();
+
+            _previous=new JButton(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    setVisible(false);
+                    _previousFrame.setVisible(true);
+                }
+            });
+            _previous.setText("Précédent");
+            buttons.add(_previous);
+
             JButton quit=new JButton(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
@@ -75,36 +85,35 @@ public class GraphicalView extends JFrame {
                 }
             });
             quit.setText("Quitter");
+            buttons.add(quit);
 
-            JButton next=new JButton(new AbstractAction() {
+            _next = new JButton(new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     setVisible(false);
+                    _nextFrame.setVisible(true);
                 }
             });
+            _next.setText("Suivant");
+            buttons.add(_next);
 
-            if(_tuto)
-                next.setText("Suivant");
-            else
-                next.setText("Terminer");
-            JPanel buttons=new JPanel();
-            if(_tuto)
-                buttons.add(quit);
-            buttons.add(next);
+            if(_nextFrame==null)
+                _next.setEnabled(false);
+            if(_previousFrame==null)
+                _previous.setEnabled(false);
+
             this.add(buttons,BorderLayout.SOUTH);
 
         }
 
-        private static void showFrames(ArrayList<TutoFrame> list){
-            while(!list.isEmpty()){
-                list.get(0).setVisible(true);
-                if(!list.get(0).isVisible())
-                    list.remove(0);
-            }
+        public void setPreviousFrame(TutoFrame previousFrame) {
+            _previousFrame = previousFrame;
+            _previous.setEnabled(true);
         }
 
-        private boolean goNext(){
-            return !isVisible();
+        public void setNextFrame(TutoFrame nextFrame){
+            _nextFrame=nextFrame;
+            _next.setEnabled(true);
         }
     }
 
@@ -561,20 +570,13 @@ public class GraphicalView extends JFrame {
 
     private void tutorial(){
         ArrayList<TutoFrame> frames=new ArrayList<>();
-        frames.add(new TutoFrame("Bienvenue sur New Presidency!",null,0,true));
-        frames.add(new TutoFrame("Bonne chance!",null,1,false));
+        TutoFrame f1= new TutoFrame("Bienvenue sur New Presidency!",null,null,null);
+        TutoFrame f2=new TutoFrame("Bonne chance!",null,null,f1);
+        f1.setNextFrame(f2);
 
-        for(int i=0;i<frames.size();i++) {
-            TutoFrame frame = frames.get(i);
-            frame.setVisible(true);
-            while(frame.isVisible()){
-                continue;
-            }
-        }
-
+        f1.setVisible(true);
     }
 
-    private final Thread _threadTuto=new Thread();
     private void resize(){
         if(this.getSize().equals(Toolkit.getDefaultToolkit().getScreenSize()))
             this.setSize(1280, 800);
