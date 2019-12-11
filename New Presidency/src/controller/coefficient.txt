@@ -1,4 +1,0 @@
-	     dLSubAssoEtu	 ;dLDotRecForm	 ;dLDotRecRech	   ;dLDotSpeForm	 ;dLImmo	;dLPrime  ;dISatPers  ;dISatEtud  ;dITauxReu
-iSatEtu	   ;0.3              ;0            ;0                ;0                 ;0.3     ;0         ;0          ;0          ;0
-iSatPers   ;0                ;0.2          ;0.2              ;0                 ;0.2     ;0.2       ;0          ;0          ;0
-iTauxReu   ;0                ;0.3          ;0                ;0.3               ;0       ;0         ;0.3        ;0          ;0
