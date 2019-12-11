@@ -443,8 +443,8 @@ public class GraphicalView extends JFrame {
      * @see Controller
      */
     private void changeLeverBudget(Lever lever, JSpinner jspinner){
-        Integer res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
-        if(res==0){
+        String res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
+        if(res.equals("Ok")){
             removeAllElements();
             updateBudget();
             addAllElements();
