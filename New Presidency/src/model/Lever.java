@@ -47,6 +47,11 @@ public class Lever extends IndicLever {
         return _maxBudget;
     }
 
+
+    public void setMinBudget(double minBudget) {
+        _minBudget = minBudget;
+    }
+
     public void setMaxBudget(double maxBudget) {
         _maxBudget = maxBudget;
     }
