@@ -129,6 +129,12 @@ public class GraphicalView extends JFrame {
                         changeLeverBudget(l,spinner);
                     }
                     catch(Exception e){
+
+                        if(e.getMessage()=="Budget insuffisant"){
+
+                        }
+                        else if(e.getMessage() == "")
+
                         System.out.println(e);
                         spinner.setValue(String.valueOf(l.getBudget()));
                         spinner.setVisible(true);
@@ -451,6 +457,17 @@ public class GraphicalView extends JFrame {
             this.setVisible(true);
         }
         else{
+            if(res.equals("insufficient budget") || res.equals("insufficient budget (salary * number employees)")){
+                throw new IllegalArgumentException("Budget insuffisant");
+            }
+            else if(res.equals("more than max")){
+                throw new IllegalArgumentException("Trop grand");
+            }
+            else if(res.equals("less than min")){
+                throw new IllegalArgumentException("Trop petit");
+            }
+
+
             jspinner.setValue(String.valueOf(lever.getBudget()));
         }
         _graphicPie=_graphicPie.refresh(_controller.getLevers(),_controller.getBudget().getRemainingBudget());

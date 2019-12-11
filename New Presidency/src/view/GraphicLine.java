@@ -24,6 +24,7 @@ import java.util.ArrayList;
  * @author nderousseaux
  * @version 5.0
  */
+//TODO:Texte qui dépasse sur les petits écrans
 public class GraphicLine extends JTabbedPane{
     private StateList _stateList;
     private XYChart _chartLevier;
