@@ -7,6 +7,7 @@ import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * <b> <i>GraphicLine</i> est une classe qui permet d'afficher les graphiques linaires</b>
@@ -22,11 +23,12 @@ import java.awt.*;
  * @see GraphicalView
  *
  * @author nderousseaux
- * @version 3.0
+ * @version 4.0
  */
 public class GraphicLine extends JPanel{
     private StateList _stateList;
     private XYChart _chart;
+    private ArrayList<String> _seriesAjoutees = new ArrayList<>();
 
     /**
      * Instancier et ouvrir la fenêtre graphique
@@ -90,7 +92,6 @@ public class GraphicLine extends JPanel{
         return values;
     }
 
-
     /**
      * Fonction pour ajouter une série sur le graphique
      * <p>
@@ -106,6 +107,7 @@ public class GraphicLine extends JPanel{
      */
     public void addSerie(String nom){
         _chart.addSeries(nom, selectData(nom));
+        _seriesAjoutees.add(nom);
         this.repaint();
     }
 
@@ -123,6 +125,20 @@ public class GraphicLine extends JPanel{
      */
     public void delSerie(String nom){
         _chart.removeSeries(nom);
+        _seriesAjoutees.remove(nom);
         this.repaint();
+    }
+
+    /**
+     * Fonction pour tester si une série est déja sur le graphique
+     *
+     * @param nom Le nom de la série à supprimer
+     *
+     * @return Booléen, vrai si la série est déjà sur le graphique.
+     *
+     * @since 4.0
+     */
+    public boolean hasSerie(String nom){
+        return _seriesAjoutees.contains(nom);
     }
 }
