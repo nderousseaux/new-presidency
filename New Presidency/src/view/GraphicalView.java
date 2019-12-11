@@ -103,7 +103,7 @@ public class GraphicalView extends JFrame {
                 public void stateChanged(ChangeEvent changeEvent) {
                     try{
                         double test=(double)spinner.getValue();
-                        changeBudget(l,spinner);
+                        changeLeverBudget(l,spinner);
                     }
                     catch(Exception e){
                         spinner.setValue(String.valueOf(l.getBudget()));
@@ -183,7 +183,11 @@ public class GraphicalView extends JFrame {
 
             //zone valeur
             JPanel zoneval=new JPanel();
-            JLabel val = new JLabel((int)i.getValue()+"%");
+            JLabel val = new JLabel(String.valueOf((int)i.getValue()));
+            //On ne met pas de pourcent pour les nombres entiers (nombre de prix Nobel, étudiants...)
+            if(!i.getAbreviation().substring(0,3).equals("INb")) {
+                val.setText(val.getText() + "%");
+            }
             zoneval.add(val);
             elem.add(nom);
             elem.add(zoneval);
@@ -350,7 +354,7 @@ public class GraphicalView extends JFrame {
      * @see GraphicalView#addAllElements()
      * @see Controller
      */
-    private void changeBudget(Lever lever, JSpinner jspinner){
+    private void changeLeverBudget(Lever lever, JSpinner jspinner){
         Integer res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
         if(res==0){
             removeAllElements();

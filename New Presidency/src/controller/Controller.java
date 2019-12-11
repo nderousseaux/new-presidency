@@ -20,6 +20,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * <b><i>Controller</i> est la classe du controlleur principal du jeu</b>
+ * <p>
+ *     Cette classe s'occupe de manipuler l'ensemble des objets du jeu, notamment:
+ *     <ul>
+ *         <li>Les <b>indicateurs et leviers</b></li>
+ *         <li>Le <b>budget à attribuer à chaque tour</b></li>
+ *         <li>Le <b>tour actuel et le nombre de tours total</b></li>
+ *     </ul>
+ * </p>
+ *
+ * @see Lever
+ * @see Indicator
+ * @see Budget
+ * @see GraphicalView
+ * @author yoanv lucast
+ */
 public class Controller {
     private Integer _year;
     private Integer _maxYear;
@@ -35,6 +52,9 @@ public class Controller {
     private File _leversFile = new File("lever.txt");
     private File _indicatorsFile = new File("indicator.txt");
 
+    /**
+     * Constructeur de la classe, instanciant chacun des champs de la classe
+     */
     public Controller(){
         _budget=new Budget();
         _indicatorList= new IndicatorList();
