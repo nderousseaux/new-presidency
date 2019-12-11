@@ -82,8 +82,23 @@ public class GraphicalView extends JFrame {
      */
     private void updateLevers(){
         _levers=new JPanel();
-        _levers.setLayout(new GridLayout(_controller.getLevers().size(),1));
+        _levers.setLayout(new GridLayout(4,1));
 
+        JPanel formationCat=new JPanel();
+        formationCat.setLayout(new GridLayout(10,1));
+        formationCat.add(new JLabel("FORMATION"));
+
+        JPanel rechercheCat=new JPanel();
+        rechercheCat.setLayout(new GridLayout(8,1));
+        rechercheCat.add(new JLabel("RECHERCHE"));
+
+        JPanel centralCat=new JPanel();
+        centralCat.setLayout(new GridLayout(6,1));
+        centralCat.add(new JLabel("CENTRAL"));
+
+        JPanel constructionCat=new JPanel();
+        constructionCat.setLayout(new GridLayout(4,1));
+        constructionCat.add(new JLabel("IMMOBILIER"));
         _scrollLevers=new JScrollPane(_levers);
         _scrollLevers.setBounds(20,40,500,610);
 
@@ -125,7 +140,10 @@ public class GraphicalView extends JFrame {
             elem.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent mouseEvent) {
-                    _graphicLine.addSerie(l);
+                    if(!_graphicLine.hasSerie(l))
+                        _graphicLine.addSerie(l);
+                    else
+                        _graphicLine.delSerie(l);
                 }
 
                 @Override
@@ -148,9 +166,20 @@ public class GraphicalView extends JFrame {
 
                 }
             });
-            _levers.add(elem);
+            if(l.getCategory().equals("Formation"))
+                formationCat.add(elem);
+            else if(l.getCategory().equals("Recherche"))
+                rechercheCat.add(elem);
+            else if(l.getCategory().equals("Central"))
+                centralCat.add(elem);
+            else if(l.getCategory().equals("Immobilier"))
+                constructionCat.add(elem);
 
         }
+        _levers.add(formationCat);
+        _levers.add(rechercheCat);
+        _levers.add(centralCat);
+        _levers.add(constructionCat);
     }
 
     /**
@@ -199,6 +228,35 @@ public class GraphicalView extends JFrame {
             }
             info+="</html>";
             elem.setToolTipText(info);
+            elem.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent mouseEvent) {
+                    if(!_graphicLine.hasSerie(i))
+                        _graphicLine.addSerie(i);
+                    else
+                        _graphicLine.delSerie(i);
+                }
+
+                @Override
+                public void mousePressed(MouseEvent mouseEvent) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent mouseEvent) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent mouseEvent) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent mouseEvent) {
+
+                }
+            });
             _indicators.add(elem);
         }
     }
@@ -307,6 +365,7 @@ public class GraphicalView extends JFrame {
         _pannelTop.add(_year,BorderLayout.CENTER);
         _pannelTop.add(buttonsTop,BorderLayout.AFTER_LINE_ENDS);
         _pannelTop.add(tuto,BorderLayout.BEFORE_LINE_BEGINS);
+
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
         _pannelBottom.add(_budget);
