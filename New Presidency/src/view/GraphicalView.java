@@ -62,7 +62,6 @@ public class GraphicalView extends JFrame {
             this.setLayout(new BorderLayout());
             this.setLocationRelativeTo(position);
 
-
             JLabel textLabel=new JLabel(text);
             this.add(textLabel,BorderLayout.CENTER);
 
@@ -530,7 +529,7 @@ public class GraphicalView extends JFrame {
      * @see Controller
      */
     private void changeLeverBudget(Lever lever, JSpinner jspinner){
-        String res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
+        String res=_controller.setLeverBudget(lever,Double.parseDouble(jspinner.getValue().toString()));
         if(res.equals("Ok")){
             removeAllElements();
             updateBudget();
@@ -590,10 +589,16 @@ public class GraphicalView extends JFrame {
         this.setVisible(true);
     }
 
+    /**Procédure d'<b>affichage de l'écran de fin</b>, qui indique la victoire ou la défaite du joueur
+     *
+     */
     private void exitPage(){
         this.removeAll();
     }
 
+    /** Procédure d'affichage du <b>tutoriel du jeu</b><br>
+     * Elle appelle des <b>TutoFrame</b>, une classe interne à GraphicalView, simplement des <b>JFrames avec un template défini</b>
+     */
     private void tutorial(){
         ArrayList<TutoFrame> frames=new ArrayList<>();
         TutoFrame f1= new TutoFrame("Bienvenue sur New Presidency!",null,null,null);
@@ -603,6 +608,9 @@ public class GraphicalView extends JFrame {
         f1.setVisible(true);
     }
 
+    /** Procédure de <b>redimensionnement de la fenêtre</b><br>
+     * Elle peut être en plein écran, ou de taille 1280*800
+     */
     private void resize(){
         if(this.getSize().equals(Toolkit.getDefaultToolkit().getScreenSize()))
             this.setSize(1280, 800);

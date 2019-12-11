@@ -287,7 +287,7 @@ public class Controller {
                 break;
         
         }*/
-        if(lever.getAbreviation().equals("LFraisInscr") && val<=lever.getMaxBudget() && val<=lever.getMinBudget()){
+        if(lever.getAbreviation().equals("LFraisInscr") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
             lever.setBudget(val);
             State thisYearState = _stateList.getState(_year);
             thisYearState.setLever(lever.getAbreviation(), val);
