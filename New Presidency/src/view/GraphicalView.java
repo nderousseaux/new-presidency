@@ -232,7 +232,7 @@ public class GraphicalView extends JFrame {
                 @Override
                 public void mouseClicked(MouseEvent mouseEvent) {
                     if(!_graphicLine.hasSerie(i))
-                        _graphicLine.addSerie(i);
+                            _graphicLine.addSerie(i);
                     else
                         _graphicLine.delSerie(i);
                 }

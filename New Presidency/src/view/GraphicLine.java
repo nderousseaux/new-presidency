@@ -1,9 +1,6 @@
 package view;
 
-import model.IndicLever;
-import model.LeverList;
-import model.State;
-import model.StateList;
+import model.*;
 import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
@@ -11,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 //TODO:Onglets indicateurs/leviers
+
 /**
  * <b> <i>GraphicLine</i> est une classe qui permet d'afficher les graphiques linaires</b>
  * <p>
@@ -27,9 +25,10 @@ import java.util.ArrayList;
  * @author nderousseaux
  * @version 4.0
  */
-public class GraphicLine extends JPanel{
+public class GraphicLine extends JTabbedPane{
     private StateList _stateList;
-    private XYChart _chart;
+    private XYChart _chartLevier;
+    private XYChart _chartIndicateur;
     private ArrayList<String> _seriesAjoutees = new ArrayList<>();
 
     /**
@@ -39,21 +38,21 @@ public class GraphicLine extends JPanel{
      *
      * @see GraphicLine#addSerie(IndicLever)
      * @see GraphicLine#delSerie(IndicLever)
-     * @see GraphicLine#selectData(String)
+     * @see GraphicLine#selectData(IndicLever)
      *
      * @since 1.0
      */
     public GraphicLine(StateList stateList){
         _stateList = stateList;
 
-        //On crée le JPanel
-        this.setLayout(new BorderLayout());
-
 
         //region Graphique
-        _chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
-        JPanel chartPanel = new XChartPanel<>(_chart);
-        this.add(chartPanel, BorderLayout.CENTER);
+        _chartLevier = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des leviers").build();
+        JPanel chartPanelLevier = new XChartPanel<>(_chartLevier);
+        this.addTab("Leviers", chartPanelLevier);
+        _chartIndicateur = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des indicateurs").build();
+        JPanel chartPanelIndicateur = new XChartPanel<>(_chartIndicateur);
+        this.addTab("Indicateurs", chartPanelIndicateur);
         //endregion
     }
 
@@ -63,15 +62,14 @@ public class GraphicLine extends JPanel{
      *     Fonction qui sélectionne la bonne série de donnée (dans StateList) en fonction du nom de la série
      * </p>
      *
-     * @param name Nom de la série dont on cherche les valeurs
+     * @param indicLever Série dont on cherche les valeurs
      *
      * @return Tableau de l'évolution de la valeur séléctionné. Une case par période.
      *
-     * @throws IllegalArgumentException Si le paramètre name n'est pas un levier si un indicateur connu
      *
-     * @since 3.0
+     * @since 4.0
      */
-    private double[] selectData(String name){
+    private double[] selectData(IndicLever indicLever){
 
         int nombre = _stateList.getStates().size()-1;
 
@@ -79,17 +77,24 @@ public class GraphicLine extends JPanel{
 
         //On parcourt tout les états de toutes les périodes. On crée une liste de l'évolution des états pour un indicateur donné.
         int i=0;
-        for (State s:_stateList.getStates()) {
-            if (i != _stateList.getStates().size() - 1) {
-                try{
-                    values[i] = s.getLever(name);
+        if(indicLever instanceof Indicator){
+            for(State s:_stateList.getStates()){
+                if (i != 0) {
+                    values[i-1] = s.getIndicator(indicLever.getAbreviation());
                 }
-                catch (Exception IllegalArgumentException){
-                    values[i] = s.getIndicator(name);
-                }
-                i += 1;
+                i++;
             }
         }
+        if(indicLever instanceof Lever){
+            for(State s:_stateList.getStates()){
+                if(i!=_stateList.getStates().size()-1){
+                    values[i] = s.getLever(indicLever.getAbreviation());
+                }
+                i++;
+            }
+        }
+
+
         return values;
     }
 
@@ -102,12 +107,20 @@ public class GraphicLine extends JPanel{
      *
      * @param indicLever Série à ajouter
      *
-     * @see GraphicLine#selectData(String)
+     * @see GraphicLine#selectData(IndicLever)
      *
      * @since 4.0
      */
     public void addSerie(IndicLever indicLever){
-        _chart.addSeries(indicLever.getName(), selectData(indicLever.getAbreviation()));
+        if(indicLever instanceof Indicator){
+            _chartIndicateur.addSeries(indicLever.getName(), selectData(indicLever));
+            this.setSelectedIndex(1);
+        }
+        if(indicLever instanceof Lever){
+            _chartLevier.addSeries(indicLever.getName(), selectData(indicLever));
+            this.setSelectedIndex(0);
+        }
+
         _seriesAjoutees.add(indicLever.getAbreviation());
         this.repaint();
     }
@@ -125,7 +138,12 @@ public class GraphicLine extends JPanel{
      * @since 2.0
      */
     public void delSerie(IndicLever indicLever){
-        _chart.removeSeries(indicLever.getName());
+        if(indicLever instanceof Indicator){
+            _chartIndicateur.removeSeries(indicLever.getName());
+        }
+        if(indicLever instanceof Lever){
+            _chartLevier.removeSeries(indicLever.getName());
+        }
         _seriesAjoutees.remove(indicLever.getAbreviation());
         this.repaint();
     }
