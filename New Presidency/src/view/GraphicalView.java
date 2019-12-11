@@ -206,10 +206,10 @@ public class GraphicalView extends JFrame {
             elem.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent mouseEvent) {
-                    if(!_graphicLine.hasSerie(l.getAbreviation()))
-                        _graphicLine.addSerie(l.getAbreviation());
+                    if(!_graphicLine.hasSerie(l))
+                        _graphicLine.addSerie(l);
                     else
-                        _graphicLine.delSerie(l.getAbreviation());
+                        _graphicLine.delSerie(l);
                 }
 
                 @Override
@@ -297,10 +297,10 @@ public class GraphicalView extends JFrame {
             elem.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent mouseEvent) {
-                    if(!_graphicLine.hasSerie(i.getAbreviation()))
-                        _graphicLine.addSerie(i.getAbreviation());
+                    if(!_graphicLine.hasSerie(i))
+                            _graphicLine.addSerie(i);
                     else
-                        _graphicLine.delSerie(i.getAbreviation());
+                        _graphicLine.delSerie(i);
                 }
 
                 @Override
@@ -377,7 +377,7 @@ public class GraphicalView extends JFrame {
 
         _graphicLine=new GraphicLine(_controller.getStateList());
         if(_controller.getYear()==1)
-            _graphicLine.setVisible(false);
+            _graphicLine.debut();
 
         //Initialisation du graphique de répartition du budget du tour
 

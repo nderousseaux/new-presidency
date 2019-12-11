@@ -1,6 +1,7 @@
 package view;
 
-
+//TODO:Affichage dégeu
+//TODO:Ne pas afficher le nombre de contractuels+titalaire, ni le salaire, mais plutot nombre de contract*salaire
 import model.Lever;
 import model.LeverList;
 import model.State;

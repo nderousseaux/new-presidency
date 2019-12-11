@@ -1,7 +1,6 @@
 package view;
 
-import model.State;
-import model.StateList;
+import model.*;
 import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
@@ -23,36 +22,61 @@ import java.util.ArrayList;
  * @see GraphicalView
  *
  * @author nderousseaux
- * @version 4.0
+ * @version 5.0
  */
-public class GraphicLine extends JPanel{
+public class GraphicLine extends JTabbedPane{
     private StateList _stateList;
-    private XYChart _chart;
+    private XYChart _chartLevier;
+    private XYChart _chartIndicateur;
     private ArrayList<String> _seriesAjoutees = new ArrayList<>();
 
     /**
-     * Instancier et ouvrir la fenêtre graphique
+     * Instancier et ouvrir les graphiques
      *
      * @param stateList La liste des états de tout les tours
      *
-     * @see GraphicLine#addSerie(String)
-     * @see GraphicLine#delSerie(String)
-     * @see GraphicLine#selectData(String)
+     * @see GraphicLine#addSerie(IndicLever)
+     * @see GraphicLine#delSerie(IndicLever)
+     * @see GraphicLine#selectData(IndicLever)
      *
      * @since 1.0
      */
     public GraphicLine(StateList stateList){
         _stateList = stateList;
 
-        //On crée le JPanel
-        this.setLayout(new BorderLayout());
-
 
         //region Graphique
-        _chart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution").build();
-        JPanel chartPanel = new XChartPanel<>(_chart);
-        this.add(chartPanel, BorderLayout.CENTER);
+        _chartLevier = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des leviers").build();
+        JPanel chartPanelLevier = new XChartPanel<>(_chartLevier);
+        this.addTab("Leviers", chartPanelLevier);
+        _chartIndicateur = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des indicateurs").build();
+        JPanel chartPanelIndicateur = new XChartPanel<>(_chartIndicateur);
+        this.addTab("Indicateurs", chartPanelIndicateur);
+
+        JPanel indice = new JPanel();
+        JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nPour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.\n\n\n\n\n\n\n\n\n");
+        Font font = new Font("Arial", Font.BOLD,20);
+        label.setFont(font);
+
+        indice.add(label);
+
+        this.addTab("Indices", indice);
+        this.setSelectedIndex(2);
         //endregion
+    }
+    /**
+     * Méthode qui affiche le message d'aide du premier tour.
+     *
+     * @since 5.0
+     */
+    public void debut(){
+        this.removeAll();
+        JPanel panel = new JPanel();
+        JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nLes graphiques d'évolution n'ont pas de sens au premier tour. Ils seront affichés au tour suivant.\n\n\n\n\n\n\n\n\n");
+        Font font = new Font("Arial", Font.BOLD,20);
+        label.setFont(font);
+        panel.add(label);
+        this.add("Indices", panel);
     }
 
     /**
@@ -61,16 +85,14 @@ public class GraphicLine extends JPanel{
      *     Fonction qui sélectionne la bonne série de donnée (dans StateList) en fonction du nom de la série
      * </p>
      *
-     * @param name Nom de la série dont on cherche les valeurs
+     * @param indicLever Série dont on cherche les valeurs
      *
      * @return Tableau de l'évolution de la valeur séléctionné. Une case par période.
      *
-     * @throws IllegalArgumentException Si le paramètre name n'est pas un levier si un indicateur connu
      *
-     * @since 3.0
+     * @since 4.0
      */
-//TODO:Fonction qui vérifie si une série est sur le graphique
-    private double[] selectData(String name){
+    private double[] selectData(IndicLever indicLever){
 
         int nombre = _stateList.getStates().size()-1;
 
@@ -78,17 +100,24 @@ public class GraphicLine extends JPanel{
 
         //On parcourt tout les états de toutes les périodes. On crée une liste de l'évolution des états pour un indicateur donné.
         int i=0;
-        for (State s:_stateList.getStates()) {
-            if (i != _stateList.getStates().size() - 1) {
-                try{
-                    values[i] = s.getLever(name);
+        if(indicLever instanceof Indicator){
+            for(State s:_stateList.getStates()){
+                if (i != 0) {
+                    values[i-1] = s.getIndicator(indicLever.getAbreviation());
                 }
-                catch (Exception IllegalArgumentException){
-                    values[i] = s.getIndicator(name);
-                }
-                i += 1;
+                i++;
             }
         }
+        if(indicLever instanceof Lever){
+            for(State s:_stateList.getStates()){
+                if(i!=_stateList.getStates().size()-1){
+                    values[i] = s.getLever(indicLever.getAbreviation());
+                }
+                i++;
+            }
+        }
+
+
         return values;
     }
 
@@ -99,15 +128,24 @@ public class GraphicLine extends JPanel{
      *     Ainsi, l'appel "Dotation récurante en Recherche" fera affiche la série de la dotation récurante en recherche sur le grahpique.
      * </p>
      *
-     * @param nom Le nom de la série à ajouter
+     * @param indicLever Série à ajouter
      *
-     * @see GraphicLine#selectData(String)
+     * @see GraphicLine#selectData(IndicLever)
      *
-     * @since 2.0
+     * @since 4.0
      */
-    public void addSerie(String nom){
-        _chart.addSeries(nom, selectData(nom));
-        _seriesAjoutees.add(nom);
+    public void addSerie(IndicLever indicLever){
+        if(indicLever instanceof Indicator){
+            _chartIndicateur.addSeries(indicLever.getName(), selectData(indicLever));
+            this.setSelectedIndex(1);
+        }
+        if(indicLever instanceof Lever){
+            _chartLevier.addSeries(indicLever.getName(), selectData(indicLever));
+            this.setSelectedIndex(0);
+        }
+
+        _seriesAjoutees.add(indicLever.getAbreviation());
+        this.remove(2);
         this.repaint();
     }
 
@@ -118,27 +156,44 @@ public class GraphicLine extends JPanel{
      *     Ainsi, l'appel "Dotation récurante en Recherche" supprimera la série de la dotation récurante en recherche sur le grahpique.
      * </p>
      *
-     * @param nom Le nom de la série à supprimer
+     * @param indicLever Série à supprimer
      *
      *
      * @since 2.0
      */
-    public void delSerie(String nom){
-        _chart.removeSeries(nom);
-        _seriesAjoutees.remove(nom);
+    public void delSerie(IndicLever indicLever){
+        if(indicLever instanceof Indicator){
+            _chartIndicateur.removeSeries(indicLever.getName());
+        }
+        if(indicLever instanceof Lever){
+            _chartLevier.removeSeries(indicLever.getName());
+        }
+        _seriesAjoutees.remove(indicLever.getAbreviation());
+
+        if(_seriesAjoutees.size() == 0){
+            JPanel indice = new JPanel();
+            JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nPour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.\n\n\n\n\n\n\n\n\n");
+            Font font = new Font("Arial", Font.BOLD,20);
+            label.setFont(font);
+            indice.add(label);
+            this.addTab("Indice", indice);
+            this.setSelectedIndex(2);
+
+        }
+
         this.repaint();
     }
 
     /**
      * Fonction pour tester si une série est déja sur le graphique
      *
-     * @param nom Le nom de la série à supprimer
+     * @param indicLever Série à tester
      *
      * @return Booléen, vrai si la série est déjà sur le graphique.
      *
      * @since 4.0
      */
-    public boolean hasSerie(String nom){
-        return _seriesAjoutees.contains(nom);
+    public boolean hasSerie(IndicLever indicLever){
+        return _seriesAjoutees.contains(indicLever.getAbreviation());
     }
 }

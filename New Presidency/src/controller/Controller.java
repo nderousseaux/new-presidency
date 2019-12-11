@@ -682,6 +682,15 @@ public class Controller {
         
         //we add the product of the inscription fees and the number of student to the budget
         _budget.setRemainingBudget(_budget.getRemainingBudget() + indicatorsForNextYearState.get("INbEtu") * leversForNextYearState.get("LFraisInscr"));
+        //we update the maxvalue for each lever with the new budget
+        for(Lever l : _leverList.getLevers()){
+            if(l.getAbreviation().equals("LNbTituForm") || l.getAbreviation().equals("LSalTituForm") || l.getAbreviation().equals("LNbContrForm") || l.getAbreviation().equals("LSalContrForm") || l.getAbreviation().equals("LFraisInscr") || l.getAbreviation().equals("LNbContrRech") || l.getAbreviation().equals("LSalContrRech") || l.getAbreviation().equals("LNbTituRech") || l.getAbreviation().equals("LSalTituRech")){
+                
+            }
+            else{
+                l.setMaxBudget(_budget.getRemainingBudget());
+            }
+        }
         
         //création de l'état(State) suivant
         State nextYearState = new State(year, _budget.getRemainingBudget(), leversForNextYearState, indicatorsForNextYearState);
