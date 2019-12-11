@@ -145,7 +145,12 @@ public class GraphicLine extends JTabbedPane{
         }
 
         _seriesAjoutees.add(indicLever.getAbreviation());
-        this.remove(2);
+        try{
+            this.remove(2);
+        }
+        catch (Exception e){
+
+        }
         this.repaint();
     }
 

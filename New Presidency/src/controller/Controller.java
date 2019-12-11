@@ -275,7 +275,7 @@ public class Controller {
         _weightForEachIndicator.createTitles(new MatrixTitle(linesTitles, columnsTitles));
     }
 
-    public Integer setLeverBudget(Lever lever, Double val){
+    public String setLeverBudget(Lever lever, Double val){
         double diff=val-lever.getBudget();
         /*String abreviation = lever.getAbreviation();
         switch(abreviation){
@@ -291,7 +291,7 @@ public class Controller {
             lever.setBudget(val);
             State thisYearState = _stateList.getState(_year);
             thisYearState.setLever(lever.getAbreviation(), val);
-            return 0;
+            return "Ok";
         }
         else if(lever.getAbreviation().equals("LSalTituForm") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
             Double nbTitulaire = _leverList.getLeverByAbreviation("LNbTituForm").getBudget();
@@ -303,10 +303,10 @@ public class Controller {
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
             
         }
@@ -317,13 +317,14 @@ public class Controller {
             diff = totalSalary - exTotalSalary;
             if(diff<=_budget.getRemainingBudget()){
                 lever.setBudget(val);
+                lever.setMinBudget(val);
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
         }
         else if(lever.getAbreviation().equals("LSalTituRech") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
@@ -336,10 +337,10 @@ public class Controller {
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
             
         }
@@ -350,13 +351,14 @@ public class Controller {
             diff = totalSalary - exTotalSalary;
             if(diff<=_budget.getRemainingBudget()){
                 lever.setBudget(val);
+                lever.setMinBudget(val);
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
         }
         else if(lever.getAbreviation().equals("LSalContrForm") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
@@ -369,10 +371,10 @@ public class Controller {
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
             
         }
@@ -386,10 +388,10 @@ public class Controller {
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
         }
         else if(lever.getAbreviation().equals("LSalContrRech") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
@@ -402,10 +404,10 @@ public class Controller {
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
             
         }
@@ -419,23 +421,29 @@ public class Controller {
                 _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
                 State thisYearState = _stateList.getState(_year);
                 thisYearState.setLever(lever.getAbreviation(), val);
-                return 0;    
+                return "Ok";    
             }
             else{
-                return -1;
+                return "insufficient budget (salary * number employees)";
             }
         }
-        else if(diff<=_budget.getRemainingBudget() && val<=lever.getMaxBudget() && val>=lever.getMinBudget()) {
-
-            lever.setBudget(val);
-            _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
-            State thisYearState = _stateList.getState(_year);
-            thisYearState.setLever(lever.getAbreviation(), val);
-            return 0;
-
-        }
         else{
-            return -1;
+            if(diff<=_budget.getRemainingBudget()){
+                return "insufficient budget";
+            }
+            else if(val<=lever.getMaxBudget()){
+                return "more than max";
+            }
+            else if(val>=lever.getMinBudget()){
+                return "less than min";
+            }
+            else{
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return "Ok";
+            }
         }
     }
 
@@ -540,11 +548,21 @@ public class Controller {
             }
             
             else{
-                if(lastYearLeverValue == 0.0)//prevents division by 0
-                lastYearLeverValue = 1.0;
-            
-                Double ratio = (thisYearLeverValue - lastYearLeverValue) / lastYearLeverValue;
-                dLevers.put(abreviation, ratio);
+                if(thisYearLeverValue >= lastYearLeverValue){
+                    if(thisYearLeverValue == 0.0)//prevents division by 0
+                        thisYearLeverValue = 1.0;
+                    
+                    Double ratio = (thisYearLeverValue - lastYearLeverValue) / thisYearLeverValue;
+                    dLevers.put(abreviation, ratio);
+                }
+                else{
+                    if(lastYearLeverValue == 0.0)//prevents division by 0
+                        lastYearLeverValue = 1.0;
+                    
+                    Double ratio = (thisYearLeverValue - lastYearLeverValue) / lastYearLeverValue;
+                    //ratio = Math.pow(ratio, -1.0);
+                    dLevers.put(abreviation, ratio);
+                }
             }
         }
 

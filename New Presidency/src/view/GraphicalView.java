@@ -194,7 +194,15 @@ public class GraphicalView extends JFrame {
 
             JLabel nom = new JLabel(l.getName());
 
-            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,Double.POSITIVE_INFINITY,50);
+            //On définit le step spinner pour chaque levier
+            int stepSpinner = 50;
+            if(l.getAbreviation().equals("LNbTituForm") || l.getAbreviation().equals("LNbContrForm") || l.getAbreviation().equals("LNbTituRech") || l.getAbreviation().equals("LNbContrRech")){
+                stepSpinner =1;
+            }
+
+
+
+            SpinnerModel model=new SpinnerNumberModel(l.getBudget(),0,Double.POSITIVE_INFINITY,stepSpinner);
             JSpinner spinner=new JSpinner(model);
             spinner.addChangeListener(new ChangeListener() {
                 @Override
@@ -204,6 +212,7 @@ public class GraphicalView extends JFrame {
                         changeLeverBudget(l,spinner);
                     }
                     catch(Exception e){
+                        System.out.println(e);
                         spinner.setValue(String.valueOf(l.getBudget()));
                         spinner.setVisible(true);
                     }
@@ -217,6 +226,11 @@ public class GraphicalView extends JFrame {
                 info+=s;
                 info+="<br>";
             }
+
+            //On ajoute la valeur maximale et la valeur minimale
+            info+= "<i><b>Valeur minimale :</b> " + l.getMinBudget() + "<br>";
+            info+= "<b>Valeur maximale :</b> " + l.getMaxBudget() + "</i>";
+
             info+="</html>";
             elem.setToolTipText(info);
 
@@ -512,8 +526,8 @@ public class GraphicalView extends JFrame {
      * @see Controller
      */
     private void changeLeverBudget(Lever lever, JSpinner jspinner){
-        Integer res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
-        if(res==0){
+        String res=_controller.setLeverBudget(lever,(double)jspinner.getValue());
+        if(res.equals("Ok")){
             removeAllElements();
             updateBudget();
             addAllElements();
