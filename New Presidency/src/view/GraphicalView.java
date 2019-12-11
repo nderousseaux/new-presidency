@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import static java.lang.System.exit;
-
+//TODO:Avant d'ajouter une série, vérifier si elle n'existe pas déjà
+//TODO:Permettre la suppression d'une série si elle existe déjà
+//TODO:Permettre l'ajout et suppression d'une série dans les indicateurs
 /**
  * <b><i>GraphicalView</i> est la classe de l'interface graphique du jeu</b>
  * <p>
