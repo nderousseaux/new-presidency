@@ -1,5 +1,7 @@
 package view;
 
+import model.IndicLever;
+import model.LeverList;
 import model.State;
 import model.StateList;
 import org.knowm.xchart.XChartPanel;
@@ -8,7 +10,7 @@ import org.knowm.xchart.XYChartBuilder;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+//TODO:Onglets indicateurs/leviers
 /**
  * <b> <i>GraphicLine</i> est une classe qui permet d'afficher les graphiques linaires</b>
  * <p>
@@ -35,8 +37,8 @@ public class GraphicLine extends JPanel{
      *
      * @param stateList La liste des états de tout les tours
      *
-     * @see GraphicLine#addSerie(String)
-     * @see GraphicLine#delSerie(String)
+     * @see GraphicLine#addSerie(IndicLever)
+     * @see GraphicLine#delSerie(IndicLever)
      * @see GraphicLine#selectData(String)
      *
      * @since 1.0
@@ -69,7 +71,6 @@ public class GraphicLine extends JPanel{
      *
      * @since 3.0
      */
-//TODO:Fonction qui vérifie si une série est sur le graphique
     private double[] selectData(String name){
 
         int nombre = _stateList.getStates().size()-1;
@@ -99,15 +100,15 @@ public class GraphicLine extends JPanel{
      *     Ainsi, l'appel "Dotation récurante en Recherche" fera affiche la série de la dotation récurante en recherche sur le grahpique.
      * </p>
      *
-     * @param nom Le nom de la série à ajouter
+     * @param indicLever Série à ajouter
      *
      * @see GraphicLine#selectData(String)
      *
-     * @since 2.0
+     * @since 4.0
      */
-    public void addSerie(String nom){
-        _chart.addSeries(nom, selectData(nom));
-        _seriesAjoutees.add(nom);
+    public void addSerie(IndicLever indicLever){
+        _chart.addSeries(indicLever.getName(), selectData(indicLever.getAbreviation()));
+        _seriesAjoutees.add(indicLever.getAbreviation());
         this.repaint();
     }
 
@@ -118,27 +119,27 @@ public class GraphicLine extends JPanel{
      *     Ainsi, l'appel "Dotation récurante en Recherche" supprimera la série de la dotation récurante en recherche sur le grahpique.
      * </p>
      *
-     * @param nom Le nom de la série à supprimer
+     * @param indicLever Série à supprimer
      *
      *
      * @since 2.0
      */
-    public void delSerie(String nom){
-        _chart.removeSeries(nom);
-        _seriesAjoutees.remove(nom);
+    public void delSerie(IndicLever indicLever){
+        _chart.removeSeries(indicLever.getName());
+        _seriesAjoutees.remove(indicLever.getAbreviation());
         this.repaint();
     }
 
     /**
      * Fonction pour tester si une série est déja sur le graphique
      *
-     * @param nom Le nom de la série à supprimer
+     * @param indicLever Série à tester
      *
      * @return Booléen, vrai si la série est déjà sur le graphique.
      *
      * @since 4.0
      */
-    public boolean hasSerie(String nom){
-        return _seriesAjoutees.contains(nom);
+    public boolean hasSerie(IndicLever indicLever){
+        return _seriesAjoutees.contains(indicLever.getAbreviation());
     }
 }

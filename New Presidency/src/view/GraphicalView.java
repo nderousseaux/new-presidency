@@ -127,7 +127,7 @@ public class GraphicalView extends JFrame {
             elem.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent mouseEvent) {
-                    _graphicLine.addSerie(l.getAbreviation());
+                    _graphicLine.addSerie(l);
                 }
 
                 @Override
