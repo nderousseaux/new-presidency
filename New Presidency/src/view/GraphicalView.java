@@ -6,10 +6,15 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
-import static java.lang.System.exit;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 
-//TODO:Lucas : Exeception si, supérieur au budget restant, inférieur au budget min, supérieur au budget max. Ensuite, gérer les try catch pour ouvrir une fenêtre pour indiquer budget insuffisant, impossible d'alouer plus de budget, impossible d'alouer moins de budget
-//TODO: Spinner de 50 en 50 pour certain, mais de 1 en 1 pour d'autres.
+import static java.lang.System.exit;
+import static java.lang.Thread.sleep;
+//TODO:Avant d'ajouter une série, vérifier si elle n'existe pas déjà
+//TODO:Permettre la suppression d'une série si elle existe déjà
+//TODO:Permettre l'ajout et suppression d'une série dans les indicateurs
 /**
  * <b><i>GraphicalView</i> est la classe de l'interface graphique du jeu</b>
  * <p>
@@ -42,6 +47,76 @@ public class GraphicalView extends JFrame {
     private JPanel _pannelBottom;
     private JPanel _pannelTop;
     private JPanel _pannelCenter;
+
+    private static class TutoFrame extends JFrame{
+        private TutoFrame _nextFrame;
+        private TutoFrame _previousFrame;
+        private JButton _next;
+        private JButton _previous;
+
+        public TutoFrame(String text, Component position, TutoFrame nextFrame, TutoFrame previousFrame){
+            _nextFrame=nextFrame;
+            _previousFrame=previousFrame;
+            this.setUndecorated(true);
+            this.setSize(1000,300);
+            this.setLayout(new BorderLayout());
+            this.setLocationRelativeTo(position);
+
+
+            JLabel textLabel=new JLabel(text);
+            this.add(textLabel,BorderLayout.CENTER);
+
+            JPanel buttons=new JPanel();
+
+            _previous=new JButton(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    setVisible(false);
+                    _previousFrame.setVisible(true);
+                }
+            });
+            _previous.setText("Précédent");
+            buttons.add(_previous);
+
+            JButton quit=new JButton(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    setVisible(false);
+                }
+            });
+            quit.setText("Quitter");
+            buttons.add(quit);
+
+            _next = new JButton(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    setVisible(false);
+                    _nextFrame.setVisible(true);
+                }
+            });
+            _next.setText("Suivant");
+            buttons.add(_next);
+
+            if(_nextFrame==null)
+                _next.setEnabled(false);
+            if(_previousFrame==null)
+                _previous.setEnabled(false);
+
+            this.add(buttons,BorderLayout.SOUTH);
+
+        }
+
+        public void setPreviousFrame(TutoFrame previousFrame) {
+            _previousFrame = previousFrame;
+            _previous.setEnabled(true);
+        }
+
+        public void setNextFrame(TutoFrame nextFrame){
+            _nextFrame=nextFrame;
+            _next.setEnabled(true);
+        }
+    }
+
     /**
      * Constructeur de <b>GraphicalView</b>, appelant des <b>sous-fonctions d'initialisation</b>
      * @param controller Controlleur du jeu
@@ -86,19 +161,27 @@ public class GraphicalView extends JFrame {
 
         JPanel formationCat=new JPanel();
         formationCat.setLayout(new GridLayout(10,1));
-        formationCat.add(new JLabel("FORMATION"));
+        JLabel formLab=new JLabel("FORMATION");
+        formLab.setForeground(Color.RED);
+        formationCat.add(formLab);
 
         JPanel rechercheCat=new JPanel();
         rechercheCat.setLayout(new GridLayout(8,1));
-        rechercheCat.add(new JLabel("RECHERCHE"));
+        JLabel rechLab = new JLabel("RECHERCHE");
+        rechLab.setForeground(Color.BLUE);
+        rechercheCat.add(rechLab);
 
         JPanel centralCat=new JPanel();
         centralCat.setLayout(new GridLayout(6,1));
-        centralCat.add(new JLabel("CENTRAL"));
+        JLabel centLab=new JLabel("CENTRAL");
+        centLab.setForeground(Color.GREEN);
+        centralCat.add(centLab);
 
         JPanel constructionCat=new JPanel();
         constructionCat.setLayout(new GridLayout(4,1));
-        constructionCat.add(new JLabel("IMMOBILIER"));
+        JLabel constLab=new JLabel("IMMOBILIER");
+        constLab.setForeground(Color.ORANGE);
+        constructionCat.add(constLab);
         _scrollLevers=new JScrollPane(_levers);
         _scrollLevers.setBounds(20,40,500,610);
 
@@ -467,7 +550,14 @@ public class GraphicalView extends JFrame {
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
         title.setFont(new Font("Arial",Font.BOLD,24));
 
-        JButton tuto=new JButton("Lancer le tutoriel");
+        JButton tuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                addAllElements();
+                tutorial();
+            }
+        });
+        tuto.setText("Afficher le tutoriel");
         JButton noTuto=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -475,7 +565,6 @@ public class GraphicalView extends JFrame {
             }
         });
         noTuto.setText("Passer le tutoriel");
-        tuto.setEnabled(false);
 
         JPanel buttons=new JPanel();
         buttons.setLayout(new GridLayout(1,2));
@@ -502,7 +591,12 @@ public class GraphicalView extends JFrame {
     }
 
     private void tutorial(){
+        ArrayList<TutoFrame> frames=new ArrayList<>();
+        TutoFrame f1= new TutoFrame("Bienvenue sur New Presidency!",null,null,null);
+        TutoFrame f2=new TutoFrame("Bonne chance!",null,null,f1);
+        f1.setNextFrame(f2);
 
+        f1.setVisible(true);
     }
 
     private void resize(){
