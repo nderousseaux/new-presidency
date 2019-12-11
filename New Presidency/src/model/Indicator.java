@@ -22,10 +22,10 @@ public class Indicator extends IndicLever {
 
     /**Constructeur de la classe, instanciant les champs de la classe et faisant remonter les informations pour la super classe <b>IndicLever</b>
      *
-     * @param name Nom de l'indicateur (stocké dans la super classe)
-     * @param abreviation Abréviation de l'indicateur (stockée dans la super classe)
-     * @param initValue Valeur <b>initiale de complétion</b> de l'indicateur
-     * @param maxValue Valeur <b>maximale de complétion</b> de l'indicateur
+     * @param name <b>Nom</b> de l'indicateur (stocké dans la super classe)
+     * @param abreviation <b>Abréviation</b> de l'indicateur (stockée dans la super classe)
+     * @param initValue <b>Valeur initiale de complétion</b> de l'indicateur
+     * @param maxValue <b>Valeur maximale de complétion</b> de l'indicateur
      * @param infos <b>Informations</b> relatives à l'indicateur (stockées dans la super classe)
      *
      * @see IndicLever
