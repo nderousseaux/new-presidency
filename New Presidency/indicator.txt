@@ -1,4 +1,28 @@
 New;
+info;Taux d'insertion professionnelle;
+name;Taux d'insertion professionnelle;
+abreviation;IInsertPro;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Réputation de la formation;
+name;Réputation de la formation;
+abreviation;IReputForm;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Réputation de la recherche;
+name;Réputation de la recherche;
+abreviation;IReputRech;
+value;50.0;
+max value;100.0;
+End;
+
+New;
 info;<b>Niveau de réussite</b> de la formation;
 info;Représente par extension le <b>niveau d'enseignement</b> de la formation et l'<b>encadrement des étudiants</b>;
 info;C'est l'indicateur qui <b>déterminera la victoire ou la défaite</b> de ce jeu.;
@@ -42,4 +66,28 @@ name;Recherche fondamentale;
 abreviation;IRechFond;
 value;50.0;
 max value;100.0;
+End;
+
+New;
+info;Nombre d'étudiants inscrits à l'université;
+name;Nombre d'étudiants;
+abreviation;INbEtu;
+value;101.0;
+max value;10000.0;
+End;
+
+New;
+info;Nombre d'articles publiés dans des revues scientifiques cette année;
+name;Nombre d'articles publiés;
+abreviation;INbArticles;
+value;10.0;
+max value;6000.0;
+End;
+
+New;
+info;Nombre de prix Nobels ayant été remporté par des chercheurs de l'université pendant son histoire;
+name;Nombre de prix Nobels;
+abreviation;INbPrNob;
+value;0.0;
+max value;50.0;
 End;

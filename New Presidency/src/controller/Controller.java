@@ -18,6 +18,7 @@ import static java.lang.System.exit;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class Controller {
     private Integer _year;
@@ -66,6 +67,7 @@ public class Controller {
         String abreviation = "";
         String category = "";
         Double value = 0.0;
+        Double minValue = 0.0;
         Double maxValue = 0.0;
         
         boolean empty = false;
@@ -94,6 +96,9 @@ public class Controller {
                 case "value":
                     value = Double.parseDouble(lineTab[1]);
                     break;
+                case "min value":
+                    minValue = Double.parseDouble(lineTab[1]);
+                    break;
                 case "max value":
                     maxValue = Double.parseDouble(lineTab[1]);
                     break;
@@ -105,8 +110,9 @@ public class Controller {
             }
             
             if(!empty && end){
-                Lever l = _leverList.createLever(name, abreviation , category, value, maxValue, infos);
+                Lever l = _leverList.createLever(name, abreviation , category, value, minValue, maxValue, infos);
                 _budget.setRemainingBudget(_budget.getRemainingBudget()-l.getBudget());
+                minValue = 0.0;
                 end = false;
             }
             else{
@@ -193,8 +199,8 @@ public class Controller {
             indicatorsForState1.put(i.getAbreviation(), i.getValue());
         }
         
-        _stateList.createState(0, 10000.0, leversForState0, indicatorsForState0);
-        _stateList.createState(1, 10000.0, leversForState1, indicatorsForState1);
+        _stateList.createState(0, 40000.0, leversForState0, indicatorsForState0);
+        _stateList.createState(1, 40000.0, leversForState1, indicatorsForState1);
     }
 
     public void initWeightForEachIndicator() throws IOException{
@@ -219,6 +225,7 @@ public class Controller {
             lineTab = line.split(";");
 
             for(int i=0; i < lineTab.length; i++){
+                
                 if(lineTab[i].matches("[a-zA-Z]*")){//if the substring starts with a letter
                     if(lineTab[i].charAt(0) == 'I'){//if the substring is the name of an indicator
                         linesTitles.put(lineTab[i], orderIndicator);
@@ -229,7 +236,7 @@ public class Controller {
                         orderDifference++;
                     }
                 }
-                else{
+                else if(lineTab[i].matches("\\-?[0-9]*\\.?[0-9]*")){//regex for a decimal number
                     _weightForEachIndicator.setCell(matrixLineIndex, matrixColumnIndex, Double.parseDouble(lineTab[i]));
                     if(matrixColumnIndex == _weightForEachIndicator.getColumnSize() -1){
                         matrixColumnIndex = 0;
@@ -239,6 +246,9 @@ public class Controller {
                         matrixColumnIndex++;
                     }
                 }
+                else{
+                    //value not process
+                }
             }
         }
         br.close();
@@ -247,7 +257,155 @@ public class Controller {
 
     public Integer setLeverBudget(Lever lever, Double val){
         double diff=val-lever.getBudget();
-        if(diff<=_budget.getRemainingBudget() && val<=lever.getMaxBudget()) {
+        /*String abreviation = lever.getAbreviation();
+        switch(abreviation){
+            case "LFraisInscr":
+                lever.setBudget(val);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                res = 0;
+                break;
+        
+        }*/
+        if(lever.getAbreviation().equals("LFraisInscr") && val<=lever.getMaxBudget() && val<=lever.getMinBudget()){
+            lever.setBudget(val);
+            State thisYearState = _stateList.getState(_year);
+            thisYearState.setLever(lever.getAbreviation(), val);
+            return 0;
+        }
+        else if(lever.getAbreviation().equals("LSalTituForm") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double nbTitulaire = _leverList.getLeverByAbreviation("LNbTituForm").getBudget();
+            Double totalSalary = nbTitulaire * val;
+            Double exTotalSalary = nbTitulaire * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+            
+        }
+        else if(lever.getAbreviation().equals("LNbTituForm") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double titulairesSalary = _leverList.getLeverByAbreviation("LSalTituForm").getBudget();
+            Double totalSalary = titulairesSalary * val;
+            Double exTotalSalary = titulairesSalary * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+        }
+        else if(lever.getAbreviation().equals("LSalTituRech") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double nbTitulaire = _leverList.getLeverByAbreviation("LNbTituRech").getBudget();
+            Double totalSalary = nbTitulaire * val;
+            Double exTotalSalary = nbTitulaire * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+            
+        }
+        else if(lever.getAbreviation().equals("LNbTituRech") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double titulairesSalary = _leverList.getLeverByAbreviation("LSalTituRech").getBudget();
+            Double totalSalary = titulairesSalary * val;
+            Double exTotalSalary = titulairesSalary * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+        }
+        else if(lever.getAbreviation().equals("LSalContrForm") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double nbContractuel = _leverList.getLeverByAbreviation("LNbContrForm").getBudget();
+            Double totalSalary = nbContractuel * val;
+            Double exTotalSalary = nbContractuel * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+            
+        }
+        else if(lever.getAbreviation().equals("LNbContrForm") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double contractualsSalary = _leverList.getLeverByAbreviation("LSalContrForm").getBudget();
+            Double totalSalary = contractualsSalary * val;
+            Double exTotalSalary = contractualsSalary * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+        }
+        else if(lever.getAbreviation().equals("LSalContrRech") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double nbContractuel = _leverList.getLeverByAbreviation("LNbContrRech").getBudget();
+            Double totalSalary = nbContractuel * val;
+            Double exTotalSalary = nbContractuel * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+            
+        }
+        else if(lever.getAbreviation().equals("LNbContrRech") && val<=lever.getMaxBudget() && val>=lever.getMinBudget()){
+            Double contractualsSalary = _leverList.getLeverByAbreviation("LSalContrRech").getBudget();
+            Double totalSalary = contractualsSalary * val;
+            Double exTotalSalary = contractualsSalary * lever.getBudget();
+            diff = totalSalary - exTotalSalary;
+            if(diff<=_budget.getRemainingBudget()){
+                lever.setBudget(val);
+                _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
+                State thisYearState = _stateList.getState(_year);
+                thisYearState.setLever(lever.getAbreviation(), val);
+                return 0;    
+            }
+            else{
+                return -1;
+            }
+        }
+        else if(diff<=_budget.getRemainingBudget() && val<=lever.getMaxBudget() && val>=lever.getMinBudget()) {
 
             lever.setBudget(val);
             _budget.setRemainingBudget(_budget.getRemainingBudget() - diff);
@@ -267,7 +425,8 @@ public class Controller {
             
         Double sumBudgetInLevers = 0.0;
         for(Lever l : _leverList.getLevers()){
-            sumBudgetInLevers += l.getBudget();
+            if(l.getAbreviation() != "LFraisInscr")
+                sumBudgetInLevers += l.getBudget();
         }
         
         if(_budget.getRemainingBudget() + sumBudgetInLevers < 0.0){
@@ -320,11 +479,21 @@ public class Controller {
             Double lastYearIndicatorValue = lastYearState.getIndicator(abreviation);
             Double thisYearIndicatorValue = thisYearState.getIndicator(abreviation);
             
-            if(lastYearIndicatorValue == 0.0)//prevents division by 0
-                lastYearIndicatorValue = 1.0;
+            if(abreviation.equals("INbPrNob")){
+                    if(lastYearIndicatorValue == 0.0)//prevents division by 0
+                        dIndicators.put(abreviation, 0.0);
+                    else{
+                        Double value = (thisYearIndicatorValue - lastYearIndicatorValue) / lastYearIndicatorValue;
+                        dIndicators.put(abreviation, value);
+                    }
+            }
+            else{
+                if(lastYearIndicatorValue == 0.0)//prevents division by 0
+                    lastYearIndicatorValue = 1.0;
             
-            Double value = (thisYearIndicatorValue - lastYearIndicatorValue) / lastYearIndicatorValue;
-            dIndicators.put(abreviation, value);
+                Double value = (thisYearIndicatorValue - lastYearIndicatorValue) / lastYearIndicatorValue;
+                dIndicators.put(abreviation, value);
+            }
         }
         
         //calculation of ratio for each levers
@@ -333,11 +502,30 @@ public class Controller {
             Double lastYearLeverValue = lastYearState.getLever(abreviation);
             Double thisYearLeverValue = thisYearState.getLever(abreviation);
             
-            if(lastYearLeverValue == 0.0)//prevents division by 0
+            if(abreviation.equals("LFraisInscr")){
+                if(thisYearLeverValue <= lastYearLeverValue){
+                    if(thisYearLeverValue == 0.0)//prevents division by 0
+                    thisYearLeverValue = 1.0;
+                
+                    Double ratio = (lastYearLeverValue - thisYearLeverValue) / thisYearLeverValue;
+                    dLevers.put(abreviation, ratio);
+                }
+                else{
+                    if(lastYearLeverValue == 0.0)//prevents division by 0
+                    lastYearLeverValue = 1.0;
+                    
+                    Double ratio = -1.0*(thisYearLeverValue - lastYearLeverValue) / lastYearLeverValue;
+                    dLevers.put(abreviation, ratio);
+                }
+            }
+            
+            else{
+                if(lastYearLeverValue == 0.0)//prevents division by 0
                 lastYearLeverValue = 1.0;
             
-            Double ratio = (thisYearLeverValue - lastYearLeverValue) / lastYearLeverValue;
-            dLevers.put(abreviation, ratio);
+                Double ratio = (thisYearLeverValue - lastYearLeverValue) / lastYearLeverValue;
+                dLevers.put(abreviation, ratio);
+            }
         }
 
         //création de la matrice contenant les indicateurs
@@ -376,6 +564,71 @@ public class Controller {
         for(Indicator i : _indicatorList.getIndicators()){
             String abreviation = i.getAbreviation();
             Double value = result.getCell(_weightForEachIndicator.getLine(abreviation),0);
+            
+            if(abreviation.equals("INbEtu") || abreviation.equals("INbArticles")){
+                Matrix m = _weightForEachIndicator.copy(_weightForEachIndicator.getLine(abreviation), 0, _weightForEachIndicator.getLine(abreviation)+1, _weightForEachIndicator.getColumnSize());
+                value = i.getValue();
+                Indicator influencer = null;
+                for(int j=0; j<m.getColumnSize(); j++){
+                    String columnAbreviation =m.getColumnTitle(j).substring(1);
+                    if(columnAbreviation.charAt(0) == 'I'){
+                        influencer = _indicatorList.getIndicatorByAbreviation(columnAbreviation);
+                        if(influencer.getValue() < 50.0){
+                            value -= m.getCell(0, j) * (1-(influencer.getValue()/influencer.getMaxValue())) * i.getValue();
+                        }
+                        if(influencer.getValue() > 50.0){
+                            value += m.getCell(0, j) * (influencer.getValue()/influencer.getMaxValue()) * i.getValue();
+                        }
+                    }
+                }
+                System.out.println("");
+            }
+            
+            if(abreviation.equals("INbPrNob")){
+                if(_year >= 4){
+                    Double moyenneRechFond = 0.0;
+                    boolean rechFondLessThan50 = false;
+                    Double rechFondValue;
+                    for(int j=1; j<4; j++){
+                        rechFondValue = _stateList.getState(_year - j).getIndicator("IRechFond");
+                        if(rechFondValue < 50.0){
+                            rechFondLessThan50 = true;
+                        }
+                        moyenneRechFond += rechFondValue;
+                    }
+                    moyenneRechFond += _indicatorList.getIndicatorByAbreviation("IRechFond").getValue();
+                    moyenneRechFond /= 5.0;
+                    
+                    if(!rechFondLessThan50){
+                        if(moyenneRechFond<50.0){
+                            value += 0.0;
+                        }
+                        else if(moyenneRechFond<65){
+                            Random r = new Random();
+                            value += Double.valueOf(r.nextInt((1 - 0) + 1) + 0);
+                        }
+                        else if(moyenneRechFond<90){
+                            Random r = new Random();
+                            value += Double.valueOf(r.nextInt((3 - 0) + 3) + 0);
+                        }
+                        else if(moyenneRechFond<99){
+                            Random r = new Random();
+                            value += Double.valueOf(r.nextInt((5 - 0) + 5) + 0);
+                        }
+                        else {
+                            Random r = new Random();
+                            value += Double.valueOf(r.nextInt((7 - 0) + 7) + 0);
+                        }
+                    }
+                    else{
+                        value += 0.0;
+                    }
+                }
+                else{
+                    value += 0.0;
+                }
+            }
+            
             i.setValue(value);
             
             indicatorsForNextYearState.put(abreviation, value);//enregistrement de la valeur de l'indicateur dans le dictionnaire servant à générer l'état State suivant
@@ -406,6 +659,9 @@ public class Controller {
                 e.setValue(0.0);
             }
         }
+        
+        //we add the product of the inscription fees and the number of student to the budget
+        _budget.setRemainingBudget(_budget.getRemainingBudget() + indicatorsForNextYearState.get("INbEtu") * leversForNextYearState.get("LFraisInscr"));
         
         //création de l'état(State) suivant
         State nextYearState = new State(year, _budget.getRemainingBudget(), leversForNextYearState, indicatorsForNextYearState);
