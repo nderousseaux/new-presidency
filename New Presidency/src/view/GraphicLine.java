@@ -7,7 +7,6 @@ import org.knowm.xchart.XYChartBuilder;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-//TODO:Onglets indicateurs/leviers
 
 /**
  * <b> <i>GraphicLine</i> est une classe qui permet d'afficher les graphiques linaires</b>
@@ -23,7 +22,7 @@ import java.util.ArrayList;
  * @see GraphicalView
  *
  * @author nderousseaux
- * @version 4.0
+ * @version 5.0
  */
 public class GraphicLine extends JTabbedPane{
     private StateList _stateList;
@@ -32,7 +31,7 @@ public class GraphicLine extends JTabbedPane{
     private ArrayList<String> _seriesAjoutees = new ArrayList<>();
 
     /**
-     * Instancier et ouvrir la fenêtre graphique
+     * Instancier et ouvrir les graphiques
      *
      * @param stateList La liste des états de tout les tours
      *
@@ -53,7 +52,31 @@ public class GraphicLine extends JTabbedPane{
         _chartIndicateur = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des indicateurs").build();
         JPanel chartPanelIndicateur = new XChartPanel<>(_chartIndicateur);
         this.addTab("Indicateurs", chartPanelIndicateur);
+
+        JPanel indice = new JPanel();
+        JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nPour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.\n\n\n\n\n\n\n\n\n");
+        Font font = new Font("Arial", Font.BOLD,20);
+        label.setFont(font);
+
+        indice.add(label);
+
+        this.addTab("Indices", indice);
+        this.setSelectedIndex(2);
         //endregion
+    }
+    /**
+     * Méthode qui affiche le message d'aide du premier tour.
+     *
+     * @since 5.0
+     */
+    public void debut(){
+        this.removeAll();
+        JPanel panel = new JPanel();
+        JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nLes graphiques d'évolution n'ont pas de sens au premier tour. Ils seront affichés au tour suivant.\n\n\n\n\n\n\n\n\n");
+        Font font = new Font("Arial", Font.BOLD,20);
+        label.setFont(font);
+        panel.add(label);
+        this.add("Indices", panel);
     }
 
     /**
@@ -122,6 +145,7 @@ public class GraphicLine extends JTabbedPane{
         }
 
         _seriesAjoutees.add(indicLever.getAbreviation());
+        this.remove(2);
         this.repaint();
     }
 
@@ -145,6 +169,18 @@ public class GraphicLine extends JTabbedPane{
             _chartLevier.removeSeries(indicLever.getName());
         }
         _seriesAjoutees.remove(indicLever.getAbreviation());
+
+        if(_seriesAjoutees.size() == 0){
+            JPanel indice = new JPanel();
+            JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nPour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.\n\n\n\n\n\n\n\n\n");
+            Font font = new Font("Arial", Font.BOLD,20);
+            label.setFont(font);
+            indice.add(label);
+            this.addTab("Indice", indice);
+            this.setSelectedIndex(2);
+
+        }
+
         this.repaint();
     }
 
