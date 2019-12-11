@@ -1,0 +1,93 @@
+New;
+info;Taux d'insertion professionnelle;
+name;Taux d'insertion professionnelle;
+abreviation;IInsertPro;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Réputation de la formation;
+name;Réputation de la formation;
+abreviation;IReputForm;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Réputation de la recherche;
+name;Réputation de la recherche;
+abreviation;IReputRech;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;<b>Niveau de réussite</b> de la formation;
+info;Représente par extension le <b>niveau d'enseignement</b> de la formation et l'<b>encadrement des étudiants</b>;
+info;C'est l'indicateur qui <b>déterminera la victoire ou la défaite</b> de ce jeu.;
+name;Taux de réussite du diplôme;
+abreviation;ITauxReu;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Représente le <b>niveau d'appréciation</b> des <b>étudiants</b>;
+info;Attention à ne pas oublier qu'un étudiant qui s'amuse <b>trop</b> travaille <b>moins</b>...;
+name;Satisfaction etudiante;
+abreviation;ISatEtu;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Représente le <b>niveau d'appréciation</b> du <b>personnel</b>;
+info;Attention à ne pas oublier qu'un professeur qui <b>ne se plait pas dans son travail</b> enseigne <b>moins bien</b>...;
+name;Satisfaction personnel;
+abreviation;ISatPers;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info; Représente le <b>niveau de la recherche</b> fournie par les <b>chercheurs de l'université</b> dans un but pratique;
+info; Il dépend donc de l'<b>état du personnel de l'université</b>;
+name;Recherche appliquée;
+abreviation;IRechApp;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info; Représente le <b>niveau de la recherche</b> fournie par les <b>chercheurs de l'université</b> dans un but fondamental;
+info; Il dépend donc de l'<b>état du personnel de l'université</b>;
+name;Recherche fondamentale;
+abreviation;IRechFond;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Nombre d'étudiants inscrits à l'université;
+name;Nombre d'étudiants;
+abreviation;INbEtu;
+value;101.0;
+max value;10000.0;
+End;
+
+New;
+info;Nombre d'articles publiés dans des revues scientifiques cette année;
+name;Nombre d'articles publiés;
+abreviation;INbArticles;
+value;10.0;
+max value;6000.0;
+End;
+
+New;
+info;Nombre de prix Nobels ayant été remporté par des chercheurs de l'université pendant son histoire;
+name;Nombre de prix Nobels;
+abreviation;INbPrNob;
+value;0.0;
+max value;50.0;
+End;
