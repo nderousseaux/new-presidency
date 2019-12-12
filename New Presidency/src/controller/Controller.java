@@ -744,7 +744,7 @@ public class Controller {
         }
         for (Indicator i:_indicatorList.getIndicators()) {
             if(i.getValue()<10){
-                if(!i.getAbreviation().equals("INbEtu") && !i.getAbreviation().equals("INbPrNob") && !i.getAbreviation().equals("NbArticles")){
+                if(!i.getAbreviation().equals("INbEtu") && !i.getAbreviation().equals("INbPrNob") && !i.getAbreviation().equals("NbArticles") && !i.getAbreviation().equals("IChargeTrav")){
                     res.add("d"+i.getAbreviation());
                 }
 
