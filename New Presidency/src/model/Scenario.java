@@ -21,7 +21,7 @@ public class Scenario extends IndicLever {
         _start = start;
     }
 
-    public HashMap<String, Double> get_depart() {
+    public HashMap<String, Double> getStart() {
         return _start;
     }
 

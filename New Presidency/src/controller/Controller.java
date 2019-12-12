@@ -710,12 +710,12 @@ public class Controller {
         Scenario scenar = _scenarioList.getScenario(name);
 
         //Maintenant, on met à jour les valeurs de départ des indicateurs
-        for (HashMap.Entry<String, Double> entry : scenar.get_depart().entrySet())
+        for (HashMap.Entry<String, Double> entry : scenar.getStart().entrySet())
         {
             _indicatorList.getIndicatorByAbreviation(entry.getKey()).setValue(entry.getValue());
         }
         //Maintenant, on met à jour les valeurs de départ des indicateurs
-        for (HashMap.Entry<String, Double> entry : scenar.get_depart().entrySet())
+        for (HashMap.Entry<String, Double> entry : scenar.getStart().entrySet())
         {
             _stateList.getState(0).setIndicator(entry.getKey(),entry.getValue());
             _stateList.getState(1).setIndicator(entry.getKey(),entry.getValue());
