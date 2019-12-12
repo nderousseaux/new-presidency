@@ -19,7 +19,10 @@ Le fichier présente le projet, contient au moins une capture d'écran et les li
 ## Lancement du jeu
 
 Pour lancer le jeu, il suffit de cliquer sur l'icone noté "New Présidency" sur le bureau ou le menu démarrer.
-
+![1](/New%20Presidency/doc/screenshoot/1.png)
+![2](/New%20Presidency/doc/screenshoot/2.png)
 
 
 ## Documentation
+
+Pour voir la documentation, cliquez [ici](/New%20Presidency/doc/html/index.html).
