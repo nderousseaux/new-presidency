@@ -262,7 +262,11 @@ public class GraphicalView extends JFrame {
 
                         }
 
+                        setAlwaysOnTop(false);
+
                         JOptionPane.showMessageDialog(null, messageDerreur);
+
+                        setAlwaysOnTop(true);
                         spinner.setValue(String.valueOf(l.getBudget()));
                         spinner.setVisible(true);
                     }
