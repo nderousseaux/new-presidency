@@ -38,12 +38,13 @@ import static java.lang.Thread.sleep;
  *
  * @author yvanderspurt
  */
-//TODO:Charge travail n'est pas dans les conditions de victoire/Defaite.
 //TODO:Faire les scénarios
 //TODO:Readme
 //TODO:Wiki
 //TODO:Milestone
 //TODO:Doc et com de code
+//TODO:Ouvrir le scenar si quiter.
+//TODO:Instaleur
 public class GraphicalView extends JFrame {
     private Controller _controller;
     private JPanel _year;
