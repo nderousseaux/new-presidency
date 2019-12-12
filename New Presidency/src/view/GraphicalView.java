@@ -329,7 +329,7 @@ public class GraphicalView extends JFrame {
             JPanel zoneval=new JPanel();
             JLabel val = new JLabel(String.valueOf((int)i.getValue()));
             //On ne met pas de pourcent pour les nombres entiers (nombre de prix Nobel, étudiants...)
-            if(!i.getAbreviation().substring(0,3).equals("INb")) {
+            if(!i.getAbreviation().substring(0,3).equals("INb") && !i.getName().equals("Charge de travail")) {
                 val.setText(val.getText() + "%");
             }
             zoneval.add(val);
