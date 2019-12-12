@@ -5,6 +5,7 @@ import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -24,7 +25,6 @@ import java.util.ArrayList;
  * @author nderousseaux
  * @version 5.0
  */
-//TODO:Texte qui dépasse sur les petits écrans
 public class GraphicLine extends JTabbedPane{
     private StateList _stateList;
     private XYChart _chartLevier;
@@ -54,17 +54,24 @@ public class GraphicLine extends JTabbedPane{
         JPanel chartPanelIndicateur = new XChartPanel<>(_chartIndicateur);
         this.addTab("Indicateurs", chartPanelIndicateur);
 
-        JPanel indice = new JPanel();
-        JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nPour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.\n\n\n\n\n\n\n\n\n");
-        Font font = new Font("Arial", Font.BOLD,20);
-        label.setFont(font);
+        String text = "Pour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.";
+        Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
+        JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
+        textLabel.setBorder(innerBorder);
+        textLabel.setFont(new Font("Arial",Font.ITALIC,20));
 
-        indice.add(label);
+        JPanel panel=new JPanel();
+        panel.setLayout(new GridLayout(1,1));
+        panel.add(textLabel);
+        panel.setSize(250,100);
+        panel.setBackground(new Color(208,233,234));
 
-        this.addTab("Indices", indice);
+        this.add("Indices", panel);
+        this.setSelectedIndex(2);
         this.setSelectedIndex(2);
         //endregion
     }
+
     /**
      * Méthode qui affiche le message d'aide du premier tour.
      *
@@ -72,11 +79,18 @@ public class GraphicLine extends JTabbedPane{
      */
     public void debut(){
         this.removeAll();
-        JPanel panel = new JPanel();
-        JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nLes graphiques d'évolution n'ont pas de sens au premier tour. Ils seront affichés au tour suivant.\n\n\n\n\n\n\n\n\n");
-        Font font = new Font("Arial", Font.BOLD,20);
-        label.setFont(font);
-        panel.add(label);
+        String text = "Les graphiques d'évolution n'ont pas de sens au premier tour. Ils seront affichés au tour suivant.";
+        Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
+        JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
+        textLabel.setBorder(innerBorder);
+        textLabel.setFont(new Font("Arial",Font.ITALIC,20));
+
+        JPanel panel=new JPanel();
+        panel.setLayout(new GridLayout(1,1));
+        panel.add(textLabel);
+        panel.setSize(250,100);
+        panel.setBackground(new Color(208,233,234));
+
         this.add("Indices", panel);
     }
 
@@ -177,14 +191,20 @@ public class GraphicLine extends JTabbedPane{
         _seriesAjoutees.remove(indicLever.getAbreviation());
 
         if(_seriesAjoutees.size() == 0){
-            JPanel indice = new JPanel();
-            JTextArea label = new JTextArea("\n\n\n\n\n\n\n\n\nPour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.\n\n\n\n\n\n\n\n\n");
-            Font font = new Font("Arial", Font.BOLD,20);
-            label.setFont(font);
-            indice.add(label);
-            this.addTab("Indice", indice);
-            this.setSelectedIndex(2);
+            String text = "Pour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.";
+            Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
+            JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
+            textLabel.setBorder(innerBorder);
+            textLabel.setFont(new Font("Arial",Font.ITALIC,20));
 
+            JPanel panel=new JPanel();
+            panel.setLayout(new GridLayout(1,1));
+            panel.add(textLabel);
+            panel.setSize(250,100);
+            panel.setBackground(new Color(208,233,234));
+
+            this.add("Indices", panel);
+            this.setSelectedIndex(2);
         }
 
         this.repaint();
