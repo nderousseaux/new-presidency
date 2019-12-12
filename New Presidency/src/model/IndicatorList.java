@@ -21,7 +21,7 @@ public class IndicatorList {
     private Collection<Indicator> _indicators;
 
     /**
-     * Constructeur de la classe <b>IndicatorList</b>
+     * Constructeur de la classe <b>IndicatorList</b>, initialisant la liste des objets <b>Indicator</b> à une <b>Collection</b> vide
      */
     public IndicatorList(){
         _indicators=new ArrayList<>();
@@ -46,7 +46,7 @@ public class IndicatorList {
 
     /**
      * Fonction retournant la liste des objets <b>Indicator</b> contenu dans l'instance de <b>IndicatorList</b>
-     * @return <b>Collection</b> des objets <b>Indicators</b>
+     * @return <b>Collection</b> des objets <b>Indicator</b>
      */
     public Collection<Indicator> getIndicators(){
         return _indicators;
