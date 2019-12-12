@@ -649,7 +649,6 @@ public class GraphicalView extends JFrame {
                 addAllElements();
                 scenar();
                 tutorial();
-
             }
         });
         tuto.setText("Afficher le tutoriel");
@@ -663,6 +662,7 @@ public class GraphicalView extends JFrame {
                 updateAll();
                 addAllElements();
                 scenar();
+
             }
         });
         noTuto.setText("Passer le tutoriel");
@@ -675,11 +675,8 @@ public class GraphicalView extends JFrame {
         haut.add(noTuto);
         buttons.add(haut);
         buttons.add(scenar);
-
-        buttons.setLayout(new GridLayout(1,2));
-        buttons.add(tuto);
-        buttons.add(noTuto);
-        buttons.setOpaque(false);
+        haut.setBackground(new Color(0,0,0,0));
+        buttons.setBackground(new Color(0,0,0,0));
         //Définition des contraintes de taille des composants
         //Contraintes du titre
         GridBagConstraints cTitle=new GridBagConstraints();
