@@ -1,11 +1,16 @@
 package view;
 import controller.*;
 import model.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -47,6 +52,9 @@ public class GraphicalView extends JFrame {
     private JPanel _pannelBottom;
     private JPanel _pannelTop;
     private JPanel _pannelCenter;
+
+    private ImageIcon _background;
+
 
     private static class TutoFrame extends JFrame{
         private TutoFrame _nextFrame;
@@ -123,8 +131,9 @@ public class GraphicalView extends JFrame {
      * @see GraphicalView#updateAll()
      * @see GraphicalView#addAllElements()
      */
-    public GraphicalView(Controller controller){
+    public GraphicalView(Controller controller) throws IOException {
         _controller=controller;
+        _background= new ImageIcon("Background.png");
         init(); //Initialisation de la fenetre
         updateAll(); //Initialisation des differentes variables
         homepage();
@@ -548,6 +557,13 @@ public class GraphicalView extends JFrame {
      *
      */
     private void homepage(){
+        Image img=_background.getImage();
+        Image temp=img.getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_SMOOTH);
+        _background=new ImageIcon(temp);
+        JLabel back=new JLabel(_background);
+        back.setBounds(0,0,this.getWidth(),this.getHeight());
+
+        this.getContentPane().add(back);
         JPanel content = new JPanel();
         content.setLayout(new GridBagLayout());
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
@@ -583,7 +599,6 @@ public class GraphicalView extends JFrame {
 
         content.add(title,cTitle);
         content.add(buttons,cButtons);
-
         this.add(content,BorderLayout.CENTER);
 
         this.setVisible(true);
