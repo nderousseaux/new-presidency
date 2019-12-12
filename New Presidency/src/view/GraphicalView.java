@@ -4,6 +4,7 @@ import model.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -65,13 +66,22 @@ public class GraphicalView extends JFrame {
         public TutoFrame(String text, Component position, TutoFrame nextFrame, TutoFrame previousFrame){
             _nextFrame=nextFrame;
             _previousFrame=previousFrame;
-            this.setUndecorated(true);
-            this.setSize(1000,300);
+            this.setSize(300,250);
             this.setLayout(new BorderLayout());
             this.setLocationRelativeTo(position);
+            this.setUndecorated(true);
+            Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
+            JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
+            textLabel.setBorder(innerBorder);
+            textLabel.setFont(new Font("Arial",Font.ITALIC,20));
 
-            JLabel textLabel=new JLabel(text);
-            this.add(textLabel,BorderLayout.CENTER);
+            JPanel panel=new JPanel();
+            panel.setLayout(new GridLayout(1,1));
+            panel.add(textLabel);
+            panel.setSize(250,100);
+            panel.setBackground(new Color(208,233,234));
+
+            this.add(panel,BorderLayout.CENTER);
 
             JPanel buttons=new JPanel();
 
@@ -557,18 +567,18 @@ public class GraphicalView extends JFrame {
      *
      */
     private void homepage(){
-        Image img=_background.getImage();
-        Image temp=img.getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_SMOOTH);
-        _background=new ImageIcon(temp);
-        JLabel back=new JLabel(_background);
-        back.setBounds(0,0,this.getWidth(),this.getHeight());
+        //Ajout du fond d'écran
+        addBackground();
 
-        this.getContentPane().add(back);
+        //Création du panel contenant les éléments
         JPanel content = new JPanel();
         content.setLayout(new GridBagLayout());
+
+        //Création du titre
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
         title.setFont(new Font("Arial",Font.BOLD,24));
 
+        //Création du bouton permettant de voir le tutoriel
         JButton tuto=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -577,6 +587,8 @@ public class GraphicalView extends JFrame {
             }
         });
         tuto.setText("Afficher le tutoriel");
+
+        //Création du bouton permettant de passer le tutoriel
         JButton noTuto=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -585,21 +597,30 @@ public class GraphicalView extends JFrame {
         });
         noTuto.setText("Passer le tutoriel");
 
+        //Création du panel comprenant les boutons
         JPanel buttons=new JPanel();
         buttons.setLayout(new GridLayout(1,2));
         buttons.add(tuto);
         buttons.add(noTuto);
 
+        //Définition des contraintes de taille des composants
+        //Contraintes du titre
         GridBagConstraints cTitle=new GridBagConstraints();
         cTitle.fill = GridBagConstraints.HORIZONTAL;
 
+        //Contraintes du panel des boutons
         GridBagConstraints cButtons=new GridBagConstraints();
         cButtons.fill=GridBagConstraints.HORIZONTAL;
         cButtons.gridy=1;
 
+        //Ajout au panel du contenu du titre et des boutons, en respectant les contraintes
         content.add(title,cTitle);
         content.add(buttons,cButtons);
+
+        //Ajout du panel de contenu dans la JFrame
+        content.setOpaque(false);
         this.add(content,BorderLayout.CENTER);
+        this.repaint();
 
         this.setVisible(true);
     }
@@ -616,11 +637,23 @@ public class GraphicalView extends JFrame {
      */
     private void tutorial(){
         ArrayList<TutoFrame> frames=new ArrayList<>();
-        TutoFrame f1= new TutoFrame("Bienvenue sur New Presidency!",null,null,null);
-        TutoFrame f2=new TutoFrame("Bonne chance!",null,null,f1);
-        f1.setNextFrame(f2);
+        TutoFrame fDeb= new TutoFrame("Bienvenue sur <b>New Presidency</b>!",null,null,null);
+        TutoFrame f2=new TutoFrame("Dans ce jeu sérieux de <b>gestion budgétaire</b>, votre but sera d'<b>atteindre les objectifs</b> fixés par le <b>scénario</b> que vous avez choisi",null,null,fDeb);
+        TutoFrame f3=new TutoFrame("Pour cela, vous devrez <b>manipuler le budget</b> de ce qu'on appelle des <b>leviers de gestion</b>",null,null,f2);
+        TutoFrame f4=new TutoFrame("Les voici<br>Ils sont séparés en 4 catégories: <ul><li><b>Formation</b></li><li><b>Recherche</b></li><li><b>Central</b></li><li><b>Immobilier</b></li></ul>",_scrollLevers,null,f3);
+        TutoFrame f5=new TutoFrame("Vous pouvez consulter les <b>informations utiles</b> de chaque levier en les survolant",_scrollLevers,null,f4);
+        TutoFrame f6=new TutoFrame("En <b>modifiant le budget de ces leviers</b>, vous compléterez ce qu'on appelle des <b>indicateurs de réussite</b>",null,null,f5);
+        TutoFrame f7=new TutoFrame("Les voici<br>Selon le <b>scénario choisi</b>, tâchez de <b>compléter les bons indicateurs de réussite</b>",_scrollIndicators,null,f6);
 
-        f1.setVisible(true);
+        TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f4);
+        fDeb.setNextFrame(f2);
+        f2.setNextFrame(f3);
+        f3.setNextFrame(f4);
+        f4.setNextFrame(f5);
+        f5.setNextFrame(f6);
+        f6.setNextFrame(f7);
+
+        fDeb.setVisible(true);
     }
 
     /** Procédure de <b>redimensionnement de la fenêtre</b><br>
@@ -632,6 +665,19 @@ public class GraphicalView extends JFrame {
         else
             this.setSize( Toolkit.getDefaultToolkit().getScreenSize());
         this.setLocationRelativeTo(null);
+    }
+
+    private void addBackground(){
+        Image img=_background.getImage();
+        Image temp=img.getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_SMOOTH);
+        _background=new ImageIcon(temp);
+        JPanel panelBack=new JPanel();
+        JLabel back=new JLabel(_background);
+        back.setBounds(0,0,this.getWidth(),this.getHeight());
+
+        panelBack.add(back);
+        this.getContentPane().add(panelBack);
+
     }
 }
 
