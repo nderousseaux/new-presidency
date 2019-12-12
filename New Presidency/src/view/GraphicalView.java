@@ -38,6 +38,12 @@ import static java.lang.Thread.sleep;
  *
  * @author yvanderspurt
  */
+//TODO:Charge travail n'est pas dans les conditions de victoire/Defaite.
+//TODO:Faire les scénarios
+//TODO:Readme
+//TODO:Wiki
+//TODO:Milestone
+//TODO:Doc et com de code
 public class GraphicalView extends JFrame {
     private Controller _controller;
     private JPanel _year;
@@ -276,35 +282,37 @@ public class GraphicalView extends JFrame {
             info+="</html>";
             elem.setToolTipText(info);
 
-            elem.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent mouseEvent) {
-                    if(!_graphicLine.hasSerie(l))
-                        _graphicLine.addSerie(l);
-                    else
-                        _graphicLine.delSerie(l);
-                }
+            if(_controller.getYear() != 1){
+                elem.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent mouseEvent) {
+                        if(!_graphicLine.hasSerie(l))
+                            _graphicLine.addSerie(l);
+                        else
+                            _graphicLine.delSerie(l);
+                    }
 
-                @Override
-                public void mousePressed(MouseEvent mouseEvent) {
+                    @Override
+                    public void mousePressed(MouseEvent mouseEvent) {
 
-                }
+                    }
 
-                @Override
-                public void mouseReleased(MouseEvent mouseEvent) {
+                    @Override
+                    public void mouseReleased(MouseEvent mouseEvent) {
 
-                }
+                    }
 
-                @Override
-                public void mouseEntered(MouseEvent mouseEvent) {
+                    @Override
+                    public void mouseEntered(MouseEvent mouseEvent) {
 
-                }
+                    }
 
-                @Override
-                public void mouseExited(MouseEvent mouseEvent) {
+                    @Override
+                    public void mouseExited(MouseEvent mouseEvent) {
 
-                }
-            });
+                    }
+                });
+            }
             if(l.getCategory().equals("Formation"))
                 formationCat.add(elem);
             else if(l.getCategory().equals("Recherche"))
@@ -367,35 +375,38 @@ public class GraphicalView extends JFrame {
             }
             info+="</html>";
             elem.setToolTipText(info);
-            elem.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent mouseEvent) {
-                    if(!_graphicLine.hasSerie(i))
+            if(_controller.getYear() != 1){
+                elem.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent mouseEvent) {
+                        if(!_graphicLine.hasSerie(i))
                             _graphicLine.addSerie(i);
-                    else
-                        _graphicLine.delSerie(i);
-                }
+                        else
+                            _graphicLine.delSerie(i);
+                    }
 
-                @Override
-                public void mousePressed(MouseEvent mouseEvent) {
+                    @Override
+                    public void mousePressed(MouseEvent mouseEvent) {
 
-                }
+                    }
 
-                @Override
-                public void mouseReleased(MouseEvent mouseEvent) {
+                    @Override
+                    public void mouseReleased(MouseEvent mouseEvent) {
 
-                }
+                    }
 
-                @Override
-                public void mouseEntered(MouseEvent mouseEvent) {
+                    @Override
+                    public void mouseEntered(MouseEvent mouseEvent) {
 
-                }
+                    }
 
-                @Override
-                public void mouseExited(MouseEvent mouseEvent) {
+                    @Override
+                    public void mouseExited(MouseEvent mouseEvent) {
 
-                }
-            });
+                    }
+                });
+            }
+
             _indicators.add(elem);
         }
     }
@@ -509,7 +520,7 @@ public class GraphicalView extends JFrame {
         JButton tuto=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                tutorial();
+                tutorial(false);
             }
         });
         tuto.setText("Tutoriel");
@@ -619,7 +630,7 @@ public class GraphicalView extends JFrame {
 
     /** Procédure d'<b>affichage de l'écran d'accueil</b>, qui propose basiquement le tutoriel au joueur
      *
-     * @see GraphicalView#tutorial()
+     * @see GraphicalView#tutorial(Boolean)
      *
      */
     private void homepage(){
@@ -647,8 +658,8 @@ public class GraphicalView extends JFrame {
                 _controller.setIndicatorFunctScenar(_scenario);
                 updateAll();
                 addAllElements();
-                scenar();
-                tutorial();
+                tutorial(true);
+
             }
         });
         tuto.setText("Afficher le tutoriel");
@@ -710,8 +721,11 @@ public class GraphicalView extends JFrame {
 
     /** Procédure d'affichage du <b>tutoriel du jeu</b><br>
      * Elle appelle des <b>TutoFrame</b>, une classe interne à GraphicalView, simplement des <b>JFrames avec un template défini</b>
+     *
+     *
+     * @param scenarioALaFin Booléen, vaut vrai si il faut lancer la description du scénario à la fin.
      */
-    private void tutorial(){
+    private void tutorial(Boolean scenarioALaFin){
         ArrayList<TutoFrame> frames=new ArrayList<>();
         TutoFrame fDeb= new TutoFrame("Bienvenue sur <b>New Presidency</b>!",null,null,null);
         TutoFrame f2=new TutoFrame("Dans ce jeu sérieux de <b>gestion budgétaire</b>, vous êtes <b>le président de l'université de Strasbourg</b> et votre but sera d'<b>atteindre les objectifs</b> fixés par le <b>scénario</b> que vous avez choisi, avant la fin des tours",null,null,fDeb);
@@ -735,6 +749,16 @@ public class GraphicalView extends JFrame {
         f8.setNextFrame(f9);
         f9.setNextFrame(f10);
         fDeb.setVisible(true);
+
+        Collection<String> infos = _controller.getInfoScenario(_scenario);
+        String infosString = "";
+        for (String s:infos) {
+            infosString+= s;
+            infosString+= "\n";
+        }
+
+        TutoFrame scenar= new TutoFrame(infosString,null,null,null);
+        if(scenarioALaFin)f7.setNextFrame(scenar);
     }
 
     private void scenar(){
