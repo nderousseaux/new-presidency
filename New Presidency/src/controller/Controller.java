@@ -328,6 +328,7 @@ public class Controller {
                         Double employeesSalary = _leverList.getLeverByAbreviation("LSalTitu"+category).getBudget();
                         totalSalary = employeesSalary * val;
                         exTotalSalary = employeesSalary * lever.getBudget();
+                        diff = totalSalary - exTotalSalary; 
                         if(diff>_budget.getRemainingBudget())
                             return "insufficient budget (salary * number employees)";
                         lever.setMinBudget(val);
@@ -336,6 +337,7 @@ public class Controller {
                         employeesSalary = _leverList.getLeverByAbreviation("LSalContr"+category).getBudget();
                         totalSalary = employeesSalary * val;
                         exTotalSalary = employeesSalary * lever.getBudget();
+                        diff = totalSalary - exTotalSalary;
                         if(diff>_budget.getRemainingBudget())
                             return "insufficient budget (salary * number employees)";
                         break;
