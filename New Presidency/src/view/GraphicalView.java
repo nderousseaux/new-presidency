@@ -55,6 +55,7 @@ public class GraphicalView extends JFrame {
     private JPanel _pannelCenter;
 
     private ImageIcon _background;
+    private JFrame _backFrame;
 
 
     private static class TutoFrame extends JFrame{
@@ -70,6 +71,17 @@ public class GraphicalView extends JFrame {
             this.setLayout(new BorderLayout());
             this.setLocationRelativeTo(position);
             this.setUndecorated(true);
+            this.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent focusEvent) {
+
+                }
+
+                @Override
+                public void focusLost(FocusEvent focusEvent) {
+                    dispose();
+                }
+            });
             Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
             JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
             textLabel.setBorder(innerBorder);
@@ -532,7 +544,6 @@ public class GraphicalView extends JFrame {
         this.setUndecorated(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(screenSize);
-
         this.setTitle("New Presidency");
         this.setLayout(new BorderLayout());
     }
@@ -602,7 +613,7 @@ public class GraphicalView extends JFrame {
         buttons.setLayout(new GridLayout(1,2));
         buttons.add(tuto);
         buttons.add(noTuto);
-
+        buttons.setOpaque(false);
         //Définition des contraintes de taille des composants
         //Contraintes du titre
         GridBagConstraints cTitle=new GridBagConstraints();
@@ -616,11 +627,13 @@ public class GraphicalView extends JFrame {
         //Ajout au panel du contenu du titre et des boutons, en respectant les contraintes
         content.add(title,cTitle);
         content.add(buttons,cButtons);
-
         //Ajout du panel de contenu dans la JFrame
         content.setOpaque(false);
+
+
         this.add(content,BorderLayout.CENTER);
-        this.repaint();
+        this.setBackground(new Color(0,0,0,0));
+
 
         this.setVisible(true);
     }
@@ -638,13 +651,16 @@ public class GraphicalView extends JFrame {
     private void tutorial(){
         ArrayList<TutoFrame> frames=new ArrayList<>();
         TutoFrame fDeb= new TutoFrame("Bienvenue sur <b>New Presidency</b>!",null,null,null);
-        TutoFrame f2=new TutoFrame("Dans ce jeu sérieux de <b>gestion budgétaire</b>, votre but sera d'<b>atteindre les objectifs</b> fixés par le <b>scénario</b> que vous avez choisi",null,null,fDeb);
+        TutoFrame f2=new TutoFrame("Dans ce jeu sérieux de <b>gestion budgétaire</b>, vous êtes <b>le président de l'université de Strasbourg</b> et votre but sera d'<b>atteindre les objectifs</b> fixés par le <b>scénario</b> que vous avez choisi, avant la fin des tours",null,null,fDeb);
         TutoFrame f3=new TutoFrame("Pour cela, vous devrez <b>manipuler le budget</b> de ce qu'on appelle des <b>leviers de gestion</b>",null,null,f2);
         TutoFrame f4=new TutoFrame("Les voici<br>Ils sont séparés en 4 catégories: <ul><li><b>Formation</b></li><li><b>Recherche</b></li><li><b>Central</b></li><li><b>Immobilier</b></li></ul>",_scrollLevers,null,f3);
         TutoFrame f5=new TutoFrame("Vous pouvez consulter les <b>informations utiles</b> de chaque levier en les survolant",_scrollLevers,null,f4);
         TutoFrame f6=new TutoFrame("En <b>modifiant le budget de ces leviers</b>, vous compléterez ce qu'on appelle des <b>indicateurs de réussite</b>",null,null,f5);
         TutoFrame f7=new TutoFrame("Les voici<br>Selon le <b>scénario choisi</b>, tâchez de <b>compléter les bons indicateurs de réussite</b>",_scrollIndicators,null,f6);
-
+        TutoFrame f8=new TutoFrame("Comme les leviers, vous pouvez <b>consulter les informations</b> de chaque indicateur (notamment ce par quoi ils sont influencés) au survol",_scrollIndicators,null,f7);
+        TutoFrame f9=new TutoFrame("Vous avez à votre disposition deux <b>graphiques de suivi de gestion</b>",null,null,f8);
+        TutoFrame f10=new TutoFrame("Le premier, ici, permet de voir la <b>répartition du budget</b> que vous avez à disposition à ce tour",_graphicPie,null,f9);
+        //TutoFrame f11=new TutoFrame("Le second, ici, permet de voir l'<b>évolution</b>")
         TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f4);
         fDeb.setNextFrame(f2);
         f2.setNextFrame(f3);
@@ -652,7 +668,9 @@ public class GraphicalView extends JFrame {
         f4.setNextFrame(f5);
         f5.setNextFrame(f6);
         f6.setNextFrame(f7);
-
+        f7.setNextFrame(f8);
+        f8.setNextFrame(f9);
+        f9.setNextFrame(f10);
         fDeb.setVisible(true);
     }
 
@@ -671,13 +689,21 @@ public class GraphicalView extends JFrame {
         Image img=_background.getImage();
         Image temp=img.getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_SMOOTH);
         _background=new ImageIcon(temp);
+
+        _backFrame=new JFrame();
+        _backFrame.setSize(this.getSize());
+        _backFrame.setUndecorated(true);
+        _backFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         JPanel panelBack=new JPanel();
         JLabel back=new JLabel(_background);
         back.setBounds(0,0,this.getWidth(),this.getHeight());
-
+        back.setOpaque(true);
         panelBack.add(back);
-        this.getContentPane().add(panelBack);
+        _backFrame.add(panelBack,BorderLayout.CENTER);
 
+        _backFrame.setEnabled(false);
+        _backFrame.setFocusable(false);
+        _backFrame.setVisible(true);
     }
 }
 
