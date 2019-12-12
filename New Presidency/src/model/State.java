@@ -34,6 +34,12 @@ public class State{
         
         return _indicators.get(abreviation);
     }
+    public void setIndicator(String abreviation, Double val) throws IllegalArgumentException{
+        if(!_indicators.containsKey(abreviation))
+            throw new IllegalArgumentException("The abreviation given in arguments doesn't exist in this State");
+
+        _indicators.replace(abreviation, val);
+    }
 
     public HashMap<String, Double> getLevers(){
         return _levers;

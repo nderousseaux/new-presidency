@@ -43,6 +43,7 @@ public class Controller {
     private Budget _budget;
 
     private final StateList _stateList;
+    private final ScenarioList _scenarioList;
     private final IndicatorList _indicatorList;
     private final LeverList _leverList;
    
@@ -60,6 +61,7 @@ public class Controller {
         _indicatorList= new IndicatorList();
         _leverList= new LeverList();
         _stateList= new StateList();
+        _scenarioList = new ScenarioList();
         _year=1;
         _maxYear=8;
 
@@ -71,7 +73,10 @@ public class Controller {
 
         //initialisation of indicators
         initIndicators();
-        
+
+        //initialisation des scenarios
+        initScenario();
+
         initState();
 
         initWeightForEachIndicator();
@@ -725,5 +730,155 @@ public class Controller {
         //création de l'état(State) suivant
         State nextYearState = new State(year, _budget.getRemainingBudget(), leversForNextYearState, indicatorsForNextYearState);
         _stateList.addState(nextYearState);
+    }
+
+    public void initScenario() throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("scenarios.txt"));
+        String line;
+        String[] lineTab;
+
+        ArrayList<String> infos = new ArrayList<String>();
+        String name = "";
+        String abreviation = "";
+        HashMap<String, Double> depart = new HashMap<>();
+        HashMap<String, Double> victoire = new HashMap<>();
+        HashMap<String, Double> defaite = new HashMap<>();
+
+        boolean empty = false;
+        boolean end = false;
+
+
+        while ((line = br.readLine()) != null) {
+            lineTab = line.split(";");
+
+            switch(lineTab[0]){
+                case "New":
+                    infos = new ArrayList<String>();
+                    depart = new HashMap<>();
+                    victoire = new HashMap<>();
+                    defaite = new HashMap<>();
+                    break;
+                case "info":
+                    infos.add(lineTab[1]);
+                    break;
+                case "name":
+                    name = lineTab[1];
+                    break;
+                case "abreviation":
+                    abreviation = lineTab[1];
+                    break;
+                case "dep":
+                    String[] dep = lineTab[1].split("=");
+                    depart.put(dep[0], Double.parseDouble(dep[1]));
+                    break;
+                case "vic":
+                    String[] vic = lineTab[1].split(">");
+                    victoire.put(vic[0], Double.parseDouble(vic[1]));
+                    break;
+                case "def":
+                    String[] def = lineTab[1].split("<");
+                    defaite.put(def[0], Double.parseDouble(def[1]));
+                    break;
+                case "End":
+                    end = true;
+                    break;
+                default:
+                    empty = true;
+            }
+
+            if(!empty && end){
+                Scenario s = _scenarioList.createScenario(name, abreviation,depart, victoire, defaite, infos);
+                end = false;
+            }
+            else{
+                empty = false;
+            }
+
+        }
+        br.close();
+
+
+
+    }
+
+    public ArrayList<String> getTextScenarios(){
+        ArrayList<String> res = new ArrayList<>();
+        for (Scenario s:_scenarioList.getScenarios()) {
+            res.add(s.getName());
+        }
+        return res;
+    }
+    public Collection<String> getInfoScenario(String name){
+        return _scenarioList.getScenario(name).getInfos();
+    }
+    public void setIndicatorFunctScenar(String name){
+        Scenario scenar = _scenarioList.getScenario(name);
+
+        //Maintenant, on met à jour les valeurs de départ des indicateurs
+        for (HashMap.Entry<String, Double> entry : scenar.get_depart().entrySet())
+        {
+            _indicatorList.getIndicatorByAbreviation(entry.getKey()).setValue(entry.getValue());
+        }
+        //Maintenant, on met à jour les valeurs de départ des indicateurs
+        for (HashMap.Entry<String, Double> entry : scenar.get_depart().entrySet())
+        {
+            _stateList.getState(0).setIndicator(entry.getKey(),entry.getValue());
+            _stateList.getState(1).setIndicator(entry.getKey(),entry.getValue());
+        }
+
+
+
+    }
+
+    public boolean conditionVictoireValidee(String scenario){
+        Boolean res = true;
+        for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).get_victoire().entrySet()) {
+            if(_indicatorList.getIndicatorByAbreviation(entry.getKey()).getValue() < entry.getValue()){
+                res = false;
+                break;
+            }
+        }
+
+        return res;
+    }
+    public ArrayList<String> conditionDefaiteValidee(String scenario){
+        ArrayList<String> res = new ArrayList<>();
+        for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).get_defaite().entrySet()) {
+            if(_indicatorList.getIndicatorByAbreviation(entry.getKey()).getValue() <= entry.getValue()){
+                res.add("D"+entry.getKey());
+                break;
+            }
+        }
+        for (Indicator i:_indicatorList.getIndicators()) {
+            if(i.getValue()<10){
+                if(!i.getAbreviation().equals("INbEtu") && !i.getAbreviation().equals("INbPrNob") && !i.getAbreviation().equals("NbArticles")){
+                    res.add("d"+i.getAbreviation());
+                }
+
+            }
+        }
+        if(_indicatorList.getIndicatorByAbreviation("INbEtu").getValue() <= 0){
+            res.add("d"+"INbEtu");
+        }
+        return res;
+    }
+
+    public ArrayList<String> fin(String scenario){
+        ArrayList<String> res = new ArrayList<>();
+
+        //On teste la victoire
+        if(conditionVictoireValidee(scenario)){
+            res.add("VCondi");
+        }
+        //On teste la defaite
+        else if(_year>_maxYear){
+            res.add("DYear");
+        }
+        else if(conditionDefaiteValidee(scenario).size()!=0){
+            res.addAll(conditionDefaiteValidee(scenario));
+        }
+
+
+        return res;
     }
 }
