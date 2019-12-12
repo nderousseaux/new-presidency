@@ -1,0 +1,32 @@
+New;
+info;L'objectif est, à partir d'un taux de réussite de 30% d'arriver à un taux de 50% Mais attention, ne pas déscendre la réputation formation en dessous de 30%;
+name;Classique;
+abreviation;SClassique;
+dep;ITauxReu=40;
+dep;IReputForm=40;
+dep;ISatEtu=60;
+vic;ITauxReu>100;
+def;IReputForm<30;
+End;
+
+New;
+info;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;
+name;Nope;
+abreviation;SNope;
+dep;ITauxReu=70;
+dep;IReputForm=70;
+dep;ISatEtu=70;
+vic;ITauxReu>100;
+def;IReputForm<30;
+End;
+
+New;
+info;Je suis plus sur, mais réessaye;
+name;Try again;
+abreviation;STry;
+dep;ITauxReu=30;
+dep;IReputForm=30;
+dep;ISatEtu=30;
+vic;ITauxReu>50;
+def;IReputForm<30;
+End;
