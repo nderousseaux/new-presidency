@@ -44,6 +44,7 @@ public class Controller {
 
     private final StateList _stateList;
     private final ScenarioList _scenarioList;
+
     private final IndicatorList _indicatorList;
     private final LeverList _leverList;
    
