@@ -685,6 +685,9 @@ public class GraphicalView extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**Procédure d'initialisation du <b>Background</b> du jeu, une JFrame
+     *
+     */
     private void addBackground(){
         Image img=_background.getImage();
         Image temp=img.getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_SMOOTH);
