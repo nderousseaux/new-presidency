@@ -17,10 +17,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static java.lang.System.exit;
+import static java.lang.System.in;
 import static java.lang.Thread.sleep;
-//TODO:Avant d'ajouter une série, vérifier si elle n'existe pas déjà
-//TODO:Permettre la suppression d'une série si elle existe déjà
-//TODO:Permettre l'ajout et suppression d'une série dans les indicateurs
+
 /**
  * <b><i>GraphicalView</i> est la classe de l'interface graphique du jeu</b>
  * <p>
@@ -53,6 +52,7 @@ public class GraphicalView extends JFrame {
     private JPanel _pannelBottom;
     private JPanel _pannelTop;
     private JPanel _pannelCenter;
+    private String _scenario;
 
     private ImageIcon _background;
     private JFrame _backFrame;
@@ -242,7 +242,19 @@ public class GraphicalView extends JFrame {
                         changeLeverBudget(l,spinner);
                     }
                     catch(Exception e){
-                        System.out.println(e);
+                        String messageDerreur = "";
+                        if(e.getMessage()=="Budget insuffisant"){
+                            messageDerreur+="Budget restant : "+ (int)_controller.getBudget().getRemainingBudget() + "\n Impossible d'ajouter autant dans ce levier !";
+                        }
+                        else if(e.getMessage() == "Trop grand"){
+                            messageDerreur+="Valeur maximum du levier : "+ (int)l.getMaxBudget() + "\n Impossible d'ajouter autant dans ce levier !";
+                        }
+                        else if(e.getMessage() == "Trop petit"){
+                            messageDerreur+="Valeur minimum du levier : "+ (int)l.getMinBudget() + "\n Impossible de réduire autant le budget dans ce levier !";
+
+                        }
+
+                        JOptionPane.showMessageDialog(null, messageDerreur);
                         spinner.setValue(String.valueOf(l.getBudget()));
                         spinner.setVisible(true);
                     }
@@ -404,14 +416,17 @@ public class GraphicalView extends JFrame {
      * @see GraphicPie
      */
     private void endOfRound(){
-        if(_controller.getYear()<=_controller.getMaxYear()) {
+
+        if(_controller.fin(_scenario).size() ==0) {
             removeAllElements();
             updateAll();
             addAllElements();
             this.setVisible(true);
         }
-        else
-            exit(0);
+        else {
+            System.out.println(_controller.fin(_scenario));
+            exit(0); //TODO:On affiche le message du controleur, et on revien au début
+        }
     }
 
     /**Procédure de <b>mise en place des éléments</b> de la fenêtre principale
@@ -479,10 +494,17 @@ public class GraphicalView extends JFrame {
         resizeButton.setBorderPainted(true);
         resizeButton.setBounds(0,25,20,20);
 
+
+
+
+
         JPanel buttonsTop=new JPanel();
-        buttonsTop.setLayout(new GridLayout(1,2));
+        buttonsTop.setLayout(new GridLayout(1,3));
+
         buttonsTop.add(resizeButton);
         buttonsTop.add(exitButton);
+        JPanel buttonsTopGauche=new JPanel();
+        buttonsTopGauche.setLayout(new GridLayout(1,2));
 
         JButton tuto=new JButton(new AbstractAction() {
             @Override
@@ -491,11 +513,23 @@ public class GraphicalView extends JFrame {
             }
         });
         tuto.setText("Tutoriel");
+
+        JButton scenar = new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                scenar();
+            }
+        });
+        scenar.setText("Scénario");
+        buttonsTopGauche.add(tuto);
+        buttonsTopGauche.add(scenar);
+
         _pannelTop=new JPanel();
         _pannelTop.setLayout(new BorderLayout());
         _pannelTop.add(_year,BorderLayout.CENTER);
         _pannelTop.add(buttonsTop,BorderLayout.AFTER_LINE_ENDS);
-        _pannelTop.add(tuto,BorderLayout.BEFORE_LINE_BEGINS);
+        _pannelTop.add(buttonsTopGauche,BorderLayout.BEFORE_LINE_BEGINS);
+
 
         _pannelBottom=new JPanel();
         _pannelBottom.setLayout(new GridLayout(1,3));
@@ -567,6 +601,17 @@ public class GraphicalView extends JFrame {
             this.setVisible(true);
         }
         else{
+            if(res.equals("insufficient budget") || res.equals("insufficient budget (salary * number employees)")){
+                throw new IllegalArgumentException("Budget insuffisant");
+            }
+            else if(res.equals("more than max")){
+                throw new IllegalArgumentException("Trop grand");
+            }
+            else if(res.equals("less than min")){
+                throw new IllegalArgumentException("Trop petit");
+            }
+
+
             jspinner.setValue(String.valueOf(lever.getBudget()));
         }
         _graphicPie=_graphicPie.refresh(_controller.getLevers(),_controller.getBudget().getRemainingBudget());
@@ -589,12 +634,22 @@ public class GraphicalView extends JFrame {
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
         title.setFont(new Font("Arial",Font.BOLD,24));
 
+
+        ArrayList<String> scenarios = _controller.getTextScenarios();
+        Object[] elements = scenarios.toArray();
+        JComboBox scenar=new JComboBox(elements);
+
         //Création du bouton permettant de voir le tutoriel
         JButton tuto=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                _scenario = (String)scenar.getSelectedItem();
+                _controller.setIndicatorFunctScenar(_scenario);
+                updateAll();
                 addAllElements();
+                scenar();
                 tutorial();
+
             }
         });
         tuto.setText("Afficher le tutoriel");
@@ -603,13 +658,24 @@ public class GraphicalView extends JFrame {
         JButton noTuto=new JButton(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                _scenario = (String)scenar.getSelectedItem();
+                _controller.setIndicatorFunctScenar(_scenario);
+                updateAll();
                 addAllElements();
+                scenar();
             }
         });
         noTuto.setText("Passer le tutoriel");
 
         //Création du panel comprenant les boutons
         JPanel buttons=new JPanel();
+        buttons.setLayout(new GridLayout(2,1));
+        JPanel haut = new JPanel();
+        haut.add(tuto);
+        haut.add(noTuto);
+        buttons.add(haut);
+        buttons.add(scenar);
+
         buttons.setLayout(new GridLayout(1,2));
         buttons.add(tuto);
         buttons.add(noTuto);
@@ -672,6 +738,21 @@ public class GraphicalView extends JFrame {
         f8.setNextFrame(f9);
         f9.setNextFrame(f10);
         fDeb.setVisible(true);
+    }
+
+    private void scenar(){
+
+        Collection<String> infos = _controller.getInfoScenario(_scenario);
+        String infosString = "";
+        for (String s:infos) {
+            infosString+= s;
+            infosString+= "\n";
+        }
+
+        TutoFrame scenar= new TutoFrame(infosString,null,null,null);
+
+
+        scenar.setVisible(true);
     }
 
     /** Procédure de <b>redimensionnement de la fenêtre</b><br>
