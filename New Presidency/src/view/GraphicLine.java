@@ -27,9 +27,9 @@ import java.util.ArrayList;
  */
 public class GraphicLine extends JTabbedPane{
     private StateList _stateList;
-    private XYChart _chartLevier;
-    private XYChart _chartIndicateur;
-    private ArrayList<String> _seriesAjoutees = new ArrayList<>();
+    private XYChart _leverChart;
+    private XYChart _indicatorChart;
+    private ArrayList<String> _addedSeries = new ArrayList<>();
 
     /**
      * Instancier et ouvrir les graphiques
@@ -47,11 +47,11 @@ public class GraphicLine extends JTabbedPane{
 
 
         //region Graphique
-        _chartLevier = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des leviers").build();
-        JPanel chartPanelLevier = new XChartPanel<>(_chartLevier);
+        _leverChart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des leviers").build();
+        JPanel chartPanelLevier = new XChartPanel<>(_leverChart);
         this.addTab("Leviers", chartPanelLevier);
-        _chartIndicateur = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des indicateurs").build();
-        JPanel chartPanelIndicateur = new XChartPanel<>(_chartIndicateur);
+        _indicatorChart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des indicateurs").build();
+        JPanel chartPanelIndicateur = new XChartPanel<>(_indicatorChart);
         this.addTab("Indicateurs", chartPanelIndicateur);
 
         String text = "Pour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.";
@@ -151,15 +151,15 @@ public class GraphicLine extends JTabbedPane{
      */
     public void addSerie(IndicLever indicLever){
         if(indicLever instanceof Indicator){
-            _chartIndicateur.addSeries(indicLever.getName(), selectData(indicLever));
+            _indicatorChart.addSeries(indicLever.getName(), selectData(indicLever));
             this.setSelectedIndex(1);
         }
         if(indicLever instanceof Lever){
-            _chartLevier.addSeries(indicLever.getName(), selectData(indicLever));
+            _leverChart.addSeries(indicLever.getName(), selectData(indicLever));
             this.setSelectedIndex(0);
         }
 
-        _seriesAjoutees.add(indicLever.getAbreviation());
+        _addedSeries.add(indicLever.getAbreviation());
         try{
             this.remove(2);
         }
@@ -183,14 +183,14 @@ public class GraphicLine extends JTabbedPane{
      */
     public void delSerie(IndicLever indicLever){
         if(indicLever instanceof Indicator){
-            _chartIndicateur.removeSeries(indicLever.getName());
+            _indicatorChart.removeSeries(indicLever.getName());
         }
         if(indicLever instanceof Lever){
-            _chartLevier.removeSeries(indicLever.getName());
+            _leverChart.removeSeries(indicLever.getName());
         }
-        _seriesAjoutees.remove(indicLever.getAbreviation());
+        _addedSeries.remove(indicLever.getAbreviation());
 
-        if(_seriesAjoutees.size() == 0){
+        if(_addedSeries.size() == 0){
             String text = "Pour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.";
             Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
             JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
@@ -220,6 +220,6 @@ public class GraphicLine extends JTabbedPane{
      * @since 4.0
      */
     public boolean hasSerie(IndicLever indicLever){
-        return _seriesAjoutees.contains(indicLever.getAbreviation());
+        return _addedSeries.contains(indicLever.getAbreviation());
     }
 }

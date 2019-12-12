@@ -10,26 +10,26 @@ import java.util.HashMap;
 public class Scenario extends IndicLever {
 
 
-    private HashMap<String, Double> _depart;
-    private HashMap<String, Double> _victoire;
-    private HashMap<String, Double> _defaite;
+    private HashMap<String, Double> _start;
+    private HashMap<String, Double> _victory;
+    private HashMap<String, Double> _defeat;
 
-    public Scenario(String name, String abreviation, HashMap<String, Double> depart, HashMap<String, Double> victoire, HashMap<String, Double> defaite, Collection<String> infos){
+    public Scenario(String name, String abreviation, HashMap<String, Double> start, HashMap<String, Double> victory, HashMap<String, Double> defeat, Collection<String> infos){
         super(name, abreviation, infos);
-        _defaite=defaite;
-        _victoire = victoire;
-        _depart = depart;
+        _defeat=defeat;
+        _victory = victory;
+        _start = start;
     }
 
-    public HashMap<String, Double> get_depart() {
-        return _depart;
+    public HashMap<String, Double> getStart() {
+        return _start;
     }
 
-    public HashMap<String, Double> get_victoire() {
-        return _victoire;
+    public HashMap<String, Double> getVictory() {
+        return _victory;
     }
 
-    public HashMap<String, Double> get_defaite() {
-        return _defaite;
+    public HashMap<String, Double> getDefeat() {
+        return _defeat;
     }
 }

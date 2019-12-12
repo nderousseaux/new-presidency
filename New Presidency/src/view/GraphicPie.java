@@ -39,7 +39,7 @@ public class GraphicPie extends JTabbedPane{
     private PieChart _chart;
 
     /**
-     * Instancier et ouvrir la fenêtre graphique
+     * Constructeur qui instancie et ouvre la fenêtre graphique
      *
      * @param leverList La liste des leviers, et le budget aloué à chacun d'entre eux.
      * @param budget Budget total du tour.
@@ -119,6 +119,12 @@ public class GraphicPie extends JTabbedPane{
         this.add(chartPanel);
     }
 
+    /**
+     * Fonction de <b>rafraichissement du graphique</b>, appelant le constructeur
+     * @param leverList Liste des objets <b>Lever</b>
+     * @param budget Budget
+     * @return Objet <b>GraphicPie</b> instancié
+     */
     public GraphicPie refresh(Collection<Lever> leverList, Double budget){
         return new GraphicPie(leverList,budget);
     }
