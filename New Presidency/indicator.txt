@@ -91,3 +91,11 @@ abreviation;INbPrNob;
 value;0.0;
 max value;50.0;
 End;
+
+New;
+info; ;
+name;Charge de travail;
+abreviation;IChargeTrav;
+value;1.0;
+max value;1000.0;
+End;
