@@ -3,9 +3,9 @@ info;Embaucher des titulaires en formation augmentera la <b>qualité des formati
 name;Nombre de titulaires en formation;
 abreviation;LNbTituForm;
 category;Formation;
-value;3.0;
+value;2000.0;
 min value;3.0;
-max value;2000.0;
+max value;6000.0;
 End;
 
 New;
@@ -23,8 +23,8 @@ info;Embaucher des contractuels en formation augmentera la <b>qualité des forma
 name;Nombre de contractuels en formation;
 abreviation;LNbContrForm;
 category;Formation;
-value;10.0;
-max value;2000.0;
+value;2000.0;
+max value;10000.0;
 End;
 
 New;
@@ -51,8 +51,8 @@ info;Budget alloué aux <b>partenariats de l'université</b>;
 name;Partenariats;
 abreviation;LPartenar;
 category;Formation;
-value;100.0;
-max value;10000.0;
+value;300000.0;
+max value;1000000.0;
 End;
 
 New;
@@ -61,8 +61,8 @@ info;Des enseignants <b>plus rémunérés</b> donnent de <b>meilleurs cours</b>!
 name;Prime de formation;
 abreviation;LPrimeForm;
 category;Formation;
-value;100.0;
-max value;10000.0;
+value;500000.0;
+max value;3000000.0;
 End;
 
 New;
@@ -71,8 +71,8 @@ info;On entend par <b>spécifique</b> que ce budget est réservé à des <b>form
 name;Dotation spécifique pour la formation;
 abreviation;LDotSpeForm;
 category;Formation;
-value;100.0;
-max value;10000.0;
+value;7000000.0;
+max value;20000000.0;
 End;
 
 New;
@@ -81,8 +81,8 @@ info;On entend par <b>récurrent</b> que ce budget est réservé aux <b>cours cl
 name;Dotation récurrente pour la formation;
 abreviation;LDotRecForm;
 category;Formation;
-value;100.0;
-max value;10000.0;
+value;10000000.0;
+max value;40000000.0;
 End;
 
 New;
@@ -91,8 +91,8 @@ info;On entend par <b>récurrent</b> que ce budget est réservé à la <b>recher
 name;Dotation récurrente pour la recherche;
 abreviation;LDotRecRech;
 category;Recherche;
-value;100.0;
-max value;10000.0;
+value;10000000.0;
+max value;40000000.0;
 End;
 
 New;
@@ -101,8 +101,8 @@ info;On entend par <b>spécifique</b> que ce budget est réservé à la <b>reche
 name;Dotation spécifique pour la recherche;
 abreviation;LDotSpeRech;
 category;Recherche;
-value;100.0;
-max value;10000.0;
+value;7000000.0;
+max value;20000000.0;
 End;
 
 New;
@@ -110,8 +110,8 @@ info;Budget alloué à l'<b>attribution de primes</b> au personnel du <b>secteur
 name;Primes recherche;
 abreviation;LPrimeRech;
 category;Recherche;
-value;100.0;
-max value;10000.0;
+value;500000.0;
+max value;2000000.0;
 End;
 
 New;
@@ -119,8 +119,8 @@ info;Embaucher plus de contractuels en recherche augmentera la <b>qualité de la
 name;Nombre de contractuels en recherche;
 abreviation;LNbContrRech;
 category;Recherche;
-value;10.0;
-max value;2000.0;
+value;2000.0;
+max value;10000.0;
 End;
 
 New;
@@ -138,9 +138,9 @@ info;Embaucher plus de titulaires en recherche augmentera la <b>qualité de la r
 name;Nombre de titulaires en recherche;
 abreviation;LNbTituRech;
 category;Recherche;
-value;3.0;
+value;2000.0;
 min value;3.0;
-max value;2000.0;
+max value;6000.0;
 End;
 
 New;
@@ -158,8 +158,8 @@ info;Budget alloué à l'<b>administration générale de l'université</b>;
 name;Administration;
 abreviation;LAdmin;
 category;Central;
-value;100.0;
-max value;10000.0;
+value;10000000.0;
+max value;50000000.0;
 End;
 
 New;
@@ -168,8 +168,8 @@ info;Une université <b>plus médiatisée</b> attirera <b>plus d'élèves et de 
 name;Communication;
 abreviation;LComm;
 category;Central;
-value;100.0;
-max value;10000.0;
+value;50000.0;
+max value;200000.0;
 End;
 
 New;
@@ -178,8 +178,8 @@ info;On parle ici des <b>évènements liés à l'éducation</b> (interventions d
 name;Evènements;
 abreviation;LEvent;
 category;Central;
-value;100.0;
-max value;10000.0;
+value;50000.0;
+max value;200000.0;
 End;
 
 New;
@@ -187,8 +187,8 @@ info;Budget alloué aux <b>primes pour l'ensemble des personnel</b> de l'univers
 name;Primes;
 abreviation;LPrimeCentr;
 category;Central;
-value;100.0;
-max value;10000.0;
+value;3000000.0;
+max value;5000000.0;
 End;
 
 New;
@@ -198,8 +198,8 @@ info;Buvez toujours avec <b>Modération</b> (très bon ami des programmeurs)!;
 name;Subventions aux associations étudiantes;
 abreviation;LSubAssoEtu;
 category;Central;
-value;100.0;
-max value;10000.0;
+value;100000.0;
+max value;1000000.0;
 End;
 
 New;
@@ -208,8 +208,8 @@ info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement améli
 name;Construction;
 abreviation;LConstruction;
 category;Immobilier;
-value;100.0;
-max value;10000.0;
+value;200000000.0;
+max value;1000000000.0;
 End;
 
 New;
@@ -218,8 +218,8 @@ info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement améli
 name;Entretien;
 abreviation;LEntretien;
 category;Immobilier;
-value;100.0;
-max value;10000.0;
+value;200000000.0;
+max value;1000000000.0;
 End;
 
 New;
@@ -228,6 +228,6 @@ info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement améli
 name;Rénovation;
 abreviation;LRenov;
 category;Immobilier;
-value;100.0;
-max value;10000.0;
+value;200000000.0;
+max value;1000000000.0;
 End;
