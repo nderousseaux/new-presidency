@@ -45,7 +45,6 @@ import static java.lang.Thread.sleep;
 //TODO:Doc et com de code.
 //TODO:Ouvrir le scenar si quiter durant tuto
 //TODO:Installeur
-//TODO:On affiche le message du controleur, et on revien au début
 //TODO:Affichage des message d'erreur en boucle
 public class GraphicalView extends JFrame {
     private Controller _controller;
@@ -819,7 +818,7 @@ public class GraphicalView extends JFrame {
         this.add(content,BorderLayout.CENTER);
         this.setBackground(new Color(0,0,0,0));
 
-        //TODO:this.setAlwaysOnTop(true);
+        this.setAlwaysOnTop(true);
         this.setVisible(true);
     }
 
