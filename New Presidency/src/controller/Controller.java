@@ -44,6 +44,7 @@ public class Controller {
 
     private final StateList _stateList;
     private final ScenarioList _scenarioList;
+
     private final IndicatorList _indicatorList;
     private final LeverList _leverList;
    
@@ -710,12 +711,12 @@ public class Controller {
         Scenario scenar = _scenarioList.getScenario(name);
 
         //Maintenant, on met à jour les valeurs de départ des indicateurs
-        for (HashMap.Entry<String, Double> entry : scenar.get_depart().entrySet())
+        for (HashMap.Entry<String, Double> entry : scenar.getStart().entrySet())
         {
             _indicatorList.getIndicatorByAbreviation(entry.getKey()).setValue(entry.getValue());
         }
         //Maintenant, on met à jour les valeurs de départ des indicateurs
-        for (HashMap.Entry<String, Double> entry : scenar.get_depart().entrySet())
+        for (HashMap.Entry<String, Double> entry : scenar.getStart().entrySet())
         {
             _stateList.getState(0).setIndicator(entry.getKey(),entry.getValue());
             _stateList.getState(1).setIndicator(entry.getKey(),entry.getValue());
@@ -725,9 +726,9 @@ public class Controller {
 
     }
 
-    public boolean conditionVictoireValidee(String scenario){
+    public boolean victoryValidated(String scenario){
         Boolean res = true;
-        for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).get_victoire().entrySet()) {
+        for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).getVictory().entrySet()) {
             if(_indicatorList.getIndicatorByAbreviation(entry.getKey()).getValue() < entry.getValue()){
                 res = false;
                 break;
@@ -736,9 +737,9 @@ public class Controller {
 
         return res;
     }
-    public ArrayList<String> conditionDefaiteValidee(String scenario){
+    public ArrayList<String> defeatValidated(String scenario){
         ArrayList<String> res = new ArrayList<>();
-        for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).get_defaite().entrySet()) {
+        for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).getDefeat().entrySet()) {
             if(_indicatorList.getIndicatorByAbreviation(entry.getKey()).getValue() <= entry.getValue()){
                 res.add("D"+entry.getKey());
                 break;
@@ -762,15 +763,15 @@ public class Controller {
         ArrayList<String> res = new ArrayList<>();
 
         //On teste la victoire
-        if(conditionVictoireValidee(scenario)){
+        if(victoryValidated(scenario)){
             res.add("VCondi");
         }
         //On teste la defaite
         else if(_year>_maxYear){
             res.add("DYear");
         }
-        else if(conditionDefaiteValidee(scenario).size()!=0){
-            res.addAll(conditionDefaiteValidee(scenario));
+        else if(defeatValidated(scenario).size()!=0){
+            res.addAll(defeatValidated(scenario));
         }
 
 

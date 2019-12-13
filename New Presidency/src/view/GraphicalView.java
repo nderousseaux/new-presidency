@@ -79,6 +79,7 @@ public class GraphicalView extends JFrame {
             this.setLayout(new BorderLayout());
             this.setLocationRelativeTo(position);
             this.setUndecorated(true);
+            this.setAlwaysOnTop(true);
             this.addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent focusEvent) {
@@ -262,7 +263,11 @@ public class GraphicalView extends JFrame {
 
                         }
 
+                        setAlwaysOnTop(false);
+
                         JOptionPane.showMessageDialog(null, messageDerreur);
+
+                        setAlwaysOnTop(true);
                         spinner.setValue(String.valueOf(l.getBudget()));
                         spinner.setVisible(true);
                     }
@@ -646,7 +651,7 @@ public class GraphicalView extends JFrame {
         //Création du titre
         JLabel title=new JLabel("Bienvenue sur New Presidency!");
         title.setFont(new Font("Arial",Font.BOLD,24));
-
+        title.setForeground(Color.WHITE);
 
         ArrayList<String> scenarios = _controller.getTextScenarios();
         Object[] elements = scenarios.toArray();
@@ -710,7 +715,7 @@ public class GraphicalView extends JFrame {
         this.add(content,BorderLayout.CENTER);
         this.setBackground(new Color(0,0,0,0));
 
-
+        this.setAlwaysOnTop(true);
         this.setVisible(true);
     }
 
@@ -728,7 +733,6 @@ public class GraphicalView extends JFrame {
      * @param scenarioALaFin Booléen, vaut vrai si il faut lancer la description du scénario à la fin.
      */
     private void tutorial(Boolean scenarioALaFin){
-        ArrayList<TutoFrame> frames=new ArrayList<>();
         TutoFrame fDeb= new TutoFrame("Bienvenue sur <b>New Presidency</b>!",null,null,null);
         TutoFrame f2=new TutoFrame("Dans ce jeu sérieux de <b>gestion budgétaire</b>, vous êtes <b>le président de l'université de Strasbourg</b> et votre but sera d'<b>atteindre les objectifs</b> fixés par le <b>scénario</b> que vous avez choisi, avant la fin des tours",null,null,fDeb);
         TutoFrame f3=new TutoFrame("Pour cela, vous devrez <b>manipuler le budget</b> de ce qu'on appelle des <b>leviers de gestion</b>",null,null,f2);
@@ -739,8 +743,9 @@ public class GraphicalView extends JFrame {
         TutoFrame f8=new TutoFrame("Comme les leviers, vous pouvez <b>consulter les informations</b> de chaque indicateur (notamment ce par quoi ils sont influencés) au survol",_scrollIndicators,null,f7);
         TutoFrame f9=new TutoFrame("Vous avez à votre disposition deux <b>graphiques de suivi de gestion</b>",null,null,f8);
         TutoFrame f10=new TutoFrame("Le premier, ici, permet de voir la <b>répartition du budget</b> que vous avez à disposition à ce tour",_graphicPie,null,f9);
-        //TutoFrame f11=new TutoFrame("Le second, ici, permet de voir l'<b>évolution</b>")
-        TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f4);
+        TutoFrame f11=new TutoFrame("Le second, ici, permet de voir l'<b>évolution</b> des <b>budgets alloués</b> pour les <b>leviers</b>, et des <b>niveaux de complétions</b> pour les <b>indicateurs</b>",_graphicLine,null,f10);
+        TutoFrame f12=new TutoFrame("Il n'est disponible qu'à partir du deuxième tour, changez un ou plusieurs budgets de leviers, et cliquez sur <b>Passer au tour suivant</b>!",_graphicLine,null,f11);
+        TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f10);
         fDeb.setNextFrame(f2);
         f2.setNextFrame(f3);
         f3.setNextFrame(f4);
@@ -750,7 +755,9 @@ public class GraphicalView extends JFrame {
         f7.setNextFrame(f8);
         f8.setNextFrame(f9);
         f9.setNextFrame(f10);
-        fDeb.setVisible(true);
+        f10.setNextFrame(f11);
+        f11.setNextFrame(f12);
+
 
         Collection<String> infos = _controller.getInfoScenario(_scenario);
         String infosString = "";
@@ -761,6 +768,8 @@ public class GraphicalView extends JFrame {
 
         TutoFrame scenar= new TutoFrame(infosString,null,null,null);
         if(scenarioALaFin)f7.setNextFrame(scenar);
+        this.setAlwaysOnTop(false);
+        fDeb.setVisible(true);
     }
 
     private void scenar(){

@@ -15,8 +15,8 @@ public class ScenarioList {
     }
 
     //Accesseurs
-    public Scenario createScenario(String name, String abreviation, HashMap<String, Double> depart, HashMap<String, Double> victoire, HashMap<String, Double> defaite, Collection<String> infos){
-        Scenario s = new Scenario(name, abreviation, depart, victoire, defaite, infos);
+    public Scenario createScenario(String name, String abreviation, HashMap<String, Double> start, HashMap<String, Double> victory, HashMap<String, Double> defeat, Collection<String> infos){
+        Scenario s = new Scenario(name, abreviation, start, victory, defeat, infos);
         _scenarios.add(s);
         return s;
     }
