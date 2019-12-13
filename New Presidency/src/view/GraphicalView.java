@@ -39,12 +39,13 @@ import static java.lang.Thread.sleep;
  * @author yvanderspurt
  */
 //TODO:Faire les scénarios
-//TODO:Readme
-//TODO:Wiki
-//TODO:Milestone
-//TODO:Doc et com de code
-//TODO:Ouvrir le scenar si quiter.
-//TODO:Instaleur
+//TODO:Readme : ajouter les liens, et les instructions d'installation
+//TODO:Wiki : détailler les objectifs pédagogique, détailler les différents scénario
+//TODO:Milestone : les ranger, les mettre à jour et modifier excel avancée des taches
+//TODO:Doc et com de code.
+//TODO:Ouvrir le scenar si quiter durant tuto
+//TODO:Installeur
+//TODO:On affiche le message du controleur, et on revien au début
 public class GraphicalView extends JFrame {
     private Controller _controller;
     private JPanel _year;
@@ -437,7 +438,7 @@ public class GraphicalView extends JFrame {
         }
         else {
             System.out.println(_controller.fin(_scenario));
-            exit(0); //TODO:On affiche le message du controleur, et on revien au début
+            exit(0);
         }
     }
 

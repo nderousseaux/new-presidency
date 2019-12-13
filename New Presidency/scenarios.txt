@@ -5,7 +5,7 @@ abreviation;SClassique;
 dep;ITauxReu=40;
 dep;IReputForm=40;
 dep;ISatEtu=60;
-vic;ITauxReu>100;
+vic;ITauxReu>50;
 def;IReputForm<30;
 End;
 
