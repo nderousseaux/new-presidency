@@ -47,6 +47,7 @@ public class GraphicLine extends JTabbedPane{
 
 
         //region Graphique
+        //On crée les deux graphiques et les ajoutes à la page
         _leverChart = new XYChartBuilder().width(800).height(600).title(getClass().getSimpleName()).xAxisTitle("Numéro de l'année").yAxisTitle("Valeur").title("Graphiques d'évolution des leviers").build();
         JPanel chartPanelLevier = new XChartPanel<>(_leverChart);
         this.addTab("Leviers", chartPanelLevier);
@@ -54,20 +55,22 @@ public class GraphicLine extends JTabbedPane{
         JPanel chartPanelIndicateur = new XChartPanel<>(_indicatorChart);
         this.addTab("Indicateurs", chartPanelIndicateur);
 
+        //On crée la page d'aide
         String text = "Pour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.";
         Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
         JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
         textLabel.setBorder(innerBorder);
         textLabel.setFont(new Font("Arial",Font.ITALIC,20));
 
+        //On configure le JPanel
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,1));
         panel.add(textLabel);
         panel.setSize(250,100);
         panel.setBackground(new Color(208,233,234));
 
+        //On met le focus sur le numéro 2
         this.add("Indices", panel);
-        this.setSelectedIndex(2);
         this.setSelectedIndex(2);
         //endregion
     }
@@ -78,13 +81,17 @@ public class GraphicLine extends JTabbedPane{
      * @since 5.0
      */
     public void debut(){
+        //On enlève tout les graphiques
         this.removeAll();
+
+        //On configure le style et ajoute le texte
         String text = "Les graphiques d'évolution n'ont pas de sens au premier tour. Ils seront affichés au tour suivant.";
         Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
         JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
         textLabel.setBorder(innerBorder);
         textLabel.setFont(new Font("Arial",Font.ITALIC,20));
 
+        //On ajoute le tout au panel
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,1));
         panel.add(textLabel);
@@ -109,12 +116,15 @@ public class GraphicLine extends JTabbedPane{
      */
     private double[] selectData(IndicLever indicLever){
 
+        //Nombre d'état différent
         int nombre = _stateList.getStates().size()-1;
 
+        //Valeurs à renvoyer
         double[] values = new double[nombre];
 
         //On parcourt tout les états de toutes les périodes. On crée une liste de l'évolution des états pour un indicateur donné.
         int i=0;
+        //Si c'est un levier
         if(indicLever instanceof Indicator){
             for(State s:_stateList.getStates()){
                 if (i != 0) {
@@ -123,6 +133,7 @@ public class GraphicLine extends JTabbedPane{
                 i++;
             }
         }
+        //Si c'est un indicateur
         if(indicLever instanceof Lever){
             for(State s:_stateList.getStates()){
                 if(i!=_stateList.getStates().size()-1){
@@ -150,16 +161,21 @@ public class GraphicLine extends JTabbedPane{
      * @since 4.0
      */
     public void addSerie(IndicLever indicLever){
+        //Si c'est un indicateur, on met le focus sur les indicateurs
         if(indicLever instanceof Indicator){
             _indicatorChart.addSeries(indicLever.getName(), selectData(indicLever));
             this.setSelectedIndex(1);
         }
+        //Si c'est un levier, on met le focus sur les indicateurs
         if(indicLever instanceof Lever){
             _leverChart.addSeries(indicLever.getName(), selectData(indicLever));
             this.setSelectedIndex(0);
         }
 
+        //On ajoute le série à tableau
         _addedSeries.add(indicLever.getAbreviation());
+
+        //On supprime le message d'aide si il est là
         try{
             this.remove(2);
         }
@@ -182,21 +198,27 @@ public class GraphicLine extends JTabbedPane{
      * @since 2.0
      */
     public void delSerie(IndicLever indicLever){
+
+        //On trouve le nom de la série
         if(indicLever instanceof Indicator){
             _indicatorChart.removeSeries(indicLever.getName());
         }
         if(indicLever instanceof Lever){
             _leverChart.removeSeries(indicLever.getName());
         }
+        //On la supprime
         _addedSeries.remove(indicLever.getAbreviation());
 
+        //Si il n'y a rien, on affiche le message d'aide
         if(_addedSeries.size() == 0){
+            //On configure l'affichage
             String text = "Pour afficher les graphiques, cliquez sur l'indicateur ou le levier que vous voulez afficher. \nRecliquez dessus pour l'effacer du graphique.";
             Border innerBorder=BorderFactory.createLineBorder(Color.black,3);
             JLabel textLabel=new JLabel("<html><p style=\"text-align:center\">"+text+"</p></html>");
             textLabel.setBorder(innerBorder);
             textLabel.setFont(new Font("Arial",Font.ITALIC,20));
 
+            //On l'ajoute au JPanel
             JPanel panel=new JPanel();
             panel.setLayout(new GridLayout(1,1));
             panel.add(textLabel);

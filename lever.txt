@@ -3,7 +3,7 @@ info;Embaucher des titulaires en formation augmentera la <b>qualité des formati
 name;Nombre de titulaires en formation;
 abreviation;LNbTituForm;
 category;Formation;
-value;2000.0;
+value;3000.0;
 min value;3.0;
 max value;6000.0;
 End;
@@ -13,7 +13,7 @@ info;Augmenter le salaire des titulaires en formation <b>valorisera leur travail
 name;Salaire des titulaires en formation;
 abreviation;LSalTituForm;
 category;Formation;
-value;3000.0;
+value;3500.0;
 min value;2000.0;
 max value;10000.0;
 End;
@@ -23,7 +23,7 @@ info;Embaucher des contractuels en formation augmentera la <b>qualité des forma
 name;Nombre de contractuels en formation;
 abreviation;LNbContrForm;
 category;Formation;
-value;2000.0;
+value;2500.0;
 max value;10000.0;
 End;
 
@@ -32,7 +32,7 @@ info;Augmenter le salaire des contractuels en formation <b>valorisera leur trava
 name;Salaire des contractuels en formation;
 abreviation;LSalContrForm;
 category;Formation;
-value;1171.34;
+value;3000.0;
 min value;1171.34;
 max value;10000.0;
 End;
@@ -71,7 +71,7 @@ info;On entend par <b>spécifique</b> que ce budget est réservé à des <b>form
 name;Dotation spécifique pour la formation;
 abreviation;LDotSpeForm;
 category;Formation;
-value;7000000.0;
+value;5000000.0;
 max value;20000000.0;
 End;
 
@@ -81,7 +81,7 @@ info;On entend par <b>récurrent</b> que ce budget est réservé aux <b>cours cl
 name;Dotation récurrente pour la formation;
 abreviation;LDotRecForm;
 category;Formation;
-value;10000000.0;
+value;7000000.0;
 max value;40000000.0;
 End;
 
@@ -91,7 +91,7 @@ info;On entend par <b>récurrent</b> que ce budget est réservé à la <b>recher
 name;Dotation récurrente pour la recherche;
 abreviation;LDotRecRech;
 category;Recherche;
-value;10000000.0;
+value;7000000.0;
 max value;40000000.0;
 End;
 
@@ -101,7 +101,7 @@ info;On entend par <b>spécifique</b> que ce budget est réservé à la <b>reche
 name;Dotation spécifique pour la recherche;
 abreviation;LDotSpeRech;
 category;Recherche;
-value;7000000.0;
+value;5000000.0;
 max value;20000000.0;
 End;
 
@@ -119,7 +119,7 @@ info;Embaucher plus de contractuels en recherche augmentera la <b>qualité de la
 name;Nombre de contractuels en recherche;
 abreviation;LNbContrRech;
 category;Recherche;
-value;2000.0;
+value;3500.0;
 max value;10000.0;
 End;
 
@@ -128,7 +128,7 @@ info;Augmenter le salaire des contractuels en recherche <b>valorisera leur trava
 name;Salaire des contractuels en recherche;
 abreviation;LSalContrRech;
 category;Recherche;
-value;1171.34;
+value;3000.0;
 min value;1171.34;
 max value;10000.0;
 End;
@@ -138,7 +138,7 @@ info;Embaucher plus de titulaires en recherche augmentera la <b>qualité de la r
 name;Nombre de titulaires en recherche;
 abreviation;LNbTituRech;
 category;Recherche;
-value;2000.0;
+value;2500.0;
 min value;3.0;
 max value;6000.0;
 End;
@@ -148,7 +148,7 @@ info;Augmenter le salaire des titulaires en recherche <b>valorisera leur travail
 name;Salaire titulaire recherche;
 abreviation;LSalTituRech;
 category;Recherche;
-value;3000.0;
+value;3500.0;
 min value;1700.0;
 max value;10000.0;
 End;
@@ -208,8 +208,8 @@ info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement améli
 name;Construction;
 abreviation;LConstruction;
 category;Immobilier;
-value;200000000.0;
-max value;1000000000.0;
+value;2000000.0;
+max value;100000000.0;
 End;
 
 New;
@@ -218,8 +218,8 @@ info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement améli
 name;Entretien;
 abreviation;LEntretien;
 category;Immobilier;
-value;200000000.0;
-max value;1000000000.0;
+value;2000000.0;
+max value;100000000.0;
 End;
 
 New;
@@ -228,6 +228,6 @@ info;De <b>meilleurs bâtiments</b> apportent un <b>niveau d'enseignement améli
 name;Rénovation;
 abreviation;LRenov;
 category;Immobilier;
-value;200000000.0;
-max value;1000000000.0;
+value;2000000.0;
+max value;100000000.0;
 End;
