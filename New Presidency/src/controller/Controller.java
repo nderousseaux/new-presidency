@@ -59,7 +59,7 @@ public class Controller {
      * Constructeur de la classe, instanciant chacun des champs de la classe
      */
     public Controller() throws IOException{
-        _budget=new Budget();
+        _budget = new Budget(500000000.0);
         _indicatorList= new IndicatorList();
         _leverList= new LeverList();
         _stateList= new StateList();
@@ -81,17 +81,19 @@ public class Controller {
      * @see Controller#initWeightForEachIndicator()
      */
     public void init() throws IOException{
-        //initialiation of levers
+        //initialiation des levuers
         initLevers();
 
-        //initialisation of indicators
+        //initialisation des indicateurs
         initIndicators();
 
         //initialisation des scenarios
         initScenario();
 
+        //initialisation des états
         initState();
 
+        //initialisation de la matrice contenant les coefficients à aplliquer pour chaque indicateur
         initWeightForEachIndicator();
     }
 
@@ -249,8 +251,8 @@ public class Controller {
             indicatorsForState1.put(i.getAbreviation(), i.getValue());
         }
         
-        _stateList.createState(0, 40000.0, leversForState0, indicatorsForState0);
-        _stateList.createState(1, 40000.0, leversForState1, indicatorsForState1);
+        _stateList.createState(0, 500000000.0, leversForState0, indicatorsForState0);
+        _stateList.createState(1, 500000000.0, leversForState1, indicatorsForState1);
     }
 
     /**
@@ -505,10 +507,10 @@ public class Controller {
             if(columnAbreviation.charAt(0) == 'I'){
                 influencer = _indicatorList.getIndicatorByAbreviation(columnAbreviation);
                 if(influencer.getValue() < 50.0){
-                    value -= m.getCell(0, j) * (1-(influencer.getValue()/influencer.getMaxValue())) * indic.getValue();
+                    value -= m.getCell(0, j) * (((1-(influencer.getValue()/influencer.getMaxValue())))-0.5) * indic.getValue();
                 }
                 if(influencer.getValue() > 50.0){
-                    value += m.getCell(0, j) * (influencer.getValue()/influencer.getMaxValue()) * indic.getValue();
+                    value += m.getCell(0, j) * (((influencer.getValue()/influencer.getMaxValue()))-0.5) * indic.getValue();
                 }
             }
         }
@@ -522,11 +524,11 @@ public class Controller {
         State thisYearState = _stateList.getState(_year);
         State lastYearState = _stateList.getState((_year - 1));
         
-        HashMap<String, Double> indicatorsForNextYearState = new HashMap<String, Double>(_indicatorList.getIndicators().size(), (float)1.0);
-        HashMap<String, Double> leversForNextYearState = new HashMap<String, Double>(_leverList.getLevers().size(), (float)1.0);
+        HashMap<String, Double> indicatorsForNextYearState = new HashMap<String, Double>(_indicatorList.getIndicators().size());
+        HashMap<String, Double> leversForNextYearState = new HashMap<String, Double>(_leverList.getLevers().size());
         
-        HashMap<String, Double> dLevers = new HashMap<String, Double>(_leverList.getLevers().size(), (float)1.0);
-        HashMap<String, Double> dIndicators = new HashMap<String, Double>(_indicatorList.getIndicators().size(), (float)1.0);
+        HashMap<String, Double> dLevers = new HashMap<String, Double>(_leverList.getLevers().size());
+        HashMap<String, Double> dIndicators = new HashMap<String, Double>(_indicatorList.getIndicators().size());
         
         //calculation of ratio for each indicators
         for(Indicator i : _indicatorList.getIndicators()){
