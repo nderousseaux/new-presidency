@@ -88,10 +88,10 @@ public class GraphicPie extends JTabbedPane{
             somme+=_budget;
         }
 
-        //On supprime toutes les séries qui sont en dessous de 2%
+        //On supprime toutes les séries qui sont en dessous de 7%
         double restant = 0;
         for(Lever l:_leverList){
-            if(l.getBudget()/somme<0.02){
+            if(l.getBudget()/somme<0.07){
                 _chart.removeSeries(l.getName());
                 restant+=l.getBudget();
             }
