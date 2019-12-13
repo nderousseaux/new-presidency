@@ -56,7 +56,7 @@ public class Controller {
      * Constructeur de la classe, instanciant chacun des champs de la classe
      */
     public Controller() throws IOException{
-        _budget = new Budget(70000000.0);
+        _budget = new Budget(40000.0);
         _indicatorList= new IndicatorList();
         _leverList= new LeverList();
         _stateList= new StateList();
@@ -248,8 +248,8 @@ public class Controller {
             indicatorsForState1.put(i.getAbreviation(), i.getValue());
         }
         
-        _stateList.createState(0, 70000000.0, leversForState0, indicatorsForState0);
-        _stateList.createState(1, 70000000.0, leversForState1, indicatorsForState1);
+        _stateList.createState(0, 40000.0, leversForState0, indicatorsForState0);
+        _stateList.createState(1, 40000.0, leversForState1, indicatorsForState1);
     }
 
     /**
