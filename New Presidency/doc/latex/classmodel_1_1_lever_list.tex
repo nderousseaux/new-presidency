@@ -3,35 +3,110 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmodel_1_1_lever_list_aa051144d86fad23c7d88cf96fe7e17e2}\label{classmodel_1_1_lever_list_aa051144d86fad23c7d88cf96fe7e17e2}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ {\bfseries get\+Levers} ()
+\mbox{\hyperlink{classmodel_1_1_lever_list_a0b6a54f5ffcdd82032776d6e18c8107c}{Lever\+List}} ()
 \item 
-\mbox{\Hypertarget{classmodel_1_1_lever_list_aee9a3427160f4f6ce5549525b5848cf5}\label{classmodel_1_1_lever_list_aee9a3427160f4f6ce5549525b5848cf5}} 
-\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} {\bfseries create\+Lever} (String name, Double init\+Budget, Double max\+Budget, Array\+List$<$ String $>$ infos)
+\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} \mbox{\hyperlink{classmodel_1_1_lever_list_ad6ec81648f3322c16dd8b2b5a5a06ed5}{create\+Lever}} (String name, String abreviation, String category, Double init\+Budget, Double min\+Budget, Double max\+Budget, Array\+List$<$ String $>$ infos)
 \item 
+Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ \mbox{\hyperlink{classmodel_1_1_lever_list_aa051144d86fad23c7d88cf96fe7e17e2}{get\+Levers}} ()
+\item 
+\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} \mbox{\hyperlink{classmodel_1_1_lever_list_a9fc3d7770ac0ab5e047759ea52485363}{get\+Lever}} (String name)
+\item 
+\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} \mbox{\hyperlink{classmodel_1_1_lever_list_a20aed7dc6aef1bdda99d306c0ede9cdc}{get\+Lever\+By\+Abreviation}} (String abreviation)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}}} est la classe contenant l\textquotesingle{}ensemble des objets \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} du jeu}} 
+
+Cette classe contient une {\bfseries{Collection de \mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} 
+
+\mbox{\hyperlink{classmodel_1_1_indic_lever}{Indic\+Lever}} 
+
+\mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}}
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yoanv, lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_lever_list_a0b6a54f5ffcdd82032776d6e18c8107c}\label{classmodel_1_1_lever_list_a0b6a54f5ffcdd82032776d6e18c8107c}} 
+\index{model.LeverList@{model.LeverList}!LeverList@{LeverList}}
+\index{LeverList@{LeverList}!model.LeverList@{model.LeverList}}
+\doxysubsubsection{\texorpdfstring{LeverList()}{LeverList()}}
+{\footnotesize\ttfamily model.\+Lever\+List.\+Lever\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructeur de la classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}}}}, initialisant la liste des objets {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} à une {\bfseries{Array\+List}} vide 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel_1_1_lever_list_ad6ec81648f3322c16dd8b2b5a5a06ed5}\label{classmodel_1_1_lever_list_ad6ec81648f3322c16dd8b2b5a5a06ed5}} 
+\index{model.LeverList@{model.LeverList}!createLever@{createLever}}
+\index{createLever@{createLever}!model.LeverList@{model.LeverList}}
+\doxysubsubsection{\texorpdfstring{createLever()}{createLever()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} model.\+Lever\+List.\+create\+Lever (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{abreviation,  }\item[{String}]{category,  }\item[{Double}]{init\+Budget,  }\item[{Double}]{min\+Budget,  }\item[{Double}]{max\+Budget,  }\item[{Array\+List$<$ String $>$}]{infos }\end{DoxyParamCaption})}
+
+Fonction initialisant un nouvel objet de type {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} et le stockant dans la liste et le retournant 
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+{\em abreviation} & {\bfseries{Abréviation}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+{\em category} & {\bfseries{Catégorie}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+{\em init\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} initial}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+{\em min\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} minimal}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+{\em max\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} maximal}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+{\em infos} & {\bfseries{Liste des informations}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} instancié 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classmodel_1_1_lever_list_a9fc3d7770ac0ab5e047759ea52485363}\label{classmodel_1_1_lever_list_a9fc3d7770ac0ab5e047759ea52485363}} 
-\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} {\bfseries get\+Lever} (String name)
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_list_a092b6d88b1819ed06fbe2516e1199a3e}\label{classmodel_1_1_lever_list_a092b6d88b1819ed06fbe2516e1199a3e}} 
-static \mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}} {\bfseries get\+Instance} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_list_adfe8a7cdfa5362801a5c79c2398d6685}\label{classmodel_1_1_lever_list_adfe8a7cdfa5362801a5c79c2398d6685}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ {\bfseries \+\_\+levers}
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_list_a2bc73e06ef140ef4db9427b0bab18c0c}\label{classmodel_1_1_lever_list_a2bc73e06ef140ef4db9427b0bab18c0c}} 
-static \mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}} {\bfseries \+\_\+instance}
-\end{DoxyCompactItemize}
+\index{model.LeverList@{model.LeverList}!getLever@{getLever}}
+\index{getLever@{getLever}!model.LeverList@{model.LeverList}}
+\doxysubsubsection{\texorpdfstring{getLever()}{getLever()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} model.\+Lever\+List.\+get\+Lever (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+Fonction retournant l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} indiqué par son {\bfseries{nom}} 
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} demandé 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_lever_list_a20aed7dc6aef1bdda99d306c0ede9cdc}\label{classmodel_1_1_lever_list_a20aed7dc6aef1bdda99d306c0ede9cdc}} 
+\index{model.LeverList@{model.LeverList}!getLeverByAbreviation@{getLeverByAbreviation}}
+\index{getLeverByAbreviation@{getLeverByAbreviation}!model.LeverList@{model.LeverList}}
+\doxysubsubsection{\texorpdfstring{getLeverByAbreviation()}{getLeverByAbreviation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} model.\+Lever\+List.\+get\+Lever\+By\+Abreviation (\begin{DoxyParamCaption}\item[{String}]{abreviation }\end{DoxyParamCaption})}
+
+Fonction retournant l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} indiqué par son {\bfseries{abréviation}} 
+\begin{DoxyParams}{Parameters}
+{\em abreviation} & {\bfseries{Abréviation}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} demandé \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} demandé 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_lever_list_aa051144d86fad23c7d88cf96fe7e17e2}\label{classmodel_1_1_lever_list_aa051144d86fad23c7d88cf96fe7e17e2}} 
+\index{model.LeverList@{model.LeverList}!getLevers@{getLevers}}
+\index{getLevers@{getLevers}!model.LeverList@{model.LeverList}}
+\doxysubsubsection{\texorpdfstring{getLevers()}{getLevers()}}
+{\footnotesize\ttfamily Collection$<$\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}$>$ model.\+Lever\+List.\+get\+Levers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fonction retournant la liste des objets {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} contenu dans l\textquotesingle{}instance de {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}}}} \begin{DoxyReturn}{Returns}
+{\bfseries{Collection}} des objets {\bfseries{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}} 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/Lever\+List.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/Lever\+List.\+java\end{DoxyCompactItemize}

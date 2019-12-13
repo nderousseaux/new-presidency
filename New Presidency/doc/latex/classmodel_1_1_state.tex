@@ -3,98 +3,175 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmodel_1_1_state_ab2117a234d6dd3ef2bf69b9ba08ed0d9}\label{classmodel_1_1_state_ab2117a234d6dd3ef2bf69b9ba08ed0d9}} 
-{\bfseries State} (Integer year, double remaining\+Budget, double i\+Taux\+Reu, double i\+Sat\+Pers, double i\+Sat\+Etu, double l\+Dot\+Rec\+Form, double l\+Dot\+Spe\+Form, double l\+Dot\+Rec\+Rech, double l\+Prime, double l\+Immo, double l\+Sub\+Asso\+Etu)
+\mbox{\hyperlink{classmodel_1_1_state_ab17d8be7e900c18d99f5f0409c334fec}{State}} (Integer year, double remaining\+Budget, Hash\+Map$<$ String, Double $>$ levers, Hash\+Map$<$ String, Double $>$ indicators)
 \item 
+Integer \mbox{\hyperlink{classmodel_1_1_state_a3cd35dac6c305f35734ff2933cbb8298}{get\+Year}} ()
+\item 
+Double \mbox{\hyperlink{classmodel_1_1_state_a045bf787dfe1360476f2a79d84f20f07}{get\+Remaining\+Budget}} ()
+\item 
+Double \mbox{\hyperlink{classmodel_1_1_state_ae39eecf1c57eca7c502c673d84747488}{get\+Lever}} (String abreviation)  throws Illegal\+Argument\+Exception
+\item 
+Double \mbox{\hyperlink{classmodel_1_1_state_ad02e53186b1301f625b6e6e59ea112d5}{get\+Indicator}} (String abreviation)  throws Illegal\+Argument\+Exception
+\item 
+void \mbox{\hyperlink{classmodel_1_1_state_a43202911607bde7bade236964bd44395}{set\+Indicator}} (String abreviation, Double val)  throws Illegal\+Argument\+Exception
+\item 
+Hash\+Map$<$ String, Double $>$ \mbox{\hyperlink{classmodel_1_1_state_a33f38ebc6f3f973911e4b77facc5eb44}{get\+Levers}} ()
+\item 
+Hash\+Map$<$ String, Double $>$ \mbox{\hyperlink{classmodel_1_1_state_af210052fe5129dab94737817c4e1e841}{get\+Indicators}} ()
+\item 
+void \mbox{\hyperlink{classmodel_1_1_state_a335cbbfea336d5163e648c3f2fa04238}{set\+Lever}} (String abreviation, Double value)  throws Illegal\+Argument\+Exception
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_state}{State}}} est la classe contenant les valeurs à une année donnée des indicateurs et des leviers}} 
+
+Elle contient\+: 
+\begin{DoxyItemize}
+\item Une {\bfseries{année donnée}} 
+\item Un {\bfseries{budget disponible}} lors de l\textquotesingle{}année donnée 
+\item Un {\bfseries{ensemble de valeurs des indicateurs}} lors de l\textquotesingle{}année donnée  
+\item Un {\bfseries{ensemble de valeurs des leviers}} lors de l\textquotesingle{}année donnée 
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+yoanv, lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_state_ab17d8be7e900c18d99f5f0409c334fec}\label{classmodel_1_1_state_ab17d8be7e900c18d99f5f0409c334fec}} 
+\index{model.State@{model.State}!State@{State}}
+\index{State@{State}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{State()}{State()}}
+{\footnotesize\ttfamily model.\+State.\+State (\begin{DoxyParamCaption}\item[{Integer}]{year,  }\item[{double}]{remaining\+Budget,  }\item[{Hash\+Map$<$ String, Double $>$}]{levers,  }\item[{Hash\+Map$<$ String, Double $>$}]{indicators }\end{DoxyParamCaption})}
+
+Constructeur de la classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_state}{State}}}} 
+\begin{DoxyParams}{Parameters}
+{\em year} & {\bfseries{Année de l\textquotesingle{}instance \mbox{\hyperlink{classmodel_1_1_state}{State}}}} \\
+\hline
+{\em remaining\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} disponible lors de l\textquotesingle{}année}} \\
+\hline
+{\em levers} & {\bfseries{Ensemble des valeurs des budgets des leviers}} \\
+\hline
+{\em indicators} & {\bfseries{Ensemble des valeurs de complétion des indicateurs}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel_1_1_state_ad02e53186b1301f625b6e6e59ea112d5}\label{classmodel_1_1_state_ad02e53186b1301f625b6e6e59ea112d5}} 
+\index{model.State@{model.State}!getIndicator@{getIndicator}}
+\index{getIndicator@{getIndicator}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{getIndicator()}{getIndicator()}}
+{\footnotesize\ttfamily Double model.\+State.\+get\+Indicator (\begin{DoxyParamCaption}\item[{String}]{abreviation }\end{DoxyParamCaption}) throws Illegal\+Argument\+Exception}
+
+Accesseur {\bfseries{getteur}} de la valeur d\textquotesingle{}un {\bfseries{indicateur donné par son abréviation}} 
+\begin{DoxyParams}{Parameters}
+{\em abreviation} & {\bfseries{Abréviation de l\textquotesingle{}indicateur demandé}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Valeur de l\textquotesingle{}indicateur demandé}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Illegal\+Argument\+Exception} & Lancé si l\textquotesingle{}{\bfseries{abréviation}} n\textquotesingle{}existe pas \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classmodel_1_1_state_af210052fe5129dab94737817c4e1e841}\label{classmodel_1_1_state_af210052fe5129dab94737817c4e1e841}} 
+\index{model.State@{model.State}!getIndicators@{getIndicators}}
+\index{getIndicators@{getIndicators}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{getIndicators()}{getIndicators()}}
+{\footnotesize\ttfamily Hash\+Map$<$String, Double$>$ model.\+State.\+get\+Indicators (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de l\textquotesingle{}ensemble des {\bfseries{valeurs des indicateurs}} \begin{DoxyReturn}{Returns}
+{\bfseries{Ensemble des valeurs des indicateurs}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_state_ae39eecf1c57eca7c502c673d84747488}\label{classmodel_1_1_state_ae39eecf1c57eca7c502c673d84747488}} 
+\index{model.State@{model.State}!getLever@{getLever}}
+\index{getLever@{getLever}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{getLever()}{getLever()}}
+{\footnotesize\ttfamily Double model.\+State.\+get\+Lever (\begin{DoxyParamCaption}\item[{String}]{abreviation }\end{DoxyParamCaption}) throws Illegal\+Argument\+Exception}
+
+Accesseur {\bfseries{getteur}} de la valeur d\textquotesingle{}un {\bfseries{levier donné par son abréviation}} 
+\begin{DoxyParams}{Parameters}
+{\em abreviation} & {\bfseries{Abréviation du levier demandé}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Valeur du levier demandé}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Illegal\+Argument\+Exception} & Lancé si l\textquotesingle{}{\bfseries{abréviation}} n\textquotesingle{}existe pas \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classmodel_1_1_state_a33f38ebc6f3f973911e4b77facc5eb44}\label{classmodel_1_1_state_a33f38ebc6f3f973911e4b77facc5eb44}} 
+\index{model.State@{model.State}!getLevers@{getLevers}}
+\index{getLevers@{getLevers}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{getLevers()}{getLevers()}}
+{\footnotesize\ttfamily Hash\+Map$<$String, Double$>$ model.\+State.\+get\+Levers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de l\textquotesingle{}ensemble des {\bfseries{valeurs des leviers}} \begin{DoxyReturn}{Returns}
+{\bfseries{Ensemble des valeurs des leviers}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_state_a045bf787dfe1360476f2a79d84f20f07}\label{classmodel_1_1_state_a045bf787dfe1360476f2a79d84f20f07}} 
+\index{model.State@{model.State}!getRemainingBudget@{getRemainingBudget}}
+\index{getRemainingBudget@{getRemainingBudget}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{getRemainingBudget()}{getRemainingBudget()}}
+{\footnotesize\ttfamily Double model.\+State.\+get\+Remaining\+Budget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} du {\bfseries{budget disponible de l\textquotesingle{}objet \mbox{\hyperlink{classmodel_1_1_state}{State}}}} \begin{DoxyReturn}{Returns}
+{\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} disponible de l\textquotesingle{}objet}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classmodel_1_1_state_a3cd35dac6c305f35734ff2933cbb8298}\label{classmodel_1_1_state_a3cd35dac6c305f35734ff2933cbb8298}} 
-Integer {\bfseries get\+Year} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_ad6c5da9f8b68ccf66dd52419e3cac828}\label{classmodel_1_1_state_ad6c5da9f8b68ccf66dd52419e3cac828}} 
-double {\bfseries get\+Remaining\+Budget} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a6f50256914b42302653a11426e0a6ade}\label{classmodel_1_1_state_a6f50256914b42302653a11426e0a6ade}} 
-double {\bfseries get\+I\+Taux\+Reu} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a67e23059cb1933574d97444066ddbc29}\label{classmodel_1_1_state_a67e23059cb1933574d97444066ddbc29}} 
-double {\bfseries get\+I\+Sat\+Etu} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a2a30ab571a60a8ecda667b1bbc22fac2}\label{classmodel_1_1_state_a2a30ab571a60a8ecda667b1bbc22fac2}} 
-double {\bfseries get\+I\+Sat\+Pers} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_ad45fb8601845130fc860e98e3d0ccd0c}\label{classmodel_1_1_state_ad45fb8601845130fc860e98e3d0ccd0c}} 
-double {\bfseries get\+L\+Dot\+Rec\+Form} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a7bd9ba27bf4dc3821ad4da6ca06372b7}\label{classmodel_1_1_state_a7bd9ba27bf4dc3821ad4da6ca06372b7}} 
-double {\bfseries get\+L\+Dot\+Spe\+Form} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a6591ea6cf64e48d3ff815fc99b80c4df}\label{classmodel_1_1_state_a6591ea6cf64e48d3ff815fc99b80c4df}} 
-double {\bfseries get\+L\+Prime} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a2cfd85715deb1f809c47eadebcb2fc8f}\label{classmodel_1_1_state_a2cfd85715deb1f809c47eadebcb2fc8f}} 
-double {\bfseries get\+L\+Immo} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_aa349cb47d6e734c6a5da1e3747cb3d7b}\label{classmodel_1_1_state_aa349cb47d6e734c6a5da1e3747cb3d7b}} 
-double {\bfseries get\+L\+Sub\+Asso\+Etu} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_af12add60a699cac88a4336a3c6efff4e}\label{classmodel_1_1_state_af12add60a699cac88a4336a3c6efff4e}} 
-double {\bfseries get\+L\+Dot\+Rec\+Rech} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a2ae81d69e0d1c2e91f75f55279b22484}\label{classmodel_1_1_state_a2ae81d69e0d1c2e91f75f55279b22484}} 
-void {\bfseries set\+L\+Dot\+Rec\+Form} (double \+\_\+l\+Dot\+Rec\+Form)
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_afd0fe6b81cabf6a3ffa46cabeb36c332}\label{classmodel_1_1_state_afd0fe6b81cabf6a3ffa46cabeb36c332}} 
-void {\bfseries set\+L\+Dot\+Spe\+Form} (double \+\_\+l\+Dot\+Spe\+Form)
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_ad1c15b427d1413149718fb8a9a097a7b}\label{classmodel_1_1_state_ad1c15b427d1413149718fb8a9a097a7b}} 
-void {\bfseries set\+L\+Dot\+Rec\+Rech} (double \+\_\+l\+Dot\+Rec\+Rech)
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a48e783921b3a51aa375471f91c0369b6}\label{classmodel_1_1_state_a48e783921b3a51aa375471f91c0369b6}} 
-void {\bfseries set\+L\+Prime} (double \+\_\+l\+Prime)
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a4cffde86eb8bbd7ce6cbb98756ae4a79}\label{classmodel_1_1_state_a4cffde86eb8bbd7ce6cbb98756ae4a79}} 
-void {\bfseries set\+L\+Immo} (double \+\_\+l\+Immo)
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a1327f41b745c96f18bfc642acc7b620c}\label{classmodel_1_1_state_a1327f41b745c96f18bfc642acc7b620c}} 
-void {\bfseries set\+L\+Sub\+Asso\+Etu} (double \+\_\+l\+Sub\+Asso\+Etu)
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_afb30ec582dc738325ff8d1d509dcef84}\label{classmodel_1_1_state_afb30ec582dc738325ff8d1d509dcef84}} 
-int {\bfseries \+\_\+year}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a40fe6153f7e18a479a08e77aa9d50a4b}\label{classmodel_1_1_state_a40fe6153f7e18a479a08e77aa9d50a4b}} 
-double {\bfseries \+\_\+remaining\+Budget}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_aaf7bbc91d00cb8ae1db6814cca3f307a}\label{classmodel_1_1_state_aaf7bbc91d00cb8ae1db6814cca3f307a}} 
-double {\bfseries \+\_\+i\+Taux\+Reu}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a9da222ef6444a4df81068635db5f9d4c}\label{classmodel_1_1_state_a9da222ef6444a4df81068635db5f9d4c}} 
-double {\bfseries \+\_\+i\+Sat\+Pers}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_ad017d792304a3c06b4a9c06fa579eca8}\label{classmodel_1_1_state_ad017d792304a3c06b4a9c06fa579eca8}} 
-double {\bfseries \+\_\+i\+Sat\+Etu}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a9668d37e26aa8a5b564eb2c7b5e93ed3}\label{classmodel_1_1_state_a9668d37e26aa8a5b564eb2c7b5e93ed3}} 
-double {\bfseries \+\_\+l\+Dot\+Rec\+Form}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a05a4bad4400c7a553d43a67ae3d11abb}\label{classmodel_1_1_state_a05a4bad4400c7a553d43a67ae3d11abb}} 
-double {\bfseries \+\_\+l\+Dot\+Spe\+Form}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a35a3d4523d1fffc01020b57176b55958}\label{classmodel_1_1_state_a35a3d4523d1fffc01020b57176b55958}} 
-double {\bfseries \+\_\+l\+Dot\+Rec\+Rech}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_af67b36926ddac25408cca90787fb19a4}\label{classmodel_1_1_state_af67b36926ddac25408cca90787fb19a4}} 
-double {\bfseries \+\_\+l\+Prime}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a88800666735cba992c547a854b7c8c2d}\label{classmodel_1_1_state_a88800666735cba992c547a854b7c8c2d}} 
-double {\bfseries \+\_\+l\+Immo}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_a7e5f0695a9dcdae7a79b7f867c1b47bd}\label{classmodel_1_1_state_a7e5f0695a9dcdae7a79b7f867c1b47bd}} 
-double {\bfseries \+\_\+l\+Sub\+Asso\+Etu}
-\end{DoxyCompactItemize}
+\index{model.State@{model.State}!getYear@{getYear}}
+\index{getYear@{getYear}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{getYear()}{getYear()}}
+{\footnotesize\ttfamily Integer model.\+State.\+get\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de l\textquotesingle{}{\bfseries{année de l\textquotesingle{}objet \mbox{\hyperlink{classmodel_1_1_state}{State}}}} \begin{DoxyReturn}{Returns}
+{\bfseries{Année de l\textquotesingle{}objet}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_state_a43202911607bde7bade236964bd44395}\label{classmodel_1_1_state_a43202911607bde7bade236964bd44395}} 
+\index{model.State@{model.State}!setIndicator@{setIndicator}}
+\index{setIndicator@{setIndicator}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{setIndicator()}{setIndicator()}}
+{\footnotesize\ttfamily void model.\+State.\+set\+Indicator (\begin{DoxyParamCaption}\item[{String}]{abreviation,  }\item[{Double}]{val }\end{DoxyParamCaption}) throws Illegal\+Argument\+Exception}
+
+Accesseur {\bfseries{setteur}} de la valeur d\textquotesingle{}un {\bfseries{indicateur donné par son abréviation}} 
+\begin{DoxyParams}{Parameters}
+{\em abreviation} & {\bfseries{Abréviation de l\textquotesingle{}indicateur à modifier}} \\
+\hline
+{\em val} & {\bfseries{Valeur à insérer}} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Illegal\+Argument\+Exception} & Lancé si l\textquotesingle{}{\bfseries{abréviation n\textquotesingle{}existe pas}} \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classmodel_1_1_state_a335cbbfea336d5163e648c3f2fa04238}\label{classmodel_1_1_state_a335cbbfea336d5163e648c3f2fa04238}} 
+\index{model.State@{model.State}!setLever@{setLever}}
+\index{setLever@{setLever}!model.State@{model.State}}
+\doxysubsubsection{\texorpdfstring{setLever()}{setLever()}}
+{\footnotesize\ttfamily void model.\+State.\+set\+Lever (\begin{DoxyParamCaption}\item[{String}]{abreviation,  }\item[{Double}]{value }\end{DoxyParamCaption}) throws Illegal\+Argument\+Exception}
+
+Accesseur {\bfseries{setteur}} de la valeur d\textquotesingle{}un {\bfseries{levier donné par son abréviation}} 
+\begin{DoxyParams}{Parameters}
+{\em abreviation} & {\bfseries{Abréviation du levier à modifier}} \\
+\hline
+{\em value} & {\bfseries{Valeur à insérer}} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Illegal\+Argument\+Exception} & Lancé si l\textquotesingle{}{\bfseries{abréviation n\textquotesingle{}existe pas}} \\
+\hline
+\end{DoxyExceptions}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/State.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/State.\+java\end{DoxyCompactItemize}

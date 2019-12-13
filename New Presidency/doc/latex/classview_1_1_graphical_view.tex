@@ -9,77 +9,49 @@ Inheritance diagram for view.\+Graphical\+View\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}{Graphical\+View}} (\mbox{\hyperlink{classcontroller_1_1_controller}{Controller}} controller)  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classview_1_1_graphical_view}{Graphical\+View}}} est la classe de l\textquotesingle{}interface graphique du jeu}} 
+
+L\textquotesingle{}interface est une J\+Frame, comportant d\textquotesingle{}autres éléments\+: 
+\begin{DoxyItemize}
+\item des {\bfseries{J\+Pannels}} pour les indicateurs, les leviers, le budget et le tour 
+\item des {\bfseries{J\+Scroll\+Pane}} permettant d\textquotesingle{}avoir un ascenceur vertical 
+\item des {\bfseries{J\+Button}} pour afficher les graphiques d\textquotesingle{}évolution et terminer le tour 
+\end{DoxyItemize}Le côté flexible de l\textquotesingle{}interface est amené par le combo de Layout {\bfseries{Border\+Layout}} pour la fenêtre principale, et {\bfseries{Grid\+Layout}} pour le pannel comprenant les indicateurs et les leviers, ainsi que le pannel au bas de l\textquotesingle{}interface, comprenant le budget et les boutons. 
+
+\begin{DoxySeeAlso}{See also}
+Controller
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yvanderspurt 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}\label{classview_1_1_graphical_view_adb43df7ea5122812ffccede533a7b2b0}} 
-{\bfseries Graphical\+View} (\mbox{\hyperlink{classcontroller_1_1_controller}{Controller}} controller)
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_aea9e4cfedba1c742dcb4424a77ac7fb3}\label{classview_1_1_graphical_view_aea9e4cfedba1c742dcb4424a77ac7fb3}} 
-void {\bfseries update\+Budget} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a4ceb76e80fe2e558fb68112b20f9f222}\label{classview_1_1_graphical_view_a4ceb76e80fe2e558fb68112b20f9f222}} 
-void {\bfseries update\+Levers} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a13ae0b314673be298d6fa1839b192eda}\label{classview_1_1_graphical_view_a13ae0b314673be298d6fa1839b192eda}} 
-void {\bfseries update\+Indics} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_aa8f786bea43016cc3ab7857be8fadde6}\label{classview_1_1_graphical_view_aa8f786bea43016cc3ab7857be8fadde6}} 
-void {\bfseries update\+Year} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a60e2ad5b3237f980fe2f45b358e0d747}\label{classview_1_1_graphical_view_a60e2ad5b3237f980fe2f45b358e0d747}} 
-void {\bfseries end\+Of\+Round} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_ad8994a655faf268deca91a782129b682}\label{classview_1_1_graphical_view_ad8994a655faf268deca91a782129b682}} 
-void {\bfseries add\+All\+Elements} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a568c63728ddfc46e4fab73fd0bc9b648}\label{classview_1_1_graphical_view_a568c63728ddfc46e4fab73fd0bc9b648}} 
-void {\bfseries remove\+All\+Elements} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a83587b01cd8687033ea75903b31b106a}\label{classview_1_1_graphical_view_a83587b01cd8687033ea75903b31b106a}} 
-void {\bfseries update\+All} ()
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a2246f7bdf68d1a03aeba350d7112fb19}\label{classview_1_1_graphical_view_a2246f7bdf68d1a03aeba350d7112fb19}} 
-void {\bfseries init} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_aef2bc5a1299c6e77208ad39afa064609}\label{classview_1_1_graphical_view_aef2bc5a1299c6e77208ad39afa064609}} 
-\mbox{\hyperlink{classcontroller_1_1_controller}{Controller}} {\bfseries \+\_\+controller}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a9cc2b8ab1ae161a3bdfc0074c78aef79}\label{classview_1_1_graphical_view_a9cc2b8ab1ae161a3bdfc0074c78aef79}} 
-J\+Panel {\bfseries \+\_\+year}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a0c46ee1ba156d904bac1e54b701e3a83}\label{classview_1_1_graphical_view_a0c46ee1ba156d904bac1e54b701e3a83}} 
-J\+Panel {\bfseries \+\_\+levers}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_a80524820d06d58a020c5ab86973a778d}\label{classview_1_1_graphical_view_a80524820d06d58a020c5ab86973a778d}} 
-J\+Scroll\+Pane {\bfseries \+\_\+scroll\+Levers}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_aebc19b400bc4d9f423954856d4ba9439}\label{classview_1_1_graphical_view_aebc19b400bc4d9f423954856d4ba9439}} 
-J\+Panel {\bfseries \+\_\+indicators}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_af335495154a6129074f88a6e213ce4ea}\label{classview_1_1_graphical_view_af335495154a6129074f88a6e213ce4ea}} 
-J\+Scroll\+Pane {\bfseries \+\_\+scroll\+Indicators}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_ab514fe6ae8d03457cf6a001fda2ced02}\label{classview_1_1_graphical_view_ab514fe6ae8d03457cf6a001fda2ced02}} 
-J\+Panel {\bfseries \+\_\+panel\+Indic\+Levers}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_ad725acf532f7b7b3833b5068edc190df}\label{classview_1_1_graphical_view_ad725acf532f7b7b3833b5068edc190df}} 
-J\+Panel {\bfseries \+\_\+budget}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_acfabf381c8cfe61a7f0041086ad73c3d}\label{classview_1_1_graphical_view_acfabf381c8cfe61a7f0041086ad73c3d}} 
-J\+Button {\bfseries \+\_\+next\+Round}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_ab8dd96fbf360e89d3ef2df53e8b4f308}\label{classview_1_1_graphical_view_ab8dd96fbf360e89d3ef2df53e8b4f308}} 
-J\+Button {\bfseries \+\_\+show\+Graphic}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphical_view_aa9cac6efc3eb7130524a98c573e87f98}\label{classview_1_1_graphical_view_aa9cac6efc3eb7130524a98c573e87f98}} 
-J\+Panel {\bfseries \+\_\+pannel\+Bottom}
-\end{DoxyCompactItemize}
+\index{view.GraphicalView@{view.GraphicalView}!GraphicalView@{GraphicalView}}
+\index{GraphicalView@{GraphicalView}!view.GraphicalView@{view.GraphicalView}}
+\doxysubsubsection{\texorpdfstring{GraphicalView()}{GraphicalView()}}
+{\footnotesize\ttfamily view.\+Graphical\+View.\+Graphical\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcontroller_1_1_controller}{Controller}}}]{controller }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+Constructeur de {\bfseries{\mbox{\hyperlink{classview_1_1_graphical_view}{Graphical\+View}}}}, appelant des {\bfseries{sous-\/fonctions d\textquotesingle{}initialisation}} 
+\begin{DoxyParams}{Parameters}
+{\em controller} & Controlleur du jeu \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Graphical\+View\+::init() 
+
+Graphical\+View\+::update\+All() 
+
+Graphical\+View\+::add\+All\+Elements() 
+\end{DoxySeeAlso}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/view/Graphical\+View.\+java\end{DoxyCompactItemize}
+New Presidency/src/view/Graphical\+View.\+java\end{DoxyCompactItemize}

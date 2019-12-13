@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['refresh_14',['refresh',['../classview_1_1_graphic_line.html#a1ad61649d145e7d30e0d4a88afccd689',1,'view::GraphicLine']]],
-  ['refreshtype_15',['refreshType',['../classview_1_1_graphic_line.html#aa717893bbf444a2396362225967ab5dd',1,'view::GraphicLine']]]
+  ['hasserie_61',['hasSerie',['../classview_1_1_graphic_line.html#a2b1a4cd04770203f58433cc62b119d2f',1,'view::GraphicLine']]]
 ];

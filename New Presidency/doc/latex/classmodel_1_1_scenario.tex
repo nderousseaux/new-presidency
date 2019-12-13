@@ -1,0 +1,123 @@
+\hypertarget{classmodel_1_1_scenario}{}\doxysection{model.\+Scenario Class Reference}
+\label{classmodel_1_1_scenario}\index{model.Scenario@{model.Scenario}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmodel_1_1_scenario_a983d42523e28868afb9d7ff8bf22dd9b}{Scenario}} (String name, String abreviation, Hash\+Map$<$ String, Double $>$ start, Hash\+Map$<$ String, Double $>$ victory, Hash\+Map$<$ String, Double $>$ defeat, Collection$<$ String $>$ infos)
+\item 
+Hash\+Map$<$ String, Double $>$ \mbox{\hyperlink{classmodel_1_1_scenario_a47797906b4cdf1edef549e3373242023}{get\+Start}} ()
+\item 
+Hash\+Map$<$ String, Double $>$ \mbox{\hyperlink{classmodel_1_1_scenario_a82abc6036821ead45ef0c2223d761804}{get\+Victory}} ()
+\item 
+Hash\+Map$<$ String, Double $>$ \mbox{\hyperlink{classmodel_1_1_scenario_ab60bce2c3655ce98cf00a47119390062}{get\+Defeat}} ()
+\item 
+String \mbox{\hyperlink{classmodel_1_1_scenario_aaf3fe8fd8d5379c005339a43c42b6708}{get\+Name}} ()
+\item 
+String \mbox{\hyperlink{classmodel_1_1_scenario_afa0fa4c00183f324a530082440cab9ae}{get\+Abreviation}} ()
+\item 
+Collection$<$ String $>$ \mbox{\hyperlink{classmodel_1_1_scenario_a76e42b481e5ec972e602fb9a5ca8ff80}{get\+Infos}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_scenario}{Scenario}}} est la classe de chacun des scénarios proposés dans le jeu}} 
+
+Elle contient, pour chacune de ses instances\+: 
+\begin{DoxyItemize}
+\item Un {\bfseries{nom}} de scénario 
+\item Une {\bfseries{abréviation}} du nom de scénario 
+\item Une {\bfseries{situation de départ}} du scénario sous la forme d\textquotesingle{}une {\bfseries{Hash\+Map$<$String,Double}} 
+\item Une {\bfseries{situation de victoire}} du scénario sous la forme d\textquotesingle{}une {\bfseries{Hash\+Map$<$String,Double}} 
+\item Une {\bfseries{situation de défaite}} du scénario sous la forme d\textquotesingle{}une {\bfseries{Hash\+Map$<$String,Double}} 
+\item Une {\bfseries{liste d\textquotesingle{}informations}} relative au scénario, affichée à l\textquotesingle{}utilisateur pour lui indiquer comment jouer 
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+nathanaeld 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_scenario_a983d42523e28868afb9d7ff8bf22dd9b}\label{classmodel_1_1_scenario_a983d42523e28868afb9d7ff8bf22dd9b}} 
+\index{model.Scenario@{model.Scenario}!Scenario@{Scenario}}
+\index{Scenario@{Scenario}!model.Scenario@{model.Scenario}}
+\doxysubsubsection{\texorpdfstring{Scenario()}{Scenario()}}
+{\footnotesize\ttfamily model.\+Scenario.\+Scenario (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{abreviation,  }\item[{Hash\+Map$<$ String, Double $>$}]{start,  }\item[{Hash\+Map$<$ String, Double $>$}]{victory,  }\item[{Hash\+Map$<$ String, Double $>$}]{defeat,  }\item[{Collection$<$ String $>$}]{infos }\end{DoxyParamCaption})}
+
+Constructeur de la classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_scenario}{Scenario}}}}, instanciant un nouveau scénario 
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} du scénario \\
+\hline
+{\em abreviation} & {\bfseries{Abréviation}} du scénario \\
+\hline
+{\em start} & {\bfseries{Situation de départ}} du scénario \\
+\hline
+{\em victory} & {\bfseries{Situation de victoire}} du scénario \\
+\hline
+{\em defeat} & {\bfseries{Situation de défaite}} du scénario \\
+\hline
+{\em infos} & {\bfseries{Liste d\textquotesingle{}informations}} du scénario \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel_1_1_scenario_afa0fa4c00183f324a530082440cab9ae}\label{classmodel_1_1_scenario_afa0fa4c00183f324a530082440cab9ae}} 
+\index{model.Scenario@{model.Scenario}!getAbreviation@{getAbreviation}}
+\index{getAbreviation@{getAbreviation}!model.Scenario@{model.Scenario}}
+\doxysubsubsection{\texorpdfstring{getAbreviation()}{getAbreviation()}}
+{\footnotesize\ttfamily String model.\+Scenario.\+get\+Abreviation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de l\textquotesingle{}{\bfseries{abréviation}} du scénario \begin{DoxyReturn}{Returns}
+{\bfseries{Abréviation}} du scénario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_scenario_ab60bce2c3655ce98cf00a47119390062}\label{classmodel_1_1_scenario_ab60bce2c3655ce98cf00a47119390062}} 
+\index{model.Scenario@{model.Scenario}!getDefeat@{getDefeat}}
+\index{getDefeat@{getDefeat}!model.Scenario@{model.Scenario}}
+\doxysubsubsection{\texorpdfstring{getDefeat()}{getDefeat()}}
+{\footnotesize\ttfamily Hash\+Map$<$String, Double$>$ model.\+Scenario.\+get\+Defeat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{condition de défaite}} du scénario \begin{DoxyReturn}{Returns}
+{\bfseries{Condition de défaite}} du scénario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_scenario_a76e42b481e5ec972e602fb9a5ca8ff80}\label{classmodel_1_1_scenario_a76e42b481e5ec972e602fb9a5ca8ff80}} 
+\index{model.Scenario@{model.Scenario}!getInfos@{getInfos}}
+\index{getInfos@{getInfos}!model.Scenario@{model.Scenario}}
+\doxysubsubsection{\texorpdfstring{getInfos()}{getInfos()}}
+{\footnotesize\ttfamily Collection$<$String$>$ model.\+Scenario.\+get\+Infos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{liste d\textquotesingle{}informations}} du scénario \begin{DoxyReturn}{Returns}
+{\bfseries{Liste d\textquotesingle{}informations}} du scénario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_scenario_aaf3fe8fd8d5379c005339a43c42b6708}\label{classmodel_1_1_scenario_aaf3fe8fd8d5379c005339a43c42b6708}} 
+\index{model.Scenario@{model.Scenario}!getName@{getName}}
+\index{getName@{getName}!model.Scenario@{model.Scenario}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily String model.\+Scenario.\+get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} du {\bfseries{nom}} du scénario \begin{DoxyReturn}{Returns}
+{\bfseries{Nom}} du scénario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_scenario_a47797906b4cdf1edef549e3373242023}\label{classmodel_1_1_scenario_a47797906b4cdf1edef549e3373242023}} 
+\index{model.Scenario@{model.Scenario}!getStart@{getStart}}
+\index{getStart@{getStart}!model.Scenario@{model.Scenario}}
+\doxysubsubsection{\texorpdfstring{getStart()}{getStart()}}
+{\footnotesize\ttfamily Hash\+Map$<$String, Double$>$ model.\+Scenario.\+get\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{condition de départ}} du scénario \begin{DoxyReturn}{Returns}
+{\bfseries{Condition de départ}} du scénario 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_scenario_a82abc6036821ead45ef0c2223d761804}\label{classmodel_1_1_scenario_a82abc6036821ead45ef0c2223d761804}} 
+\index{model.Scenario@{model.Scenario}!getVictory@{getVictory}}
+\index{getVictory@{getVictory}!model.Scenario@{model.Scenario}}
+\doxysubsubsection{\texorpdfstring{getVictory()}{getVictory()}}
+{\footnotesize\ttfamily Hash\+Map$<$String, Double$>$ model.\+Scenario.\+get\+Victory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{condition de victoire}} du scénario \begin{DoxyReturn}{Returns}
+{\bfseries{Condition de victoire}} du scénario 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+New Presidency/src/model/Scenario.\+java\end{DoxyCompactItemize}

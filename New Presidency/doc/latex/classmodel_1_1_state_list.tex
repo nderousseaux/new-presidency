@@ -3,38 +3,97 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classmodel_1_1_state_list_a1327809d2eac2c21d72e53b5cb654634}{State\+List}} ()
+\item 
+void \mbox{\hyperlink{classmodel_1_1_state_list_a9ba91f6bb970efa2f9982babb03bd375}{add\+State}} (\mbox{\hyperlink{classmodel_1_1_state}{State}} s)
+\item 
+\mbox{\hyperlink{classmodel_1_1_state}{State}} \mbox{\hyperlink{classmodel_1_1_state_list_a6ea1c623363d50c386dd2576e132e4b5}{get\+State}} (int year)
+\item 
+Collection$<$ \mbox{\hyperlink{classmodel_1_1_state}{State}} $>$ \mbox{\hyperlink{classmodel_1_1_state_list_a0854131942eba563db35b1a2613eedac}{get\+States}} ()
+\item 
+\mbox{\hyperlink{classmodel_1_1_state}{State}} \mbox{\hyperlink{classmodel_1_1_state_list_a5394e693762cfa72125dddba2cdbe4e2}{create\+State}} (int year, double remaining\+Budget, Hash\+Map$<$ String, Double $>$ levers, Hash\+Map$<$ String, Double $>$ indicators)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}}} est la classe contenant l\textquotesingle{}ensemble des objets \mbox{\hyperlink{classmodel_1_1_state}{State}} du jeu}} 
+
+Cette classe contient une {\bfseries{Collection de \mbox{\hyperlink{classmodel_1_1_state}{State}}}} 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_state}{State}} 
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yoanv, lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_state_list_a1327809d2eac2c21d72e53b5cb654634}\label{classmodel_1_1_state_list_a1327809d2eac2c21d72e53b5cb654634}} 
+\index{model.StateList@{model.StateList}!StateList@{StateList}}
+\index{StateList@{StateList}!model.StateList@{model.StateList}}
+\doxysubsubsection{\texorpdfstring{StateList()}{StateList()}}
+{\footnotesize\ttfamily model.\+State\+List.\+State\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructeur de la classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}}}}, initialisant la {\bfseries{liste de \mbox{\hyperlink{classmodel_1_1_state}{State}}}} à une {\bfseries{Array\+List vide}} 
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classmodel_1_1_state_list_a9ba91f6bb970efa2f9982babb03bd375}\label{classmodel_1_1_state_list_a9ba91f6bb970efa2f9982babb03bd375}} 
-void {\bfseries add\+State} (\mbox{\hyperlink{classmodel_1_1_state}{State}} s)
-\item 
+\index{model.StateList@{model.StateList}!addState@{addState}}
+\index{addState@{addState}!model.StateList@{model.StateList}}
+\doxysubsubsection{\texorpdfstring{addState()}{addState()}}
+{\footnotesize\ttfamily void model.\+State\+List.\+add\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmodel_1_1_state}{State}}}]{s }\end{DoxyParamCaption})}
+
+Fonction permettant d\textquotesingle{}{\bfseries{ajouter un objet \mbox{\hyperlink{classmodel_1_1_state}{State}}}} à la liste 
+\begin{DoxyParams}{Parameters}
+{\em s} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_state}{State}} à ajouter à la liste}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmodel_1_1_state_list_a5394e693762cfa72125dddba2cdbe4e2}\label{classmodel_1_1_state_list_a5394e693762cfa72125dddba2cdbe4e2}} 
+\index{model.StateList@{model.StateList}!createState@{createState}}
+\index{createState@{createState}!model.StateList@{model.StateList}}
+\doxysubsubsection{\texorpdfstring{createState()}{createState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_state}{State}} model.\+State\+List.\+create\+State (\begin{DoxyParamCaption}\item[{int}]{year,  }\item[{double}]{remaining\+Budget,  }\item[{Hash\+Map$<$ String, Double $>$}]{levers,  }\item[{Hash\+Map$<$ String, Double $>$}]{indicators }\end{DoxyParamCaption})}
+
+Fonction permettant d\textquotesingle{}{\bfseries{initialiser un nouvel objet \mbox{\hyperlink{classmodel_1_1_state}{State}}}} 
+\begin{DoxyParams}{Parameters}
+{\em year} & {\bfseries{Année}} de l\textquotesingle{}objet \mbox{\hyperlink{classmodel_1_1_state}{State}} \\
+\hline
+{\em remaining\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} disponible}} de l\textquotesingle{}objet \mbox{\hyperlink{classmodel_1_1_state}{State}} \\
+\hline
+{\em levers} & {\bfseries{Ensemble des leviers}} de l\textquotesingle{}objet \mbox{\hyperlink{classmodel_1_1_state}{State}} \\
+\hline
+{\em indicators} & {\bfseries{Ensemble des indicateurs}} de l\textquotesingle{}objet \mbox{\hyperlink{classmodel_1_1_state}{State}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Objet \mbox{\hyperlink{classmodel_1_1_state}{State}} initialisé}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classmodel_1_1_state_list_a6ea1c623363d50c386dd2576e132e4b5}\label{classmodel_1_1_state_list_a6ea1c623363d50c386dd2576e132e4b5}} 
-\mbox{\hyperlink{classmodel_1_1_state}{State}} {\bfseries get\+State} (int year)
-\item 
+\index{model.StateList@{model.StateList}!getState@{getState}}
+\index{getState@{getState}!model.StateList@{model.StateList}}
+\doxysubsubsection{\texorpdfstring{getState()}{getState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_state}{State}} model.\+State\+List.\+get\+State (\begin{DoxyParamCaption}\item[{int}]{year }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} permettant de récupérer un {\bfseries{\mbox{\hyperlink{classmodel_1_1_state}{State}} donné par une année}} 
+\begin{DoxyParams}{Parameters}
+{\em year} & {\bfseries{Année du \mbox{\hyperlink{classmodel_1_1_state}{State}} à récupérer}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{\mbox{\hyperlink{classmodel_1_1_state}{State}} demandé}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classmodel_1_1_state_list_a0854131942eba563db35b1a2613eedac}\label{classmodel_1_1_state_list_a0854131942eba563db35b1a2613eedac}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_state}{State}} $>$ {\bfseries get\+States} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_list_a5bd4ffdb89f51c8813bac6b33a7d8156}\label{classmodel_1_1_state_list_a5bd4ffdb89f51c8813bac6b33a7d8156}} 
-\mbox{\hyperlink{classmodel_1_1_state}{State}} {\bfseries create\+State} (int year, double remaining\+Budget, double i\+Taux\+Reu, double i\+Sat\+Pers, double i\+Sat\+Etu, double l\+Dot\+Rec\+Form, double l\+Dot\+Rec\+Rech, double l\+Dot\+Spe\+Form, double l\+Prime, double l\+Immo, double l\+Sub\+Asso\+Etu)
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_list_a2f30eae61cd8c3e3772ae4b21f920d82}\label{classmodel_1_1_state_list_a2f30eae61cd8c3e3772ae4b21f920d82}} 
-static \mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}} {\bfseries get\+Instance} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_list_aa2f63b6885505e8f2feb997f6cbd11b5}\label{classmodel_1_1_state_list_aa2f63b6885505e8f2feb997f6cbd11b5}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_state}{State}} $>$ {\bfseries \+\_\+states}
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_state_list_ad3466827f867a1494c63c9fa017d067b}\label{classmodel_1_1_state_list_ad3466827f867a1494c63c9fa017d067b}} 
-static \mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}} {\bfseries \+\_\+instance}
-\end{DoxyCompactItemize}
+\index{model.StateList@{model.StateList}!getStates@{getStates}}
+\index{getStates@{getStates}!model.StateList@{model.StateList}}
+\doxysubsubsection{\texorpdfstring{getStates()}{getStates()}}
+{\footnotesize\ttfamily Collection$<$\mbox{\hyperlink{classmodel_1_1_state}{State}}$>$ model.\+State\+List.\+get\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} permettant de récupérer l\textquotesingle{}{\bfseries{ensemble des objets \mbox{\hyperlink{classmodel_1_1_state}{State}} de la partie}} \begin{DoxyReturn}{Returns}
+{\bfseries{Ensemble des objets \mbox{\hyperlink{classmodel_1_1_state}{State}} de la partie}} 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/State\+List.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/State\+List.\+java\end{DoxyCompactItemize}

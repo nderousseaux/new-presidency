@@ -3,89 +3,370 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_ac3dc3026460dffae977a683dfd9be6e1}\label{classcontroller_1_1_controller_ac3dc3026460dffae977a683dfd9be6e1}} 
-\mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}} {\bfseries get\+State\+List} ()
+\mbox{\hyperlink{classcontroller_1_1_controller_a47511ec57338c8e75e71e9314cda5271}{Controller}} ()  throws I\+O\+Exception
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a6fc8bdd54ff74c452b51e7a77ea18c6b}\label{classcontroller_1_1_controller_a6fc8bdd54ff74c452b51e7a77ea18c6b}} 
-void {\bfseries init} ()  throws File\+Not\+Found\+Exception,\+I\+O\+Exception
+void \mbox{\hyperlink{classcontroller_1_1_controller_a6fc8bdd54ff74c452b51e7a77ea18c6b}{init}} ()  throws I\+O\+Exception
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_ac8eb17414cf6f8a10d8bcca566e653df}\label{classcontroller_1_1_controller_ac8eb17414cf6f8a10d8bcca566e653df}} 
-void {\bfseries init\+Weight\+For\+Each\+Indicator} ()  throws File\+Not\+Found\+Exception,\+I\+O\+Exception
+void \mbox{\hyperlink{classcontroller_1_1_controller_a03dac98a018169b6742581a93f69a208}{init\+Levers}} ()  throws I\+O\+Exception
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_affbaddd3b4f10feecc24a60904919680}\label{classcontroller_1_1_controller_affbaddd3b4f10feecc24a60904919680}} 
-Integer {\bfseries add\+To\+Budget} (\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} lever, Double val)
+void \mbox{\hyperlink{classcontroller_1_1_controller_ae2b092a0c0298d815bb33650048dadea}{init\+Indicators}} ()  throws I\+O\+Exception
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a8e4d09bf644c5ae205d72c7bcc253e3a}\label{classcontroller_1_1_controller_a8e4d09bf644c5ae205d72c7bcc253e3a}} 
-Integer {\bfseries remove\+From\+Budget} (\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} lever, Double val)
+void \mbox{\hyperlink{classcontroller_1_1_controller_ac5f16dfac90c3aa40c4f39997fb14625}{init\+State}} ()
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a64cfe3cd602a77b2a200a95eb72d3dc1}\label{classcontroller_1_1_controller_a64cfe3cd602a77b2a200a95eb72d3dc1}} 
-void {\bfseries end\+Of\+Round} ()
+void \mbox{\hyperlink{classcontroller_1_1_controller_ac8eb17414cf6f8a10d8bcca566e653df}{init\+Weight\+For\+Each\+Indicator}} ()  throws I\+O\+Exception
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a363abb96a2f4735525a5053527908467}\label{classcontroller_1_1_controller_a363abb96a2f4735525a5053527908467}} 
-Collection$<$ String $>$ {\bfseries list\+Infos} (\mbox{\hyperlink{classmodel_1_1_indic_lever}{Indic\+Lever}} obj)
+String \mbox{\hyperlink{classcontroller_1_1_controller_a72915141f6caeb9dfc9cfa1b35176e56}{set\+Lever\+Budget}} (\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} lever, Double val)
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a1a16856538d85187a20e57aaa7e5a0d8}\label{classcontroller_1_1_controller_a1a16856538d85187a20e57aaa7e5a0d8}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ {\bfseries get\+Levers} ()
+boolean \mbox{\hyperlink{classcontroller_1_1_controller_a09bdb5e0205f166408345459474c5a45}{end\+Of\+Round}} ()
 \item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a693cc74ee46535a17fe01f60e4fe7abb}\label{classcontroller_1_1_controller_a693cc74ee46535a17fe01f60e4fe7abb}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} $>$ {\bfseries get\+Indicators} ()
+Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ \mbox{\hyperlink{classcontroller_1_1_controller_a1a16856538d85187a20e57aaa7e5a0d8}{get\+Levers}} ()
 \item 
+Collection$<$ \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} $>$ \mbox{\hyperlink{classcontroller_1_1_controller_a693cc74ee46535a17fe01f60e4fe7abb}{get\+Indicators}} ()
+\item 
+\mbox{\Hypertarget{classcontroller_1_1_controller_ad3fceda8b354b3b2976a69d3bc6f0411}\label{classcontroller_1_1_controller_ad3fceda8b354b3b2976a69d3bc6f0411}} 
+\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} {\bfseries get\+Indicator} (String abbreviation)
+\item 
+\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} \mbox{\hyperlink{classcontroller_1_1_controller_af8ae7104292635af8d729e344dc21bdc}{get\+Budget}} ()
+\item 
+int \mbox{\hyperlink{classcontroller_1_1_controller_a0ed1034406f6d359ace22c1dd20b4309}{get\+Year}} ()
+\item 
+int \mbox{\hyperlink{classcontroller_1_1_controller_a181885f18519e3442d15162df3abe5fc}{get\+Max\+Year}} ()
+\item 
+\mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}} \mbox{\hyperlink{classcontroller_1_1_controller_ac3dc3026460dffae977a683dfd9be6e1}{get\+State\+List}} ()
+\item 
+Double \mbox{\hyperlink{classcontroller_1_1_controller_aa9302bac9eb0d4d391c8c117c5fb814f}{calcul\+Ratio}} (Double last\+Year\+Value, Double this\+Year\+Value)
+\item 
+Double \mbox{\hyperlink{classcontroller_1_1_controller_a57f3a4f8865fce1bc2e9334613feb43f}{calcul\+Value\+For\+Influenced\+Indicator}} (\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} indic)
+\item 
+void \mbox{\hyperlink{classcontroller_1_1_controller_a16bf491c4b9a4ff871d5b4bb93343b27}{update\+All}} ()
+\item 
+void \mbox{\hyperlink{classcontroller_1_1_controller_ad27997ae5c30da81094ab952594d3707}{init\+Scenario}} ()  throws I\+O\+Exception 
+\item 
+Array\+List$<$ String $>$ \mbox{\hyperlink{classcontroller_1_1_controller_a8711c79ed2674e8c0b0b420a5cb44eb9}{get\+Scenario\+Names}} ()
+\item 
+Collection$<$ String $>$ \mbox{\hyperlink{classcontroller_1_1_controller_a076431ed117df86a2742d2d081dac3ae}{get\+Info\+Scenario}} (String name)
+\item 
+void \mbox{\hyperlink{classcontroller_1_1_controller_ae7d7f136ccd8c714a69632b06acff45a}{set\+Indicator\+Funct\+Scenar}} (String name)
+\item 
+boolean \mbox{\hyperlink{classcontroller_1_1_controller_aca7e129bd9577a87dd0f22f5ff93b1cb}{victory\+Validated}} (String scenario)
+\item 
+Array\+List$<$ String $>$ \mbox{\hyperlink{classcontroller_1_1_controller_abf83c077ea9eb279efee1ddb2f49fff6}{defeat\+Validated}} (String scenario)
+\item 
+Array\+List$<$ String $>$ \mbox{\hyperlink{classcontroller_1_1_controller_a9322d4a81d0c3813f9cb26e085f1e49d}{end}} (String scenario)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classcontroller_1_1_controller}{Controller}}} est la classe du controlleur principal du jeu}} 
+
+Cette classe s\textquotesingle{}occupe de manipuler l\textquotesingle{}ensemble des objets du jeu, notamment\+: 
+\begin{DoxyItemize}
+\item Les {\bfseries{indicateurs et leviers}} 
+\item Le {\bfseries{budget à attribuer à chaque tour}} 
+\item Le {\bfseries{tour actuel et le nombre de tours total}} 
+\item Les {\bfseries{fichiers d\textquotesingle{}initialisation}} des {\bfseries{indicateurs}}, {\bfseries{leviers}} et {\bfseries{coefficients de calcul}} 
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+Lever 
+
+Indicator 
+
+Budget 
+
+Graphical\+View 
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yoanv lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a47511ec57338c8e75e71e9314cda5271}\label{classcontroller_1_1_controller_a47511ec57338c8e75e71e9314cda5271}} 
+\index{controller.Controller@{controller.Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{Controller()}{Controller()}}
+{\footnotesize\ttfamily controller.\+Controller.\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+Constructeur de la classe, instanciant chacun des champs de la classe 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcontroller_1_1_controller_aa9302bac9eb0d4d391c8c117c5fb814f}\label{classcontroller_1_1_controller_aa9302bac9eb0d4d391c8c117c5fb814f}} 
+\index{controller.Controller@{controller.Controller}!calculRatio@{calculRatio}}
+\index{calculRatio@{calculRatio}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{calculRatio()}{calculRatio()}}
+{\footnotesize\ttfamily Double controller.\+Controller.\+calcul\+Ratio (\begin{DoxyParamCaption}\item[{Double}]{last\+Year\+Value,  }\item[{Double}]{this\+Year\+Value }\end{DoxyParamCaption})}
+
+Fonction de calcul du {\bfseries{ratio d\textquotesingle{}évolution}} entre l\textquotesingle{}année précédente et cette année pour un {\bfseries{budget de levier}} donné 
+\begin{DoxyParams}{Parameters}
+{\em last\+Year\+Value} & Valeur du {\bfseries{budget du levier}} à l\textquotesingle{}{\bfseries{année précédente}} \\
+\hline
+{\em this\+Year\+Value} & Valeur du {\bfseries{budget du levier}} à l\textquotesingle{}{\bfseries{année courante}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Ratio d\textquotesingle{}évolution}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a57f3a4f8865fce1bc2e9334613feb43f}\label{classcontroller_1_1_controller_a57f3a4f8865fce1bc2e9334613feb43f}} 
+\index{controller.Controller@{controller.Controller}!calculValueForInfluencedIndicator@{calculValueForInfluencedIndicator}}
+\index{calculValueForInfluencedIndicator@{calculValueForInfluencedIndicator}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{calculValueForInfluencedIndicator()}{calculValueForInfluencedIndicator()}}
+{\footnotesize\ttfamily Double controller.\+Controller.\+calcul\+Value\+For\+Influenced\+Indicator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}]{indic }\end{DoxyParamCaption})}
+
+Fonction de calcul pour {\bfseries{certains indicateurs particuliers}} 
+\begin{DoxyParams}{Parameters}
+{\em indic} & {\bfseries{Indicateur}} dont la valeur est calculé \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Valeur de l\textquotesingle{}indicateur}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_abf83c077ea9eb279efee1ddb2f49fff6}\label{classcontroller_1_1_controller_abf83c077ea9eb279efee1ddb2f49fff6}} 
+\index{controller.Controller@{controller.Controller}!defeatValidated@{defeatValidated}}
+\index{defeatValidated@{defeatValidated}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{defeatValidated()}{defeatValidated()}}
+{\footnotesize\ttfamily Array\+List$<$String$>$ controller.\+Controller.\+defeat\+Validated (\begin{DoxyParamCaption}\item[{String}]{scenario }\end{DoxyParamCaption})}
+
+Fonction vérifiant la {\bfseries{complétion des conditions de défaite}} du {\bfseries{scénario choisi}} 
+\begin{DoxyParams}{Parameters}
+{\em scenario} & {\bfseries{Scénario choisi}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Booléen\+: {\bfseries{vrai}} si les conditions de {\bfseries{défaite}} sont {\bfseries{complétées}}, {\bfseries{faux}} sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a9322d4a81d0c3813f9cb26e085f1e49d}\label{classcontroller_1_1_controller_a9322d4a81d0c3813f9cb26e085f1e49d}} 
+\index{controller.Controller@{controller.Controller}!end@{end}}
+\index{end@{end}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily Array\+List$<$String$>$ controller.\+Controller.\+end (\begin{DoxyParamCaption}\item[{String}]{scenario }\end{DoxyParamCaption})}
+
+Fonction appelant les fonctions de {\bfseries{vérification de victoire ou de défaite}} du scénario, à chaque fin de tour 
+\begin{DoxyParams}{Parameters}
+{\em scenario} & {\bfseries{Scénario de la partie actuelle}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+En cas de {\bfseries{victoire}}\+: retourne {\bfseries{\char`\"{}\+V\+Condi\char`\"{}}}, en cas de {\bfseries{défaite}}\+: retourne l\textquotesingle{}{\bfseries{ensemble des indicateurs ayant conduit à la défaite}}, sinon, renvoie une {\bfseries{liste vide}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a09bdb5e0205f166408345459474c5a45}\label{classcontroller_1_1_controller_a09bdb5e0205f166408345459474c5a45}} 
+\index{controller.Controller@{controller.Controller}!endOfRound@{endOfRound}}
+\index{endOfRound@{endOfRound}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{endOfRound()}{endOfRound()}}
+{\footnotesize\ttfamily boolean controller.\+Controller.\+end\+Of\+Round (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fonction testant la {\bfseries{répartition du budget du tour}}\+: empêche de valider le tour si {\bfseries{l\textquotesingle{}utilisateur a dépensé plus que disponible}} \begin{DoxyReturn}{Returns}
+Booléen {\bfseries{vrai}} si le {\bfseries{budget réparti est inférieur ou égal à celui disponnible}}, {\bfseries{faux}} sinon 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcontroller_1_1_controller_af8ae7104292635af8d729e344dc21bdc}\label{classcontroller_1_1_controller_af8ae7104292635af8d729e344dc21bdc}} 
-\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} {\bfseries get\+Budget} ()
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_afe63bb1ae7c5808fb2891a3005500c7d}\label{classcontroller_1_1_controller_afe63bb1ae7c5808fb2891a3005500c7d}} 
-void {\bfseries exit\+Game} ()
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a0ed1034406f6d359ace22c1dd20b4309}\label{classcontroller_1_1_controller_a0ed1034406f6d359ace22c1dd20b4309}} 
-int {\bfseries get\+Year} ()
-\item 
+\index{controller.Controller@{controller.Controller}!getBudget@{getBudget}}
+\index{getBudget@{getBudget}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getBudget()}{getBudget()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_budget}{Budget}} controller.\+Controller.\+get\+Budget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} du {\bfseries{budget disponible}} \begin{DoxyReturn}{Returns}
+{\bfseries{Budget disponible}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a693cc74ee46535a17fe01f60e4fe7abb}\label{classcontroller_1_1_controller_a693cc74ee46535a17fe01f60e4fe7abb}} 
+\index{controller.Controller@{controller.Controller}!getIndicators@{getIndicators}}
+\index{getIndicators@{getIndicators}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getIndicators()}{getIndicators()}}
+{\footnotesize\ttfamily Collection$<$\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}$>$ controller.\+Controller.\+get\+Indicators (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{liste des indicateurs}} \begin{DoxyReturn}{Returns}
+{\bfseries{Liste des indicateurs}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a076431ed117df86a2742d2d081dac3ae}\label{classcontroller_1_1_controller_a076431ed117df86a2742d2d081dac3ae}} 
+\index{controller.Controller@{controller.Controller}!getInfoScenario@{getInfoScenario}}
+\index{getInfoScenario@{getInfoScenario}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getInfoScenario()}{getInfoScenario()}}
+{\footnotesize\ttfamily Collection$<$String$>$ controller.\+Controller.\+get\+Info\+Scenario (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} des {\bfseries{informations du scénario}} de la partie actuelle 
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} du scénario de la partie \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Informations du scénario}} de la partie actuelle 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a1a16856538d85187a20e57aaa7e5a0d8}\label{classcontroller_1_1_controller_a1a16856538d85187a20e57aaa7e5a0d8}} 
+\index{controller.Controller@{controller.Controller}!getLevers@{getLevers}}
+\index{getLevers@{getLevers}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getLevers()}{getLevers()}}
+{\footnotesize\ttfamily Collection$<$\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}$>$ controller.\+Controller.\+get\+Levers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{liste des leviers}} \begin{DoxyReturn}{Returns}
+{\bfseries{Liste des leviers}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcontroller_1_1_controller_a181885f18519e3442d15162df3abe5fc}\label{classcontroller_1_1_controller_a181885f18519e3442d15162df3abe5fc}} 
-int {\bfseries get\+Max\+Year} ()
-\item 
+\index{controller.Controller@{controller.Controller}!getMaxYear@{getMaxYear}}
+\index{getMaxYear@{getMaxYear}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getMaxYear()}{getMaxYear()}}
+{\footnotesize\ttfamily int controller.\+Controller.\+get\+Max\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de l\textquotesingle{}{\bfseries{année de fin du jeu}} \begin{DoxyReturn}{Returns}
+{\bfseries{Année de fin du jeu}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a8711c79ed2674e8c0b0b420a5cb44eb9}\label{classcontroller_1_1_controller_a8711c79ed2674e8c0b0b420a5cb44eb9}} 
+\index{controller.Controller@{controller.Controller}!getScenarioNames@{getScenarioNames}}
+\index{getScenarioNames@{getScenarioNames}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getScenarioNames()}{getScenarioNames()}}
+{\footnotesize\ttfamily Array\+List$<$String$>$ controller.\+Controller.\+get\+Scenario\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} des {\bfseries{noms des scénarios}} proposés \begin{DoxyReturn}{Returns}
+{\bfseries{Noms des scénarios}} proposés 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_ac3dc3026460dffae977a683dfd9be6e1}\label{classcontroller_1_1_controller_ac3dc3026460dffae977a683dfd9be6e1}} 
+\index{controller.Controller@{controller.Controller}!getStateList@{getStateList}}
+\index{getStateList@{getStateList}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getStateList()}{getStateList()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}} controller.\+Controller.\+get\+State\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{liste des objets State de la partie en cours}} \begin{DoxyReturn}{Returns}
+{\bfseries{Liste des objets State}} de la partie
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+State 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a0ed1034406f6d359ace22c1dd20b4309}\label{classcontroller_1_1_controller_a0ed1034406f6d359ace22c1dd20b4309}} 
+\index{controller.Controller@{controller.Controller}!getYear@{getYear}}
+\index{getYear@{getYear}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{getYear()}{getYear()}}
+{\footnotesize\ttfamily int controller.\+Controller.\+get\+Year (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de l\textquotesingle{}{\bfseries{an actuel}} \begin{DoxyReturn}{Returns}
+{\bfseries{An actuel}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a6fc8bdd54ff74c452b51e7a77ea18c6b}\label{classcontroller_1_1_controller_a6fc8bdd54ff74c452b51e7a77ea18c6b}} 
+\index{controller.Controller@{controller.Controller}!init@{init}}
+\index{init@{init}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+Procédure d\textquotesingle{}{\bfseries{initialisation principale}} appelant d\textquotesingle{}autres {\bfseries{sous-\/procédures d\textquotesingle{}initialisation des variables du \mbox{\hyperlink{classcontroller_1_1_controller}{Controller}}}} 
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & Lancé en cas d\textquotesingle{}exceptions d\textquotesingle{}{\bfseries{erreur d\textquotesingle{}ouverture des fichiers de variables}}\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classcontroller_1_1_controller_a03dac98a018169b6742581a93f69a208}{Controller\+::init\+Levers()}} 
+
+\mbox{\hyperlink{classcontroller_1_1_controller_ae2b092a0c0298d815bb33650048dadea}{Controller\+::init\+Indicators()}} 
+
+\mbox{\hyperlink{classcontroller_1_1_controller_ad27997ae5c30da81094ab952594d3707}{Controller\+::init\+Scenario()}} 
+
+\mbox{\hyperlink{classcontroller_1_1_controller_ac5f16dfac90c3aa40c4f39997fb14625}{Controller\+::init\+State()}} 
+
+\mbox{\hyperlink{classcontroller_1_1_controller_ac8eb17414cf6f8a10d8bcca566e653df}{Controller\+::init\+Weight\+For\+Each\+Indicator()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classcontroller_1_1_controller_ae2b092a0c0298d815bb33650048dadea}\label{classcontroller_1_1_controller_ae2b092a0c0298d815bb33650048dadea}} 
+\index{controller.Controller@{controller.Controller}!initIndicators@{initIndicators}}
+\index{initIndicators@{initIndicators}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{initIndicators()}{initIndicators()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+init\+Indicators (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+Sous-\/procédure d\textquotesingle{}{\bfseries{initialisation des indicateurs}} 
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & Lancé en cas d\textquotesingle{}exceptions d\textquotesingle{}{\bfseries{erreur d\textquotesingle{}ouverture des fichiers de variables}} \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a03dac98a018169b6742581a93f69a208}\label{classcontroller_1_1_controller_a03dac98a018169b6742581a93f69a208}} 
+\index{controller.Controller@{controller.Controller}!initLevers@{initLevers}}
+\index{initLevers@{initLevers}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{initLevers()}{initLevers()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+init\+Levers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+Sous-\/procédure d\textquotesingle{}{\bfseries{initialisation des leviers}} 
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & Lancé en cas d\textquotesingle{}exceptions d\textquotesingle{}{\bfseries{erreur d\textquotesingle{}ouverture des fichiers de variables}} \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcontroller_1_1_controller_ad27997ae5c30da81094ab952594d3707}\label{classcontroller_1_1_controller_ad27997ae5c30da81094ab952594d3707}} 
+\index{controller.Controller@{controller.Controller}!initScenario@{initScenario}}
+\index{initScenario@{initScenario}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{initScenario()}{initScenario()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+init\+Scenario (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+Fonction d\textquotesingle{}{\bfseries{initialisation du scénario}} de la partie en cours 
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & Lancé en cas d\textquotesingle{}exceptions d\textquotesingle{}{\bfseries{erreur d\textquotesingle{}ouverture des fichiers de variables}} \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcontroller_1_1_controller_ac5f16dfac90c3aa40c4f39997fb14625}\label{classcontroller_1_1_controller_ac5f16dfac90c3aa40c4f39997fb14625}} 
+\index{controller.Controller@{controller.Controller}!initState@{initState}}
+\index{initState@{initState}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{initState()}{initState()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+init\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sous-\/procédure d\textquotesingle{}{\bfseries{initialisation de deux objets State}} de départ \begin{DoxySeeAlso}{See also}
+State 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classcontroller_1_1_controller_ac8eb17414cf6f8a10d8bcca566e653df}\label{classcontroller_1_1_controller_ac8eb17414cf6f8a10d8bcca566e653df}} 
+\index{controller.Controller@{controller.Controller}!initWeightForEachIndicator@{initWeightForEachIndicator}}
+\index{initWeightForEachIndicator@{initWeightForEachIndicator}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{initWeightForEachIndicator()}{initWeightForEachIndicator()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+init\+Weight\+For\+Each\+Indicator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) throws I\+O\+Exception}
+
+Sous-\/procédure d\textquotesingle{}{\bfseries{initialisation des coefficients pour chaque indicateur}} 
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & Lancé en cas d\textquotesingle{}exceptions d\textquotesingle{}{\bfseries{erreur d\textquotesingle{}ouverture des fichiers de variables}} \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classcontroller_1_1_controller_ae7d7f136ccd8c714a69632b06acff45a}\label{classcontroller_1_1_controller_ae7d7f136ccd8c714a69632b06acff45a}} 
+\index{controller.Controller@{controller.Controller}!setIndicatorFunctScenar@{setIndicatorFunctScenar}}
+\index{setIndicatorFunctScenar@{setIndicatorFunctScenar}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{setIndicatorFunctScenar()}{setIndicatorFunctScenar()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+set\+Indicator\+Funct\+Scenar (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{setteur}} permettant le {\bfseries{choix du scénario}}, en mettant à jour les {\bfseries{valeurs des indicateurs}} 
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} du {\bfseries{scénario choisi}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcontroller_1_1_controller_a72915141f6caeb9dfc9cfa1b35176e56}\label{classcontroller_1_1_controller_a72915141f6caeb9dfc9cfa1b35176e56}} 
+\index{controller.Controller@{controller.Controller}!setLeverBudget@{setLeverBudget}}
+\index{setLeverBudget@{setLeverBudget}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{setLeverBudget()}{setLeverBudget()}}
+{\footnotesize\ttfamily String controller.\+Controller.\+set\+Lever\+Budget (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classmodel_1_1_lever}{Lever}}}]{lever,  }\item[{Double}]{val }\end{DoxyParamCaption})}
+
+Fonction mettant à jour le {\bfseries{budget alloué}} à un {\bfseries{levier donné}} 
+\begin{DoxyParams}{Parameters}
+{\em lever} & {\bfseries{Levier}} dont le budget est mis à jour \\
+\hline
+{\em val} & {\bfseries{Nouveau budget}} du levier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+En cas d\textquotesingle{}{\bfseries{erreur de mise à jour}}\+: 
+\begin{DoxyItemize}
+\item Si la valeur est {\bfseries{supérieure au budget maximal}}\+: retourne {\bfseries{\char`\"{}more than max\char`\"{}}} 
+\item Si la valeur est {\bfseries{inférieure au budget minimal}}\+: retourne {\bfseries{\char`\"{}less than min\char`\"{}}} 
+\item Si le {\bfseries{budget restant}} est insuffisant à la modification\+: retourne {\bfseries{\char`\"{}insufficient budget\char`\"{}}} 
+\end{DoxyItemize}En cas d\textquotesingle{}{\bfseries{d\textquotesingle{}absence d\textquotesingle{}erreur de mise à jour}}\+: retourne {\bfseries{\char`\"{}\+Ok\char`\"{}}} 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcontroller_1_1_controller_a16bf491c4b9a4ff871d5b4bb93343b27}\label{classcontroller_1_1_controller_a16bf491c4b9a4ff871d5b4bb93343b27}} 
-void {\bfseries update\+All} ()
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a3536dc221990fa01c06435b214a71876}\label{classcontroller_1_1_controller_a3536dc221990fa01c06435b214a71876}} 
-void {\bfseries show\+Graphic\+Line} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a1851bdff47903abcff8c34549c7eb236}\label{classcontroller_1_1_controller_a1851bdff47903abcff8c34549c7eb236}} 
-File {\bfseries \+\_\+weight\+Indicator\+File} = new File(\char`\"{}coefficient.\+txt\char`\"{})
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a3b97ab5ce7ae5a23021f9b073274a3d7}\label{classcontroller_1_1_controller_a3b97ab5ce7ae5a23021f9b073274a3d7}} 
-\mbox{\hyperlink{classview_1_1_graphic_line}{Graphic\+Line}} {\bfseries \+\_\+graphic\+Line}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a3cdf95cd4d2b749c3330b6940ff6094b}\label{classcontroller_1_1_controller_a3cdf95cd4d2b749c3330b6940ff6094b}} 
-\mbox{\hyperlink{classview_1_1_graphic_pie}{Graphic\+Pie}} {\bfseries \+\_\+graphic\+Pie}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a61ccc6a23a0e3bbe2b4cd5bc55fec8a5}\label{classcontroller_1_1_controller_a61ccc6a23a0e3bbe2b4cd5bc55fec8a5}} 
-\mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}} {\bfseries \+\_\+indicator\+List}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a8090e5eda2ff9b86f7e23bc93345ac3e}\label{classcontroller_1_1_controller_a8090e5eda2ff9b86f7e23bc93345ac3e}} 
-\mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}} {\bfseries \+\_\+lever\+List}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a6dc451f10f29144f6fa65ea02dd86f69}\label{classcontroller_1_1_controller_a6dc451f10f29144f6fa65ea02dd86f69}} 
-\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} {\bfseries \+\_\+budget}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_a96f5f17ea5f5e4ae9f85c1fc234ac612}\label{classcontroller_1_1_controller_a96f5f17ea5f5e4ae9f85c1fc234ac612}} 
-\mbox{\hyperlink{classmodel_1_1_state_list}{State\+List}} {\bfseries \+\_\+state\+List}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_aab551120a89f5b46509de14adb1c3494}\label{classcontroller_1_1_controller_aab551120a89f5b46509de14adb1c3494}} 
-Integer {\bfseries \+\_\+year}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_ad920e0b07453c31fcb8e38acb7039bad}\label{classcontroller_1_1_controller_ad920e0b07453c31fcb8e38acb7039bad}} 
-Integer {\bfseries \+\_\+max\+Year}
-\item 
-\mbox{\Hypertarget{classcontroller_1_1_controller_ad75b880ac9442332402b39e84ca3be1d}\label{classcontroller_1_1_controller_ad75b880ac9442332402b39e84ca3be1d}} 
-\mbox{\hyperlink{classmodel_1_1_matrix}{Matrix}} {\bfseries \+\_\+weight\+For\+Each\+Indicator}
-\end{DoxyCompactItemize}
+\index{controller.Controller@{controller.Controller}!updateAll@{updateAll}}
+\index{updateAll@{updateAll}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{updateAll()}{updateAll()}}
+{\footnotesize\ttfamily void controller.\+Controller.\+update\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fonction de {\bfseries{génération}} des valeurs des {\bfseries{indicateurs}} au tour suivant \mbox{\Hypertarget{classcontroller_1_1_controller_aca7e129bd9577a87dd0f22f5ff93b1cb}\label{classcontroller_1_1_controller_aca7e129bd9577a87dd0f22f5ff93b1cb}} 
+\index{controller.Controller@{controller.Controller}!victoryValidated@{victoryValidated}}
+\index{victoryValidated@{victoryValidated}!controller.Controller@{controller.Controller}}
+\doxysubsubsection{\texorpdfstring{victoryValidated()}{victoryValidated()}}
+{\footnotesize\ttfamily boolean controller.\+Controller.\+victory\+Validated (\begin{DoxyParamCaption}\item[{String}]{scenario }\end{DoxyParamCaption})}
+
+Fonction vérifiant la {\bfseries{complétion des conditions de victoire}} du {\bfseries{scénario choisi}} 
+\begin{DoxyParams}{Parameters}
+{\em scenario} & {\bfseries{Scénario choisi}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Booléen\+: {\bfseries{vrai}} si les conditions de {\bfseries{victoire}} sont {\bfseries{complétées}}, {\bfseries{faux}} sinon 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/controller/Controller.\+java\end{DoxyCompactItemize}
+New Presidency/src/controller/Controller.\+java\end{DoxyCompactItemize}
