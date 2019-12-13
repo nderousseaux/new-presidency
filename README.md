@@ -16,7 +16,7 @@ Pour lancer le jeu, il suffit de cliquer sur l'icone noté "New Présidency" sur
 
 Une fois le jeux lancé, vous pouvez choisir le scénario.
 Chaque scénario vous mettra face à des challenges différents.
-![3](/New%20Presidency/doc/screenshoot/3.png)
+![3](/New%20Presidency/doc/screenshoot/3.PNG)
 
 Voici l'écran de jeu : 
 ![4](/New%20Presidency/doc/screenshoot/4.png)
