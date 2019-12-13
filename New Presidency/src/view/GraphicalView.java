@@ -433,7 +433,7 @@ public class GraphicalView extends JFrame {
      */
     private void endOfRound(){
 
-        if(_controller.fin(_scenario).size() ==0) {
+        if(_controller.end(_scenario).size() ==0) {
             removeAllElements();
             updateAll();
             addAllElements();
@@ -544,7 +544,7 @@ public class GraphicalView extends JFrame {
 
         this.setAlwaysOnTop(true);
         this.setVisible(true);
-        messageEnd(_controller.fin((_scenario)));
+        messageEnd(_controller.end((_scenario)));
     }
 
     /**Procédure de <b>mise en place des éléments</b> de la fenêtre principale
@@ -754,7 +754,7 @@ public class GraphicalView extends JFrame {
         title.setFont(new Font("Arial",Font.BOLD,24));
         title.setForeground(Color.WHITE);
 
-        ArrayList<String> scenarios = _controller.getTextScenarios();
+        ArrayList<String> scenarios = _controller.getScenarioNames();
         Object[] elements = scenarios.toArray();
         JComboBox scenar=new JComboBox(elements);
 
@@ -836,7 +836,7 @@ public class GraphicalView extends JFrame {
     private void tutorial(Boolean scenarioALaFin){
         TutoFrame fDeb= new TutoFrame("Bienvenue sur <b>New Presidency</b>!",null,null,null);
         TutoFrame f2=new TutoFrame("Dans ce jeu sérieux de <b>gestion budgétaire</b>, vous êtes <b>le président de l'université de Strasbourg</b> et votre but sera d'<b>atteindre les objectifs</b> fixés par le <b>scénario</b> que vous avez choisi, avant la fin des tours",null,null,fDeb);
-        TutoFrame f3=new TutoFrame("Pour cela, vous devrez <b>manipuler le budget</b> de ce qu'on appelle des <b>leviers de gestion</b>",null,null,f2);
+        TutoFrame f3=new TutoFrame("Pour cela, vous devrez <b>manipuler le budget</b> de ce qu'on appelle des <b>leviers de gestion</b><br>Vous avez un budget alloué à chaque tour, que vous pouvez consulter <b>en bas de l'écran</b>",null,null,f2);
         TutoFrame f4=new TutoFrame("Les voici<br>Ils sont séparés en 4 catégories: <ul><li><b>Formation</b></li><li><b>Recherche</b></li><li><b>Central</b></li><li><b>Immobilier</b></li></ul>",_scrollLevers,null,f3);
         TutoFrame f5=new TutoFrame("Vous pouvez consulter les <b>informations utiles</b> de chaque levier en les survolant",_scrollLevers,null,f4);
         TutoFrame f6=new TutoFrame("En <b>modifiant le budget de ces leviers</b>, vous compléterez ce qu'on appelle des <b>indicateurs de réussite</b>",null,null,f5);
@@ -846,6 +846,7 @@ public class GraphicalView extends JFrame {
         TutoFrame f10=new TutoFrame("Le premier, ici, permet de voir la <b>répartition du budget</b> que vous avez à disposition à ce tour",_graphicPie,null,f9);
         TutoFrame f11=new TutoFrame("Le second, ici, permet de voir l'<b>évolution</b> des <b>budgets alloués</b> pour les <b>leviers</b>, et des <b>niveaux de complétions</b> pour les <b>indicateurs</b>",_graphicLine,null,f10);
         TutoFrame f12=new TutoFrame("Il n'est disponible qu'à partir du deuxième tour, changez un ou plusieurs budgets de leviers, et cliquez sur <b>Passer au tour suivant</b>!",_graphicLine,null,f11);
+        //TutoFrame f13=new TutoFrame("Vous pouvez maintenant <b>cliquer sur les leviers dont vous avez changé le budget</b>, et observez ")
         TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f12);
         fDeb.setNextFrame(f2);
         f2.setNextFrame(f3);

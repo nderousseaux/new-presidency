@@ -22,14 +22,14 @@ public class LeverList {
 
 
     /**
-     * Constructeur de la classe <b>LeverList</b>, initialisant la liste des objets <b>Lever</b> à une <b>Collection</b> vide
+     * Constructeur de la classe <b>LeverList</b>, initialisant la liste des objets <b>Lever</b> à une <b>ArrayList</b> vide
      */
     public LeverList(){
         _levers=new ArrayList<>();
     }
 
     /**
-     * Fonction initialisant un nouvel objet de type <b>Lever</b> et le stockant dans la liste
+     * Fonction initialisant un nouvel objet de type <b>Lever</b> et le stockant dans la liste et le retournant
      * @param name <b>Nom</b> de l'objet <b>Lever</b>
      * @param abreviation <b>Abréviation</b> de l'objet <b>Lever</b>
      * @param category <b>Catégorie</b> de l'objet <b>Lever</b>
