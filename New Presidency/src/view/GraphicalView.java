@@ -38,12 +38,10 @@ import static java.lang.Thread.sleep;
  *
  * @author yvanderspurt
  */
-//TODO:Faire les scénarios
 //TODO:Readme : ajouter les liens, et les instructions d'installation
 //TODO:Wiki : détailler les objectifs pédagogique, détailler les différents scénario
 //TODO:Milestone : les ranger, les mettre à jour et modifier excel avancée des taches
 //TODO:Doc et com de code.
-//TODO:Ouvrir le scenar si quiter durant tuto
 //TODO:Installeur
 //TODO:Affichage des message d'erreur en boucle
 public class GraphicalView extends JFrame {
