@@ -22,8 +22,8 @@ public class Budget {
     /**
      * Constructeur de <b>Budget</b>, instanciant le budget à <b>40 000</b>, automatiquement répartis
      */
-    public Budget(){
-        _remainingBudget=10000;
+    public Budget(Double d){
+        _remainingBudget=d;
     }
 
     /**Accesseur du budget restant, modifiant sa valeur
