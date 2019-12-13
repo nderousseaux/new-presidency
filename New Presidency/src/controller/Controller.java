@@ -28,6 +28,7 @@ import java.util.Random;
  *         <li>Les <b>indicateurs et leviers</b></li>
  *         <li>Le <b>budget à attribuer à chaque tour</b></li>
  *         <li>Le <b>tour actuel et le nombre de tours total</b></li>
+ *         <li>Les <b>fichiers d'initialisation</b> des <b>indicateurs</b>, <b>leviers</b> et <b>coefficients de calcul</b></li>
  *     </ul>
  * </p>
  *
@@ -69,6 +70,16 @@ public class Controller {
         this.init();
     }
 
+    /**
+     * Procédure d'<b>initialisation principale</b> appelant d'autres <b>sous-procédures d'initialisation des variables du Controller</b>
+     * @throws IOException Lancé en cas d'exceptions d'<b>erreur d'ouverture des fichiers de variables</b>
+     *
+     * @see Controller#initLevers()
+     * @see Controller#initIndicators()
+     * @see Controller#initScenario()
+     * @see Controller#initState()
+     * @see Controller#initWeightForEachIndicator()
+     */
     public void init() throws IOException{
         //initialiation of levers
         initLevers();
@@ -84,6 +95,10 @@ public class Controller {
         initWeightForEachIndicator();
     }
 
+    /**
+     * Sous-procédure d'<b>initialisation des leviers</b>
+     * @throws IOException Lancé en cas d'exceptions d'<b>erreur d'ouverture des fichiers de variables</b>
+     */
     public void initLevers() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader(_leversFile));
         String line;
@@ -149,7 +164,11 @@ public class Controller {
         }
         br.close();
     }
-    
+
+    /**
+     * Sous-procédure d'<b>initialisation des indicateurs</b>
+     * @throws IOException Lancé en cas d'exceptions d'<b>erreur d'ouverture des fichiers de variables</b>
+     */
     public void initIndicators() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader(_indicatorsFile));
         String line;
@@ -205,7 +224,11 @@ public class Controller {
         }
         br.close();
     }
-    
+
+    /**
+     * Sous-procédure d'<b>initialisation de deux objets State</b> de départ
+     * @see State
+     */
     public void initState(){
         Collection<Lever> levers = _leverList.getLevers();
         Collection<Indicator> indicators = _indicatorList.getIndicators();
@@ -230,6 +253,10 @@ public class Controller {
         _stateList.createState(1, 40000.0, leversForState1, indicatorsForState1);
     }
 
+    /**
+     * Sous-procédure d'<b>initialisation des coefficients pour chaque indicateur</b>
+     * @throws IOException Lancé en cas d'exceptions d'<b>erreur d'ouverture des fichiers de variables</b>
+     */
     public void initWeightForEachIndicator() throws IOException{
         int leverListSize = _leverList.getLevers().size();
         int indicatorListSize = _indicatorList.getIndicators().size();
@@ -282,6 +309,18 @@ public class Controller {
         _weightForEachIndicator.createTitles(new MatrixTitle(linesTitles, columnsTitles));
     }
 
+    /**
+     * Fonction mettant à jour le <b>budget alloué</b> à un <b>levier donné</b>
+     * @param lever <b>Levier</b> dont le budget est mis à jour
+     * @param val <b>Nouveau budget</b> du levier
+     * @return En cas d'<b>erreur de mise à jour</b>:
+     * <ul>
+     *     <li>Si la valeur est <b>supérieure au budget maximal</b>: retourne <b>"more than max"</b></li>
+     *     <li>Si la valeur est <b>inférieure au budget minimal</b>: retourne <b>"less than min"</b></li>
+     *     <li>Si le <b>budget restant</b> est insuffisant à la modification: retourne <b>"insufficient budget"</b></li>
+     * </ul>
+     * En cas d'<b>d'absence d'erreur de mise à jour</b>: retourne <b>"Ok"</b>
+     */
     public String setLeverBudget(Lever lever, Double val){
         String result = "Ok";
         String abreviation = lever.getAbreviation();
@@ -354,6 +393,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Fonction testant la <b>répartition du budget du tour</b>: empêche de valider le tour si <b>l'utilisateur a dépensé plus que disponible</b>
+     * @return Booléen <b>vrai</b> si le <b>budget réparti est inférieur ou égal à celui disponnible</b>, <b>faux</b> sinon
+     */
     public boolean endOfRound(){
         //tour de jeu...
         boolean budgetIsSufficient = true;
@@ -374,30 +417,62 @@ public class Controller {
         return budgetIsSufficient;
     }
 
+    /**
+     * Accesseur <b>getteur</b> de la <b>liste des leviers</b>
+     * @return <b>Liste des leviers</b>
+     */
     public Collection<Lever> getLevers(){
         return _leverList.getLevers();
     }
 
+    /**
+     * Accesseur <b>getteur</b> de la <b>liste des indicateurs</b>
+     * @return <b>Liste des indicateurs</b>
+     */
     public Collection<Indicator> getIndicators(){
         return _indicatorList.getIndicators();
     }
 
+    /**
+     * Accesseur <b>getteur</b> du <b>budget disponible</b>
+     * @return <b>Budget disponible</b>
+     */
     public Budget getBudget(){
         return _budget;
     }
 
+    /**
+     * Accesseur <b>getteur</b> de l'<b>an actuel</b>
+     * @return <b>An actuel</b>
+     */
     public int getYear(){
         return _year;
     }
 
+    /**
+     * Accesseur <b>getteur</b> de l'<b>année de fin du jeu</b>
+     * @return <b>Année de fin du jeu</b>
+     */
     public int getMaxYear(){
         return _maxYear;
     }
 
+    /**
+     * Accesseur <b>getteur</b> de la <b>liste des objets State de la partie en cours</b>
+     * @return <b>Liste des objets State</b> de la partie
+     *
+     * @see State
+     */
     public StateList getStateList() {
         return _stateList;
     }
 
+    /**
+     * Fonction de calcul du <b>ratio d'évolution</b> entre l'année précédente et cette année pour un <b>budget de levier</b> donné
+     * @param lastYearValue Valeur du <b>budget du levier</b> à l'<b>année précédente</b>
+     * @param thisYearValue Valeur du <b>budget du levier</b> à l'<b>année courante</b>
+     * @return <b>Ratio d'évolution</b>
+     */
     public Double calculRatio(Double lastYearValue, Double thisYearValue){
         if(thisYearValue >= lastYearValue){
             if(thisYearValue == 0.0)//prevents division by 0
@@ -415,26 +490,34 @@ public class Controller {
         }
     }
 
-    public Double calculValueForInfluencedIndicator(Indicator i){
-        String abreviation = i.getAbreviation();
+    /**
+     * Fonction de calcul pour <b>certains indicateurs particuliers</b>
+     * @param indic <b>Indicateur</b> dont la valeur est calculé
+     * @return <b>Valeur de l'indicateur</b>
+     */
+    public Double calculValueForInfluencedIndicator(Indicator indic){
+        String abreviation = indic.getAbreviation();
         Matrix m = _weightForEachIndicator.copy(_weightForEachIndicator.getLine(abreviation), 0, _weightForEachIndicator.getLine(abreviation)+1, _weightForEachIndicator.getColumnSize());
-        Double value = i.getValue();
+        Double value = indic.getValue();
         Indicator influencer = null;
         for(int j=0; j<m.getColumnSize(); j++){
             String columnAbreviation =m.getColumnTitle(j).substring(1);
             if(columnAbreviation.charAt(0) == 'I'){
                 influencer = _indicatorList.getIndicatorByAbreviation(columnAbreviation);
                 if(influencer.getValue() < 50.0){
-                    value -= m.getCell(0, j) * (1-(influencer.getValue()/influencer.getMaxValue())) * i.getValue();
+                    value -= m.getCell(0, j) * (1-(influencer.getValue()/influencer.getMaxValue())) * indic.getValue();
                 }
                 if(influencer.getValue() > 50.0){
-                    value += m.getCell(0, j) * (influencer.getValue()/influencer.getMaxValue()) * i.getValue();
+                    value += m.getCell(0, j) * (influencer.getValue()/influencer.getMaxValue()) * indic.getValue();
                 }
             }
         }
         return value;
     }
 
+    /**
+     * Fonction de <b>génération</b> des valeurs des <b>indicateurs</b> au tour suivant
+     */
     public void updateAll(){
         State thisYearState = _stateList.getState(_year);
         State lastYearState = _stateList.getState((_year - 1));
@@ -628,6 +711,10 @@ public class Controller {
         _stateList.addState(nextYearState);
     }
 
+    /**
+     * Fonction d'<b>initialisation du scénario</b> de la partie en cours
+     * @throws IOException Lancé en cas d'exceptions d'<b>erreur d'ouverture des fichiers de variables</b>
+     */
     public void initScenario() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("scenarios.txt"));
         String line;
@@ -697,16 +784,31 @@ public class Controller {
 
     }
 
-    public ArrayList<String> getTextScenarios(){
+    /**
+     * Accesseur <b>getteur</b> des <b>noms des scénarios</b> proposés
+     * @return <b>Noms des scénarios</b> proposés
+     */
+    public ArrayList<String> getScenarioNames(){
         ArrayList<String> res = new ArrayList<>();
         for (Scenario s:_scenarioList.getScenarios()) {
             res.add(s.getName());
         }
         return res;
     }
+
+    /**
+     * Accesseur <b>getteur</b> des <b>informations du scénario</b> de la partie actuelle
+     * @param name <b>Nom</b> du scénario de la partie
+     * @return <b>Informations du scénario</b> de la partie actuelle
+     */
     public Collection<String> getInfoScenario(String name){
         return _scenarioList.getScenario(name).getInfos();
     }
+
+    /**
+     * Accesseur <b>setteur</b> permettant le <b>choix du scénario</b>, en mettant à jour les <b>valeurs des indicateurs</b>
+     * @param name <b>Nom</b> du <b>scénario choisi</b>
+     */
     public void setIndicatorFunctScenar(String name){
         Scenario scenar = _scenarioList.getScenario(name);
 
@@ -726,6 +828,11 @@ public class Controller {
 
     }
 
+    /**
+     * Fonction vérifiant la <b>complétion des conditions de victoire</b> du <b>scénario choisi</b>
+     * @param scenario <b>Scénario choisi</b>
+     * @return Booléen: <b>vrai</b> si les conditions de <b>victoire</b> sont <b>complétées</b>, <b>faux</b> sinon
+     */
     public boolean victoryValidated(String scenario){
         Boolean res = true;
         for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).getVictory().entrySet()) {
@@ -737,6 +844,12 @@ public class Controller {
 
         return res;
     }
+
+    /**
+     * Fonction vérifiant la <b>complétion des conditions de défaite</b> du <b>scénario choisi</b>
+     * @param scenario <b>Scénario choisi</b>
+     * @return Booléen: <b>vrai</b> si les conditions de <b>défaite</b> sont <b>complétées</b>, <b>faux</b> sinon
+     */
     public ArrayList<String> defeatValidated(String scenario){
         ArrayList<String> res = new ArrayList<>();
         for (HashMap.Entry<String, Double> entry :_scenarioList.getScenario(scenario).getDefeat().entrySet()) {
@@ -759,7 +872,12 @@ public class Controller {
         return res;
     }
 
-    public ArrayList<String> fin(String scenario){
+    /**
+     * Fonction appelant les fonctions de <b>vérification de victoire ou de défaite</b> du scénario, à chaque fin de tour
+     * @param scenario <b>Scénario de la partie actuelle</b>
+     * @return En cas de <b>victoire</b>: retourne <b>"VCondi"</b>, en cas de <b>défaite</b>: retourne l'<b>ensemble des indicateurs ayant conduit à la défaite</b>, sinon, renvoie une <b>liste vide</b>
+     */
+    public ArrayList<String> end(String scenario){
         ArrayList<String> res = new ArrayList<>();
 
         //On teste la victoire

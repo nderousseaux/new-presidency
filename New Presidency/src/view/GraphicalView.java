@@ -434,14 +434,14 @@ public class GraphicalView extends JFrame {
      */
     private void endOfRound(){
 
-        if(_controller.fin(_scenario).size() ==0) {
+        if(_controller.end(_scenario).size() ==0) {
             removeAllElements();
             updateAll();
             addAllElements();
             this.setVisible(true);
         }
         else {
-            System.out.println(_controller.fin(_scenario));
+            System.out.println(_controller.end(_scenario));
             exit(0); //TODO:On affiche le message du controleur, et on revien au début
         }
     }
@@ -652,7 +652,7 @@ public class GraphicalView extends JFrame {
         title.setFont(new Font("Arial",Font.BOLD,24));
         title.setForeground(Color.WHITE);
 
-        ArrayList<String> scenarios = _controller.getTextScenarios();
+        ArrayList<String> scenarios = _controller.getScenarioNames();
         Object[] elements = scenarios.toArray();
         JComboBox scenar=new JComboBox(elements);
 
