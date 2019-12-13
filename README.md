@@ -1,6 +1,6 @@
 # New Presidency
 
-Vous trouverez ici les instructions d'installation du serious game **New Presidency**. Si vous voullez connaitre les objectifs pédagogiques savoir comment jouer, rendez-vous sur le [WIKI](https://git.unistra.fr/t3-2019-2020-derousseaux-van-der-spurt-treyer/t432_haj19_t3_a/wikis/New-Presidency)
+Vous trouverez ici les instructions d'installation du serious game **New Presidency**. Si vous voullez connaitre les objectifs pédagogiques savoir comment jouer, rendez-vous sur le [WIKI](https://git.unistra.fr/t3-2019-2020-derousseaux-van-der-spurt-treyer/t432_haj19_t3_a/wikis/Home)
 
 ## Installation
 
@@ -12,14 +12,19 @@ Avant toutes choses, il faut que le chemin d'accès de JAVA soit indiqué dans v
 
 Une fois que c'est fait, vous pouvez passer à la suite.
 
+//Lien google drive vers l'installeur
+
 ### Vous êtes sous Unix
 
-Le fichier présente le projet, contient au moins une capture d'écran et les liens vers le téléchargement et la documentation ainsi que les éventuelles instructions d'installation et de lancement.
+//Lien google drive vers l'installeur
 
 ## Lancement du jeu
 
 Pour lancer le jeu, il suffit de cliquer sur l'icone noté "New Présidency" sur le bureau ou le menu démarrer.
-
+![1](/New%20Presidency/doc/screenshoot/1.png)
+![2](/New%20Presidency/doc/screenshoot/2.png)
 
 
 ## Documentation
+
+Pour voir la documentation, cliquez [ici](https://git.unistra.fr/nderousseaux/t432_haj19_t3_a/blob/master/New%20Presidency/doc/html/index.html). //Lien google drive vers le pdf

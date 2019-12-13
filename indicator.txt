@@ -1,0 +1,114 @@
+New;
+info;Taux d'<b>insertion professionnelle</b>;
+info;Il représente la <b>qualité de la formation professionnelle</b> de l'université;
+info;Il est influencé par l'organisation d'<b>évènements professionnels</b>, les <b>partenariats de l'université</b> et sa <b>visibilité</b>;
+name;Taux d'insertion professionnelle;
+abreviation;IInsertPro;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;<b>Réputation</b> de la formation;
+info;Indicateur assez général, il représente la <b>visibilité de la formation de l'université</b>;
+info;Il est influencé par la <b>qualité des cours dispensés</b>, la <b>communication de l'université</b>, le <b>taux de réussite des élèves</b>;
+name;Réputation de la formation;
+abreviation;IReputForm;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;<b>Réputation</b> de la recherche;
+info;Il représente la <b>visibilité des travaux des enseignants chercheurs</b> et des <b>articles publiés</b>;
+name;Réputation de la recherche;
+abreviation;IReputRech;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;<b>Niveau de réussite</b> de la formation;
+info;Il est influencé par extension par le <b>niveau d'enseignement</b> de la formation et l'<b>encadrement des étudiants</b>;
+name;Taux de réussite du diplôme;
+abreviation;ITauxReu;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;<b>Niveau de satisfaction des étudiants</b>;
+info;Représente le <b>niveau d'appréciation</b> des <b>étudiants</b>;
+info;Il est influencé par les <b>évènements étudiants</b>, mais également par le <b>cadre de vie étudiant</b>, les <b>frais d'inscription</b>;
+info;Attention à ne pas oublier qu'un étudiant qui s'amuse <b>trop</b> travaille <b>moins</b>...;
+name;Satisfaction etudiante;
+abreviation;ISatEtu;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;<b>Niveau de satisfaction du personnel</b>;
+info;Représente le <b>niveau d'appréciation</b> du <b>personnel</b>;
+info;Il est influencé par le <b>budget alloué aux formations</b>, au <b>temps alloué à la recherche</b>;
+info;Attention à ne pas oublier qu'un professeur qui <b>ne se plait pas dans son travail</b> enseigne <b>moins bien</b>...;
+name;Satisfaction personnel;
+abreviation;ISatPers;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;Niveau de la <b>recherche des enseignants chercheurs</b>;	
+info; Représente le <b>niveau de la recherche</b> fournie par les <b>chercheurs de l'université</b> dans un but pratique;
+info; Il est influencé par le <b>temps alloué à la recherche</b> et à sa <b>valorisation</b>, ainsi qu'au <b>niveau du matériel à disposition</b>;
+name;Recherche appliquée;
+abreviation;IRechApp;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info; Représente le <b>niveau de la recherche</b> fournie par les <b>chercheurs de l'université</b> dans un but fondamental;
+info; Il est influencé par le <b>temps alloué à la recherche</b> et à sa <b>valorisation</b>, ainsi qu'au <b>niveau du matériel à disposition</b>;
+name;Recherche fondamentale;
+abreviation;IRechFond;
+value;50.0;
+max value;100.0;
+End;
+
+New;
+info;<b>Nombre d'étudiants</b> inscrits à l'université;
+info;Il est influencé par le <b>coût de la vie étudiante</b>, la <b>visibilité de l'université</b> et de sa <b>recherche</b>;
+name;Nombre d'étudiants;
+abreviation;INbEtu;
+value;101.0;
+max value;10000.0;
+End;
+
+New;
+info;Nombre d'<b>articles publiés</b> dans des revues scientifiques cette année;
+info;Il est influencé par le <b>temps alloué à la recherche</b> et à sa <b>valorisation</b>;
+name;Nombre d'articles publiés;
+abreviation;INbArticles;
+value;10.0;
+max value;6000.0;
+End;
+
+New;
+info;Nombre de <b>prix Nobels</b> ayant été remportés par des chercheurs de l'université pendant son histoire;
+info;Il est influencé par le <b>temps alloué à la recherche</b> et à sa <b>valorisation</b>;
+name;Nombre de prix Nobels;
+abreviation;INbPrNob;
+value;0.0;
+max value;50.0;
+End;
+
+New;
+info;Charge de travail du <b>personnel</b> ;
+info;Il est influencé par <b>le nombre d'étudiants à charge</b>, la <b>recherche actuelle dans l'université</b> (et donc les <b>prix Nobels</b>);
+name;Charge de travail;
+abreviation;IChargeTrav;
+value;1.0;
+max value;1000.0;
+End;

@@ -3,7 +3,6 @@ package controller;
 import java.io.BufferedReader;
 import java.io.File;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 import java.io.IOException;
@@ -14,10 +13,8 @@ import view.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static java.lang.System.exit;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -433,6 +430,10 @@ public class Controller {
      */
     public Collection<Indicator> getIndicators(){
         return _indicatorList.getIndicators();
+    }
+    public Indicator getIndicator(String abbreviation){
+
+        return _indicatorList.getIndicatorByAbreviation(abbreviation);
     }
 
     /**
@@ -861,12 +862,12 @@ public class Controller {
             }
         }
         for (Indicator i:_indicatorList.getIndicators()) {
-            if(i.getValue()<10){
-                if(!i.getAbreviation().equals("INbEtu") && !i.getAbreviation().equals("INbPrNob") && !i.getAbreviation().equals("NbArticles") && !i.getAbreviation().equals("IChargeTrav")){
+            /*if(i.getValue()<10){
+                if(!i.getAbreviation().equals("INbEtu") && !i.getAbreviation().equals("INbPrNob") && !i.getAbreviation().equals("INbArticles") && !i.getAbreviation().equals("IChargeTrav")){
                     res.add("d"+i.getAbreviation());
                 }
 
-            }
+            }*/
         }
         if(_indicatorList.getIndicatorByAbreviation("INbEtu").getValue() <= 0){
             res.add("d"+"INbEtu");
