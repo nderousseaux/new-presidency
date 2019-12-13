@@ -1,30 +1,31 @@
 # New Presidency
 
-Vous trouverez ici les instructions d'installation du serious game **New Presidency**. Si vous voullez connaitre les objectifs pédagogiques savoir comment jouer, rendez-vous sur le [WIKI](https://git.unistra.fr/t3-2019-2020-derousseaux-van-der-spurt-treyer/t432_haj19_t3_a/wikis/Home)
+Vous trouverez ici les instructions d'installation du serious game **New Presidency**. Si vous voullez connaitre les objectifs pédagogiques, rendez-vous sur le [WIKI](https://git.unistra.fr/t3-2019-2020-derousseaux-van-der-spurt-treyer/t432_haj19_t3_a/wikis/Home)
 
 ## Installation
 
-Avant de télécharger notre jeu vous devez installer la version 11 de JAVA.
+Téléchargez l'installeur [ici](https://drive.google.com/open?id=1xwtgvAz6DKtvrD04qUCSNwk4ynImR3ui).
 
-### Vous êtes sous Windows
-
-Avant toutes choses, il faut que le chemin d'accès de JAVA soit indiqué dans vos variables d'environnement windows. ([Tuto](https://www.cyril-rabat.fr/articles/index.php?article=48)) 
-
-Une fois que c'est fait, vous pouvez passer à la suite.
-
-//Lien google drive vers l'installeur
-
-### Vous êtes sous Unix
-
-//Lien google drive vers l'installeur
+Ensuite, lancer l'installeur, laissez-vous guider. Une icone sera présente sur le bureau. Cliquez !
 
 ## Lancement du jeu
 
 Pour lancer le jeu, il suffit de cliquer sur l'icone noté "New Présidency" sur le bureau ou le menu démarrer.
-![1](/New%20Presidency/doc/screenshoot/1.png)
-![2](/New%20Presidency/doc/screenshoot/2.png)
 
+## Comment jouer
+
+Une fois le jeux lancé, vous pouvez choisir le scénario.
+Chaque scénario vous mettra face à des challenges différents.
+![3](/New%20Presidency/doc/screenshoot/3.png = 100x)
+
+Voici l'écran de jeu : 
+![4](/New%20Presidency/doc/screenshoot/4.png)
+
+L'écran est divisé en quatres parties :
+- Les indicateurs, en haut à gauche. Les ajuster vont vous permettre d'influer sur les leviers
+- Les leviers, en haut à droite. Ils sont influencés par les indicateurs.
+- Les graphiques. Il permettent de comprendre l'évolution des valeurs au fil des tours.
 
 ## Documentation
 
-Pour voir la documentation, cliquez [ici](https://git.unistra.fr/nderousseaux/t432_haj19_t3_a/blob/master/New%20Presidency/doc/html/index.html). //Lien google drive vers le pdf
+Pour voir la documentation, cliquez [ici](https://drive.google.com/open?id=15c3pm4LEGZK6FB4qEOLHCP0jbJ9DS-4h).
