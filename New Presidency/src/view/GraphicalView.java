@@ -70,6 +70,7 @@ public class GraphicalView extends JFrame {
         private JButton _next;
         private JButton _previous;
 
+
         public TutoFrame(String text, Component position, TutoFrame nextFrame, TutoFrame previousFrame){
             _nextFrame=nextFrame;
             _previousFrame=previousFrame;
@@ -846,7 +847,8 @@ public class GraphicalView extends JFrame {
         TutoFrame f10=new TutoFrame("Le premier, ici, permet de voir la <b>répartition du budget</b> que vous avez à disposition à ce tour",_graphicPie,null,f9);
         TutoFrame f11=new TutoFrame("Le second, ici, permet de voir l'<b>évolution</b> des <b>budgets alloués</b> pour les <b>leviers</b>, et des <b>niveaux de complétions</b> pour les <b>indicateurs</b>",_graphicLine,null,f10);
         TutoFrame f12=new TutoFrame("Il n'est disponible qu'à partir du deuxième tour, changez un ou plusieurs budgets de leviers, et cliquez sur <b>Passer au tour suivant</b>!",_graphicLine,null,f11);
-        //TutoFrame f13=new TutoFrame("Vous pouvez maintenant <b>cliquer sur les leviers dont vous avez changé le budget</b>, et observez ")
+        TutoFrame f13=new TutoFrame("Vous pouvez maintenant <b>cliquer sur les leviers dont vous avez changé le budget</b>, et observez que <b>la courbe d'évolution apparait</b>! <br>Les indicateurs influencés ont également évolués! <br>Cliquez sur l'onglet \"Indicateurs\" et observez",null,null,f12);
+        TutoFrame f14=new TutoFrame("Usez de tous ces outils pour <b>mener à bien votre objectif<b>!",null,null,f13);
         TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f12);
         fDeb.setNextFrame(f2);
         f2.setNextFrame(f3);
@@ -859,6 +861,9 @@ public class GraphicalView extends JFrame {
         f9.setNextFrame(f10);
         f10.setNextFrame(f11);
         f11.setNextFrame(f12);
+        f12.setNextFrame(f13);
+        f13.setNextFrame(f14);
+        f14.setNextFrame(fFin);
 
 
         Collection<String> infos = _controller.getInfoScenario(_scenario);
