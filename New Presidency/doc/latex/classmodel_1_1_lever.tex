@@ -9,35 +9,167 @@ Inheritance diagram for model.\+Lever\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmodel_1_1_lever_a7d2b68c96bcdeb01117f5c3890e8ee6b}\label{classmodel_1_1_lever_a7d2b68c96bcdeb01117f5c3890e8ee6b}} 
-{\bfseries Lever} (String name, double init\+Budget, double max\+Budget, Array\+List$<$ String $>$ infos)
+\mbox{\hyperlink{classmodel_1_1_lever_aed5371bb2bc69e5e349b5b67face3c82}{Lever}} (String name, String abreviation, String category, double init\+Budget, double min\+Budget, double max\+Budget, Array\+List$<$ String $>$ infos)
 \item 
+double \mbox{\hyperlink{classmodel_1_1_lever_af82fdd5cdbe102382d1791a8a73c95e5}{get\+Budget}} ()
+\item 
+void \mbox{\hyperlink{classmodel_1_1_lever_ab24c936af3a0939c920deb85540c7932}{set\+Budget}} (double budget)
+\item 
+double \mbox{\hyperlink{classmodel_1_1_lever_a90675502761c1a13e29aa675eec0ce6c}{get\+Min\+Budget}} ()
+\item 
+double \mbox{\hyperlink{classmodel_1_1_lever_a521c327a25616628842eac5d962f5f3d}{get\+Max\+Budget}} ()
+\item 
+void \mbox{\hyperlink{classmodel_1_1_lever_a330cdf0220194ce6b35c95ad35137e80}{set\+Min\+Budget}} (double min\+Budget)
+\item 
+void \mbox{\hyperlink{classmodel_1_1_lever_ac97c0b5b90385bcffad7beaf9cc9a26a}{set\+Max\+Budget}} (double max\+Budget)
+\item 
+String \mbox{\hyperlink{classmodel_1_1_lever_aa15bfdb5e4daedf4cfdd3ff20a691821}{get\+Category}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_lever}{Lever}}} est la classe représentant les leviers de gestion du jeu}} 
+
+Cette classe contient 
+\begin{DoxyItemize}
+\item Un {\bfseries{budget alloué}} au levier 
+\item Un {\bfseries{budget minimal}} 
+\item Un {\bfseries{budget maximal}} 
+\item Une {\bfseries{catégorie de levier de gestion}} 
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_indic_lever}{Indic\+Lever}} 
+
+\mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}} 
+
+\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} 
+
+Controller 
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yoanv, lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_lever_aed5371bb2bc69e5e349b5b67face3c82}\label{classmodel_1_1_lever_aed5371bb2bc69e5e349b5b67face3c82}} 
+\index{model.Lever@{model.Lever}!Lever@{Lever}}
+\index{Lever@{Lever}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{Lever()}{Lever()}}
+{\footnotesize\ttfamily model.\+Lever.\+Lever (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{abreviation,  }\item[{String}]{category,  }\item[{double}]{init\+Budget,  }\item[{double}]{min\+Budget,  }\item[{double}]{max\+Budget,  }\item[{Array\+List$<$ String $>$}]{infos }\end{DoxyParamCaption})}
+
+Constructeur de la classe, instanciant les champs de la classe et faisant remonter les informations pour la super classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_indic_lever}{Indic\+Lever}}}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} du levier (stocké dans la super classe) \\
+\hline
+{\em abreviation} & {\bfseries{Abréviation}} du levier (stockée dans la super classe) \\
+\hline
+{\em category} & {\bfseries{Catégorie}} du levier \\
+\hline
+{\em init\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} initial}} du levier \\
+\hline
+{\em min\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} minimal}} du levier \\
+\hline
+{\em max\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} maximal}} du levier \\
+\hline
+{\em infos} & {\bfseries{Informations}} relatives au levier (stocké dans la super classe) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classmodel_1_1_lever_af82fdd5cdbe102382d1791a8a73c95e5}\label{classmodel_1_1_lever_af82fdd5cdbe102382d1791a8a73c95e5}} 
-double {\bfseries get\+Budget} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_ab24c936af3a0939c920deb85540c7932}\label{classmodel_1_1_lever_ab24c936af3a0939c920deb85540c7932}} 
-void {\bfseries set\+Budget} (double budget)
-\item 
+\index{model.Lever@{model.Lever}!getBudget@{getBudget}}
+\index{getBudget@{getBudget}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{getBudget()}{getBudget()}}
+{\footnotesize\ttfamily double model.\+Lever.\+get\+Budget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} du {\bfseries{budget alloué}} au levier \begin{DoxyReturn}{Returns}
+{\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} alloué}} au levier
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_lever_ab24c936af3a0939c920deb85540c7932}{Lever\+::set\+Budget(double)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classmodel_1_1_lever_aa15bfdb5e4daedf4cfdd3ff20a691821}\label{classmodel_1_1_lever_aa15bfdb5e4daedf4cfdd3ff20a691821}} 
+\index{model.Lever@{model.Lever}!getCategory@{getCategory}}
+\index{getCategory@{getCategory}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{getCategory()}{getCategory()}}
+{\footnotesize\ttfamily String model.\+Lever.\+get\+Category (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{setteur}} de la {\bfseries{catégorie}} du levier \begin{DoxyReturn}{Returns}
+{\bfseries{Catégorie}} du budget 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classmodel_1_1_lever_a521c327a25616628842eac5d962f5f3d}\label{classmodel_1_1_lever_a521c327a25616628842eac5d962f5f3d}} 
-double {\bfseries get\+Max\+Budget} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_ab66babbefa0aafba383ba25488dda853}\label{classmodel_1_1_lever_ab66babbefa0aafba383ba25488dda853}} 
-void {\bfseries add\+To\+Budget} (double val)
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_acb63e231606cbb4f0bbb0520b153b25b}\label{classmodel_1_1_lever_acb63e231606cbb4f0bbb0520b153b25b}} 
-void {\bfseries remove\+From\+Budget} (double val)
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_ad21416075fea98634018a91676eb9b84}\label{classmodel_1_1_lever_ad21416075fea98634018a91676eb9b84}} 
-double {\bfseries \+\_\+budget}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_lever_a8280573aa9b12651a85bffc1c5236d95}\label{classmodel_1_1_lever_a8280573aa9b12651a85bffc1c5236d95}} 
-double {\bfseries \+\_\+max\+Budget}
-\end{DoxyCompactItemize}
+\index{model.Lever@{model.Lever}!getMaxBudget@{getMaxBudget}}
+\index{getMaxBudget@{getMaxBudget}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{getMaxBudget()}{getMaxBudget()}}
+{\footnotesize\ttfamily double model.\+Lever.\+get\+Max\+Budget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} du {\bfseries{budget maximal}} du levier \begin{DoxyReturn}{Returns}
+{\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} maximal}} du levier
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_lever_ac97c0b5b90385bcffad7beaf9cc9a26a}{Lever\+::set\+Max\+Budget(double)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classmodel_1_1_lever_a90675502761c1a13e29aa675eec0ce6c}\label{classmodel_1_1_lever_a90675502761c1a13e29aa675eec0ce6c}} 
+\index{model.Lever@{model.Lever}!getMinBudget@{getMinBudget}}
+\index{getMinBudget@{getMinBudget}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{getMinBudget()}{getMinBudget()}}
+{\footnotesize\ttfamily double model.\+Lever.\+get\+Min\+Budget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} du {\bfseries{budget minimal}} du levier \begin{DoxyReturn}{Returns}
+{\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} minimal}} du levier
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_lever_a330cdf0220194ce6b35c95ad35137e80}{Lever\+::set\+Min\+Budget(double)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classmodel_1_1_lever_ab24c936af3a0939c920deb85540c7932}\label{classmodel_1_1_lever_ab24c936af3a0939c920deb85540c7932}} 
+\index{model.Lever@{model.Lever}!setBudget@{setBudget}}
+\index{setBudget@{setBudget}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{setBudget()}{setBudget()}}
+{\footnotesize\ttfamily void model.\+Lever.\+set\+Budget (\begin{DoxyParamCaption}\item[{double}]{budget }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{setteur}} du {\bfseries{budget alloué}} au levier 
+\begin{DoxyParams}{Parameters}
+{\em budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} alloué}} au levier\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_lever_af82fdd5cdbe102382d1791a8a73c95e5}{Lever\+::get\+Budget()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classmodel_1_1_lever_ac97c0b5b90385bcffad7beaf9cc9a26a}\label{classmodel_1_1_lever_ac97c0b5b90385bcffad7beaf9cc9a26a}} 
+\index{model.Lever@{model.Lever}!setMaxBudget@{setMaxBudget}}
+\index{setMaxBudget@{setMaxBudget}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{setMaxBudget()}{setMaxBudget()}}
+{\footnotesize\ttfamily void model.\+Lever.\+set\+Max\+Budget (\begin{DoxyParamCaption}\item[{double}]{max\+Budget }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{setteur}} du {\bfseries{budget maximal}} du levier 
+\begin{DoxyParams}{Parameters}
+{\em max\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} maximal}} du levier\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_lever_a521c327a25616628842eac5d962f5f3d}{Lever\+::get\+Max\+Budget()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classmodel_1_1_lever_a330cdf0220194ce6b35c95ad35137e80}\label{classmodel_1_1_lever_a330cdf0220194ce6b35c95ad35137e80}} 
+\index{model.Lever@{model.Lever}!setMinBudget@{setMinBudget}}
+\index{setMinBudget@{setMinBudget}!model.Lever@{model.Lever}}
+\doxysubsubsection{\texorpdfstring{setMinBudget()}{setMinBudget()}}
+{\footnotesize\ttfamily void model.\+Lever.\+set\+Min\+Budget (\begin{DoxyParamCaption}\item[{double}]{min\+Budget }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{setteur}} du {\bfseries{budget minimal}} du levier 
+\begin{DoxyParams}{Parameters}
+{\em min\+Budget} & {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} minimal}} du levier\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_lever_a90675502761c1a13e29aa675eec0ce6c}{Lever\+::get\+Min\+Budget()}} 
+\end{DoxySeeAlso}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/Lever.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/Lever.\+java\end{DoxyCompactItemize}

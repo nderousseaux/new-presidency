@@ -1,26 +1,17 @@
 \hypertarget{classview_1_1_graphic_pie}{}\doxysection{view.\+Graphic\+Pie Class Reference}
 \label{classview_1_1_graphic_pie}\index{view.GraphicPie@{view.GraphicPie}}
+Inheritance diagram for view.\+Graphic\+Pie\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classview_1_1_graphic_pie}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classview_1_1_graphic_pie_a86134b7ea472caa23c56b88838f70a4c}{Graphic\+Pie}} (Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ lever\+List, Double budget)
 \item 
-void \mbox{\hyperlink{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}{close}} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphic_pie_ae4917f9a13ecdc2c7b7181927e10a167}\label{classview_1_1_graphic_pie_ae4917f9a13ecdc2c7b7181927e10a167}} 
-J\+Frame {\bfseries \+\_\+f}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphic_pie_ac1b4ac2c6630074be7dff8aac43194d1}\label{classview_1_1_graphic_pie_ac1b4ac2c6630074be7dff8aac43194d1}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ {\bfseries \+\_\+lever\+List}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphic_pie_a0c4d6fd5ef26f83aba87766ddda0c72d}\label{classview_1_1_graphic_pie_a0c4d6fd5ef26f83aba87766ddda0c72d}} 
-Pie\+Chart {\bfseries chart}
-\item 
-\mbox{\Hypertarget{classview_1_1_graphic_pie_aa7a1923ca25bcc2f5c7efd5cf38efba3}\label{classview_1_1_graphic_pie_aa7a1923ca25bcc2f5c7efd5cf38efba3}} 
-Hash\+Map$<$ J\+Combo\+Box$<$ String $>$, String $>$ {\bfseries \+\_\+anciennes\+Valeurs} = new Hash\+Map$<$$>$()
+\mbox{\hyperlink{classview_1_1_graphic_pie}{Graphic\+Pie}} \mbox{\hyperlink{classview_1_1_graphic_pie_aae66e68b9d7b389318c1fbb21d2f3b5f}{refresh}} (Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$ lever\+List, Double budget)
 \end{DoxyCompactItemize}
 
 
@@ -36,8 +27,6 @@ Le graphique représente la manière dont le joueur à utilisé son budget duran
 
 \begin{DoxySeeAlso}{See also}
 Lever\+List 
-
-\mbox{\hyperlink{classview_1_1_textual_view}{Textual\+View}} 
 
 \mbox{\hyperlink{classview_1_1_graphical_view}{Graphical\+View}}
 \end{DoxySeeAlso}
@@ -56,7 +45,7 @@ nderousseaux
 \doxysubsubsection{\texorpdfstring{GraphicPie()}{GraphicPie()}}
 {\footnotesize\ttfamily view.\+Graphic\+Pie.\+Graphic\+Pie (\begin{DoxyParamCaption}\item[{Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$}]{lever\+List,  }\item[{Double}]{budget }\end{DoxyParamCaption})}
 
-Instancier et ouvrir la fenêtre graphique
+Constructeur qui instancie et ouvre la fenêtre graphique
 
 
 \begin{DoxyParams}{Parameters}
@@ -65,28 +54,30 @@ Instancier et ouvrir la fenêtre graphique
 {\em budget} & Budget total du tour.\\
 \hline
 \end{DoxyParams}
-\begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}{Graphic\+Pie\+::close()}}
-\end{DoxySeeAlso}
 \begin{DoxySince}{Since}
 1.\+0 
 \end{DoxySince}
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}\label{classview_1_1_graphic_pie_a78564f3e14b6a3625f4e5be82543a034}} 
-\index{view.GraphicPie@{view.GraphicPie}!close@{close}}
-\index{close@{close}!view.GraphicPie@{view.GraphicPie}}
-\doxysubsubsection{\texorpdfstring{close()}{close()}}
-{\footnotesize\ttfamily void view.\+Graphic\+Pie.\+close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classview_1_1_graphic_pie_aae66e68b9d7b389318c1fbb21d2f3b5f}\label{classview_1_1_graphic_pie_aae66e68b9d7b389318c1fbb21d2f3b5f}} 
+\index{view.GraphicPie@{view.GraphicPie}!refresh@{refresh}}
+\index{refresh@{refresh}!view.GraphicPie@{view.GraphicPie}}
+\doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classview_1_1_graphic_pie}{Graphic\+Pie}} view.\+Graphic\+Pie.\+refresh (\begin{DoxyParamCaption}\item[{Collection$<$ \mbox{\hyperlink{classmodel_1_1_lever}{Lever}} $>$}]{lever\+List,  }\item[{Double}]{budget }\end{DoxyParamCaption})}
 
-Fonction de fermeture de la fenêtre
-
-\begin{DoxySince}{Since}
-1.\+0 
-\end{DoxySince}
+Fonction de {\bfseries{rafraichissement du graphique}}, appelant le constructeur 
+\begin{DoxyParams}{Parameters}
+{\em lever\+List} & Liste des objets {\bfseries{Lever}} \\
+\hline
+{\em budget} & Budget \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objet {\bfseries{\mbox{\hyperlink{classview_1_1_graphic_pie}{Graphic\+Pie}}}} instancié 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/view/Graphic\+Pie.\+java\end{DoxyCompactItemize}
+New Presidency/src/view/Graphic\+Pie.\+java\end{DoxyCompactItemize}

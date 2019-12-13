@@ -1,12 +1,12 @@
 New;
-info;<h1>Scénario</h1>Vous êtes dans une université de cancres. A partir d'un taux de réussite de 30%, arriver à un taux de 50% Mais attention, ne pas descendre la réputation formation en dessous de 30%.;
+info;<h1>Scénario</h1>Vous êtes dans une université de cancres. A partir d'un taux de réussite de 30%, arriver à un taux de 50% Mais attention, ne pas descendre la recherche en dessous de 30%.;
 name;Cancres;
 abreviation;SClassique;
 dep;ITauxReu=30;
 dep;IReputForm=50;
 dep;ISatEtu=60;
 vic;ITauxReu>50;
-def;IReputForm<30;
+def;IRechApp<30;
 End;
 
 New;

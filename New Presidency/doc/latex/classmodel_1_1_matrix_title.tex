@@ -3,38 +3,137 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classmodel_1_1_matrix_title_ada7a9f7d64908dac32e8ae21fcda831a}{Matrix\+Title}} (Hash\+Map$<$ String, Integer $>$ lines\+Titles, Hash\+Map$<$ String, Integer $>$ columns\+Titles)
+\item 
+\mbox{\hyperlink{classmodel_1_1_matrix_title}{Matrix\+Title}} \mbox{\hyperlink{classmodel_1_1_matrix_title_a6ad9c4f1cf5cfb401093373790ed90c8}{copy}} (int line\+Start, int column\+Start, int line\+End, int column\+End)
+\item 
+int \mbox{\hyperlink{classmodel_1_1_matrix_title_a55648b972a7e84cf1f7a154c7b78a38d}{get\+Lines\+Size}} ()
+\item 
+int \mbox{\hyperlink{classmodel_1_1_matrix_title_a309cf31a4302ad97fa0e696f795a246c}{get\+Columns\+Size}} ()
+\item 
+int \mbox{\hyperlink{classmodel_1_1_matrix_title_ac9d9d5539ca1dc215d8c2935d4d03735}{get\+Line}} (String line)
+\item 
+int \mbox{\hyperlink{classmodel_1_1_matrix_title_a88bc54a8ee0c29190c104868f785213a}{get\+Column}} (String column)
+\item 
+String \mbox{\hyperlink{classmodel_1_1_matrix_title_a0f6b51c2f448c32d5651b579966bd2f2}{get\+Column\+Title}} (Integer column\+Index)  throws Index\+Out\+Of\+Bounds\+Exception
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_matrix_title}{Matrix\+Title}}} est la classe contenant l\textquotesingle{}ensemble des titres de lignes et de colonnes d\textquotesingle{}un objet \mbox{\hyperlink{classmodel_1_1_matrix}{Matrix}}}}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_matrix}{Matrix}} 
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classmodel_1_1_matrix_title_ada7a9f7d64908dac32e8ae21fcda831a}\label{classmodel_1_1_matrix_title_ada7a9f7d64908dac32e8ae21fcda831a}} 
-{\bfseries Matrix\+Title} (Hash\+Map$<$ String, Integer $>$ lines\+Titles, Hash\+Map$<$ String, Integer $>$ columns\+Titles)
-\item 
+\index{model.MatrixTitle@{model.MatrixTitle}!MatrixTitle@{MatrixTitle}}
+\index{MatrixTitle@{MatrixTitle}!model.MatrixTitle@{model.MatrixTitle}}
+\doxysubsubsection{\texorpdfstring{MatrixTitle()}{MatrixTitle()}}
+{\footnotesize\ttfamily model.\+Matrix\+Title.\+Matrix\+Title (\begin{DoxyParamCaption}\item[{Hash\+Map$<$ String, Integer $>$}]{lines\+Titles,  }\item[{Hash\+Map$<$ String, Integer $>$}]{columns\+Titles }\end{DoxyParamCaption})}
+
+Constructeur de la classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_matrix_title}{Matrix\+Title}}}} 
+\begin{DoxyParams}{Parameters}
+{\em lines\+Titles} & {\bfseries{Ensemble des titres de lignes}} \\
+\hline
+{\em columns\+Titles} & {\bfseries{Ensemble des titres de colonnes}} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classmodel_1_1_matrix_title_a6ad9c4f1cf5cfb401093373790ed90c8}\label{classmodel_1_1_matrix_title_a6ad9c4f1cf5cfb401093373790ed90c8}} 
-\mbox{\hyperlink{classmodel_1_1_matrix_title}{Matrix\+Title}} {\bfseries copy} (int line\+Start, int column\+Start, int line\+End, int column\+End)
-\item 
-\mbox{\Hypertarget{classmodel_1_1_matrix_title_a55648b972a7e84cf1f7a154c7b78a38d}\label{classmodel_1_1_matrix_title_a55648b972a7e84cf1f7a154c7b78a38d}} 
-int {\bfseries get\+Lines\+Size} ()
-\item 
-\mbox{\Hypertarget{classmodel_1_1_matrix_title_a309cf31a4302ad97fa0e696f795a246c}\label{classmodel_1_1_matrix_title_a309cf31a4302ad97fa0e696f795a246c}} 
-int {\bfseries get\+Columns\+Size} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Package Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_matrix_title_ac9d9d5539ca1dc215d8c2935d4d03735}\label{classmodel_1_1_matrix_title_ac9d9d5539ca1dc215d8c2935d4d03735}} 
-int {\bfseries get\+Line} (String line)
-\item 
+\index{model.MatrixTitle@{model.MatrixTitle}!copy@{copy}}
+\index{copy@{copy}!model.MatrixTitle@{model.MatrixTitle}}
+\doxysubsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_matrix_title}{Matrix\+Title}} model.\+Matrix\+Title.\+copy (\begin{DoxyParamCaption}\item[{int}]{line\+Start,  }\item[{int}]{column\+Start,  }\item[{int}]{line\+End,  }\item[{int}]{column\+End }\end{DoxyParamCaption})}
+
+Fonction permettant de {\bfseries{copier une partie de la matrice de titres}} 
+\begin{DoxyParams}{Parameters}
+{\em line\+Start} & {\bfseries{Ligne de départ}} \\
+\hline
+{\em column\+Start} & {\bfseries{Colonne de départ}} \\
+\hline
+{\em line\+End} & {\bfseries{Ligne de fin}} \\
+\hline
+{\em column\+End} & {\bfseries{Colonne de fin}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Matrice de titres}} obtenue 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classmodel_1_1_matrix_title_a88bc54a8ee0c29190c104868f785213a}\label{classmodel_1_1_matrix_title_a88bc54a8ee0c29190c104868f785213a}} 
-int {\bfseries get\+Column} (String column)
-\end{DoxyCompactItemize}
-\doxysubsection*{Package Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_matrix_title_a25028d7dad67acf9ea50ee5acf61910f}\label{classmodel_1_1_matrix_title_a25028d7dad67acf9ea50ee5acf61910f}} 
-Hash\+Map$<$ String, Integer $>$ {\bfseries \+\_\+lines\+Titles}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_matrix_title_afbdf5f5a3dffe051d55c5dcf489a5fdb}\label{classmodel_1_1_matrix_title_afbdf5f5a3dffe051d55c5dcf489a5fdb}} 
-Hash\+Map$<$ String, Integer $>$ {\bfseries \+\_\+columns\+Titles}
-\end{DoxyCompactItemize}
+\index{model.MatrixTitle@{model.MatrixTitle}!getColumn@{getColumn}}
+\index{getColumn@{getColumn}!model.MatrixTitle@{model.MatrixTitle}}
+\doxysubsubsection{\texorpdfstring{getColumn()}{getColumn()}}
+{\footnotesize\ttfamily int model.\+Matrix\+Title.\+get\+Column (\begin{DoxyParamCaption}\item[{String}]{column }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} d\textquotesingle{}une {\bfseries{colonne}} de la {\bfseries{matrice de titres}} 
+\begin{DoxyParams}{Parameters}
+{\em column} & {\bfseries{Nom de la colonne}} à récupérer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Colonne de la matrice de titres demandée}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_matrix_title_a309cf31a4302ad97fa0e696f795a246c}\label{classmodel_1_1_matrix_title_a309cf31a4302ad97fa0e696f795a246c}} 
+\index{model.MatrixTitle@{model.MatrixTitle}!getColumnsSize@{getColumnsSize}}
+\index{getColumnsSize@{getColumnsSize}!model.MatrixTitle@{model.MatrixTitle}}
+\doxysubsubsection{\texorpdfstring{getColumnsSize()}{getColumnsSize()}}
+{\footnotesize\ttfamily int model.\+Matrix\+Title.\+get\+Columns\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{taille des colonnes}} \begin{DoxyReturn}{Returns}
+{\bfseries{Taille des colonnes de la matrice de titres}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_matrix_title_a0f6b51c2f448c32d5651b579966bd2f2}\label{classmodel_1_1_matrix_title_a0f6b51c2f448c32d5651b579966bd2f2}} 
+\index{model.MatrixTitle@{model.MatrixTitle}!getColumnTitle@{getColumnTitle}}
+\index{getColumnTitle@{getColumnTitle}!model.MatrixTitle@{model.MatrixTitle}}
+\doxysubsubsection{\texorpdfstring{getColumnTitle()}{getColumnTitle()}}
+{\footnotesize\ttfamily String model.\+Matrix\+Title.\+get\+Column\+Title (\begin{DoxyParamCaption}\item[{Integer}]{column\+Index }\end{DoxyParamCaption}) throws Index\+Out\+Of\+Bounds\+Exception}
+
+Accesseur {\bfseries{getteur}} du {\bfseries{titre d\textquotesingle{}une colonne de la matrice de titres donnée}} 
+\begin{DoxyParams}{Parameters}
+{\em column\+Index} & {\bfseries{Index de la colonne demandée}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Titre de la colonne demandée}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Index\+Out\+Of\+Bounds\+Exception} & Lancée si l\textquotesingle{}index est {\bfseries{en dehors des bornes de la matrice de titres}} \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classmodel_1_1_matrix_title_ac9d9d5539ca1dc215d8c2935d4d03735}\label{classmodel_1_1_matrix_title_ac9d9d5539ca1dc215d8c2935d4d03735}} 
+\index{model.MatrixTitle@{model.MatrixTitle}!getLine@{getLine}}
+\index{getLine@{getLine}!model.MatrixTitle@{model.MatrixTitle}}
+\doxysubsubsection{\texorpdfstring{getLine()}{getLine()}}
+{\footnotesize\ttfamily int model.\+Matrix\+Title.\+get\+Line (\begin{DoxyParamCaption}\item[{String}]{line }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} d\textquotesingle{}une {\bfseries{ligne}} de la {\bfseries{matrice de titres}} 
+\begin{DoxyParams}{Parameters}
+{\em line} & {\bfseries{Nom de la ligne}} à récupérer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{Ligne de la matrice de titres demandée}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_matrix_title_a55648b972a7e84cf1f7a154c7b78a38d}\label{classmodel_1_1_matrix_title_a55648b972a7e84cf1f7a154c7b78a38d}} 
+\index{model.MatrixTitle@{model.MatrixTitle}!getLinesSize@{getLinesSize}}
+\index{getLinesSize@{getLinesSize}!model.MatrixTitle@{model.MatrixTitle}}
+\doxysubsubsection{\texorpdfstring{getLinesSize()}{getLinesSize()}}
+{\footnotesize\ttfamily int model.\+Matrix\+Title.\+get\+Lines\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{taille des lignes}} \begin{DoxyReturn}{Returns}
+{\bfseries{Taille des lignes de la matrice de titres}} 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/Matrix\+Title.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/Matrix\+Title.\+java\end{DoxyCompactItemize}

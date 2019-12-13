@@ -9,32 +9,112 @@ Inheritance diagram for model.\+Indicator\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_afb33a3818e6417e847df3964a0d3a7bf}\label{classmodel_1_1_indicator_afb33a3818e6417e847df3964a0d3a7bf}} 
-{\bfseries Indicator} (String name, double init\+Value, double max\+Value, Collection$<$ String $>$ infos)
+\mbox{\hyperlink{classmodel_1_1_indicator_a74baa324b24ca451269ccc71fa643dba}{Indicator}} (String name, String abreviation, double init\+Value, double max\+Value, Collection$<$ String $>$ infos)
 \item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_aa51a8d9d40c49ebf97bb1e1120d96a12}\label{classmodel_1_1_indicator_aa51a8d9d40c49ebf97bb1e1120d96a12}} 
-double {\bfseries get\+Value} ()
+double \mbox{\hyperlink{classmodel_1_1_indicator_aa51a8d9d40c49ebf97bb1e1120d96a12}{get\+Value}} ()
 \item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_a6acab405377db77f1162822426998d8d}\label{classmodel_1_1_indicator_a6acab405377db77f1162822426998d8d}} 
-void {\bfseries set\+Value} (double value)
+void \mbox{\hyperlink{classmodel_1_1_indicator_a6acab405377db77f1162822426998d8d}{set\+Value}} (double value)
 \item 
+double \mbox{\hyperlink{classmodel_1_1_indicator_a69ed1f7017e4beae7987e9cb84f8d69d}{get\+Max\+Value}} ()
+\item 
+String \mbox{\hyperlink{classmodel_1_1_indicator_a325857c67d57cf822742146d06cae6ee}{to\+String}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}} est la classe représentant les indicateurs de réussite du jeu}} 
+
+Cette classe contient 
+\begin{DoxyItemize}
+\item Une {\bfseries{valeur de complétion}} de l\textquotesingle{}indicateur 
+\item Une {\bfseries{valeur maximale de complétion}}, utile pour les calculs au tour suivant 
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_indic_lever}{Indic\+Lever}} 
+
+\mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}} 
+
+\mbox{\hyperlink{classmodel_1_1_lever}{Lever}} 
+
+Controller 
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yoanv, lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_indicator_a74baa324b24ca451269ccc71fa643dba}\label{classmodel_1_1_indicator_a74baa324b24ca451269ccc71fa643dba}} 
+\index{model.Indicator@{model.Indicator}!Indicator@{Indicator}}
+\index{Indicator@{Indicator}!model.Indicator@{model.Indicator}}
+\doxysubsubsection{\texorpdfstring{Indicator()}{Indicator()}}
+{\footnotesize\ttfamily model.\+Indicator.\+Indicator (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{abreviation,  }\item[{double}]{init\+Value,  }\item[{double}]{max\+Value,  }\item[{Collection$<$ String $>$}]{infos }\end{DoxyParamCaption})}
+
+Constructeur de la classe, instanciant les champs de la classe et faisant remonter les informations pour la super classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_indic_lever}{Indic\+Lever}}}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} de l\textquotesingle{}indicateur (stocké dans la super classe) \\
+\hline
+{\em abreviation} & {\bfseries{Abréviation}} de l\textquotesingle{}indicateur (stockée dans la super classe) \\
+\hline
+{\em init\+Value} & {\bfseries{Valeur initiale de complétion}} de l\textquotesingle{}indicateur \\
+\hline
+{\em max\+Value} & {\bfseries{Valeur maximale de complétion}} de l\textquotesingle{}indicateur \\
+\hline
+{\em infos} & {\bfseries{Informations}} relatives à l\textquotesingle{}indicateur (stockées dans la super classe) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classmodel_1_1_indicator_a69ed1f7017e4beae7987e9cb84f8d69d}\label{classmodel_1_1_indicator_a69ed1f7017e4beae7987e9cb84f8d69d}} 
-double {\bfseries get\+Max\+Value} ()
-\item 
+\index{model.Indicator@{model.Indicator}!getMaxValue@{getMaxValue}}
+\index{getMaxValue@{getMaxValue}!model.Indicator@{model.Indicator}}
+\doxysubsubsection{\texorpdfstring{getMaxValue()}{getMaxValue()}}
+{\footnotesize\ttfamily double model.\+Indicator.\+get\+Max\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{valeur de complétion maximale}} de l\textquotesingle{}indicateur \begin{DoxyReturn}{Returns}
+{\bfseries{Valeur de complétion maximale}} de l\textquotesingle{}indicateur 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_indicator_aa51a8d9d40c49ebf97bb1e1120d96a12}\label{classmodel_1_1_indicator_aa51a8d9d40c49ebf97bb1e1120d96a12}} 
+\index{model.Indicator@{model.Indicator}!getValue@{getValue}}
+\index{getValue@{getValue}!model.Indicator@{model.Indicator}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily double model.\+Indicator.\+get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{getteur}} de la {\bfseries{valeur de complétion}} de l\textquotesingle{}indicateur \begin{DoxyReturn}{Returns}
+{\bfseries{Valeur de complétion}} de l\textquotesingle{}indicateur
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_indicator_a6acab405377db77f1162822426998d8d}{Indicator\+::set\+Value(double)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classmodel_1_1_indicator_a6acab405377db77f1162822426998d8d}\label{classmodel_1_1_indicator_a6acab405377db77f1162822426998d8d}} 
+\index{model.Indicator@{model.Indicator}!setValue@{setValue}}
+\index{setValue@{setValue}!model.Indicator@{model.Indicator}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void model.\+Indicator.\+set\+Value (\begin{DoxyParamCaption}\item[{double}]{value }\end{DoxyParamCaption})}
+
+Accesseur {\bfseries{setteur}} de la {\bfseries{valeur de la complétion}} de l\textquotesingle{}indicateur 
+\begin{DoxyParams}{Parameters}
+{\em value} & {\bfseries{Valeur de complétion}} de l\textquotesingle{}indicateur\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_indicator_aa51a8d9d40c49ebf97bb1e1120d96a12}{Indicator\+::get\+Value()}} 
+\end{DoxySeeAlso}
 \mbox{\Hypertarget{classmodel_1_1_indicator_a325857c67d57cf822742146d06cae6ee}\label{classmodel_1_1_indicator_a325857c67d57cf822742146d06cae6ee}} 
-String {\bfseries to\+String} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_a5037456c9a3c99da87ffc6fdf1534a2e}\label{classmodel_1_1_indicator_a5037456c9a3c99da87ffc6fdf1534a2e}} 
-double {\bfseries \+\_\+value}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_adcfde5ad8e2d7b3760b2de4b4c23cfd6}\label{classmodel_1_1_indicator_adcfde5ad8e2d7b3760b2de4b4c23cfd6}} 
-double {\bfseries \+\_\+max\+Value}
-\end{DoxyCompactItemize}
+\index{model.Indicator@{model.Indicator}!toString@{toString}}
+\index{toString@{toString}!model.Indicator@{model.Indicator}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily String model.\+Indicator.\+to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Redéfinition de la fonction {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator_a325857c67d57cf822742146d06cae6ee}{to\+String()}}}} \begin{DoxyReturn}{Returns}
+{\bfseries{Nom}} de l\textquotesingle{}indicateur 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/Indicator.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/Indicator.\+java\end{DoxyCompactItemize}

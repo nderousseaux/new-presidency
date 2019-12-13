@@ -4,7 +4,7 @@ Vous trouverez ici les instructions d'installation du serious game **New Preside
 
 ## Installation
 
-Téléchargez l'installeur [ici](https://drive.google.com/open?id=1xwtgvAz6DKtvrD04qUCSNwk4ynImR3ui).
+Téléchargez l'installeur [ici](https://drive.google.com/file/d/1cgU-ibMMtSBYlvYsZ3-S0sQUjt1GU6FF/view?usp=sharing).
 
 Ensuite, lancer l'installeur, laissez-vous guider. Une icone sera présente sur le bureau. Cliquez !
 

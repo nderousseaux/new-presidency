@@ -3,23 +3,87 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmodel_1_1_budget_aaa76f98bd7e7a3fe963f4ef25d401607}\label{classmodel_1_1_budget_aaa76f98bd7e7a3fe963f4ef25d401607}} 
-void {\bfseries set\+Remaining\+Budget} (double budget)
+\mbox{\hyperlink{classmodel_1_1_budget_a1c6aada4d59aac2cff48a8d8c309f62d}{Budget}} (Double d)
 \item 
+void \mbox{\hyperlink{classmodel_1_1_budget_aaa76f98bd7e7a3fe963f4ef25d401607}{set\+Remaining\+Budget}} (double budget)
+\item 
+double \mbox{\hyperlink{classmodel_1_1_budget_a04b291a5fefe323d176ad9e0972ac10a}{get\+Remaining\+Budget}} ()
+\item 
+String \mbox{\hyperlink{classmodel_1_1_budget_afd14df8b66b538acbef74f99eb2f51d1}{to\+String}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_budget}{Budget}}} est la classe contenant les informations sur le budget alloué au joueur au cours du jeu}} 
+
+Cette classe contient\+: 
+\begin{DoxyItemize}
+\item Le {\bfseries{budget restant}} du tour, soit le champ {\bfseries{\+\_\+remaining\+Budget}} 
+\item Des {\bfseries{accesseurs}} 
+\item Une {\bfseries{redéfinition de la méthode \mbox{\hyperlink{classmodel_1_1_budget_afd14df8b66b538acbef74f99eb2f51d1}{to\+String()}}}} 
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classcontroller_1_1_controller}{controller.\+Controller}} 
+
+\mbox{\hyperlink{classmodel_1_1_budget_aaa76f98bd7e7a3fe963f4ef25d401607}{Budget\+::set\+Remaining\+Budget(double)}} 
+
+\mbox{\hyperlink{classmodel_1_1_budget_a04b291a5fefe323d176ad9e0972ac10a}{Budget\+::get\+Remaining\+Budget()}} 
+
+\mbox{\hyperlink{classmodel_1_1_budget_afd14df8b66b538acbef74f99eb2f51d1}{Budget\+::to\+String()}} 
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yoanv 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_budget_a1c6aada4d59aac2cff48a8d8c309f62d}\label{classmodel_1_1_budget_a1c6aada4d59aac2cff48a8d8c309f62d}} 
+\index{model.Budget@{model.Budget}!Budget@{Budget}}
+\index{Budget@{Budget}!model.Budget@{model.Budget}}
+\doxysubsubsection{\texorpdfstring{Budget()}{Budget()}}
+{\footnotesize\ttfamily model.\+Budget.\+Budget (\begin{DoxyParamCaption}\item[{Double}]{d }\end{DoxyParamCaption})}
+
+Constructeur de {\bfseries{\mbox{\hyperlink{classmodel_1_1_budget}{Budget}}}}, instanciant le budget à {\bfseries{40 000}}, automatiquement répartis 
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classmodel_1_1_budget_a04b291a5fefe323d176ad9e0972ac10a}\label{classmodel_1_1_budget_a04b291a5fefe323d176ad9e0972ac10a}} 
-double {\bfseries get\+Remaining\+Budget} ()
-\item 
+\index{model.Budget@{model.Budget}!getRemainingBudget@{getRemainingBudget}}
+\index{getRemainingBudget@{getRemainingBudget}!model.Budget@{model.Budget}}
+\doxysubsubsection{\texorpdfstring{getRemainingBudget()}{getRemainingBudget()}}
+{\footnotesize\ttfamily double model.\+Budget.\+get\+Remaining\+Budget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Accesseur du budget restant, récupérant la valeur du budget restant
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} restant 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_budget_aaa76f98bd7e7a3fe963f4ef25d401607}\label{classmodel_1_1_budget_aaa76f98bd7e7a3fe963f4ef25d401607}} 
+\index{model.Budget@{model.Budget}!setRemainingBudget@{setRemainingBudget}}
+\index{setRemainingBudget@{setRemainingBudget}!model.Budget@{model.Budget}}
+\doxysubsubsection{\texorpdfstring{setRemainingBudget()}{setRemainingBudget()}}
+{\footnotesize\ttfamily void model.\+Budget.\+set\+Remaining\+Budget (\begin{DoxyParamCaption}\item[{double}]{budget }\end{DoxyParamCaption})}
+
+Accesseur du budget restant, modifiant sa valeur
+
+
+\begin{DoxyParams}{Parameters}
+{\em budget} & \mbox{\hyperlink{classmodel_1_1_budget}{Budget}} restant \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classmodel_1_1_budget_afd14df8b66b538acbef74f99eb2f51d1}\label{classmodel_1_1_budget_afd14df8b66b538acbef74f99eb2f51d1}} 
-String {\bfseries to\+String} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_budget_ab0898548f88909286fe402bb8a0322ca}\label{classmodel_1_1_budget_ab0898548f88909286fe402bb8a0322ca}} 
-double {\bfseries \+\_\+remaining\+Budget}
-\end{DoxyCompactItemize}
+\index{model.Budget@{model.Budget}!toString@{toString}}
+\index{toString@{toString}!model.Budget@{model.Budget}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily String model.\+Budget.\+to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Redéfinition de la méthode \mbox{\hyperlink{classmodel_1_1_budget_afd14df8b66b538acbef74f99eb2f51d1}{to\+String()}}, renvoyant sous forme de String la valeur du budget restant
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classmodel_1_1_budget}{Budget}} restant, sous forme de String 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/Budget.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/Budget.\+java\end{DoxyCompactItemize}

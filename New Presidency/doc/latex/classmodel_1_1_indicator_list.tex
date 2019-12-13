@@ -3,35 +3,106 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_list_a7e702396c96e349b3a6a50eed7d3b23c}\label{classmodel_1_1_indicator_list_a7e702396c96e349b3a6a50eed7d3b23c}} 
-\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} {\bfseries create\+Indicator} (String name, double value, double max\+Value, Collection$<$ String $>$ infos)
+\mbox{\hyperlink{classmodel_1_1_indicator_list_a282d7a8f1a221334ee1d0be1926c2ceb}{Indicator\+List}} ()
 \item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_list_abd97cfdc15740a83545a80da195141b2}\label{classmodel_1_1_indicator_list_abd97cfdc15740a83545a80da195141b2}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} $>$ {\bfseries get\+Indicators} ()
+\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} \mbox{\hyperlink{classmodel_1_1_indicator_list_a46b6f6de2ba7668a9f696797562e73c3}{create\+Indicator}} (String name, String abreviation, double value, double max\+Value, Collection$<$ String $>$ infos)
 \item 
+Collection$<$ \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} $>$ \mbox{\hyperlink{classmodel_1_1_indicator_list_abd97cfdc15740a83545a80da195141b2}{get\+Indicators}} ()
+\item 
+\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} \mbox{\hyperlink{classmodel_1_1_indicator_list_a9bed0a5cba8a88c713d8b6a5d9cff2a7}{get\+Indicator}} (String name)
+\item 
+\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} \mbox{\hyperlink{classmodel_1_1_indicator_list_a0c90857390c484cb93ea01d37b1bcd3b}{get\+Indicator\+By\+Abreviation}} (String abreviation)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+{\bfseries{{\itshape \mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}}} est la classe contenant l\textquotesingle{}ensemble des objets \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} du jeu}} 
+
+Cette classe contient une {\bfseries{Collection d\textquotesingle{}\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} 
+
+\mbox{\hyperlink{classmodel_1_1_indic_lever}{Indic\+Lever}} 
+
+\mbox{\hyperlink{classmodel_1_1_lever_list}{Lever\+List}}
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+yoanv, lucast 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmodel_1_1_indicator_list_a282d7a8f1a221334ee1d0be1926c2ceb}\label{classmodel_1_1_indicator_list_a282d7a8f1a221334ee1d0be1926c2ceb}} 
+\index{model.IndicatorList@{model.IndicatorList}!IndicatorList@{IndicatorList}}
+\index{IndicatorList@{IndicatorList}!model.IndicatorList@{model.IndicatorList}}
+\doxysubsubsection{\texorpdfstring{IndicatorList()}{IndicatorList()}}
+{\footnotesize\ttfamily model.\+Indicator\+List.\+Indicator\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructeur de la classe {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}}}}, initialisant la liste des objets {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} à une {\bfseries{Array\+List}} vide 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmodel_1_1_indicator_list_a46b6f6de2ba7668a9f696797562e73c3}\label{classmodel_1_1_indicator_list_a46b6f6de2ba7668a9f696797562e73c3}} 
+\index{model.IndicatorList@{model.IndicatorList}!createIndicator@{createIndicator}}
+\index{createIndicator@{createIndicator}!model.IndicatorList@{model.IndicatorList}}
+\doxysubsubsection{\texorpdfstring{createIndicator()}{createIndicator()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} model.\+Indicator\+List.\+create\+Indicator (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{String}]{abreviation,  }\item[{double}]{value,  }\item[{double}]{max\+Value,  }\item[{Collection$<$ String $>$}]{infos }\end{DoxyParamCaption})}
+
+Fonction instanciant un nouveau objet de type {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} et le stockant dans la liste et le retournant 
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} \\
+\hline
+{\em abreviation} & {\bfseries{Abréviation}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} \\
+\hline
+{\em value} & {\bfseries{Valeur initiale}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} \\
+\hline
+{\em max\+Value} & {\bfseries{Valeur maximale}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} \\
+\hline
+{\em infos} & {\bfseries{Liste des informations}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} instancié 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classmodel_1_1_indicator_list_a9bed0a5cba8a88c713d8b6a5d9cff2a7}\label{classmodel_1_1_indicator_list_a9bed0a5cba8a88c713d8b6a5d9cff2a7}} 
-\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} {\bfseries get\+Indicator} (String name)
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_list_a9b8e0aba829dd4a7544d8ad59127fbaa}\label{classmodel_1_1_indicator_list_a9b8e0aba829dd4a7544d8ad59127fbaa}} 
-static \mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}} {\bfseries get\+Instance} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_list_a134e721c1d2c3665e2700b48c44316a2}\label{classmodel_1_1_indicator_list_a134e721c1d2c3665e2700b48c44316a2}} 
-Collection$<$ \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} $>$ {\bfseries \+\_\+indicators}
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Private Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classmodel_1_1_indicator_list_a9bdc87fb23aadf09f805ac1a4c14feed}\label{classmodel_1_1_indicator_list_a9bdc87fb23aadf09f805ac1a4c14feed}} 
-static \mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}} {\bfseries \+\_\+instance}
-\end{DoxyCompactItemize}
+\index{model.IndicatorList@{model.IndicatorList}!getIndicator@{getIndicator}}
+\index{getIndicator@{getIndicator}!model.IndicatorList@{model.IndicatorList}}
+\doxysubsubsection{\texorpdfstring{getIndicator()}{getIndicator()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} model.\+Indicator\+List.\+get\+Indicator (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+Fonction retournant l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} indiqué par son {\bfseries{nom}} 
+\begin{DoxyParams}{Parameters}
+{\em name} & {\bfseries{Nom}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} demandé \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} demandé 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_indicator_list_a0c90857390c484cb93ea01d37b1bcd3b}\label{classmodel_1_1_indicator_list_a0c90857390c484cb93ea01d37b1bcd3b}} 
+\index{model.IndicatorList@{model.IndicatorList}!getIndicatorByAbreviation@{getIndicatorByAbreviation}}
+\index{getIndicatorByAbreviation@{getIndicatorByAbreviation}!model.IndicatorList@{model.IndicatorList}}
+\doxysubsubsection{\texorpdfstring{getIndicatorByAbreviation()}{getIndicatorByAbreviation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}} model.\+Indicator\+List.\+get\+Indicator\+By\+Abreviation (\begin{DoxyParamCaption}\item[{String}]{abreviation }\end{DoxyParamCaption})}
+
+Fonction retournant l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} indiqué par son {\bfseries{abréviation}} 
+\begin{DoxyParams}{Parameters}
+{\em abreviation} & {\bfseries{Abréviation}} de l\textquotesingle{}objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} demandé \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Objet {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} demandé 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmodel_1_1_indicator_list_abd97cfdc15740a83545a80da195141b2}\label{classmodel_1_1_indicator_list_abd97cfdc15740a83545a80da195141b2}} 
+\index{model.IndicatorList@{model.IndicatorList}!getIndicators@{getIndicators}}
+\index{getIndicators@{getIndicators}!model.IndicatorList@{model.IndicatorList}}
+\doxysubsubsection{\texorpdfstring{getIndicators()}{getIndicators()}}
+{\footnotesize\ttfamily Collection$<$\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}$>$ model.\+Indicator\+List.\+get\+Indicators (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Fonction retournant la liste des objets {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} contenu dans l\textquotesingle{}instance de {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator_list}{Indicator\+List}}}} \begin{DoxyReturn}{Returns}
+{\bfseries{Collection}} des objets {\bfseries{\mbox{\hyperlink{classmodel_1_1_indicator}{Indicator}}}} 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Etudes/\+Superieur/\+T-\/\+Projet/\+T-\/3/t432\+\_\+haj19\+\_\+t3\+\_\+a/\+New Presidency/src/model/Indicator\+List.\+java\end{DoxyCompactItemize}
+New Presidency/src/model/Indicator\+List.\+java\end{DoxyCompactItemize}
