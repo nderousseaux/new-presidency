@@ -46,6 +46,7 @@ import static java.lang.Thread.sleep;
 //TODO:Ouvrir le scenar si quiter durant tuto
 //TODO:Installeur
 //TODO:On affiche le message du controleur, et on revien au début
+//TODO:Affichage des message d'erreur en boucle
 public class GraphicalView extends JFrame {
     private Controller _controller;
     private JPanel _year;
@@ -442,9 +443,111 @@ public class GraphicalView extends JFrame {
             this.setVisible(true);
         }
         else {
-            System.out.println(_controller.fin(_scenario));
-            exit(0);
+
+            endPage();
         }
+    }
+
+    private void messageEnd(ArrayList<String> fin){
+        TutoFrame scenar;
+        //Si c'est une victoire
+        if((fin.get(0)) == "VCondi"){
+            scenar= new TutoFrame("Vous avez gagné !! <br> Vous avez remplis vos objectifs avant la fin du jeu. <br> Félicitations !",null,null,null);
+        }
+        //Si c'est une défaite
+        else{
+            //Si c'est à cause de l'année
+            if(fin.get(0) == "DYear"){
+                scenar= new TutoFrame("Vous avez perdu !! <br> Vous n'avez pas réussi à remplir vos objectifs avant la fin du jeu. <br> Courage, vous allez y arriver !",null,null,null);
+            }
+            else{
+                scenar = new TutoFrame("Vous avez perdu !! <br> Vous avez fait descendre l'indicateur \" "+ _controller.getIndicator(fin.get(0).substring(1, fin.get(0).length()-1)).getName()+" \" trop bas <br> Réessayez !",null,null,null);
+            }
+        }
+        scenar.setVisible(true);
+    }
+
+    /** Procédure d'<b>affichage de l'écran d'accueil</b>, qui propose basiquement le tutoriel au joueur
+     *
+     * @see GraphicalView#tutorial(Boolean)
+     *
+     */
+    private void endPage(){
+        removeAllElements();
+        //Ajout du fond d'écran
+        addBackground();
+
+        //Création du panel contenant les éléments
+        JPanel content = new JPanel();
+        content.setLayout(new GridBagLayout());
+
+        //Création du titre
+        JLabel title=new JLabel("Merci d'avoir joué !");
+        title.setFont(new Font("Arial",Font.BOLD,24));
+        title.setForeground(Color.WHITE);
+
+
+        //Création du bouton permettant de voir le tutoriel
+        JButton tuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                exit(0);
+            }
+        });
+        tuto.setText("Quitter le jeu");
+
+        //Création du bouton permettant de passer le tutoriel
+        JButton noTuto=new JButton(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                removeAllElements();
+                try {
+                    _controller = new Controller();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                _background= new ImageIcon("Background.png");
+                content.setVisible(false);
+                updateAll();
+                removeAllElements();
+                homepage();
+
+            }
+        });
+        noTuto.setText("Rejouer");
+
+        //Création du panel comprenant les boutons
+        JPanel buttons=new JPanel();
+        buttons.setLayout(new GridLayout(2,1));
+        JPanel haut = new JPanel();
+        haut.add(tuto);
+        haut.add(noTuto);
+        buttons.add(haut);
+        haut.setBackground(new Color(0,0,0,0));
+        buttons.setBackground(new Color(0,0,0,0));
+        //Définition des contraintes de taille des composants
+        //Contraintes du titre
+        GridBagConstraints cTitle=new GridBagConstraints();
+        cTitle.fill = GridBagConstraints.HORIZONTAL;
+
+        //Contraintes du panel des boutons
+        GridBagConstraints cButtons=new GridBagConstraints();
+        cButtons.fill=GridBagConstraints.HORIZONTAL;
+        cButtons.gridy=1;
+
+        //Ajout au panel du contenu du titre et des boutons, en respectant les contraintes
+        content.add(title,cTitle);
+        content.add(buttons,cButtons);
+        //Ajout du panel de contenu dans la JFrame
+        content.setOpaque(false);
+
+
+        this.add(content,BorderLayout.CENTER);
+        this.setBackground(new Color(0,0,0,0));
+
+        this.setAlwaysOnTop(true);
+        this.setVisible(true);
+        messageEnd(_controller.fin((_scenario)));
     }
 
     /**Procédure de <b>mise en place des éléments</b> de la fenêtre principale
@@ -571,6 +674,7 @@ public class GraphicalView extends JFrame {
         this.remove(_pannelBottom);
         _pannelTop.removeAll();
         this.remove(_pannelTop);
+
     }
 
     /**Procédure d'<b>appel de toutes les initialisations/mises à jour</b> de tous les éléments de la fenêtre principale
@@ -715,7 +819,7 @@ public class GraphicalView extends JFrame {
         this.add(content,BorderLayout.CENTER);
         this.setBackground(new Color(0,0,0,0));
 
-        this.setAlwaysOnTop(true);
+        //TODO:this.setAlwaysOnTop(true);
         this.setVisible(true);
     }
 
@@ -745,7 +849,7 @@ public class GraphicalView extends JFrame {
         TutoFrame f10=new TutoFrame("Le premier, ici, permet de voir la <b>répartition du budget</b> que vous avez à disposition à ce tour",_graphicPie,null,f9);
         TutoFrame f11=new TutoFrame("Le second, ici, permet de voir l'<b>évolution</b> des <b>budgets alloués</b> pour les <b>leviers</b>, et des <b>niveaux de complétions</b> pour les <b>indicateurs</b>",_graphicLine,null,f10);
         TutoFrame f12=new TutoFrame("Il n'est disponible qu'à partir du deuxième tour, changez un ou plusieurs budgets de leviers, et cliquez sur <b>Passer au tour suivant</b>!",_graphicLine,null,f11);
-        TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f10);
+        TutoFrame fFin=new TutoFrame("Bonne chance!",null,null,f12);
         fDeb.setNextFrame(f2);
         f2.setNextFrame(f3);
         f3.setNextFrame(f4);
@@ -767,7 +871,7 @@ public class GraphicalView extends JFrame {
         }
 
         TutoFrame scenar= new TutoFrame(infosString,null,null,null);
-        if(scenarioALaFin)f7.setNextFrame(scenar);
+        if(scenarioALaFin)fFin.setNextFrame(scenar);
         this.setAlwaysOnTop(false);
         fDeb.setVisible(true);
     }

@@ -381,6 +381,10 @@ public class Controller {
     public Collection<Indicator> getIndicators(){
         return _indicatorList.getIndicators();
     }
+    public Indicator getIndicator(String abbreviation){
+
+        return _indicatorList.getIndicatorByAbreviation(abbreviation);
+    }
 
     public Budget getBudget(){
         return _budget;
