@@ -21,7 +21,7 @@ public class IndicatorList {
     private Collection<Indicator> _indicators;
 
     /**
-     * Constructeur de la classe <b>IndicatorList</b>, initialisant la liste des objets <b>Indicator</b> à une <b>Collection</b> vide
+     * Constructeur de la classe <b>IndicatorList</b>, initialisant la liste des objets <b>Indicator</b> à une <b>ArrayList</b> vide
      */
     public IndicatorList(){
         _indicators=new ArrayList<>();
@@ -30,7 +30,7 @@ public class IndicatorList {
     //Accesseurs
 
     /**
-     * Fonction instanciant un nouveau objet de type <b>Indicator</b> et le stockant dans la liste
+     * Fonction instanciant un nouveau objet de type <b>Indicator</b> et le stockant dans la liste et le retournant
      * @param name <b>Nom</b> de l'objet <b>Indicator</b>
      * @param abreviation <b>Abréviation</b> de l'objet <b>Indicator</b>
      * @param value <b>Valeur initiale</b> de l'objet <b>Indicator</b>

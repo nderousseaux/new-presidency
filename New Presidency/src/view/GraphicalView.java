@@ -433,7 +433,7 @@ public class GraphicalView extends JFrame {
      */
     private void endOfRound(){
 
-        if(_controller.fin(_scenario).size() ==0) {
+        if(_controller.end(_scenario).size() ==0) {
             removeAllElements();
             updateAll();
             addAllElements();
@@ -544,7 +544,7 @@ public class GraphicalView extends JFrame {
 
         this.setAlwaysOnTop(true);
         this.setVisible(true);
-        messageEnd(_controller.fin((_scenario)));
+        messageEnd(_controller.end((_scenario)));
     }
 
     /**Procédure de <b>mise en place des éléments</b> de la fenêtre principale
@@ -754,7 +754,7 @@ public class GraphicalView extends JFrame {
         title.setFont(new Font("Arial",Font.BOLD,24));
         title.setForeground(Color.WHITE);
 
-        ArrayList<String> scenarios = _controller.getTextScenarios();
+        ArrayList<String> scenarios = _controller.getScenarioNames();
         Object[] elements = scenarios.toArray();
         JComboBox scenar=new JComboBox(elements);
 
